@@ -1,0 +1,128 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="'.'">Adultery</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+    >
+      &#9776;
+    </button>
+
+    <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
+      <ul class="navbar-nav">
+        <li class="nav-item active" *ngIf="!isAuth">
+          <a
+            class="nav-link"
+            [routerLink]="'login'"
+            (click)="isMenuCollapsed = true"
+            >Login
+          </a>
+        </li>
+
+        <li class="nav-item active" *ngIf="!isAuth">
+          <a
+            class="nav-link"
+            [routerLink]="'signup'"
+            (click)="isMenuCollapsed = true"
+            >Sign Up
+          </a>
+        </li>
+
+        <li class="nav-item active" *ngIf="isAuth">
+          <div ngbDropdown>
+            <span class="nav-link-container">
+              <fa-icon [icon]="icon.faUser"></fa-icon>
+              <a
+                class="nav-link"
+                style="cursor: pointer"
+                ngbDropdownToggle
+                *ngIf="authService.user$ | async as user"
+              >
+                {{ user.email }}
+              </a>
+            </span>
+
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true; authService.logout()"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item active" *ngIf="isAuth">
+          <div ngbDropdown>
+            <span class="nav-link-container">
+              <fa-icon [icon]="icon.faDumbbell"></fa-icon>
+              <a class="nav-link" style="cursor: pointer" ngbDropdownToggle
+                >Fitness</a
+              >
+            </span>
+
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true"
+                [routerLink]="'exercise-library'"
+                [routerLinkActive]="['active']"
+              >
+                Exercises
+              </button>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true"
+                [routerLink]="'coming-soon'"
+                [routerLinkActive]="['active']"
+              >
+                Workouts
+              </button>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true"
+                [routerLink]="'coming-soon'"
+                [routerLinkActive]="['active']"
+              >
+                Plans
+              </button>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item active" *ngIf="isAuth">
+          <div ngbDropdown>
+            <span class="nav-link-container">
+              <fa-icon [icon]="icon.faTools"></fa-icon>
+              <a class="nav-link" style="cursor: pointer" ngbDropdownToggle
+                >Tool Belt</a
+              >
+            </span>
+
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true"
+                [routerLink]="'exercise-library'"
+                [routerLinkActive]="['active']"
+              >
+                Shopping List
+              </button>
+              <button
+                ngbDropdownItem
+                (click)="isMenuCollapsed = true"
+                [routerLink]="'coming-soon'"
+                [routerLinkActive]="['active']"
+              >
+                Meal Planner
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
