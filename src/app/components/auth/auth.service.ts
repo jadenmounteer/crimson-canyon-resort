@@ -38,12 +38,14 @@ export class AuthService {
   // The oath was inspired by https://fireship.io/lessons/angularfire-google-oauth/
   // Note that if you change domains, for the login with google to work you have to add the domain to the list of authorized domains in firebase console.
   async googleSignin() {
+    console.log('Google sign in');
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
   }
 
   private updateUserData(user: firebase.User | null) {
+    console.log('updating user data');
     this.userId = user?.uid;
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
@@ -61,6 +63,7 @@ export class AuthService {
   }
 
   iniAuthListener() {
+    console.log('iniauthlistener');
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.onSuccessfulAuthentication();
@@ -104,12 +107,15 @@ export class AuthService {
   }
 
   private onSuccessfulAuthentication() {
+    console.log('succsess!');
     this.isAuthenticated = true;
     this.authChange.next(true);
     this.router.navigate(['']);
   }
 
   private onUnsuccessfulAuthentication() {
+    console.log('Unsucsessful auth!');
+
     this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['']);
