@@ -31,7 +31,8 @@
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
     "lottie-web": "^5.10.1",
-    "ngx-lottie": "^9.1.0"
+    "ngx-lottie": "^9.1.0",
+    "@angular/fire": "^7.5.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.4",
