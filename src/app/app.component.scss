@@ -1,0 +1,15 @@
+$header-height: 6vh;
+
+.content {
+  display: flex;
+  justify-content: center;
+  margin-top: $header-height;
+}
+
+app-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  z-index: 9999;
+}
