@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './components/auth/auth.service';
 import { AnimationComponent } from './components/animation/animation.component';
 import { LottieModule } from 'ngx-lottie';
@@ -17,6 +17,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { NgIf } from '@angular/common';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -42,6 +43,8 @@ export function playerFactory(): any {
     LottieModule.forRoot({ player: playerFactory }),
     FormsModule,
     FontAwesomeModule,
+    NgbCarouselModule,
+    NgIf,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
