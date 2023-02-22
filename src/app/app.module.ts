@@ -15,6 +15,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { GoogleButtonComponent } from './components/google-button/google-button.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -28,6 +29,7 @@ export function playerFactory(): any {
     SignupComponent,
     GoogleButtonComponent,
     NavComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
