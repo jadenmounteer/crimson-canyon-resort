@@ -9,6 +9,7 @@ import { IconService } from 'src/app/services/icon.service';
 })
 export class BookVisitComponent implements OnInit {
   public arrivalDate: Date | undefined;
+  public departureDate: Date | undefined;
 
   constructor(public icon: IconService) {}
 

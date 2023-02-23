@@ -1,15 +1,50 @@
+@import "../../../styles.scss";
+
 .book-visit-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: $darkest;
   height: 400px;
   width: 400px;
-  border: 1px solid #bfbfbf;
-  border-radius: 10%;
-  box-shadow: 10px 10px 5px #aaaaaa;
+  @include for-tablet-landscape-up {
+    width: 98vh;
+    max-width: 2000px;
+    height: 100px;
+  }
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  @include for-tablet-landscape-up {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 .book-now-button {
   text-align: center;
 }
 
 .calendar-button {
   cursor: pointer;
+  color: $lightest;
+}
+
+label {
+  color: $lightest;
+}
+
+.book-visit-form-group {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
