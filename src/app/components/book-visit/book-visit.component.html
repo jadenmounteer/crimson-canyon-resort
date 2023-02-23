@@ -1,7 +1,29 @@
 <div class="book-visit-container">
-  <form>hello world</form>
-
-  <div class="book-now-button">
-    <button type="button" class="btn btn-primary btn-lg">Book Now</button>
-  </div>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <label>Arrive</label>
+    <input
+      type="text"
+      ngbDatepicker
+      required
+      name="arrivalDate"
+      #arrivalDateInput
+      #d="ngbDatepicker"
+      [(ngModel)]="arrivalDate"
+    />
+    <!-- <button (click)="d.toggle()" class="btn btn-primary">Pick Date</button> -->
+    <fa-icon
+      class="calendar-button"
+      [icon]="icon.faCalendarAlt"
+      (click)="d.toggle()"
+    ></fa-icon>
+    <div class="book-now-button">
+      <button
+        type="submit"
+        [disabled]="!f.valid"
+        class="btn btn-primary btn-lg"
+      >
+        Book Now
+      </button>
+    </div>
+  </form>
 </div>
