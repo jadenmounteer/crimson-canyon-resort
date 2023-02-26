@@ -33,7 +33,6 @@
         <li class="nav-item active" *ngIf="isAuth">
           <div ngbDropdown>
             <span class="nav-link-container">
-              <fa-icon [icon]="icon.faUser"></fa-icon>
               <a
                 class="nav-link"
                 style="cursor: pointer"
@@ -54,73 +53,30 @@
             </div>
           </div>
         </li>
-
-        <li class="nav-item active" *ngIf="isAuth">
-          <div ngbDropdown>
-            <span class="nav-link-container">
-              <fa-icon [icon]="icon.faDumbbell"></fa-icon>
-              <a class="nav-link" style="cursor: pointer" ngbDropdownToggle
-                >Fitness</a
-              >
-            </span>
-
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button
-                ngbDropdownItem
-                (click)="isMenuCollapsed = true"
-                [routerLink]="'exercise-library'"
-                [routerLinkActive]="['active']"
-              >
-                Exercises
-              </button>
-              <button
-                ngbDropdownItem
-                (click)="isMenuCollapsed = true"
-                [routerLink]="'coming-soon'"
-                [routerLinkActive]="['active']"
-              >
-                Workouts
-              </button>
-              <button
-                ngbDropdownItem
-                (click)="isMenuCollapsed = true"
-                [routerLink]="'coming-soon'"
-                [routerLinkActive]="['active']"
-              >
-                Plans
-              </button>
-            </div>
-          </div>
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            [routerLink]="'reserve-trip-page'"
+            (click)="isMenuCollapsed = true"
+            >Book Now
+          </a>
         </li>
 
         <li class="nav-item active" *ngIf="isAuth">
-          <div ngbDropdown>
-            <span class="nav-link-container">
-              <fa-icon [icon]="icon.faTools"></fa-icon>
-              <a class="nav-link" style="cursor: pointer" ngbDropdownToggle
-                >Tool Belt</a
-              >
-            </span>
-
-            <div class="dropdown-menu" ngbDropdownMenu>
-              <button
-                ngbDropdownItem
-                (click)="isMenuCollapsed = true"
-                [routerLink]="'exercise-library'"
-                [routerLinkActive]="['active']"
-              >
-                Shopping List
-              </button>
-              <button
-                ngbDropdownItem
-                (click)="isMenuCollapsed = true"
-                [routerLink]="'coming-soon'"
-                [routerLinkActive]="['active']"
-              >
-                Meal Planner
-              </button>
-            </div>
-          </div>
+          <a
+            class="nav-link"
+            [routerLink]="'reserve-trip-page'"
+            (click)="isMenuCollapsed = true"
+            >My Reservations
+          </a>
+        </li>
+        <li class="nav-item active" *ngIf="isAuth">
+          <a
+            class="nav-link"
+            [routerLink]="'reserve-trip-page'"
+            (click)="isMenuCollapsed = true"
+            >Administration
+          </a>
         </li>
       </ul>
     </div>
