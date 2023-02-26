@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home-page',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  constructor(titleService: Title) {
+    titleService.setTitle('Crimson Canyon Resort | Home');
+  }
 
   ngOnInit(): void {}
 }
