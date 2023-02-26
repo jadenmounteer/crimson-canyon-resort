@@ -22,6 +22,7 @@ import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -41,6 +42,7 @@ export function playerFactory(): any {
     ReserveTripPageComponent,
     PageWrapperComponent,
     LoadingSpinnerComponent,
+    PageNotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
