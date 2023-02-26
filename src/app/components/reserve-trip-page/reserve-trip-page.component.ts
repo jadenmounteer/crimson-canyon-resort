@@ -7,9 +7,12 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./reserve-trip-page.component.scss'],
 })
 export class ReserveTripPageComponent implements OnInit {
+  public contentLoaded: boolean = false;
   constructor(titleService: Title) {
     titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.contentLoaded = true;
+  }
 }
