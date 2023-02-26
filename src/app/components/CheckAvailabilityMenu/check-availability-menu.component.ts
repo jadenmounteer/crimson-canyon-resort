@@ -18,6 +18,6 @@ export class CheckAvailabilityMenu implements OnInit {
 
   public onSubmit(form: NgForm) {
     console.log(form.value.arrivalDate);
-    this.router.navigate(['trip-confirmation-page']);
+    this.router.navigate(['reserve-trip-page']);
   }
 }

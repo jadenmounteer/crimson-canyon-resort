@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { TripConfirmationPageComponent } from './components/trip-confirmation-page/trip-confirmation-page.component';
+import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 
 const routes: Routes = [
   {
@@ -19,8 +19,8 @@ const routes: Routes = [
     component: SignupComponent,
   },
   {
-    path: 'trip-confirmation-page',
-    component: TripConfirmationPageComponent,
+    path: 'reserve-trip-page',
+    component: ReserveTripPageComponent,
   },
   // {
   //   path: 'exercise-library',

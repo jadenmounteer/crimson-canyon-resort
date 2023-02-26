@@ -19,7 +19,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
 import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-availability-menu.component';
-import { TripConfirmationPageComponent } from './components/trip-confirmation-page/trip-confirmation-page.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
@@ -37,7 +36,6 @@ export function playerFactory(): any {
     HomePageComponent,
     CarouselComponent,
     CheckAvailabilityMenu,
-    TripConfirmationPageComponent,
     ReserveTripPageComponent,
   ],
   imports: [
