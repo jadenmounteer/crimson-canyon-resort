@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reserve-trip-page',
   templateUrl: './reserve-trip-page.component.html',
-  styleUrls: ['./reserve-trip-page.component.scss']
+  styleUrls: ['./reserve-trip-page.component.scss'],
 })
 export class ReserveTripPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(titleService: Title) {
+    titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
   }
 
+  ngOnInit(): void {}
 }
