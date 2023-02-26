@@ -1,6 +1,6 @@
 @import "../../../styles.scss";
 
-.book-visit-container {
+.check-availability-container {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
@@ -38,7 +38,7 @@ label {
   color: $lightest;
 }
 
-.book-visit-form-group {
+.check-availability-form-group {
   display: flex;
   gap: 4px;
   flex-direction: column;
