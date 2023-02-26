@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { IconService } from 'src/app/services/icon.service';
 
 @Component({
-  selector: 'app-book-visit',
-  templateUrl: './book-visit.component.html',
-  styleUrls: ['./book-visit.component.scss'],
+  selector: 'app-check-availability-menu',
+  templateUrl: './check-availability-menu.component.html',
+  styleUrls: ['./check-availability-menu.component.scss'],
 })
-export class BookVisitComponent implements OnInit {
+export class CheckAvailabilityMenu implements OnInit {
   public arrivalDate: Date | undefined;
   public departureDate: Date | undefined;
 

@@ -18,7 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
-import { BookVisitComponent } from './components/book-visit/book-visit.component';
+import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-availability-menu.component';
 import { TripConfirmationPageComponent } from './components/trip-confirmation-page/trip-confirmation-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
@@ -35,7 +35,7 @@ export function playerFactory(): any {
     NavComponent,
     HomePageComponent,
     CarouselComponent,
-    BookVisitComponent,
+    CheckAvailabilityMenu,
     TripConfirmationPageComponent,
   ],
   imports: [
