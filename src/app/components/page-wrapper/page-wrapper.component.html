@@ -1,1 +1,16 @@
-<p>page-wrapper works!</p>
+<div class="loading-container" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="page-container" *ngIf="contentLoaded">
+  <div class="page-header">
+    <ng-content select="[pageHeader]"> </ng-content>
+  </div>
+  <div class="page-content">
+    <ng-content select="[pageContent]"></ng-content>
+  </div>
+
+  <div class="page-footer">
+    <ng-content select="[pageFooter]"> </ng-content>
+  </div>
+</div>
