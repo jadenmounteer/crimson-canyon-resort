@@ -6,7 +6,7 @@
   padding-left: 40px;
   padding-right: 40px;
   background-color: $darkest;
-  height: 400px;
+  height: fit-content;
   width: 400px;
   @include for-tablet-landscape-up {
     width: 98vh;
