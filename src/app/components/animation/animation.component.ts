@@ -6,7 +6,7 @@ import { AnimationOptions } from 'ngx-lottie';
 // To install the necessary packages, I ran: npm install lottie-web ngx-lottie@9
 
 type AnimationKeys =
-  | 'kidAgainAnimation'
+  | 'palmTreeAnimation'
   | 'fitnessAnimation'
   | 'timeManagementAnimation'
   | 'financeAnimation';
@@ -20,8 +20,8 @@ type AnimationSizes = 'small' | 'medium-small' | 'medium' | 'large';
 export class AnimationComponent implements OnInit {
   public animationTypes: Map<AnimationKeys, string> = new Map([
     [
-      'kidAgainAnimation',
-      'https://assets1.lottiefiles.com/private_files/lf30_x8jhuhr4.json',
+      'palmTreeAnimation',
+      'https://assets7.lottiefiles.com/packages/lf20_tjUMkSX4rg.json',
     ],
     [
       'fitnessAnimation',
