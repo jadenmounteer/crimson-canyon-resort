@@ -1,7 +1,7 @@
 @import "../../../styles.scss";
 
 .home-page-section,
-.book-visit-banner {
+.check-availability-banner {
   display: flex;
   justify-content: center;
   margin-top: $spacing-large;
@@ -19,7 +19,7 @@ app-carousel {
   margin-right: auto;
 }
 
-app-book-visit {
+app-check-availability-menu {
   @include for-tablet-landscape-up {
     position: relative;
     top: -60px;
