@@ -70,6 +70,14 @@
             >My Reservations
           </a>
         </li>
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            [routerLink]="'page-not-found-page'"
+            (click)="isMenuCollapsed = true"
+            >What's Happening
+          </a>
+        </li>
         <li class="nav-item active" *ngIf="isAuth">
           <a
             class="nav-link"
