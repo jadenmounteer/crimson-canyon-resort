@@ -30,6 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
+  // This method was inspired by this stack overflow post:
+  // https://stackoverflow.com/questions/41451375/passing-data-into-router-outlet-child-components
   public onOutletLoaded(component: { isAuth: boolean }) {
     component.isAuth = this.isAuth;
   }
