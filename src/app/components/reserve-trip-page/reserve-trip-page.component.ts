@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -8,6 +8,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ReserveTripPageComponent implements OnInit {
   public contentLoaded: boolean = false;
+  @Input() isAuth: boolean = false;
+
   constructor(titleService: Title) {
     titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
   }

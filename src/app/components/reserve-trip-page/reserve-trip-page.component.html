@@ -4,6 +4,6 @@
   </div>
 
   <div pageContent>
-    <app-login></app-login>
+    <app-login *ngIf="!isAuth"></app-login>
   </div>
 </app-page-wrapper>

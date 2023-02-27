@@ -29,4 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
+
+  public onOutletLoaded(component: { isAuth: boolean }) {
+    component.isAuth = this.isAuth;
+  }
 }

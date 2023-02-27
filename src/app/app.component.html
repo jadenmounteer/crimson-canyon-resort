@@ -1,4 +1,4 @@
 <app-nav [isAuth]="isAuth"></app-nav>
 <div class="content">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onOutletLoaded($event)"></router-outlet>
 </div>
