@@ -7,11 +7,20 @@ import { WeatherService } from './weather.service';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
+  public currentWeatherData: any;
+  public currentWeatherDescription!: string;
+  public currentWeatherFeelsLike!: string;
+  public currentWeatherTemperature!: string;
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.weatherService.getCurrentWeather().subscribe((data) => {
       console.log(data);
+      this.currentWeatherData = data;
+      this.currentWeatherDescription =
+        this.currentWeatherData.weather[0].description;
+      this.currentWeatherFeelsLike = this.currentWeatherData.main.feels_like;
+      this.currentWeatherTemperature = this.currentWeatherData.main.temp;
     });
   }
 }

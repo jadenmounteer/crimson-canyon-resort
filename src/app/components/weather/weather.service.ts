@@ -15,7 +15,7 @@ export class WeatherService {
 
   public getCurrentWeather() {
     return this.http.get(
-      `${environment.weather.currentWeatherApiUrl}/weather?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&appid=${currentWeatherApiKEy}`
+      `${environment.weather.currentWeatherApiUrl}/weather?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&units=imperial&appid=${currentWeatherApiKEy}`
     );
   }
 }
