@@ -26,14 +26,14 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getArrivalAndDepartureDate();
-    this.contentLoaded = true;
-
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
         this.isAuth = authStatus;
       }
     );
+
+    this.getArrivalAndDepartureDate();
+    this.contentLoaded = true;
   }
 
   private getArrivalAndDepartureDate() {
