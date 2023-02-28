@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public contentLoaded: boolean = false;
-  @Input() isAuth: boolean = false;
+  public isAuth: boolean = false;
   private authSubscription!: Subscription;
 
   constructor(titleService: Title, private authService: AuthService) {
@@ -22,9 +22,6 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
 
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
-        console.log('UPDATING AUTH STATUS');
-        console.log(`auth status: ${authStatus}`);
-
         this.isAuth = authStatus;
       }
     );
