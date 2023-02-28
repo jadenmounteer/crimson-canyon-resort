@@ -7,7 +7,7 @@ import { AnimationOptions } from 'ngx-lottie';
 
 type AnimationKeys =
   | 'palmTreeAnimation'
-  | 'fitnessAnimation'
+  | 'cloudAnimation'
   | 'timeManagementAnimation'
   | 'financeAnimation';
 type AnimationSizes = 'small' | 'medium-small' | 'medium' | 'large';
@@ -24,8 +24,8 @@ export class AnimationComponent implements OnInit {
       'https://assets7.lottiefiles.com/packages/lf20_tjUMkSX4rg.json',
     ],
     [
-      'fitnessAnimation',
-      'https://assets2.lottiefiles.com/packages/lf20_ju61m9x9.json',
+      'cloudAnimation',
+      'https://assets10.lottiefiles.com/packages/lf20_KUFdS6.json',
     ],
     [
       'timeManagementAnimation',

@@ -1,4 +1,9 @@
-<h4>St. George Utah Weather</h4>
-{{ currentWeatherDescription }}<br />
-Temperature: {{ currentWeatherTemperature }}&#8457;<br />
-Feels like: {{ currentWeatherFeelsLike }}&#8457;
+<div class="weather-wrapper">
+  <h4>Current Weather</h4>
+  <div class="animation-wrapper">
+    <app-animation [animationKey]="'cloudAnimation'"> </app-animation>
+  </div>
+  <p>{{ currentWeatherDescription }}</p>
+  <p>Temperature: {{ currentWeatherTemperature }}&#8457;</p>
+  <p>Feels like: {{ currentWeatherFeelsLike }}&#8457;</p>
+</div>
