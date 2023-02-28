@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { IconService } from 'src/app/services/icon.service';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -12,8 +14,14 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public contentLoaded: boolean = false;
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
+  public arrivalDate: Date | undefined;
+  public departureDate: Date | undefined;
 
-  constructor(titleService: Title, private authService: AuthService) {
+  constructor(
+    titleService: Title,
+    private authService: AuthService,
+    public icon: IconService
+  ) {
     titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
   }
 
@@ -30,4 +38,6 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
+
+  public onBook(form: NgForm) {}
 }

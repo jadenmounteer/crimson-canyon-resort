@@ -1,6 +1,48 @@
 <app-page-wrapper [contentLoaded]="contentLoaded">
   <div pageHeader>
     <h1>Reserve Your Trip</h1>
+
+    <form #f="ngForm" (ngSubmit)="onBook(f)">
+      <div class="check-availability-form-group">
+        <label>Arrive</label>
+        <div class="date-field">
+          <input
+            type="text"
+            ngbDatepicker
+            required
+            name="arrivalDate"
+            #arrivalDateInput="ngbDatepicker"
+            [(ngModel)]="arrivalDate"
+            class="form-control"
+          />
+          <fa-icon
+            class="calendar-button"
+            [icon]="icon.faCalendarAlt"
+            (click)="arrivalDateInput.toggle()"
+          ></fa-icon>
+        </div>
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>Depart</label>
+        <div class="date-field">
+          <input
+            type="text"
+            ngbDatepicker
+            required
+            name="departureDate"
+            #departureDateInput="ngbDatepicker"
+            [(ngModel)]="departureDate"
+            class="form-control"
+          />
+          <fa-icon
+            class="calendar-button"
+            [icon]="icon.faCalendarAlt"
+            (click)="departureDateInput.toggle()"
+          ></fa-icon>
+        </div>
+      </div>
+    </form>
   </div>
 
   <div pageContent>
