@@ -9,15 +9,19 @@ import { IconService } from 'src/app/services/icon.service';
   styleUrls: ['./check-availability-menu.component.scss'],
 })
 export class CheckAvailabilityMenu implements OnInit {
-  public arrivalDate: Date | undefined;
-  public departureDate: Date | undefined;
-
   constructor(public icon: IconService, private router: Router) {}
 
   ngOnInit(): void {}
 
   public onSubmit(form: NgForm) {
-    console.log(form.value.arrivalDate);
-    this.router.navigate(['reserve-trip-page']);
+    console.log(form.value.departureDate);
+    this.router.navigate(['reserve-trip-page'], {
+      state: {
+        data: {
+          departureDate: form.value.departureDate,
+          arrivalDate: form.value.arrivalDate,
+        },
+      },
+    });
   }
 }
