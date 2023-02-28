@@ -8,11 +8,14 @@ const currentWeatherApiKEy: string = environment.weather.currentWeatherApiKEy;
   providedIn: 'root',
 })
 export class WeatherService {
+  private stGeorgeLat = 37.0965;
+  private stGeorgeLong = 113.5684;
+
   constructor(private http: HttpClient) {}
 
-  public getCurrentWeather(loc: string) {
+  public getCurrentWeather() {
     return this.http.get(
-      `${environment.weather.currentWeatherApiUrl}/weather?q=${loc}&appid=${currentWeatherApiKEy}`
+      `${environment.weather.currentWeatherApiUrl}/weather?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&appid=${currentWeatherApiKEy}`
     );
   }
 }

@@ -24,6 +24,7 @@ import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.com
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -57,6 +58,7 @@ export function playerFactory(): any {
     FontAwesomeModule,
     NgbCarouselModule,
     NgIf,
+    HttpClientModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
