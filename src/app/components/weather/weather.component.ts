@@ -11,6 +11,7 @@ export class WeatherComponent implements OnInit {
   public currentWeatherDescription!: string;
   public currentWeatherFeelsLike!: string;
   public currentWeatherTemperature!: string;
+
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {

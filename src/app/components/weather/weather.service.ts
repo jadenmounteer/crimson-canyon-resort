@@ -9,7 +9,7 @@ const currentWeatherApiKEy: string = environment.weather.currentWeatherApiKEy;
 })
 export class WeatherService {
   private stGeorgeLat = 37.0965;
-  private stGeorgeLong = 113.5684;
+  private stGeorgeLong = -113.5684;
 
   constructor(private http: HttpClient) {}
 
