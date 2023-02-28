@@ -11,6 +11,8 @@ export class WeatherComponent implements OnInit {
   public currentWeatherDescription!: string;
   public currentWeatherFeelsLike!: string;
   public currentWeatherTemperature!: string;
+  public currentWeatherHigh!: string;
+  public currentWeatherLow!: string;
 
   constructor(private weatherService: WeatherService) {}
 
@@ -22,6 +24,8 @@ export class WeatherComponent implements OnInit {
         this.currentWeatherData.weather[0].description;
       this.currentWeatherFeelsLike = this.currentWeatherData.main.feels_like;
       this.currentWeatherTemperature = this.currentWeatherData.main.temp;
+      this.currentWeatherHigh = this.currentWeatherData.main.temp_max;
+      this.currentWeatherLow = this.currentWeatherData.main.temp_min;
     });
   }
 }
