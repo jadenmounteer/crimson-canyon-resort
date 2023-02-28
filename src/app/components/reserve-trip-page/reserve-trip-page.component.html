@@ -1,7 +1,9 @@
 <app-page-wrapper [contentLoaded]="contentLoaded">
   <div pageHeader>
     <h1>Reserve Your Trip</h1>
+  </div>
 
+  <div pageContent>
     <form #f="ngForm" (ngSubmit)="onBook(f)">
       <div class="check-availability-form-group">
         <label>Arrive</label>
@@ -53,9 +55,9 @@
         </button>
       </div>
     </form>
-  </div>
 
-  <div pageContent>
+    <app-weather></app-weather>
+
     <app-login *ngIf="!isAuth"></app-login>
   </div>
 </app-page-wrapper>
