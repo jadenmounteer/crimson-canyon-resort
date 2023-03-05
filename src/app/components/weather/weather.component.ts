@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 
+interface CurrentWeather {
+  description: string;
+  feelsLike: string;
+  temperature: string;
+  high: string;
+  low: string;
+  animation: string;
+}
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -8,11 +17,15 @@ import { WeatherService } from './weather.service';
 })
 export class WeatherComponent implements OnInit {
   public currentWeatherData: any;
-  public currentWeatherDescription!: string;
-  public currentWeatherFeelsLike!: string;
-  public currentWeatherTemperature!: string;
-  public currentWeatherHigh!: string;
-  public currentWeatherLow!: string;
+  public currentWeather: CurrentWeather = {
+    description: '',
+    feelsLike: '',
+    temperature: '',
+    high: '',
+    low: '',
+    animation: '',
+  };
+  public currentWeatherLoaded: boolean = false;
 
   constructor(private weatherService: WeatherService) {}
 
@@ -20,12 +33,15 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getCurrentWeather().subscribe((data) => {
       console.log(data);
       this.currentWeatherData = data;
-      this.currentWeatherDescription =
+      this.currentWeather.description =
         this.currentWeatherData.weather[0].description;
-      this.currentWeatherFeelsLike = this.currentWeatherData.main.feels_like;
-      this.currentWeatherTemperature = this.currentWeatherData.main.temp;
-      this.currentWeatherHigh = this.currentWeatherData.main.temp_max;
-      this.currentWeatherLow = this.currentWeatherData.main.temp_min;
+      console.log(this.currentWeather.description);
+      this.currentWeather.feelsLike = this.currentWeatherData.main.feels_like;
+      this.currentWeather.temperature = this.currentWeatherData.main.temp;
+      this.currentWeather.high = this.currentWeatherData.main.temp_max;
+      this.currentWeather.low = this.currentWeatherData.main.temp_min;
+
+      this.currentWeatherLoaded = true;
     });
   }
 }
