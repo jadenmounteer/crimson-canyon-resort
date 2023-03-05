@@ -3,7 +3,7 @@
   <span *ngIf="currentWeatherLoaded">
     <h4>Current Weather</h4>
     <div class="animation-wrapper">
-      <app-animation [animationKey]="'cloudAnimation'"> </app-animation>
+      <app-animation [animationKey]="currentWeather.animation"> </app-animation>
     </div>
     <span>{{ currentWeather.description }}</span>
     <span>Temperature: {{ currentWeather.temperature }}&#8457;</span>

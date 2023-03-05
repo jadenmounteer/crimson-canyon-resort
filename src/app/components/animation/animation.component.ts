@@ -1,15 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
+import { AnimationKeys } from 'src/app/types/animation-keys';
 
 // This component is inspired by this blog: https://dev.to/riapacheco/adding-animated-illustrations-to-an-angular-app-with-lottie-ngx-lottie-4j0o
 // To install the necessary packages, I ran: npm install lottie-web ngx-lottie@9
 
-type AnimationKeys =
-  | 'palmTreeAnimation'
-  | 'cloudAnimation'
-  | 'timeManagementAnimation'
-  | 'financeAnimation';
 type AnimationSizes = 'small' | 'medium-small' | 'medium' | 'large';
 
 @Component({

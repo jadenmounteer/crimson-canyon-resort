@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
+import { AnimationKeys } from 'src/app/types/animation-keys';
 
 interface CurrentWeather {
   description: string;
@@ -7,7 +8,7 @@ interface CurrentWeather {
   temperature: string;
   high: string;
   low: string;
-  animation: string;
+  animation: AnimationKeys;
 }
 
 @Component({
@@ -23,7 +24,7 @@ export class WeatherComponent implements OnInit {
     temperature: '',
     high: '',
     low: '',
-    animation: '',
+    animation: 'cloudAnimation',
   };
   public currentWeatherLoaded: boolean = false;
 
@@ -40,6 +41,9 @@ export class WeatherComponent implements OnInit {
       this.currentWeather.temperature = this.currentWeatherData.main.temp;
       this.currentWeather.high = this.currentWeatherData.main.temp_max;
       this.currentWeather.low = this.currentWeatherData.main.temp_min;
+      this.currentWeather.animation = this.weatherService.getWeatherAnimation(
+        this.currentWeather.description
+      );
 
       this.currentWeatherLoaded = true;
     });

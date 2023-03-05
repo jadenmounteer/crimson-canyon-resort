@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+import { AnimationKeys } from 'src/app/types/animation-keys';
 const currentWeatherApiKEy: string = environment.weather.currentWeatherApiKEy;
 
 @Injectable({
@@ -17,5 +18,9 @@ export class WeatherService {
     return this.http.get(
       `${environment.weather.currentWeatherApiUrl}/weather?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&units=imperial&appid=${currentWeatherApiKEy}`
     );
+  }
+
+  public getWeatherAnimation(description: string): AnimationKeys {
+    return 'cloudAnimation';
   }
 }
