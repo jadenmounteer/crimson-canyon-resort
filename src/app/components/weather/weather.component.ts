@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { AnimationKeys } from 'src/app/types/animation-keys';
+import { WeatherCondition } from 'src/app/types/weather-conditions';
 
 interface CurrentWeather {
-  description: string;
+  description: WeatherCondition;
   feelsLike: string;
   temperature: string;
   high: string;
   low: string;
-  animation: AnimationKeys;
+  animation: AnimationKeys | undefined;
 }
 
 @Component({
@@ -19,7 +20,7 @@ interface CurrentWeather {
 export class WeatherComponent implements OnInit {
   public currentWeatherData: any;
   public currentWeather: CurrentWeather = {
-    description: '',
+    description: 'clear sky',
     feelsLike: '',
     temperature: '',
     high: '',

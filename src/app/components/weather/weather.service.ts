@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { AnimationKeys } from 'src/app/types/animation-keys';
+import { WeatherCondition } from 'src/app/types/weather-conditions';
 const currentWeatherApiKEy: string = environment.weather.currentWeatherApiKEy;
 
 @Injectable({
@@ -12,6 +13,20 @@ export class WeatherService {
   private stGeorgeLat = 37.0965;
   private stGeorgeLong = -113.5684;
 
+  public weatherConditionsMap: Map<WeatherCondition, AnimationKeys> = new Map([
+    ['clear sky', 'cloudAnimation'],
+    ['overcast clouds', 'cloudAnimation'],
+    ['few clouds', 'cloudAnimation'],
+    ['scattered clouds', 'cloudAnimation'],
+    ['broken clouds', 'cloudAnimation'],
+    ['broken clouds', 'cloudAnimation'],
+    ['shower rain', 'cloudAnimation'],
+    ['rain', 'cloudAnimation'],
+    ['thunderstorms', 'cloudAnimation'],
+    ['snow', 'cloudAnimation'],
+    ['mist', 'cloudAnimation'],
+  ]);
+
   constructor(private http: HttpClient) {}
 
   public getCurrentWeather() {
@@ -20,7 +35,11 @@ export class WeatherService {
     );
   }
 
-  public getWeatherAnimation(description: string): AnimationKeys {
-    return 'cloudAnimation';
+  public getWeatherAnimation(
+    description: WeatherCondition
+  ): AnimationKeys | undefined {
+    console.log(description);
+    console.log(this.weatherConditionsMap.get(description));
+    return this.weatherConditionsMap.get(description);
   }
 }
