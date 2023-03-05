@@ -37,6 +37,11 @@ const routes: Routes = [
   //   component: FeatureComingSoonComponent,
   //   canActivate: [AuthGuard],
   // },
+  // This is the wildcard route. It must always be last.
+  {
+    path: '**',
+    component: PageNotFoundPageComponent,
+  },
 ];
 
 @NgModule({
