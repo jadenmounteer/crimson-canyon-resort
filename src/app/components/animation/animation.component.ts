@@ -24,8 +24,8 @@ export class AnimationComponent implements OnInit {
       'https://assets10.lottiefiles.com/packages/lf20_KUFdS6.json',
     ],
     [
-      'timeManagementAnimation',
-      'https://assets1.lottiefiles.com/packages/lf20_i7ooqm2q.json',
+      'clearSkyAnimation',
+      'https://assets9.lottiefiles.com/private_files/lf30_rsattbhn.json',
     ],
     [
       'financeAnimation',

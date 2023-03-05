@@ -14,7 +14,7 @@ export class WeatherService {
   private stGeorgeLong = -113.5684;
 
   public weatherConditionsMap: Map<WeatherCondition, AnimationKeys> = new Map([
-    ['clear sky', 'cloudAnimation'],
+    ['clear sky', 'clearSkyAnimation'],
     ['overcast clouds', 'cloudAnimation'],
     ['few clouds', 'cloudAnimation'],
     ['scattered clouds', 'cloudAnimation'],

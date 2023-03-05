@@ -1,5 +1,5 @@
 export type AnimationKeys =
   | 'palmTreeAnimation'
   | 'cloudAnimation'
-  | 'timeManagementAnimation'
+  | 'clearSkyAnimation'
   | 'financeAnimation';
