@@ -38,8 +38,10 @@ export class WeatherService {
   public getWeatherAnimation(
     description: WeatherCondition
   ): AnimationKeys | undefined {
-    console.log(description);
-    console.log(this.weatherConditionsMap.get(description));
-    return this.weatherConditionsMap.get(description);
+    let animationKey = this.weatherConditionsMap.get(description);
+    if (!animationKey) {
+      return 'cloudAnimation';
+    }
+    return animationKey;
   }
 }
