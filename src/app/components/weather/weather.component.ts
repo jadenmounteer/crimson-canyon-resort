@@ -33,11 +33,9 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherService.getCurrentWeather().subscribe((data) => {
-      console.log(data);
       this.currentWeatherData = data;
       this.currentWeather.description =
         this.currentWeatherData.weather[0].description;
-      console.log(this.currentWeather.description);
       this.currentWeather.feelsLike = this.currentWeatherData.main.feels_like;
       this.currentWeather.temperature = this.currentWeatherData.main.temp;
       this.currentWeather.high = this.currentWeatherData.main.temp_max;

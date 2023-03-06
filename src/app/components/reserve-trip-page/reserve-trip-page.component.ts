@@ -31,6 +31,11 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
         this.isAuth = authStatus;
       }
     );
+    if (this.authService.isAuthenticated) {
+      this.isAuth = true;
+    } else {
+      this.isAuth = false;
+    }
 
     this.getArrivalAndDepartureDate();
     setTimeout(() => {

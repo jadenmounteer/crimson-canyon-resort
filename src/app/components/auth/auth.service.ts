@@ -13,7 +13,7 @@ import firebase from 'firebase/compat/app';
 @Injectable()
 export class AuthService {
   public authChange = new Subject<boolean>();
-  private isAuthenticated: boolean = false;
+  public isAuthenticated: boolean = false;
   public userId: string | undefined;
   public user$: Observable<User | null | undefined>;
 
