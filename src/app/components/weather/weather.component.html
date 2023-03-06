@@ -5,10 +5,13 @@
     <div class="animation-wrapper" *ngIf="currentWeather.animation">
       <app-animation [animationKey]="currentWeather.animation"> </app-animation>
     </div>
-    <span>{{ currentWeather.description }}</span>
-    <span>Temperature: {{ currentWeather.temperature }}&#8457;</span>
-    <span>Feels like: {{ currentWeather.feelsLike }}&#8457;</span>
-    <span>High: {{ currentWeather.high }}&#8457;</span>
-    <span>Low: {{ currentWeather.low }}&#8457;</span>
+
+    <div class="weather-info">
+      <span>{{ currentWeather.description }}</span>
+      <span>Temperature: {{ currentWeather.temperature }}&#8457;</span>
+      <span>Feels like: {{ currentWeather.feelsLike }}&#8457;</span>
+      <span>High: {{ currentWeather.high }}&#8457;</span>
+      <span>Low: {{ currentWeather.low }}&#8457;</span>
+    </div>
   </span>
 </div>
