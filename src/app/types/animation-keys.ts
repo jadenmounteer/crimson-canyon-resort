@@ -2,4 +2,8 @@ export type AnimationKeys =
   | 'palmTreeAnimation'
   | 'cloudAnimation'
   | 'clearSkyAnimation'
-  | 'financeAnimation';
+  | 'snowAnimation'
+  | 'mistAnimation'
+  | 'rainAnimation'
+  | 'fewCloudsAnimation'
+  | 'stormAnimation';

@@ -27,9 +27,16 @@ export class AnimationComponent implements OnInit {
       'clearSkyAnimation',
       'https://assets9.lottiefiles.com/private_files/lf30_rsattbhn.json',
     ],
+    ['snowAnimation', 'https://assets5.lottiefiles.com/temp/lf20_BSVgyt.json'],
+    ['mistAnimation', 'https://assets9.lottiefiles.com/temp/lf20_kOfPKE.json'],
+    ['stormAnimation', 'https://assets4.lottiefiles.com/temp/lf20_JA7Fsb.json'],
     [
-      'financeAnimation',
-      'https://assets2.lottiefiles.com/packages/lf20_qxdztkhq.json',
+      'rainAnimation',
+      'https://assets10.lottiefiles.com/packages/lf20_oAByvh2C1K.json',
+    ],
+    [
+      'fewCloudsAnimation',
+      'https://assets7.lottiefiles.com/packages/lf20_kljxfos1.json',
     ],
   ]);
 

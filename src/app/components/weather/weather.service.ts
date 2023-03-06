@@ -16,15 +16,14 @@ export class WeatherService {
   public weatherConditionsMap: Map<WeatherCondition, AnimationKeys> = new Map([
     ['clear sky', 'clearSkyAnimation'],
     ['overcast clouds', 'cloudAnimation'],
-    ['few clouds', 'cloudAnimation'],
-    ['scattered clouds', 'cloudAnimation'],
-    ['broken clouds', 'cloudAnimation'],
-    ['broken clouds', 'cloudAnimation'],
-    ['shower rain', 'cloudAnimation'],
-    ['rain', 'cloudAnimation'],
-    ['thunderstorms', 'cloudAnimation'],
-    ['snow', 'cloudAnimation'],
-    ['mist', 'cloudAnimation'],
+    ['few clouds', 'fewCloudsAnimation'],
+    ['scattered clouds', 'fewCloudsAnimation'],
+    ['broken clouds', 'fewCloudsAnimation'],
+    ['shower rain', 'rainAnimation'],
+    ['rain', 'rainAnimation'],
+    ['thunderstorms', 'stormAnimation'],
+    ['snow', 'snowAnimation'],
+    ['mist', 'mistAnimation'],
   ]);
 
   constructor(private http: HttpClient) {}

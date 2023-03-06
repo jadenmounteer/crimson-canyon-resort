@@ -20,7 +20,7 @@ interface CurrentWeather {
 export class WeatherComponent implements OnInit {
   public currentWeatherData: any;
   public currentWeather: CurrentWeather = {
-    description: 'clear sky',
+    description: 'few clouds',
     feelsLike: '',
     temperature: '',
     high: '',
