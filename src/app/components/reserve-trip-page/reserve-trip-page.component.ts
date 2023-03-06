@@ -33,7 +33,9 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     );
 
     this.getArrivalAndDepartureDate();
-    this.contentLoaded = true;
+    setTimeout(() => {
+      this.contentLoaded = true;
+    }, 1000);
   }
 
   private getArrivalAndDepartureDate() {

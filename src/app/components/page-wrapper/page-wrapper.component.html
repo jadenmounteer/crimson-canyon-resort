@@ -1,5 +1,7 @@
 <div class="loading-container" *ngIf="!contentLoaded">
-  <app-loading-spinner></app-loading-spinner>
+  <div class="animation-wrapper">
+    <app-animation animationKey="cactusLoadingAnimation"> </app-animation>
+  </div>
 </div>
 
 <div class="page-container" *ngIf="contentLoaded">

@@ -38,6 +38,10 @@ export class AnimationComponent implements OnInit {
       'fewCloudsAnimation',
       'https://assets7.lottiefiles.com/packages/lf20_kljxfos1.json',
     ],
+    [
+      'cactusLoadingAnimation',
+      'https://assets2.lottiefiles.com/packages/lf20_eGXeiL.json',
+    ],
   ]);
 
   @Input() animationKey!: AnimationKeys;

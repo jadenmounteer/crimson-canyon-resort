@@ -6,4 +6,5 @@ export type AnimationKeys =
   | 'mistAnimation'
   | 'rainAnimation'
   | 'fewCloudsAnimation'
-  | 'stormAnimation';
+  | 'stormAnimation'
+  | 'cactusLoadingAnimation';
