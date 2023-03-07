@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { AnimationKeys } from 'src/app/types/animation-keys';
 import { WeatherCondition } from 'src/app/types/weather-conditions';
+import * as moment from 'moment';
 
 interface CurrentWeather {
   description: WeatherCondition;
@@ -99,10 +100,17 @@ export class WeatherComponent implements OnInit {
   private grabListOfDates(listOfData: any): Array<string> {
     let listOfDates: string[] = [];
 
+    // Get today's date because we don't want to show today's information
+    let todaysDate = Date.now();
+    let todaysFormattedDate = moment(todaysDate).format('YYYY-MM-DD');
+
     for (let i = 0; i < listOfData.length; i++) {
       let dateString = listOfData[i].dt_txt.slice(0, 10);
 
-      if (!listOfDates.includes(dateString)) {
+      if (
+        !listOfDates.includes(dateString) &&
+        dateString != todaysFormattedDate
+      ) {
         listOfDates.push(dateString);
       }
     }
