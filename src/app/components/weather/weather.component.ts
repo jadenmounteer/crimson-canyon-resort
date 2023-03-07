@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { AnimationKeys } from 'src/app/types/animation-keys';
 import { WeatherCondition } from 'src/app/types/weather-conditions';
-import { StringLike } from '@firebase/util';
 
 interface CurrentWeather {
   description: WeatherCondition;
@@ -14,6 +13,7 @@ interface CurrentWeather {
 }
 
 interface futureWeather {
+  date: string;
   high: string;
   low: string;
   icon: string;
@@ -36,6 +36,7 @@ export class WeatherComponent implements OnInit {
   };
 
   public dayOneWeather: futureWeather = {
+    date: '',
     high: '',
     low: '',
     icon: '',
@@ -69,15 +70,14 @@ export class WeatherComponent implements OnInit {
 
   private organizeForecastData(listOfData: any): Array<any> {
     let days: futureWeather[] = [];
-    console.log(listOfData);
 
     // First, we grab a list of all of the dates
     let listOfDates: string[] = this.grabListOfDates(listOfData);
-    console.log(listOfDates);
 
     // Foreach date
     for (let i = 0; i < listOfDates.length; i++) {
       let day: futureWeather = (days[i] = {
+        date: listOfDates[i],
         high: '',
         low: '',
         icon: '',
@@ -85,11 +85,12 @@ export class WeatherComponent implements OnInit {
 
       let date = listOfDates[i];
 
-      // Grab the highest temperature for each day
-      day.high = this.findHighForDay(date, listOfData);
+      // Get the increments per day
+      let incrementsPerDay: any = this.getIncrementsPerDay(date, listOfData);
 
-      // Grab the lowest temperature for each day
-      // Grab the icon for each day
+      // Grab the highest temperature for each day
+      day = this.getDataPerDay(date, incrementsPerDay);
+      console.log(day);
     }
 
     return days;
@@ -109,15 +110,51 @@ export class WeatherComponent implements OnInit {
     return listOfDates;
   }
 
-  private findHighForDay(date: string, listOfData: any): string {
-    let high: string = '';
+  private getDataPerDay(date: string, incrementsPerDay: any): futureWeather {
+    let futureWeather: futureWeather = {
+      date: date,
+      high: '',
+      low: '',
+      icon: '',
+    };
 
-    listOfData.forEach((increment: any) => {
-      if (increment.dt_txt) {
-        console.log('found a matching date!');
+    // Loop through the increments for that day and find the data we want for the future weather
+    let listOfHighs: number[] = [];
+    let listOfLows: number[] = [];
+    incrementsPerDay.forEach((increment: any) => {
+      // If the time is noon, grab the icon
+      if (increment.dt_txt.includes('12:00:00')) {
+        futureWeather.icon = increment.weather[0].icon;
+      }
+
+      let incrementHigh = Number(increment.main.temp_max);
+      if (!listOfHighs.includes(incrementHigh)) {
+        listOfHighs.push(incrementHigh);
+      }
+
+      let incrementLow = Number(increment.main.temp_min);
+      if (!listOfLows.includes(incrementLow)) {
+        listOfLows.push(incrementLow);
       }
     });
 
-    return high;
+    // Now that we have the list of highs and lows, find the highest high
+    futureWeather.high = String(Math.max(...listOfHighs));
+
+    // Find the lowest low
+    futureWeather.low = String(Math.max(...listOfLows));
+
+    return futureWeather;
+  }
+
+  private getIncrementsPerDay(date: string, listOfData: any) {
+    let listOfIncremenets: any = [];
+
+    listOfData.forEach((increment: any) => {
+      if (increment.dt_txt.includes(date)) {
+        listOfIncremenets.push(increment);
+      }
+    });
+    return listOfIncremenets;
   }
 }
