@@ -18,6 +18,7 @@ interface futureWeather {
   high: string;
   low: string;
   icon: string;
+  iconUrl: string;
 }
 
 @Component({
@@ -36,12 +37,7 @@ export class WeatherComponent implements OnInit {
     animation: 'cloudAnimation',
   };
 
-  public dayOneWeather: futureWeather = {
-    date: '',
-    high: '',
-    low: '',
-    icon: '',
-  };
+  public futureDays: Array<futureWeather> = [];
 
   public currentWeatherLoaded: boolean = false;
 
@@ -65,11 +61,12 @@ export class WeatherComponent implements OnInit {
 
     this.weatherService.get5DayForecast().subscribe((data: any) => {
       // Separate the data into days
-      let days = this.organizeForecastData(data.list);
+      this.organizeForecastData(data.list);
+      console.log(this.futureDays);
     });
   }
 
-  private organizeForecastData(listOfData: any): Array<any> {
+  private organizeForecastData(listOfData: any) {
     let days: futureWeather[] = [];
 
     // First, we grab a list of all of the dates
@@ -82,6 +79,7 @@ export class WeatherComponent implements OnInit {
         high: '',
         low: '',
         icon: '',
+        iconUrl: '',
       });
 
       let date = listOfDates[i];
@@ -91,10 +89,11 @@ export class WeatherComponent implements OnInit {
 
       // Grab the highest temperature for each day
       day = this.getDataPerDay(date, incrementsPerDay);
-      console.log(day);
-    }
 
-    return days;
+      day.iconUrl = this.buildDaysIconUrl(day);
+
+      this.futureDays.push(day);
+    }
   }
 
   private grabListOfDates(listOfData: any): Array<string> {
@@ -124,19 +123,18 @@ export class WeatherComponent implements OnInit {
       high: '',
       low: '',
       icon: '',
+      iconUrl: '',
     };
 
     // Loop through the increments for that day and find the data we want for the future weather
     let listOfHighs: number[] = [];
     let listOfLows: number[] = [];
     incrementsPerDay.forEach((increment: any) => {
-      // If the time is noon, grab the icon
-      if (increment.dt_txt.includes('12:00:00')) {
-        futureWeather.icon = increment.weather[0].icon;
-      }
-
       let incrementHigh = Number(increment.main.temp_max);
       if (!listOfHighs.includes(incrementHigh)) {
+        // We grab the icon of the high
+        futureWeather.icon = increment.weather[0].icon;
+
         listOfHighs.push(incrementHigh);
       }
 
@@ -164,5 +162,10 @@ export class WeatherComponent implements OnInit {
       }
     });
     return listOfIncremenets;
+  }
+
+  private buildDaysIconUrl(day: futureWeather): string {
+    // Icon url grabbed from here: https://openweathermap.org/weather-conditions
+    return `https://openweathermap.org/img/wn/${day.icon}@2x.png`;
   }
 }
