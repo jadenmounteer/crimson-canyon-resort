@@ -43,4 +43,10 @@ export class WeatherService {
     }
     return animationKey;
   }
+
+  public get5DayForecast() {
+    return this.http.get(
+      `${environment.weather.currentWeatherApiUrl}/forecast?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&units=imperial&appid=${currentWeatherApiKEy}`
+    );
+  }
 }

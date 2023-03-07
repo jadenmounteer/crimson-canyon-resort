@@ -46,5 +46,9 @@ export class WeatherComponent implements OnInit {
 
       this.currentWeatherLoaded = true;
     });
+
+    this.weatherService.get5DayForecast().subscribe((data) => {
+      console.log(data);
+    });
   }
 }
