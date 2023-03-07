@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { AnimationKeys } from 'src/app/types/animation-keys';
 import { WeatherCondition } from 'src/app/types/weather-conditions';
+import { StringLike } from '@firebase/util';
 
 interface CurrentWeather {
   description: WeatherCondition;
@@ -62,30 +63,33 @@ export class WeatherComponent implements OnInit {
 
     this.weatherService.get5DayForecast().subscribe((data: any) => {
       // Separate the data into days
-      let days = this.organizeDataIntoDays(data.list);
-
-      // Grab the highest temperature for each day
-
-      // Grab the lowest temperature for each day
-
-      // Grab the icon for each day
+      let days = this.organizeForecastData(data.list);
     });
   }
 
-  private organizeDataIntoDays(listOfData: any): Array<any> {
-    let days: any[] = [];
+  private organizeForecastData(listOfData: any): Array<any> {
+    let days: futureWeather[] = [];
     console.log(listOfData);
 
     // First, we grab a list of all of the dates
     let listOfDates: string[] = this.grabListOfDates(listOfData);
     console.log(listOfDates);
 
-    for (let i = 0; i < listOfData.length; i++) {}
+    // Foreach date
+    for (let i = 0; i < listOfDates.length; i++) {
+      let day: futureWeather = (days[i] = {
+        high: '',
+        low: '',
+        icon: '',
+      });
 
-    let counter = 0;
+      let date = listOfDates[i];
 
-    while (counter < listOfData.length) {
-      counter++;
+      // Grab the highest temperature for each day
+      day.high = this.findHighForDay(date, listOfData);
+
+      // Grab the lowest temperature for each day
+      // Grab the icon for each day
     }
 
     return days;
@@ -103,5 +107,17 @@ export class WeatherComponent implements OnInit {
     }
 
     return listOfDates;
+  }
+
+  private findHighForDay(date: string, listOfData: any): string {
+    let high: string = '';
+
+    listOfData.forEach((increment: any) => {
+      if (increment.dt_txt) {
+        console.log('found a matching date!');
+      }
+    });
+
+    return high;
   }
 }
