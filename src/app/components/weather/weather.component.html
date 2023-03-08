@@ -21,9 +21,11 @@
 
     <span class="weather-widget-footer">
       <div *ngFor="let day of futureDays" class="future-weather-card">
-        <span>{{ day.date | date : "ccc" : "GMT" }}</span>
-        <span> {{ day.high }}&#8457;</span>
-        <span> {{ day.low }}&#8457;</span>
+        <span class="future-weather-day"
+          ><strong>{{ day.date | date : "ccc" : "GMT" }}</strong></span
+        >
+        <span class="future-weather-high"> {{ day.high }}&#8457;</span>
+        <span class="future-weather-low"> {{ day.low }}&#8457;</span>
         <img class="future-weather-icon" [src]="day.iconUrl" />
       </div>
     </span>
