@@ -11,6 +11,7 @@ interface CurrentWeather {
   high: string;
   low: string;
   animation: AnimationKeys | undefined;
+  date: Date | undefined;
 }
 
 interface futureWeather {
@@ -36,6 +37,7 @@ export class WeatherComponent implements OnInit {
     high: '',
     low: '',
     animation: 'cloudAnimation',
+    date: undefined,
   };
 
   public futureDays: Array<futureWeather> = [];
@@ -56,12 +58,14 @@ export class WeatherComponent implements OnInit {
       this.currentWeather.animation = this.weatherService.getWeatherAnimation(
         this.currentWeather.description
       );
+      // We add a day's worth of milliseconds to the date, because for whatever reason Angular's
+      // datepipe displays this date as yesterday.
+      this.currentWeather.date = this.currentWeatherData.dt + 86400000;
 
       this.currentWeatherLoaded = true;
     });
 
     this.weatherService.get5DayForecast().subscribe((data: any) => {
-      console.log(data);
       // Separate the data into days
       this.organizeForecastData(data.list);
     });
