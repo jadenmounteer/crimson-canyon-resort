@@ -31,8 +31,15 @@
       <h4>St. George, Utah</h4>
       <h4>{{ currentWeather.temperature }}&#8457;</h4>
     </span>
-    <div class="animation-wrapper" *ngIf="currentWeather.animation">
-      <app-animation [animationKey]="currentWeather.animation"> </app-animation>
-    </div>
+
+    <span class="weather-widget-body">
+      <h5 class="current-weather-day">
+        {{ currentWeather.date | date : "cccc" : "GMT" }}
+      </h5>
+      <div class="animation-wrapper" *ngIf="currentWeather.animation">
+        <app-animation [animationKey]="currentWeather.animation">
+        </app-animation>
+      </div>
+    </span>
   </span>
 </div>

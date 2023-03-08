@@ -1,8 +1,14 @@
+@import "../../../styles.scss";
+
 .weather-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
+  width: 300px;
+  @include for-tablet-portrait-up {
+    width: 500px;
+  }
+  max-width: 500px;
   text-align: center;
   padding: 10px;
   background: rgb(2, 0, 36);
@@ -30,4 +36,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.weather-widget-body {
+  display: flex;
+  align-items: center;
 }
