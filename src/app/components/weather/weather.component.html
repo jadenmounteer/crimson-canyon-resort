@@ -22,3 +22,17 @@
   <span> {{ day.low }}&#8457;</span>
   <img [src]="day.iconUrl" />
 </div>
+
+<!-- New date widget-->
+<div class="weather-wrapper card">
+  <app-loading-spinner *ngIf="!currentWeatherLoaded"> </app-loading-spinner>
+  <span *ngIf="currentWeatherLoaded">
+    <span class="weather-widget-header">
+      <h4>St. George, Utah</h4>
+      <h4>{{ currentWeather.temperature }}&#8457;</h4>
+    </span>
+    <div class="animation-wrapper" *ngIf="currentWeather.animation">
+      <app-animation [animationKey]="currentWeather.animation"> </app-animation>
+    </div>
+  </span>
+</div>
