@@ -102,9 +102,9 @@ export class WeatherComponent implements OnInit {
   }
 
   private getDate(day: futureWeather): Date {
-    let dayOfWeek = new Date(day.dateString);
+    let dateObject = new Date(day.dateString);
 
-    return dayOfWeek;
+    return dateObject;
   }
 
   private grabListOfDates(listOfData: any): Array<string> {
