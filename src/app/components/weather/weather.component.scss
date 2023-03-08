@@ -46,3 +46,25 @@
   display: flex;
   align-items: center;
 }
+
+.weather-widget-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  row-gap: 4px;
+}
+
+.future-weather-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(230, 233, 237, 0.3);
+  padding: 5px;
+  border-radius: 5%;
+}
+
+.future-weather-icon {
+  width: 50px;
+}
