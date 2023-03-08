@@ -17,7 +17,7 @@
 </div>
 
 <div *ngFor="let day of futureDays">
-  <span>{{ day.date }}</span>
+  <span>{{ day.date | date : "ccc" }}</span>
   <span> {{ day.high }}&#8457;</span>
   <span> {{ day.low }}&#8457;</span>
   <img [src]="day.iconUrl" />

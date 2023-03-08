@@ -14,11 +14,12 @@ interface CurrentWeather {
 }
 
 interface futureWeather {
-  date: string;
+  dateString: string;
   high: string;
   low: string;
   icon: string;
   iconUrl: string;
+  date: Date | undefined;
 }
 
 @Component({
@@ -60,9 +61,9 @@ export class WeatherComponent implements OnInit {
     });
 
     this.weatherService.get5DayForecast().subscribe((data: any) => {
+      console.log(data);
       // Separate the data into days
       this.organizeForecastData(data.list);
-      console.log(this.futureDays);
     });
   }
 
@@ -75,11 +76,12 @@ export class WeatherComponent implements OnInit {
     // Foreach date
     for (let i = 0; i < listOfDates.length; i++) {
       let day: futureWeather = (days[i] = {
-        date: listOfDates[i],
+        dateString: listOfDates[i],
         high: '',
         low: '',
         icon: '',
         iconUrl: '',
+        date: undefined,
       });
 
       let date = listOfDates[i];
@@ -92,8 +94,17 @@ export class WeatherComponent implements OnInit {
 
       day.iconUrl = this.buildDaysIconUrl(day);
 
+      // Convert the date to a day of week
+      day.date = this.getDate(day);
+
       this.futureDays.push(day);
     }
+  }
+
+  private getDate(day: futureWeather): Date {
+    let dayOfWeek = new Date(day.dateString);
+
+    return dayOfWeek;
   }
 
   private grabListOfDates(listOfData: any): Array<string> {
@@ -119,11 +130,12 @@ export class WeatherComponent implements OnInit {
 
   private getDataPerDay(date: string, incrementsPerDay: any): futureWeather {
     let futureWeather: futureWeather = {
-      date: date,
+      dateString: date,
       high: '',
       low: '',
       icon: '',
       iconUrl: '',
+      date: undefined,
     };
 
     // Loop through the increments for that day and find the data we want for the future weather
