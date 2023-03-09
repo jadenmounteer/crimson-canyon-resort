@@ -3,10 +3,14 @@
     <h1>Reserve Your Trip</h1>
   </div>
 
-  <div pageContent>
+  <div pageContent class="page-content-wrapper">
     <div class="form-container">
       <div class="card booking-form">
-        <form #f="ngForm" (ngSubmit)="onBook(f)">
+        <form
+          #f="ngForm"
+          (ngSubmit)="onBook(f)"
+          class="check-availablility-form"
+        >
           <div class="check-availability-form-group">
             <label>Arrive</label>
             <div class="date-field">
