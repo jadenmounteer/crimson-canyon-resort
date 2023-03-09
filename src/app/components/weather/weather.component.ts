@@ -58,6 +58,7 @@ export class WeatherComponent implements OnInit {
     });
 
     this.weatherService.get5DayForecast().subscribe((data: any) => {
+      console.log(data);
       // Separate the data into days
       this.organizeForecastData(data.list);
     });
@@ -144,12 +145,13 @@ export class WeatherComponent implements OnInit {
         listOfLows.push(incrementLow);
       }
     });
+    console.log(listOfLows);
 
     // Now that we have the list of highs and lows, find the highest high
     futureWeather.high = String(Math.max(...listOfHighs));
 
     // Find the lowest low
-    futureWeather.low = String(Math.max(...listOfLows));
+    futureWeather.low = String(Math.min(...listOfLows));
 
     return futureWeather;
   }
