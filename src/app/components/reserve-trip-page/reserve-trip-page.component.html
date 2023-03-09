@@ -107,11 +107,14 @@
               Book
             </button>
           </div>
+
+          <app-login *ngIf="!isAuth"></app-login>
         </form>
       </div>
-      <app-weather></app-weather>
-    </div>
 
-    <app-login *ngIf="!isAuth"></app-login>
+      <span class="weather-wrapper">
+        <app-weather></app-weather>
+      </span>
+    </div>
   </div>
 </app-page-wrapper>
