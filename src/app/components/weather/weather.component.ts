@@ -106,17 +106,10 @@ export class WeatherComponent implements OnInit {
   private grabListOfDates(listOfData: any): Array<string> {
     let listOfDates: string[] = [];
 
-    // Get today's date because we don't want to show today's information
-    let todaysDate = Date.now();
-    let todaysFormattedDate = moment(todaysDate).format('YYYY-MM-DD');
-
     for (let i = 0; i < listOfData.length; i++) {
       let dateString = listOfData[i].dt_txt.slice(0, 10);
 
-      if (
-        !listOfDates.includes(dateString) &&
-        dateString != todaysFormattedDate
-      ) {
+      if (!listOfDates.includes(dateString)) {
         listOfDates.push(dateString);
       }
     }
