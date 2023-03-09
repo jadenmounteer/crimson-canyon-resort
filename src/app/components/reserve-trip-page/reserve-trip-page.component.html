@@ -46,7 +46,11 @@
               ></fa-icon>
             </div>
           </div>
-          <span *ngIf="!isAuth">Please login to book this trip.</span>
+          <span *ngIf="!isAuth"
+            ><ngb-alert [dismissible]="false">
+              Please login to book this trip.
+            </ngb-alert></span
+          >
           <div class="book-now-button" *ngIf="isAuth">
             <button
               type="submit"

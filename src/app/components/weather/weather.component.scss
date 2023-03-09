@@ -23,7 +23,7 @@
 }
 
 .animation-wrapper {
-  width: 100px;
+  width: 100%;
   @include for-tablet-portrait-up {
     width: 150px;
   }
