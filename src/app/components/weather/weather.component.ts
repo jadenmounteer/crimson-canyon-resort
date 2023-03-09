@@ -6,10 +6,7 @@ import * as moment from 'moment';
 
 interface CurrentWeather {
   description: WeatherCondition;
-  feelsLike: string;
   temperature: string;
-  high: string;
-  low: string;
   animation: AnimationKeys | undefined;
   date: Date | undefined;
 }
@@ -32,10 +29,8 @@ export class WeatherComponent implements OnInit {
   public currentWeatherData: any;
   public currentWeather: CurrentWeather = {
     description: 'few clouds',
-    feelsLike: '',
+
     temperature: '',
-    high: '',
-    low: '',
     animation: 'cloudAnimation',
     date: undefined,
   };
@@ -51,10 +46,7 @@ export class WeatherComponent implements OnInit {
       this.currentWeatherData = data;
       this.currentWeather.description =
         this.currentWeatherData.weather[0].description;
-      this.currentWeather.feelsLike = this.currentWeatherData.main.feels_like;
       this.currentWeather.temperature = this.currentWeatherData.main.temp;
-      this.currentWeather.high = this.currentWeatherData.main.temp_max;
-      this.currentWeather.low = this.currentWeatherData.main.temp_min;
       this.currentWeather.animation = this.weatherService.getWeatherAnimation(
         this.currentWeather.description
       );
