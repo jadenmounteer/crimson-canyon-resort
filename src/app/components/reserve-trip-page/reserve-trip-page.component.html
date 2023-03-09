@@ -55,6 +55,49 @@
               Please login to book this trip.
             </ngb-alert></span
           >
+          <span *ngIf="!dateAvailable"
+            ><ngb-alert type="danger" [dismissible]="false">
+              This date is not available. Someone may have booked a private
+              event during this time. Please select another date.
+            </ngb-alert></span
+          >
+          <span *ngIf="dateAvailable"
+            ><ngb-alert type="success" [dismissible]="false">
+              This date is available. Please fill out some additional
+              information in order to book.
+            </ngb-alert></span
+          >
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Number of guests</label>
+          </div>
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Number of vehicles</label>
+          </div>
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Family name</label>
+          </div>
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Private Visit?</label>
+            <p>
+              <small
+                >Check the box to not allow other guests to book during your
+                stay.</small
+              >
+            </p>
+          </div>
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Plans for food</label>
+          </div>
+
+          <div class="check-availability-form-group" *ngIf="isAuth">
+            <label>Additional information</label>
+          </div>
+
           <div class="book-now-button" *ngIf="isAuth">
             <button
               type="submit"

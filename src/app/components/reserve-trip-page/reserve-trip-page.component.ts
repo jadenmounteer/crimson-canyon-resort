@@ -17,6 +17,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   private authSubscription!: Subscription;
   public arrivalDate: Date | undefined;
   public departureDate: Date | undefined;
+  public dateAvailable: boolean = true;
 
   constructor(
     titleService: Title,
