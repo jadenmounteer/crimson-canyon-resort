@@ -50,37 +50,67 @@
               ></fa-icon>
             </div>
           </div>
-          <span *ngIf="!isAuth"
+
+          <span *ngIf="dateAvailable === undefined"
             ><ngb-alert [dismissible]="false">
-              Please login to book this trip.
+              Please select an arrival and departure date to check availability.
             </ngb-alert></span
           >
-          <span *ngIf="!dateAvailable"
+
+          <span *ngIf="dateAvailable === false"
             ><ngb-alert type="danger" [dismissible]="false">
               This date is not available. Someone may have booked a private
               event during this time. Please select another date.
             </ngb-alert></span
           >
-          <span *ngIf="dateAvailable"
+          <span *ngIf="dateAvailable === true && isAuth"
             ><ngb-alert type="success" [dismissible]="false">
-              This date is available. Please fill out some additional
-              information in order to book.
+              This date is available.
             </ngb-alert></span
           >
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <span *ngIf="dateAvailable === true && !isAuth"
+            ><ngb-alert type="success" [dismissible]="false">
+              This date is available.
+            </ngb-alert></span
+          >
+          <span *ngIf="dateAvailable && !isAuth"
+            ><ngb-alert [dismissible]="false">
+              Please login to book this trip.
+            </ngb-alert></span
+          >
+
+          <span *ngIf="dateAvailable && isAuth"
+            ><ngb-alert [dismissible]="false">
+              Please fill out the below information to continue booking.
+            </ngb-alert></span
+          >
+
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Number of guests</label>
           </div>
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Number of vehicles</label>
           </div>
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Family name</label>
           </div>
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Private Visit?</label>
             <p>
               <small
@@ -90,21 +120,37 @@
             </p>
           </div>
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Plans for food</label>
           </div>
 
-          <div class="check-availability-form-group" *ngIf="isAuth">
+          <div
+            class="check-availability-form-group"
+            *ngIf="isAuth && dateAvailable"
+          >
             <label>Additional information</label>
           </div>
 
-          <div class="book-now-button" *ngIf="isAuth">
+          <div class="book-now-button" *ngIf="isAuth && dateAvailable">
             <button
               type="submit"
               [disabled]="!f.valid"
               class="btn btn-primary btn-lg"
             >
               Book
+            </button>
+          </div>
+
+          <div class="book-now-button" *ngIf="!dateAvailable">
+            <button
+              type="submit"
+              [disabled]="!f.valid"
+              class="btn btn-primary btn-lg"
+            >
+              Check Availability
             </button>
           </div>
 

@@ -17,7 +17,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   private authSubscription!: Subscription;
   public arrivalDate: Date | undefined;
   public departureDate: Date | undefined;
-  public dateAvailable: boolean = true;
+  public dateAvailable!: boolean | undefined;
 
   constructor(
     titleService: Title,
@@ -43,6 +43,11 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.contentLoaded = true;
     }, 1000);
+
+    if (this.arrivalDate && this.departureDate) {
+      // TODO check if the date is available here
+      this.dateAvailable = true;
+    }
   }
 
   private getArrivalAndDepartureDate() {
@@ -55,5 +60,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  public onBook(form: NgForm) {}
+  public onBook(form: NgForm) {
+    this.dateAvailable = false;
+  }
 }
