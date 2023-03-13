@@ -1,4 +1,5 @@
-.navbar {
+.navbar,
+.dropdown-menu {
   background-color: rgba(0, 0, 0);
 }
 
@@ -6,13 +7,24 @@
   max-height: 75px;
 }
 
-a {
+a,
+button {
   color: #fff;
+}
+
+a {
+  cursor: pointer;
 }
 
 .nav-link:hover,
 .nav-link:focus,
-.active {
+.active,
+.a:hover {
+  color: #ababab;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0);
   color: #ababab;
 }
 
