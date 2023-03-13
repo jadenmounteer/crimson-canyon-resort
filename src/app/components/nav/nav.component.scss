@@ -10,7 +10,9 @@ a {
   color: #fff;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus,
+.active {
   color: #ababab;
 }
 
