@@ -4,13 +4,18 @@
       <img class="navbar-logo-img" src="../../../assets/logo.png" />
     </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="isMenuCollapsed = !isMenuCollapsed"
-    >
-      &#9776;
-    </button>
+    <div class="three navbar-toggler">
+      <div
+        class="hamburger"
+        id="hamburger-1"
+        (click)="isMenuCollapsed = !isMenuCollapsed"
+        [class.is-active]="!isMenuCollapsed"
+      >
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
 
     <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
       <ul class="navbar-nav">
