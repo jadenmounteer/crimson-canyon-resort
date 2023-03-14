@@ -42,6 +42,14 @@ export class AnimationComponent implements OnInit {
       'cactusLoadingAnimation',
       'https://assets2.lottiefiles.com/packages/lf20_eGXeiL.json',
     ],
+    [
+      'nightFewCloudsAnimation',
+      'https://assets3.lottiefiles.com/temp/lf20_Jj2Qzq.json',
+    ],
+    [
+      'nightClearSkyAnimation',
+      'https://assets3.lottiefiles.com/temp/lf20_y6mY2A.json',
+    ],
   ]);
 
   @Input() animationKey!: AnimationKeys;

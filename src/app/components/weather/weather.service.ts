@@ -13,18 +13,33 @@ export class WeatherService {
   private stGeorgeLat = 37.0965;
   private stGeorgeLong = -113.5684;
 
-  public weatherConditionsMap: Map<WeatherCondition, AnimationKeys> = new Map([
-    ['clear sky', 'clearSkyAnimation'],
-    ['overcast clouds', 'cloudAnimation'],
-    ['few clouds', 'fewCloudsAnimation'],
-    ['scattered clouds', 'fewCloudsAnimation'],
-    ['broken clouds', 'fewCloudsAnimation'],
-    ['shower rain', 'rainAnimation'],
-    ['rain', 'rainAnimation'],
-    ['thunderstorms', 'stormAnimation'],
-    ['snow', 'snowAnimation'],
-    ['mist', 'mistAnimation'],
-  ]);
+  public dayWeatherConditionsMap: Map<WeatherCondition, AnimationKeys> =
+    new Map([
+      ['clear sky', 'clearSkyAnimation'],
+      ['overcast clouds', 'cloudAnimation'],
+      ['few clouds', 'fewCloudsAnimation'],
+      ['scattered clouds', 'fewCloudsAnimation'],
+      ['broken clouds', 'fewCloudsAnimation'],
+      ['shower rain', 'rainAnimation'],
+      ['rain', 'rainAnimation'],
+      ['thunderstorms', 'stormAnimation'],
+      ['snow', 'snowAnimation'],
+      ['mist', 'mistAnimation'],
+    ]);
+
+  public nightWeatherConditionsMap: Map<WeatherCondition, AnimationKeys> =
+    new Map([
+      ['clear sky', 'nightClearSkyAnimation'],
+      ['overcast clouds', 'cloudAnimation'],
+      ['few clouds', 'nightFewCloudsAnimation'],
+      ['scattered clouds', 'nightFewCloudsAnimation'],
+      ['broken clouds', 'nightFewCloudsAnimation'],
+      ['shower rain', 'rainAnimation'],
+      ['rain', 'rainAnimation'],
+      ['thunderstorms', 'stormAnimation'],
+      ['snow', 'snowAnimation'],
+      ['mist', 'mistAnimation'],
+    ]);
 
   constructor(private http: HttpClient) {}
 
@@ -35,9 +50,15 @@ export class WeatherService {
   }
 
   public getWeatherAnimation(
-    description: WeatherCondition
+    description: WeatherCondition,
+    dayIcon: boolean
   ): AnimationKeys | undefined {
-    let animationKey = this.weatherConditionsMap.get(description);
+    let animationKey: AnimationKeys | undefined;
+    if (dayIcon) {
+      animationKey = this.dayWeatherConditionsMap.get(description);
+    } else {
+      animationKey = this.nightWeatherConditionsMap.get(description);
+    }
     if (!animationKey) {
       return 'cloudAnimation';
     }

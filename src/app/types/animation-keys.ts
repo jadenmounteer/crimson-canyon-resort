@@ -7,4 +7,6 @@ export type AnimationKeys =
   | 'rainAnimation'
   | 'fewCloudsAnimation'
   | 'stormAnimation'
-  | 'cactusLoadingAnimation';
+  | 'cactusLoadingAnimation'
+  | 'nightFewCloudsAnimation'
+  | 'nightClearSkyAnimation';

@@ -55,9 +55,6 @@ export class WeatherComponent implements OnInit {
       this.currentWeather.description =
         this.currentWeatherData.weather[0].description;
       this.currentWeather.temperature = this.currentWeatherData.main.temp;
-      this.currentWeather.animation = this.weatherService.getWeatherAnimation(
-        this.currentWeather.description
-      );
 
       this.currentWeather.high = this.currentWeatherData.main.temp_max;
       this.currentWeather.low = this.currentWeatherData.main.temp_min;
@@ -69,6 +66,14 @@ export class WeatherComponent implements OnInit {
       // Convert the unix timestamp to a javascript date
       this.currentWeather.date = new Date(this.currentWeatherData.dt * 1000);
 
+      // Check if day or night
+      const dayIcon: boolean = this.checkIfDayIcon(currentWeatherIcon);
+
+      this.currentWeather.animation = this.weatherService.getWeatherAnimation(
+        this.currentWeather.description,
+        dayIcon
+      );
+
       this.currentWeatherLoaded = true;
     });
 
@@ -76,6 +81,13 @@ export class WeatherComponent implements OnInit {
       // Separate the data into days
       this.organizeForecastData(data.list);
     });
+  }
+
+  private checkIfDayIcon(iconName: string): boolean {
+    if (iconName.includes('d')) {
+      return true;
+    }
+    return false;
   }
 
   private organizeForecastData(listOfData: any) {
