@@ -97,7 +97,7 @@
               min="1"
               required
               name="numberOfGuests"
-              ngModel="numberOfGuests"
+              ngModel
             />
           </div>
 
@@ -106,6 +106,14 @@
             *ngIf="isAuth && dateAvailable"
           >
             <label>Number of vehicles</label>
+            <input
+              class="form-control"
+              type="number"
+              min="0"
+              required
+              name="numberOfVehicles"
+              ngModel
+            />
           </div>
 
           <div
@@ -113,6 +121,14 @@
             *ngIf="isAuth && dateAvailable"
           >
             <label>Family name</label>
+            <input
+              class="form-control"
+              type="text"
+              required
+              name="familyName"
+              ngModel
+              placeholder="The Burritos"
+            />
           </div>
 
           <div
