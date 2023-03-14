@@ -12,7 +12,7 @@
           class="check-availablility-form"
         >
           <div class="check-availability-form-group">
-            <label>Arrive</label>
+            <label>*Arrive</label>
             <div class="date-field">
               <input
                 type="text"
@@ -32,7 +32,7 @@
           </div>
 
           <div class="check-availability-form-group">
-            <label>Depart</label>
+            <label>*Depart</label>
             <div class="date-field">
               <input
                 type="text"
@@ -90,7 +90,7 @@
             class="check-availability-form-group"
             *ngIf="isAuth && dateAvailable"
           >
-            <label>Number of guests</label>
+            <label>*Number of guests</label>
             <input
               class="form-control"
               type="number"
@@ -105,7 +105,7 @@
             class="check-availability-form-group"
             *ngIf="isAuth && dateAvailable"
           >
-            <label>Number of vehicles</label>
+            <label>*Number of vehicles</label>
             <input
               class="form-control"
               type="number"
@@ -120,13 +120,14 @@
             class="check-availability-form-group"
             *ngIf="isAuth && dateAvailable"
           >
-            <label>Family name</label>
+            <label>*Family name</label>
             <input
               class="form-control"
               type="text"
               required
               name="familyName"
               ngModel
+              required
               placeholder="The Burritos"
             />
           </div>
@@ -155,7 +156,16 @@
             class="check-availability-form-group"
             *ngIf="isAuth && dateAvailable"
           >
-            <label>Plans for food</label>
+            <label>*Plans for food</label>
+            <textarea
+              class="form-control"
+              id="plansForFood"
+              rows="3"
+              ngModel
+              required
+              name="plansForFood"
+              placeholder="Grandpa's cookin'"
+            ></textarea>
           </div>
 
           <div
@@ -163,6 +173,14 @@
             *ngIf="isAuth && dateAvailable"
           >
             <label>Additional information</label>
+            <textarea
+              class="form-control"
+              id="additionalInfo"
+              rows="3"
+              ngModel
+              name="additionalInfo"
+              placeholder="Archer says hi!"
+            ></textarea>
           </div>
 
           <div class="book-now-button" *ngIf="isAuth && dateAvailable">
