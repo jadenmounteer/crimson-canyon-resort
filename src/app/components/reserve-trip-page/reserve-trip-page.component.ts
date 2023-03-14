@@ -61,6 +61,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   }
 
   public onBook(form: NgForm) {
-    this.dateAvailable = false;
+    this.dateAvailable = true;
+    console.log(form);
   }
 }

@@ -91,6 +91,14 @@
             *ngIf="isAuth && dateAvailable"
           >
             <label>Number of guests</label>
+            <input
+              class="form-control"
+              type="number"
+              min="1"
+              required
+              name="numberOfGuests"
+              ngModel="numberOfGuests"
+            />
           </div>
 
           <div
