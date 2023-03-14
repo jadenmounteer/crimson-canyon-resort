@@ -13,7 +13,7 @@
 
     <span class="weather-widget-body">
       <h5 class="current-weather-day">
-        {{ currentWeather.date | date : "cccc" : "GMT" }}
+        {{ currentWeather.date | date : "cccc" : "MST" }}
       </h5>
       <div class="animation-wrapper" *ngIf="currentWeather.animation">
         <app-animation [animationKey]="currentWeather.animation">

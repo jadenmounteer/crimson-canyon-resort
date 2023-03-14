@@ -43,6 +43,7 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherService.getCurrentWeather().subscribe((data) => {
+      console.log(data);
       this.currentWeatherData = data;
       this.currentWeather.description =
         this.currentWeatherData.weather[0].description;
@@ -52,7 +53,8 @@ export class WeatherComponent implements OnInit {
       );
       // We add a day's worth of milliseconds to the date, because for whatever reason Angular's
       // datepipe displays this date as yesterday.
-      this.currentWeather.date = this.currentWeatherData.dt + 86400000;
+      // this.currentWeather.date = this.currentWeatherData.dt + 86400000;
+      this.currentWeather.date = new Date(this.currentWeatherData.dt * 1000);
 
       this.currentWeatherLoaded = true;
     });
