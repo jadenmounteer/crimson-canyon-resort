@@ -22,6 +22,17 @@
     </span>
 
     <span class="weather-widget-footer">
+      <div class="future-weather-card">
+        <span class="future-weather-day">
+          <strong>Today</strong>
+        </span>
+        <span class="future-weather-high">
+          {{ currentWeather.high }}&#8457;</span
+        >
+        <span class="future-weather-low"> {{ currentWeather.low }}&#8457;</span>
+        <img class="future-weather-icon" [src]="currentWeather.iconUrl" />
+      </div>
+
       <div *ngFor="let day of futureDays" class="future-weather-card">
         <span class="future-weather-day"
           ><strong>{{ day.date | date : "ccc" : "GMT" }}</strong></span

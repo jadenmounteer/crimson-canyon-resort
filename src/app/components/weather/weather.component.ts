@@ -9,6 +9,10 @@ interface CurrentWeather {
   temperature: string;
   animation: AnimationKeys | undefined;
   date: Date | undefined;
+  high: string;
+  low: string;
+  icon: string;
+  iconUrl: string;
 }
 
 interface futureWeather {
@@ -29,10 +33,13 @@ export class WeatherComponent implements OnInit {
   public currentWeatherData: any;
   public currentWeather: CurrentWeather = {
     description: 'few clouds',
-
     temperature: '',
     animation: 'cloudAnimation',
     date: undefined,
+    high: '',
+    low: '',
+    icon: '',
+    iconUrl: '',
   };
 
   public futureDays: Array<futureWeather> = [];
@@ -51,9 +58,15 @@ export class WeatherComponent implements OnInit {
       this.currentWeather.animation = this.weatherService.getWeatherAnimation(
         this.currentWeather.description
       );
-      // We add a day's worth of milliseconds to the date, because for whatever reason Angular's
-      // datepipe displays this date as yesterday.
-      // this.currentWeather.date = this.currentWeatherData.dt + 86400000;
+
+      this.currentWeather.high = this.currentWeatherData.main.temp_max;
+      this.currentWeather.low = this.currentWeatherData.main.temp_min;
+
+      const currentWeatherIcon = this.currentWeatherData.weather[0].icon;
+
+      this.currentWeather.iconUrl = this.buildIconUrl(currentWeatherIcon);
+
+      // Convert the unix timestamp to a javascript date
       this.currentWeather.date = new Date(this.currentWeatherData.dt * 1000);
 
       this.currentWeatherLoaded = true;
@@ -90,7 +103,7 @@ export class WeatherComponent implements OnInit {
       // Grab the highest temperature for each day
       day = this.getDataPerDay(date, incrementsPerDay);
 
-      day.iconUrl = this.buildDaysIconUrl(day);
+      day.iconUrl = this.buildIconUrl(day.icon);
 
       // Convert the date to a day of week
       day.date = this.getDate(day);
@@ -167,8 +180,8 @@ export class WeatherComponent implements OnInit {
     return listOfIncremenets;
   }
 
-  private buildDaysIconUrl(day: futureWeather): string {
+  private buildIconUrl(icon: string): string {
     // Icon url grabbed from here: https://openweathermap.org/weather-conditions
-    return `https://openweathermap.org/img/wn/${day.icon}@2x.png`;
+    return `https://openweathermap.org/img/wn/${icon}@2x.png`;
   }
 }
