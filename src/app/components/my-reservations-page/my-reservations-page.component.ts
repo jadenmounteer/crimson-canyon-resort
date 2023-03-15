@@ -25,4 +25,9 @@ export class MyReservationsPageComponent implements OnInit {
 
     this.reservationsService.fetchReservations();
   }
+
+  public onDeleteReservation(reservation: Reservation) {
+    this.reservationsService.deleteReservation(reservation);
+    alert('Your reservation has been cancelled.');
+  }
 }

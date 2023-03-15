@@ -31,7 +31,11 @@
             <button type="button" class="btn btn-link">Edit</button>
           </td>
           <td>
-            <button type="button" class="btn btn-link cancel-button">
+            <button
+              type="button"
+              class="btn btn-link cancel-button"
+              (click)="onDeleteReservation(reservation)"
+            >
               Cancel
             </button>
           </td>

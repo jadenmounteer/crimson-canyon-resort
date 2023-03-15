@@ -51,4 +51,9 @@ export class ReservationsService {
         this.reservationsChanged.next([...this.reservations]);
       });
   }
+
+  public deleteReservation(reservationToDelete: Reservation) {
+    const reservationsRef = this.firestore.collection('reservations');
+    reservationsRef.doc(reservationToDelete.id).delete();
+  }
 }
