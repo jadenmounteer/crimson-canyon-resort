@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
@@ -8,7 +8,7 @@ import { Reservation } from 'src/app/types/reservation';
   templateUrl: './my-reservations-page.component.html',
   styleUrls: ['./my-reservations-page.component.scss'],
 })
-export class MyReservationsPageComponent implements OnInit {
+export class MyReservationsPageComponent implements OnInit, OnDestroy {
   private reservationsSubscription!: Subscription;
   protected contentLoaded: boolean = false;
   protected myReservations: Array<Reservation> = [];
@@ -24,6 +24,10 @@ export class MyReservationsPageComponent implements OnInit {
       });
 
     this.reservationsService.fetchReservations();
+  }
+
+  ngOnDestroy(): void {
+    this.reservationsSubscription.unsubscribe();
   }
 
   public onDeleteReservation(reservation: Reservation) {
