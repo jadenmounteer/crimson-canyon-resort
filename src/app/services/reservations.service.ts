@@ -56,4 +56,18 @@ export class ReservationsService {
     const reservationsRef = this.firestore.collection('reservations');
     reservationsRef.doc(reservationToDelete.id).delete();
   }
+
+  public updateReservation(reservationToUpdate: Reservation) {
+    const reservationsRef = this.firestore.collection('reservations');
+    reservationsRef.doc(reservationToUpdate.id).update({
+      arrivalDate: reservationToUpdate.arrivalDate,
+      departureDate: reservationToUpdate.departureDate,
+      numberOfGuests: reservationToUpdate.numberOfGuests,
+      numberOfVehicles: reservationToUpdate.numberOfVehicles,
+      familyName: reservationToUpdate.familyName,
+      privateVisit: reservationToUpdate.privateVisit,
+      plansForFood: reservationToUpdate.plansForFood,
+      additionalInfo: reservationToUpdate.additionalInfo,
+    });
+  }
 }
