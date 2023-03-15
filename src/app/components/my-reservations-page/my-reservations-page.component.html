@@ -4,8 +4,39 @@
   </div>
 
   <div pageContent class="page-content-wrapper">
-    <div *ngFor="let reservation of myReservations">
-      {{ reservation.familyName }}
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Arrival</th>
+          <th scope="col">Departure</th>
+          <th scope="col">Private Visit?</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of myReservations">
+          <td scope="row">
+            {{ reservation.arrivalDate.month }}/{{
+              reservation.arrivalDate.day
+            }}/{{ reservation.arrivalDate.year }}
+          </td>
+          <td>
+            {{ reservation.departureDate.month }}/{{
+              reservation.departureDate.day
+            }}/{{ reservation.departureDate.year }}
+          </td>
+          <td>{{ reservation.privateVisit }}</td>
+          <td>
+            <button type="button" class="btn btn-link">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-link cancel-button">
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </app-page-wrapper>
