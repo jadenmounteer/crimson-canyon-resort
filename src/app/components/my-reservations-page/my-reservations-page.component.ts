@@ -11,16 +11,16 @@ import { Reservation } from 'src/app/types/reservation';
 export class MyReservationsPageComponent implements OnInit {
   private reservationsSubscription!: Subscription;
   protected contentLoaded: boolean = false;
-  protected defaultReservations: Array<Reservation> = [];
+  protected myReservations: Array<Reservation> = [];
 
   constructor(private reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
     this.reservationsSubscription =
       this.reservationsService.reservationsChanged.subscribe((reservations) => {
-        this.defaultReservations = reservations;
+        this.myReservations = reservations;
         this.contentLoaded = true;
-        console.log(this.defaultReservations);
+        console.log(this.myReservations);
       });
 
     this.reservationsService.fetchReservations();
