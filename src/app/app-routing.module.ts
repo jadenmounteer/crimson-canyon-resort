@@ -6,6 +6,7 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyReservationsPageComponent } from './components/my-reservations-page/my-reservations-page.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
+import { ReservationBookedPageComponent } from './components/reservation-booked-page/reservation-booked-page.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'my-reservations-page',
     component: MyReservationsPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'reservation-booked-page',
+    component: ReservationBookedPageComponent,
     canActivate: [AuthGuard],
   },
   {

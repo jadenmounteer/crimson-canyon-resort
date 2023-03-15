@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { Reservation } from 'src/app/types/reservation';
 import { ReservationsService } from 'src/app/services/reservations.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reserve-trip-page',
@@ -25,7 +26,8 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     titleService: Title,
     private authService: AuthService,
     public icon: IconService,
-    private reservationsService: ReservationsService
+    private reservationsService: ReservationsService,
+    private router: Router
   ) {
     titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
   }
@@ -82,5 +84,6 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     };
 
     this.reservationsService.addNewReservation(reservation);
+    this.router.navigate(['reservation-booked-page']);
   }
 }

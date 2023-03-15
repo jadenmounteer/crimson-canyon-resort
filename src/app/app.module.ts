@@ -26,6 +26,7 @@ import { PageNotFoundPageComponent } from './components/page-not-found-page/page
 import { WeatherComponent } from './components/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MyReservationsPageComponent } from './components/my-reservations-page/my-reservations-page.component';
+import { ReservationBookedPageComponent } from './components/reservation-booked-page/reservation-booked-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -48,6 +49,7 @@ export function playerFactory(): any {
     PageNotFoundPageComponent,
     WeatherComponent,
     MyReservationsPageComponent,
+    ReservationBookedPageComponent,
   ],
   imports: [
     BrowserModule,
