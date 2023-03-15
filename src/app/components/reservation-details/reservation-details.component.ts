@@ -12,15 +12,9 @@ import { Reservation } from 'src/app/types/reservation';
 export class ReservationDetailsComponent implements OnInit {
   @Input() reservation!: Reservation;
 
-  protected contentLoaded: boolean = false;
-
   constructor(public icon: IconService, public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.contentLoaded = true;
-    }, 1000);
-  }
+  ngOnInit(): void {}
 
   public onChangeReservation(form: NgForm) {}
 }
