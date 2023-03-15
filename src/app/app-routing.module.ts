@@ -12,7 +12,7 @@ import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve
 const routes: Routes = [
   {
     path: '',
-    component: ReservationBookedPageComponent,
+    component: HomePageComponent,
   },
   {
     path: 'login',
