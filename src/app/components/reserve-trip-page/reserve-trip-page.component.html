@@ -8,7 +8,7 @@
       <div class="card booking-form">
         <form
           #f="ngForm"
-          (ngSubmit)="onBook(f)"
+          (ngSubmit)="onBook(f.value)"
           class="check-availablility-form"
         >
           <div class="check-availability-form-group">

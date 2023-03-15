@@ -60,8 +60,8 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  public onBook(form: NgForm) {
+  public onBook(reservation: NgForm) {
     this.dateAvailable = true;
-    console.log(form);
+    console.log(reservation);
   }
 }
