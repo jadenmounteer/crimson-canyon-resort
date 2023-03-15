@@ -67,7 +67,20 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.dateAvailable = true;
   }
 
-  public onBook(reservation: Reservation) {
+  public onBook(form: NgForm) {
+    let reservation: Reservation = {
+      id: '',
+      userId: this.authService.userId,
+      arrivalDate: form.value.arrivalDate,
+      departureDate: form.value.departureDate,
+      numberOfGuests: form.value.numberOfGuests,
+      numberOfVehicles: form.value.numberOfVehicles,
+      familyName: form.value.familyName,
+      privateVisit: form.value.privateVisit,
+      plansForFood: form.value.plansForFood,
+      additionalInfo: form.value.additionalInfo,
+    };
+
     this.reservationsService.addNewReservation(reservation);
   }
 }

@@ -1,4 +1,6 @@
 export interface Reservation {
+  id: string;
+  userId: string | undefined;
   arrivalDate: DayMonthYear;
   departureDate: DayMonthYear;
   numberOfGuests: number;
