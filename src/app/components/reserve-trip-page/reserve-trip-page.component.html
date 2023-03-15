@@ -195,7 +195,7 @@
 
           <div class="book-now-button" *ngIf="!dateAvailable">
             <button
-              type="submit"
+              (click)="checkAvailability()"
               [disabled]="!f.valid"
               class="btn btn-primary btn-lg"
             >

@@ -63,8 +63,11 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  public onBook(reservation: Reservation) {
+  public checkAvailability() {
     this.dateAvailable = true;
+  }
+
+  public onBook(reservation: Reservation) {
     this.reservationsService.addNewReservation(reservation);
   }
 }
