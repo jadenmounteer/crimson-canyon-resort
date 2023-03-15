@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ReservationsService } from 'src/app/services/reservations.service';
+import { Reservation } from 'src/app/types/reservation';
 
 @Component({
   selector: 'app-my-reservations-page',
@@ -6,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-reservations-page.component.scss'],
 })
 export class MyReservationsPageComponent implements OnInit {
+  private reservationsSubscription!: Subscription;
   protected contentLoaded: boolean = false;
+  protected defaultReservations: Array<Reservation> = [];
 
-  constructor() {}
+  constructor(private reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.contentLoaded = true;
-    }, 1000);
+    this.reservationsSubscription =
+      this.reservationsService.reservationsChanged.subscribe((reservations) => {
+        this.defaultReservations = reservations;
+        this.contentLoaded = true;
+        console.log(this.defaultReservations);
+      });
+
+    this.reservationsService.fetchReservations();
   }
 }
