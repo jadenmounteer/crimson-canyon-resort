@@ -1,150 +1,151 @@
-<app-page-wrapper [contentLoaded]="contentLoaded">
-  <div pageHeader>
-    <h1>Reserve Your Trip</h1>
-  </div>
+<!-- <span class="weather-wrapper">
+  <app-weather></app-weather>
+</span> -->
 
-  <div pageContent class="page-content-wrapper">
-    <div class="form-container">
-      <div class="card booking-form">
-        <form
-          #f="ngForm"
-          (ngSubmit)="onChangeReservation(f)"
-          class="check-availablility-form"
-        >
-          <div class="check-availability-form-group">
-            <label>*Arrive</label>
-            <div class="date-field">
-              <input
-                type="text"
-                ngbDatepicker
-                required
-                name="arrivalDate"
-                #arrivalDateInput="ngbDatepicker"
-                [(ngModel)]="reservation.arrivalDate"
-                class="form-control"
-              />
-              <fa-icon
-                class="calendar-button"
-                [icon]="icon.faCalendarAlt"
-                (click)="arrivalDateInput.toggle()"
-              ></fa-icon>
-            </div>
-          </div>
+<div class="modal-header">
+  <h1>Reservation Details</h1>
 
-          <div class="check-availability-form-group">
-            <label>*Depart</label>
-            <div class="date-field">
-              <input
-                type="text"
-                ngbDatepicker
-                required
-                name="departureDate"
-                #departureDateInput="ngbDatepicker"
-                [(ngModel)]="reservation.departureDate"
-                class="form-control"
-              />
-              <fa-icon
-                class="calendar-button"
-                [icon]="icon.faCalendarAlt"
-                (click)="departureDateInput.toggle()"
-              ></fa-icon>
-            </div>
-          </div>
-
-          <div class="check-availability-form-group">
-            <label>*Number of guests</label>
-            <input
-              class="form-control"
-              type="number"
-              min="1"
-              required
-              name="numberOfGuests"
-              ngModel
-            />
-          </div>
-
-          <div class="check-availability-form-group">
-            <label>*Number of vehicles</label>
-            <input
-              class="form-control"
-              type="number"
-              min="0"
-              required
-              name="numberOfVehicles"
-              ngModel
-            />
-          </div>
-
-          <div class="check-availability-form-group">
-            <label>*Family name</label>
-            <input
-              class="form-control"
-              type="text"
-              required
-              name="familyName"
-              ngModel
-              required
-              placeholder="The Burritos"
-            />
-          </div>
-
-          <div class="check-availability-form-group form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="privateVisit"
-              ngModel
-              name="privateVisit"
-            />
-            <label>Private Visit?</label>
-            <p>
-              <small
-                >Check the box to not allow other guests to book during your
-                stay.</small
-              >
-            </p>
-          </div>
-
-          <div class="check-availability-form-group">
-            <label>*Plans for food</label>
-            <textarea
-              class="form-control"
-              id="plansForFood"
-              rows="3"
-              ngModel
-              required
-              name="plansForFood"
-              placeholder="Grandpa's cookin'"
-            ></textarea>
-          </div>
-
-          <div class="check-availability-form-group">
-            <label>Additional information</label>
-            <textarea
-              class="form-control"
-              id="additionalInfo"
-              rows="3"
-              ngModel
-              name="additionalInfo"
-              placeholder="Archer says hi!"
-            ></textarea>
-          </div>
-
-          <div class="book-now-button">
-            <!-- <button
-              type="submit"
-              [disabled]="!f.valid"
-              class="btn btn-primary btn-lg"
-            >
-              Book
-            </button> -->
-          </div>
-        </form>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="card booking-form">
+    <form
+      #f="ngForm"
+      (ngSubmit)="onChangeReservation(f)"
+      class="check-availablility-form"
+    >
+      <div class="check-availability-form-group">
+        <label>*Arrive</label>
+        <div class="date-field">
+          <input
+            type="text"
+            ngbDatepicker
+            required
+            name="arrivalDate"
+            #arrivalDateInput="ngbDatepicker"
+            [(ngModel)]="reservation.arrivalDate"
+            class="form-control"
+          />
+          <fa-icon
+            class="calendar-button"
+            [icon]="icon.faCalendarAlt"
+            (click)="arrivalDateInput.toggle()"
+          ></fa-icon>
+        </div>
       </div>
 
-      <span class="weather-wrapper">
-        <app-weather></app-weather>
-      </span>
-    </div>
+      <div class="check-availability-form-group">
+        <label>*Depart</label>
+        <div class="date-field">
+          <input
+            type="text"
+            ngbDatepicker
+            required
+            name="departureDate"
+            #departureDateInput="ngbDatepicker"
+            [(ngModel)]="reservation.departureDate"
+            class="form-control"
+          />
+          <fa-icon
+            class="calendar-button"
+            [icon]="icon.faCalendarAlt"
+            (click)="departureDateInput.toggle()"
+          ></fa-icon>
+        </div>
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>*Number of guests</label>
+        <input
+          class="form-control"
+          type="number"
+          min="1"
+          required
+          name="numberOfGuests"
+          ngModel
+        />
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>*Number of vehicles</label>
+        <input
+          class="form-control"
+          type="number"
+          min="0"
+          required
+          name="numberOfVehicles"
+          ngModel
+        />
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>*Family name</label>
+        <input
+          class="form-control"
+          type="text"
+          required
+          name="familyName"
+          ngModel
+          required
+          placeholder="The Burritos"
+        />
+      </div>
+
+      <div class="check-availability-form-group form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="privateVisit"
+          ngModel
+          name="privateVisit"
+        />
+        <label>Private Visit?</label>
+        <p>
+          <small
+            >Check the box to not allow other guests to book during your
+            stay.</small
+          >
+        </p>
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>*Plans for food</label>
+        <textarea
+          class="form-control"
+          id="plansForFood"
+          rows="3"
+          ngModel
+          required
+          name="plansForFood"
+          placeholder="Grandpa's cookin'"
+        ></textarea>
+      </div>
+
+      <div class="check-availability-form-group">
+        <label>Additional information</label>
+        <textarea
+          class="form-control"
+          id="additionalInfo"
+          rows="3"
+          ngModel
+          name="additionalInfo"
+          placeholder="Archer says hi!"
+        ></textarea>
+      </div>
+    </form>
   </div>
-</app-page-wrapper>
+</div>
+<div class="modal-footer">
+  <!-- <button type="submit" class="btn btn-primary" (click)="onSubmit(f)">
+    Submit
+  </button> -->
+
+  <!-- <button type="submit" class="btn btn-danger" (click)="onDelete()">
+    Delete Exercise
+  </button> -->
+</div>

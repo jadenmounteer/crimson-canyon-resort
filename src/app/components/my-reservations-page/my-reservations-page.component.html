@@ -28,7 +28,13 @@
           </td>
           <td>{{ reservation.privateVisit }}</td>
           <td>
-            <button type="button" class="btn btn-link">Edit</button>
+            <button
+              type="button"
+              class="btn btn-link"
+              (click)="viewReservationDetails(reservation)"
+            >
+              View
+            </button>
           </td>
           <td>
             <button

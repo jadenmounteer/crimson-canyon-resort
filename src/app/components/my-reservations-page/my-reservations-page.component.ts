@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
+import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 
 @Component({
   selector: 'app-my-reservations-page',
@@ -13,7 +15,10 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   protected contentLoaded: boolean = false;
   protected myReservations: Array<Reservation> = [];
 
-  constructor(private reservationsService: ReservationsService) {}
+  constructor(
+    private reservationsService: ReservationsService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.reservationsSubscription =
@@ -33,5 +38,10 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   public onDeleteReservation(reservation: Reservation) {
     this.reservationsService.deleteReservation(reservation);
     alert('Your reservation has been cancelled.');
+  }
+
+  public viewReservationDetails(reservation: Reservation) {
+    const modalRef = this.modalService.open(ReservationDetailsComponent);
+    modalRef.componentInstance.reservation = reservation;
   }
 }
