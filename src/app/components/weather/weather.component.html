@@ -1,6 +1,12 @@
 <div class="weather-wrapper card">
   <span class="loading-container">
-    <app-loading-spinner *ngIf="!currentWeatherLoaded"> </app-loading-spinner>
+    <!-- The loading spinner -->
+    <div *ngIf="!currentWeatherLoaded" class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </span>
   <span *ngIf="currentWeatherLoaded">
     <span class="weather-widget-header">
