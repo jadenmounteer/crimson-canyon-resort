@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { IconService } from 'src/app/services/icon.service';
 import { AuthService } from '../auth/auth.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { Reservation } from 'src/app/types/reservation';
 
 @Component({
   selector: 'app-reserve-trip-page',
@@ -60,8 +61,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.authSubscription.unsubscribe();
   }
 
-  public onBook(reservation: NgForm) {
+  public onBook(reservation: Reservation) {
     this.dateAvailable = true;
-    console.log(reservation);
   }
 }
