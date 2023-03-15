@@ -3,5 +3,9 @@
     <h1>My Reservations</h1>
   </div>
 
-  <div pageContent class="page-content-wrapper"></div>
+  <div pageContent class="page-content-wrapper">
+    <div *ngFor="let reservation of myReservations">
+      {{ reservation.familyName }}
+    </div>
+  </div>
 </app-page-wrapper>
