@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
@@ -17,7 +18,8 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private reservationsService: ReservationsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,8 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   }
 
   public viewReservationDetails(reservation: Reservation) {
-    const modalRef = this.modalService.open(ReservationDetailsComponent);
-    modalRef.componentInstance.reservation = reservation;
+    // const modalRef = this.modalService.open(ReservationDetailsComponent);
+    // modalRef.componentInstance.reservation = reservation;
+    this.router.navigate([`reservation-details-page/${reservation.id}`]);
   }
 }

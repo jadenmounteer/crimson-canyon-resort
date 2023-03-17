@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
+
 import { IconService } from 'src/app/services/icon.service';
+import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 
 @Component({
@@ -10,11 +12,22 @@ import { Reservation } from 'src/app/types/reservation';
   styleUrls: ['./reservation-details.component.scss'],
 })
 export class ReservationDetailsComponent implements OnInit {
-  @Input() reservation!: Reservation;
+  public contentLoaded: boolean = false;
+  protected reservation!: Reservation;
 
-  constructor(public icon: IconService, public activeModal: NgbActiveModal) {}
+  constructor(
+    public icon: IconService,
+    private route: ActivatedRoute,
+    private reservationsService: ReservationsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let id: string | null = params.get('id');
+      this.reservation = this.reservationsService.getReservation(id);
+      this.contentLoaded = true;
+    });
+  }
 
   public onChangeReservation(form: NgForm) {}
 }

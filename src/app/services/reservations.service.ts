@@ -52,6 +52,17 @@ export class ReservationsService {
       });
   }
 
+  public getReservation(id: string | null): Reservation {
+    let reservationToReturn!: Reservation;
+    this.reservations.forEach((reservation) => {
+      if (reservation.id === id) {
+        reservationToReturn = reservation;
+      }
+    });
+
+    return reservationToReturn;
+  }
+
   public deleteReservation(reservationToDelete: Reservation) {
     const reservationsRef = this.firestore.collection('reservations');
     reservationsRef.doc(reservationToDelete.id).delete();
