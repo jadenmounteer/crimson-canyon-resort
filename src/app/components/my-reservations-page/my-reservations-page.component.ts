@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 
 @Component({
@@ -38,13 +39,16 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   }
 
   public onDeleteReservation(reservation: Reservation) {
-    this.reservationsService.deleteReservation(reservation);
-    alert('Your reservation has been cancelled.');
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Are you sure you want to delete the ${reservation.familyName} family reservation?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.reservationsService.deleteReservation(reservation);
+      }
+    });
   }
 
   public viewReservationDetails(reservation: Reservation) {
-    // const modalRef = this.modalService.open(ReservationDetailsComponent);
-    // modalRef.componentInstance.reservation = reservation;
     this.router.navigate([`reservation-details-page/${reservation.id}`]);
   }
 }
