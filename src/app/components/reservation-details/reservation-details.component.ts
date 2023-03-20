@@ -18,6 +18,7 @@ export class ReservationDetailsComponent implements OnInit {
   protected reservation!: Reservation;
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
+  protected editing: boolean = false;
 
   constructor(
     public icon: IconService,

@@ -22,7 +22,8 @@
                 #arrivalDateInput="ngbDatepicker"
                 [(ngModel)]="reservation.arrivalDate"
                 class="form-control"
-                [disabled]="isAuth"
+                [disabled]="editing"
+                (click)="arrivalDateInput.toggle()"
               />
               <fa-icon
                 class="calendar-button"
@@ -43,6 +44,7 @@
                 #departureDateInput="ngbDatepicker"
                 [(ngModel)]="reservation.departureDate"
                 class="form-control"
+                (click)="departureDateInput.toggle()"
               />
               <fa-icon
                 class="calendar-button"

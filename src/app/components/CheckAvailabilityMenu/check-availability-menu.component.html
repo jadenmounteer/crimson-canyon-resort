@@ -11,6 +11,7 @@
           #arrivalDateInput="ngbDatepicker"
           ngModel="arrivalDate"
           class="form-control"
+          (click)="arrivalDateInput.toggle()"
         />
         <fa-icon
           class="calendar-button"
@@ -31,6 +32,7 @@
           #departureDateInput="ngbDatepicker"
           ngModel="departureDate"
           class="form-control"
+          (click)="departureDateInput.toggle()"
         />
         <fa-icon
           class="calendar-button"
