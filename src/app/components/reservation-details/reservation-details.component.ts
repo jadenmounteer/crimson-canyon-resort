@@ -51,7 +51,6 @@ export class ReservationDetailsComponent implements OnInit {
   }
 
   public onChangeReservation(form: NgForm) {
-    console.log('update reservation');
     const updatedReservation: Reservation = {
       id: this.reservation.id,
       userId: this.authService.userId,
