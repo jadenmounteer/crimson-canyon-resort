@@ -22,13 +22,15 @@
                 #arrivalDateInput="ngbDatepicker"
                 [(ngModel)]="reservation.arrivalDate"
                 class="form-control"
-                [disabled]="editing"
+                [disabled]="!editing"
                 (click)="arrivalDateInput.toggle()"
               />
               <fa-icon
                 class="calendar-button"
                 [icon]="icon.faCalendarAlt"
-                (click)="arrivalDateInput.toggle()"
+                (click)="
+                  editing ? arrivalDateInput.toggle() : askUserIfWantToEdit()
+                "
               ></fa-icon>
             </div>
           </div>
@@ -49,7 +51,9 @@
               <fa-icon
                 class="calendar-button"
                 [icon]="icon.faCalendarAlt"
-                (click)="departureDateInput.toggle()"
+                (click)="
+                  editing ? departureDateInput.toggle() : askUserIfWantToEdit()
+                "
               ></fa-icon>
             </div>
           </div>

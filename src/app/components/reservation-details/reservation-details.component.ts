@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IconService } from 'src/app/services/icon.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { AuthService } from '../auth/auth.service';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-reservation-details',
@@ -24,7 +25,8 @@ export class ReservationDetailsComponent implements OnInit {
     public icon: IconService,
     private route: ActivatedRoute,
     private reservationsService: ReservationsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -47,4 +49,14 @@ export class ReservationDetailsComponent implements OnInit {
   }
 
   public onChangeReservation(form: NgForm) {}
+
+  protected askUserIfWantToEdit() {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Do you want to edit this reservation?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.editing = true;
+      }
+    });
+  }
 }
