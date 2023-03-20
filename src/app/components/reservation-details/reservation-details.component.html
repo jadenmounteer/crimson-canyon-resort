@@ -47,6 +47,7 @@
                 [(ngModel)]="reservation.departureDate"
                 class="form-control"
                 (click)="departureDateInput.toggle()"
+                [disabled]="!editing"
               />
               <fa-icon
                 class="calendar-button"
@@ -67,6 +68,7 @@
               required
               name="numberOfGuests"
               [(ngModel)]="reservation.numberOfGuests"
+              [disabled]="!editing"
             />
           </div>
 
@@ -79,6 +81,7 @@
               required
               name="numberOfVehicles"
               [(ngModel)]="reservation.numberOfVehicles"
+              [disabled]="!editing"
             />
           </div>
 
@@ -92,6 +95,7 @@
               [(ngModel)]="reservation.familyName"
               required
               placeholder="The Burritos"
+              [disabled]="!editing"
             />
           </div>
 
@@ -102,6 +106,7 @@
               id="privateVisit"
               [(ngModel)]="reservation.privateVisit"
               name="privateVisit"
+              [disabled]="!editing"
             />
             <label>Private Visit?</label>
             <p>
@@ -122,6 +127,7 @@
               required
               name="plansForFood"
               placeholder="Grandpa's cookin'"
+              [disabled]="!editing"
             ></textarea>
           </div>
 
@@ -134,6 +140,7 @@
               [(ngModel)]="reservation.additionalInfo"
               name="additionalInfo"
               placeholder="Archer says hi!"
+              [disabled]="!editing"
             ></textarea>
           </div>
         </form>
@@ -145,7 +152,14 @@
           (click)="onDeleteReservation()"
           *ngIf="editing"
         >
-          Delete Exercise
+          Cancel
+        </button>
+        <button
+          class="btn btn-secondary"
+          *ngIf="!editing"
+          (click)="onClickEditButton()"
+        >
+          Edit
         </button>
       </div>
 
