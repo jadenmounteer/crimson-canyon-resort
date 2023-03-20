@@ -137,19 +137,21 @@
             ></textarea>
           </div>
         </form>
+        <button type="submit" class="btn btn-primary" *ngIf="editing">
+          Save
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="onDeleteReservation()"
+          *ngIf="editing"
+        >
+          Delete Exercise
+        </button>
       </div>
 
       <span class="weather-wrapper">
         <app-weather></app-weather>
       </span>
     </div>
-
-    <!-- <button type="submit" class="btn btn-primary" (click)="onSubmit(f)">
-    Submit
-  </button> -->
-
-    <!-- <button type="submit" class="btn btn-danger" (click)="onDelete()">
-    Delete Exercise
-  </button> -->
   </div>
 </app-page-wrapper>

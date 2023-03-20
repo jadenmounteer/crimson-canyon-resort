@@ -59,4 +59,14 @@ export class ReservationDetailsComponent implements OnInit {
       }
     });
   }
+
+  public onDeleteReservation() {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Are you sure you want to delete this reservation?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        // Delete the reservation...
+      }
+    });
+  }
 }
