@@ -8,6 +8,7 @@ import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { AuthService } from '../auth/auth.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-details',
@@ -16,7 +17,7 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 })
 export class ReservationDetailsComponent implements OnInit {
   public contentLoaded: boolean = false;
-  protected reservation!: Reservation;
+  public reservation!: Reservation;
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
   protected editing: boolean = false;
@@ -26,7 +27,8 @@ export class ReservationDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private reservationsService: ReservationsService,
     private authService: AuthService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +67,8 @@ export class ReservationDetailsComponent implements OnInit {
     modalRef.componentInstance.message = `Are you sure you want to cancel this reservation?`;
     modalRef.result.then((result) => {
       if (result === 'Yes') {
-        // Delete the reservation...
+        this.reservationsService.deleteReservation(this.reservation);
+        this.router.navigate(['my-reservations-page']);
       }
     });
   }
