@@ -50,7 +50,24 @@ export class ReservationDetailsComponent implements OnInit {
     });
   }
 
-  public onChangeReservation(form: NgForm) {}
+  public onChangeReservation(form: NgForm) {
+    console.log('update reservation');
+    const updatedReservation: Reservation = {
+      id: this.reservation.id,
+      userId: this.authService.userId,
+      arrivalDate: form.value.arrivalDate,
+      departureDate: form.value.departureDate,
+      numberOfGuests: form.value.numberOfGuests,
+      numberOfVehicles: form.value.numberOfVehicles,
+      familyName: form.value.familyName,
+      privateVisit: form.value.privateVisit,
+      plansForFood: form.value.plansForFood,
+      additionalInfo: form.value.additionalInfo,
+    };
+
+    this.reservationsService.updateReservation(updatedReservation);
+    this.editing = false;
+  }
 
   protected askUserIfWantToEdit() {
     const modalRef = this.modalService.open(ConfirmModalComponent);

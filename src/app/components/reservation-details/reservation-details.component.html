@@ -143,24 +143,31 @@
               [disabled]="!editing"
             ></textarea>
           </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            *ngIf="editing"
+            [disabled]="!f.valid"
+          >
+            Save
+          </button>
+
+          <button
+            class="btn btn-danger"
+            (click)="onDeleteReservation()"
+            *ngIf="editing"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-secondary"
+            *ngIf="!editing"
+            (click)="onClickEditButton()"
+          >
+            Edit
+          </button>
         </form>
-        <button type="submit" class="btn btn-primary" *ngIf="editing">
-          Save
-        </button>
-        <button
-          class="btn btn-danger"
-          (click)="onDeleteReservation()"
-          *ngIf="editing"
-        >
-          Cancel
-        </button>
-        <button
-          class="btn btn-secondary"
-          *ngIf="!editing"
-          (click)="onClickEditButton()"
-        >
-          Edit
-        </button>
       </div>
 
       <span class="weather-wrapper">
