@@ -22,6 +22,7 @@
                 #arrivalDateInput="ngbDatepicker"
                 [(ngModel)]="reservation.arrivalDate"
                 class="form-control"
+                [disabled]="isAuth"
               />
               <fa-icon
                 class="calendar-button"
