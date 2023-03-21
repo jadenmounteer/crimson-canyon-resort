@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { IconService } from 'src/app/services/icon.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login-or-sign-up',
@@ -11,9 +12,20 @@ import { IconService } from 'src/app/services/icon.service';
 export class LoginOrSignUpComponent implements OnInit {
   public newUser: boolean = true;
 
-  constructor(private authService: AuthService, public icon: IconService) {}
+  constructor(
+    private authService: AuthService,
+    public icon: IconService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let newUser: string | null = params.get('newUser');
+      if (newUser === 'false') {
+        this.newUser = false;
+      }
+    });
+  }
 
   public onLogin(form: NgForm) {
     this.authService.login({
