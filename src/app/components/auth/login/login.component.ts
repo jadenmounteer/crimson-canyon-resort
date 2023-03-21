@@ -9,12 +9,21 @@ import { IconService } from 'src/app/services/icon.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  public newUser: boolean = true;
+
   constructor(private authService: AuthService, public icon: IconService) {}
 
   ngOnInit(): void {}
 
-  public onSubmit(form: NgForm) {
+  public onLogin(form: NgForm) {
     this.authService.login({
+      email: form.value.email,
+      password: form.value.password,
+    });
+  }
+
+  public onSignUp(form: NgForm) {
+    this.authService.registerUser({
       email: form.value.email,
       password: form.value.password,
     });
@@ -22,5 +31,9 @@ export class LoginComponent implements OnInit {
 
   public onOathSignIn() {
     this.authService.googleSignin();
+  }
+
+  public switchToLoginOrSignUp() {
+    this.newUser = !this.newUser;
   }
 }

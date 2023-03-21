@@ -1,7 +1,7 @@
 <div class="login-page">
   <div class="card">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <h1>Login</h1>
+    <form #f="ngForm" (ngSubmit)="onLogin(f)">
+      <h1>{{ newUser ? "Sign Up" : "Login" }}</h1>
       <div class="form-group">
         <input
           type="email"
@@ -28,9 +28,17 @@
       </div>
 
       <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
-        Login
+        {{ newUser ? "Sign Up" : "Login" }}
       </button>
       <app-google-button (click)="onOathSignIn()"></app-google-button>
+
+      <a class="link-primary" (click)="switchToLoginOrSignUp()">
+        {{
+          newUser
+            ? "Already have an account? Click here to login."
+            : "Are you new here? Click here to create an account."
+        }}</a
+      >
     </form>
   </div>
 </div>
