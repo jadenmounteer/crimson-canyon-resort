@@ -4,11 +4,11 @@ import { NgForm } from '@angular/forms';
 import { IconService } from 'src/app/services/icon.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-or-sign-up',
+  templateUrl: './login-or-sign-up.component.html',
+  styleUrls: ['./login-or-sign-up.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginOrSignUpComponent implements OnInit {
   public newUser: boolean = true;
 
   constructor(private authService: AuthService, public icon: IconService) {}

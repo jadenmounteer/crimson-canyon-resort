@@ -10,7 +10,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './components/auth/login/login.component';
 import { GoogleButtonComponent } from './components/google-button/google-button.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -28,6 +27,7 @@ import { MyReservationsPageComponent } from './components/my-reservations-page/m
 import { ReservationBookedPageComponent } from './components/reservation-booked-page/reservation-booked-page.component';
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { LoginOrSignUpComponent } from './components/auth/login/login-or-sign-up.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -37,7 +37,7 @@ export function playerFactory(): any {
   declarations: [
     AppComponent,
     AnimationComponent,
-    LoginComponent,
+    LoginOrSignUpComponent,
     GoogleButtonComponent,
     NavComponent,
     HomePageComponent,
