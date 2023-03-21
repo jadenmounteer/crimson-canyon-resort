@@ -146,7 +146,7 @@
           <button
             type="submit"
             class="btn btn-primary"
-            *ngIf="editing"
+            *ngIf="editing && f.touched"
             [disabled]="!f.valid"
           >
             Save
@@ -157,7 +157,7 @@
             (click)="onDeleteReservation()"
             *ngIf="editing"
           >
-            Cancel
+            Cancel Trip 😭
           </button>
 
           <button

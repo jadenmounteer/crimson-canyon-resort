@@ -21,6 +21,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public arrivalDate: Date | undefined;
   public departureDate: Date | undefined;
   public dateAvailable!: boolean | undefined;
+  protected arrivalDateInvalid: boolean = false;
 
   constructor(
     titleService: Title,
