@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './components/auth/auth.guard';
 import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MyReservationsPageComponent } from './components/my-reservations-page/my-reservations-page.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
@@ -21,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'signup',
-    component: SignupComponent,
+    component: LoginComponent,
   },
   {
     path: 'reserve-trip-page',

@@ -11,7 +11,6 @@ import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/auth/login/login.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
 import { GoogleButtonComponent } from './components/google-button/google-button.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -39,7 +38,6 @@ export function playerFactory(): any {
     AppComponent,
     AnimationComponent,
     LoginComponent,
-    SignupComponent,
     GoogleButtonComponent,
     NavComponent,
     HomePageComponent,
