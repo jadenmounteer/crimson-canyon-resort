@@ -1,6 +1,6 @@
 <div class="login-page">
   <div class="card">
-    <form #f="ngForm" (ngSubmit)="onLogin(f)">
+    <form #f="ngForm" (ngSubmit)="newUser ? onSignUp(f) : onLogin(f)">
       <h1>{{ newUser ? "Sign Up" : "Login" }}</h1>
       <div class="form-group">
         <input
