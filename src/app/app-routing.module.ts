@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { single } from 'rxjs';
 import { AuthGuard } from './components/auth/auth.guard';
 import { LoginOrSignUpComponent } from './components/auth/login/login-or-sign-up.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MyReservationsPageComponent } from './components/my-reservations-page/my-reservations-page.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { ReservationBookedPageComponent } from './components/reservation-booked-page/reservation-booked-page.component';
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
+import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
 
 const routes: Routes = [
   {
@@ -15,9 +18,14 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'login-or-sign-up/:newUser',
-    component: LoginOrSignUpComponent,
+    path: 'login',
+    component: LoginPageComponent,
   },
+  {
+    path: 'sign-up',
+    component: SignUpPageComponent,
+  },
+
   {
     path: 'reserve-trip-page',
     component: ReserveTripPageComponent,

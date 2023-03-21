@@ -22,7 +22,7 @@
         <li class="nav-item active" *ngIf="!isAuth">
           <a
             class="nav-link"
-            [routerLink]="'login-or-sign-up/false'"
+            [routerLink]="'login'"
             (click)="isMenuCollapsed = true"
             >Login
           </a>
@@ -31,7 +31,7 @@
         <li class="nav-item active" *ngIf="!isAuth">
           <a
             class="nav-link"
-            [routerLink]="'login-or-sign-up/true'"
+            [routerLink]="'sign-up'"
             (click)="isMenuCollapsed = true"
             >Sign Up
           </a>

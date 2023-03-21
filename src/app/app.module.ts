@@ -28,6 +28,8 @@ import { ReservationBookedPageComponent } from './components/reservation-booked-
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { LoginOrSignUpComponent } from './components/auth/login/login-or-sign-up.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -52,6 +54,8 @@ export function playerFactory(): any {
     ReservationBookedPageComponent,
     ReservationDetailsComponent,
     ConfirmModalComponent,
+    LoginPageComponent,
+    SignUpPageComponent,
   ],
   imports: [
     BrowserModule,
