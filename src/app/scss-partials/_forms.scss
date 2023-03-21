@@ -1,0 +1,45 @@
+.calendar-button {
+  cursor: pointer;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
+.card {
+  padding: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  // justify-content: center;
+}
+
+.booking-form {
+  width: 1000px;
+}
+
+.check-availablility-form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.page-content-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.weather-wrapper {
+  width: 100%;
+  @include for-tablet-landscape-up {
+    width: 500px;
+  }
+}
