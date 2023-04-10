@@ -46,6 +46,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'administration',
+    loadChildren: () =>
+      import('./administration/administration.module').then(
+        (m) => m.AdministrationModule
+      ),
+  },
+  {
     path: 'page-not-found-page',
     component: PageNotFoundPageComponent,
   },
