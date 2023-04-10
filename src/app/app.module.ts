@@ -30,6 +30,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { LoginOrSignUpComponent } from './components/auth/login/login-or-sign-up.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
+import { AdministrationModule } from './administration/administration.module';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -69,6 +70,7 @@ export function playerFactory(): any {
     NgbCarouselModule,
     NgIf,
     HttpClientModule,
+    AdministrationModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
