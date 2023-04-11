@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./administration-page.component.scss'],
 })
 export class AdministrationPageComponent implements OnInit {
+  protected contentLoaded: boolean = false;
   // TODO Add this array to the db
   protected administratorIds: string[] = ['NzBQdjuDQ2ZnkQZgb3sYWiDp8f82'];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.contentLoaded = true;
+  }
 }
