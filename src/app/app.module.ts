@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './components/auth/auth.service';
-import { AnimationComponent } from './components/animation/animation.component';
-import { LottieModule } from 'ngx-lottie';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +16,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
 import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-availability-menu.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
-import { PageWrapperComponent } from './components/page-wrapper/page-wrapper.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { WeatherComponent } from './components/weather/weather.component';
@@ -31,15 +28,11 @@ import { LoginOrSignUpComponent } from './components/auth/login/login-or-sign-up
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
 import { AdministrationModule } from './administration/administration.module';
+import { UiComponentsModule } from './ui-components/ui-components.module';
 
-// TODO This is a function necessary for lottie (is there a better place for this?)
-export function playerFactory(): any {
-  return import('lottie-web');
-}
 @NgModule({
   declarations: [
     AppComponent,
-    AnimationComponent,
     LoginOrSignUpComponent,
     GoogleButtonComponent,
     NavComponent,
@@ -47,7 +40,6 @@ export function playerFactory(): any {
     CarouselComponent,
     CheckAvailabilityMenu,
     ReserveTripPageComponent,
-    PageWrapperComponent,
     LoadingSpinnerComponent,
     PageNotFoundPageComponent,
     WeatherComponent,
@@ -64,13 +56,14 @@ export function playerFactory(): any {
     NgbModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    LottieModule.forRoot({ player: playerFactory }),
+
     FormsModule,
     FontAwesomeModule,
     NgbCarouselModule,
     NgIf,
     HttpClientModule,
     AdministrationModule,
+    UiComponentsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
