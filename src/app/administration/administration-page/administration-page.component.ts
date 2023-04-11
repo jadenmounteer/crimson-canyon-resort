@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-administration-page',
   templateUrl: './administration-page.component.html',
-  styleUrls: ['./administration-page.component.scss']
+  styleUrls: ['./administration-page.component.scss'],
 })
 export class AdministrationPageComponent implements OnInit {
+  // TODO Add this array to the db
+  protected administratorIds: string[] = ['NzBQdjuDQ2ZnkQZgb3sYWiDp8f82'];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
