@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdministrationService } from '../../services/administration.service';
 
 @Component({
   selector: 'app-administration-page',
@@ -10,7 +11,7 @@ export class AdministrationPageComponent implements OnInit {
   // TODO Add this array to the db
   protected administratorIds: string[] = ['NzBQdjuDQ2ZnkQZgb3sYWiDp8f82'];
 
-  constructor() {}
+  constructor(private administrationService: AdministrationService) {}
 
   ngOnInit(): void {
     this.contentLoaded = true;

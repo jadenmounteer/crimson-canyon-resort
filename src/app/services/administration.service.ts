@@ -12,5 +12,8 @@ export class AdministrationService {
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService
-  ) {}
+  ) {
+    const userId = this.authService.userId;
+    console.log(userId);
+  }
 }
