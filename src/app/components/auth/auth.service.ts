@@ -45,7 +45,6 @@ export class AuthService {
   }
 
   private updateUserData(user: firebase.User | null) {
-    console.log('updating user data');
     this.userId = user?.uid;
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
@@ -63,7 +62,6 @@ export class AuthService {
   }
 
   iniAuthListener() {
-    console.log('iniauthlistener');
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.onSuccessfulAuthentication();

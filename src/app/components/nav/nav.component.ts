@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IconService } from 'src/app/services/icon.service';
 import { AuthService } from '../auth/auth.service';
 import { AdministrationService } from 'src/app/services/administration.service';
@@ -11,6 +11,7 @@ import { AdministrationService } from 'src/app/services/administration.service';
 export class NavComponent implements OnInit, OnDestroy {
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
+  protected currentUserIsAdmin$!: Observable<boolean>;
 
   protected isMenuCollapsed: boolean = true;
 
@@ -24,8 +25,17 @@ export class NavComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
         this.isAuth = authStatus;
+        this.grabCurrentUserAdminStatus();
       }
     );
+  }
+
+  private grabCurrentUserAdminStatus() {
+    if (this.isAuth && this.authService.userId) {
+      this.currentUserIsAdmin$ = this.administrationService.checkIfUserIsAdmin(
+        this.authService.userId
+      );
+    }
   }
 
   ngOnDestroy(): void {

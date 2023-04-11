@@ -84,7 +84,10 @@
             >What's Happening
           </a>
         </li>
-        <li class="nav-item active" *ngIf="isAuth">
+        <li
+          class="nav-item active"
+          *ngIf="isAuth && (currentUserIsAdmin$ | async)"
+        >
           <a
             class="nav-link"
             [routerLink]="'administration'"
