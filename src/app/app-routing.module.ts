@@ -51,6 +51,7 @@ const routes: Routes = [
       import('./administration/administration.module').then(
         (m) => m.AdministrationModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'page-not-found-page',
