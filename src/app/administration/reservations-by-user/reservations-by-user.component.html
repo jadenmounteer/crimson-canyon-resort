@@ -12,11 +12,11 @@
     </tr>
   </thead>
   <tbody>
-    <!-- <tr *ngFor="let reservation of myReservations">
+    <tr *ngFor="let reservation of reservations">
       <td scope="row">
-        {{ reservation.arrivalDate.month }}/{{
-          reservation.arrivalDate.day
-        }}/{{ reservation.arrivalDate.year }}
+        {{ reservation.arrivalDate.month }}/{{ reservation.arrivalDate.day }}/{{
+          reservation.arrivalDate.year
+        }}
       </td>
       <td>
         {{ reservation.departureDate.month }}/{{
@@ -25,24 +25,24 @@
       </td>
       <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
       <td>
-        <button
+        <!-- <button
           type="button"
           class="btn btn-link"
           (click)="viewReservationDetails(reservation)"
         >
           View
-        </button>
+        </button> -->
       </td>
       <td>
-        <button
+        <!-- <button
           type="button"
           class="btn btn-link cancel-button"
           (click)="onDeleteReservation(reservation)"
         >
           Cancel
-        </button>
+        </button> -->
       </td>
-    </tr> -->
+    </tr>
   </tbody>
 </table>
 

@@ -12,6 +12,7 @@ export class ReservationsService {
   public reservations: Array<Reservation> = [];
   public reservationsChanged = new Subject<Reservation[]>();
   public allReservationsChanged = new Subject<Reservation[]>();
+  public allReservations: Array<Reservation> = [];
 
   constructor(
     private firestore: AngularFirestore,
@@ -78,8 +79,8 @@ export class ReservationsService {
         })
       )
       .subscribe((reservations: Reservation[]) => {
-        this.reservations = reservations;
-        this.allReservationsChanged.next([...this.reservations]);
+        this.allReservations = reservations;
+        this.allReservationsChanged.next([...this.allReservations]);
       });
   }
 
