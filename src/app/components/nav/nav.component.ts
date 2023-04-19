@@ -31,10 +31,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   private grabCurrentUserAdminStatus() {
-    console.log('Grabbing current admin status');
-    console.log(`is auth: ${this.isAuth} user id: ${this.authService.userId}`);
     if (this.isAuth && this.authService.userId) {
-      console.log('Looks like the user is auth and has a user id');
       this.currentUserIsAdmin$ = this.administrationService.checkIfUserIsAdmin(
         this.authService.userId
       );
