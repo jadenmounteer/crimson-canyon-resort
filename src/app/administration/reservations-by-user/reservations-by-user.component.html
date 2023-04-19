@@ -1,1 +1,47 @@
-<p>reservations-by-user works!</p>
+<h3>Reservations By User</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Family Name</th>
+      <th scope="col">Num of Guests</th>
+      <th scope="col">Arrive</th>
+      <th scope="col">Depart</th>
+      <th scope="col">Private Visit?</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let reservation of myReservations">
+      <td scope="row">
+        {{ reservation.arrivalDate.month }}/{{
+          reservation.arrivalDate.day
+        }}/{{ reservation.arrivalDate.year }}
+      </td>
+      <td>
+        {{ reservation.departureDate.month }}/{{
+          reservation.departureDate.day
+        }}/{{ reservation.departureDate.year }}
+      </td>
+      <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link"
+          (click)="viewReservationDetails(reservation)"
+        >
+          View
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-link cancel-button"
+          (click)="onDeleteReservation(reservation)"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr> -->
+  </tbody>
+</table>
