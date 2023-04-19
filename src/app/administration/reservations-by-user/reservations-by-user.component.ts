@@ -13,9 +13,13 @@ export class ReservationsByUserComponent implements OnInit {
   constructor(private reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
-    this.reservationsService.reservationsChanged.subscribe((reservations) => {
-      this.reservations = reservations;
-      this.contentLoaded = true;
-    });
+    this.reservationsService.allReservationsChanged.subscribe(
+      (reservations) => {
+        this.reservations = reservations;
+        this.contentLoaded = true;
+      }
+    );
+
+    this.reservationsService.fetchAllReservations();
   }
 }
