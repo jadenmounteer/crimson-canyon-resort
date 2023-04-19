@@ -1,5 +1,5 @@
 <h3>Reservations By User</h3>
-<table class="table">
+<table class="table" *ngIf="contentLoaded">
   <thead>
     <tr>
       <th scope="col">Family Name</th>
@@ -45,3 +45,7 @@
     </tr> -->
   </tbody>
 </table>
+
+<span class="loading-icon" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</span>

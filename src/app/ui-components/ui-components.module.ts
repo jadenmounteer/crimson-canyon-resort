@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 import { AnimationComponent } from './animation/animation.component';
 import { LottieModule } from 'ngx-lottie';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -10,8 +11,12 @@ export function playerFactory(): any {
 }
 
 @NgModule({
-  declarations: [PageWrapperComponent, AnimationComponent],
+  declarations: [
+    PageWrapperComponent,
+    AnimationComponent,
+    LoadingSpinnerComponent,
+  ],
   imports: [CommonModule, LottieModule.forRoot({ player: playerFactory })],
-  exports: [PageWrapperComponent, AnimationComponent],
+  exports: [PageWrapperComponent, AnimationComponent, LoadingSpinnerComponent],
 })
 export class UiComponentsModule {}

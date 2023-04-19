@@ -16,7 +16,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
 import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-availability-menu.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +39,6 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
     CarouselComponent,
     CheckAvailabilityMenu,
     ReserveTripPageComponent,
-    LoadingSpinnerComponent,
     PageNotFoundPageComponent,
     WeatherComponent,
     MyReservationsPageComponent,
