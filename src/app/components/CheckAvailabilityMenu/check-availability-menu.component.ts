@@ -14,7 +14,6 @@ export class CheckAvailabilityMenu implements OnInit {
   ngOnInit(): void {}
 
   public onSubmit(form: NgForm) {
-    console.log(form.value.departureDate);
     this.router.navigate(['reserve-trip-page'], {
       state: {
         data: {

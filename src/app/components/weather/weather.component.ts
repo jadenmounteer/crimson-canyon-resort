@@ -50,7 +50,6 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherService.getCurrentWeather().subscribe((data) => {
-      console.log(data);
       this.currentWeatherData = data;
       this.currentWeather.description =
         this.currentWeatherData.weather[0].description;

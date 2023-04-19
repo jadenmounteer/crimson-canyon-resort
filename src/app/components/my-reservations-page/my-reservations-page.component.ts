@@ -28,7 +28,6 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
       this.reservationsService.reservationsChanged.subscribe((reservations) => {
         this.myReservations = reservations;
         this.contentLoaded = true;
-        console.log(this.myReservations);
       });
 
     this.reservationsService.fetchReservations();

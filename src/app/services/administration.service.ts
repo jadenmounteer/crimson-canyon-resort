@@ -18,7 +18,6 @@ export class AdministrationService {
     private authService: AuthService
   ) {
     this.currentUserId = this.authService.userId;
-    console.log(this.currentUserId);
   }
 
   public checkIfUserIsAdmin(userId: string): Observable<boolean> {

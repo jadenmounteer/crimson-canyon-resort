@@ -38,7 +38,6 @@ export class AuthService {
   // The oath was inspired by https://fireship.io/lessons/angularfire-google-oauth/
   // Note that if you change domains, for the login with google to work you have to add the domain to the list of authorized domains in firebase console.
   async googleSignin() {
-    console.log('Google sign in');
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
@@ -76,7 +75,6 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        console.log(result);
         this.onSuccessfulAuthentication();
       })
       .catch((error) => {
@@ -87,9 +85,7 @@ export class AuthService {
   login(authData: AuthData) {
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -105,7 +101,6 @@ export class AuthService {
   }
 
   private onSuccessfulAuthentication() {
-    console.log('succsess!');
     this.isAuthenticated = true;
     this.authChange.next(true);
     // I don't want to navigate the user away from the reservation page if they login on that page.
@@ -114,8 +109,6 @@ export class AuthService {
   }
 
   private onUnsuccessfulAuthentication() {
-    console.log('Unsucsessful auth!');
-
     this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['']);
