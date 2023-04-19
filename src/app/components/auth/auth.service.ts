@@ -61,10 +61,12 @@ export class AuthService {
   }
 
   iniAuthListener() {
+    console.log('In auth listener');
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.onSuccessfulAuthentication();
         this.updateUserData(user);
+        this.authChange.next(true);
       } else {
         this.onUnsuccessfulAuthentication();
       }
