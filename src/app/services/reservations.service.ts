@@ -4,6 +4,7 @@ import { AuthService } from '../components/auth/auth.service';
 import { Reservation } from '../types/reservation';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class ReservationsService {
 
   constructor(
     private firestore: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   public addNewReservation(newReservation: Reservation) {
@@ -112,5 +114,9 @@ export class ReservationsService {
       plansForFood: reservationToUpdate.plansForFood,
       additionalInfo: reservationToUpdate.additionalInfo,
     });
+  }
+
+  public viewReservationDetails(reservation: Reservation) {
+    this.router.navigate([`reservation-details-page/${reservation.id}`]);
   }
 }

@@ -31,13 +31,13 @@
       </td>
       <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
       <td>
-        <!-- <button
+        <button
           type="button"
           class="btn btn-link"
-          (click)="viewReservationDetails(reservation)"
+          (click)="reservationsService.viewReservationDetails(reservation)"
         >
           View
-        </button> -->
+        </button>
       </td>
       <td>
         <!-- <button

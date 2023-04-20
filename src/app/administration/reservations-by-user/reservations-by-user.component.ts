@@ -10,7 +10,7 @@ import { Reservation } from 'src/app/types/reservation';
 export class ReservationsByUserComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected reservations: Array<Reservation> = [];
-  constructor(private reservationsService: ReservationsService) {}
+  constructor(protected reservationsService: ReservationsService) {}
 
   ngOnInit(): void {
     this.reservationsService.allReservationsChanged.subscribe(

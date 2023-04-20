@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
-import { ReservationDetailsComponent } from '../reservation-details/reservation-details.component';
 
 @Component({
   selector: 'app-my-reservations-page',
@@ -18,9 +16,8 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   protected myReservations: Array<Reservation> = [];
 
   constructor(
-    private reservationsService: ReservationsService,
-    private modalService: NgbModal,
-    private router: Router
+    protected reservationsService: ReservationsService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -45,9 +42,5 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
         this.reservationsService.deleteReservation(reservation);
       }
     });
-  }
-
-  public viewReservationDetails(reservation: Reservation) {
-    this.router.navigate([`reservation-details-page/${reservation.id}`]);
   }
 }
