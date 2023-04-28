@@ -57,6 +57,7 @@ const routes: Routes = [
     path: 'page-not-found-page',
     component: PageNotFoundPageComponent,
   },
+  { path: 'whats-happening', loadChildren: () => import('./whats-happening/whats-happening.module').then(m => m.WhatsHappeningModule) },
   // {
   //   path: 'exercise-library',
   //   component: ExerciseLibraryComponent,
