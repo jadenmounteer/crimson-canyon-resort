@@ -9,7 +9,7 @@ import { Observable, catchError, concatMap, last, tap, throwError } from 'rxjs';
 })
 export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
-  protected iconURL: string = '';
+  protected iconURLs: string[] = [];
 
   constructor(private storage: AngularFireStorage) {}
 
@@ -33,7 +33,7 @@ export class AddPostComponent implements OnInit {
       .pipe(
         last(),
         concatMap(() => this.storage.ref(filePath).getDownloadURL()),
-        tap((url) => (this.iconURL = url)),
+        tap((url) => this.iconURLs.push(url)),
         catchError((err) => {
           console.log(err);
           return throwError(err);

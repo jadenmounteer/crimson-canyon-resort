@@ -6,5 +6,7 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <img *ngIf="iconURL" [src]="iconURL" class="uploaded-img" />
+  <div class="files-to-upload">
+    <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
+  </div>
 </div>

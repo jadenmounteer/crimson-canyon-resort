@@ -5,3 +5,10 @@
 .uploaded-img {
   width: 300px;
 }
+
+.files-to-upload {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+}
