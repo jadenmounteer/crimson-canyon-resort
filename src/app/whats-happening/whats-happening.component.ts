@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-whats-happening',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhatsHappeningComponent implements OnInit {
   protected contentLoaded: boolean = true;
-  constructor() {}
+  constructor(
+    private afs: AngularFirestore,
+    private storage: AngularFireStorage
+  ) {}
+
+  protected uploadFile(event: any) {
+    const file: File = event.target.files[0];
+  }
 
   ngOnInit(): void {}
 }

@@ -4,9 +4,15 @@ import { CommonModule } from '@angular/common';
 import { WhatsHappeningRoutingModule } from './whats-happening-routing.module';
 import { WhatsHappeningComponent } from './whats-happening.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [WhatsHappeningComponent],
-  imports: [CommonModule, WhatsHappeningRoutingModule, UiComponentsModule],
+  imports: [
+    CommonModule,
+    WhatsHappeningRoutingModule,
+    UiComponentsModule,
+    AngularFireStorageModule,
+  ],
 })
 export class WhatsHappeningModule {}
