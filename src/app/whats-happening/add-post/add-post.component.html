@@ -1,4 +1,10 @@
 <div class="add-post-container card">
   <h3>Add a post</h3>
   <input type="file" (change)="uploadFile($event)" />
+  <div class="upload-progress" *ngIf="percentageChanges$ | async as percentage">
+    <span>{{ percentage / 100 | percent }}</span>
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <img *ngIf="iconURL" [src]="iconURL" class="uploaded-img" />
 </div>
