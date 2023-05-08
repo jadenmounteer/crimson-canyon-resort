@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
@@ -19,6 +20,7 @@ import {
 export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];
+  private newPostId: string;
 
   form = this.fb.group({
     title: ['', Validators.required],
@@ -26,7 +28,13 @@ export class AddPostComponent implements OnInit {
     fileURLs: [''],
   });
 
-  constructor(private storage: AngularFireStorage, private fb: FormBuilder) {}
+  constructor(
+    private storage: AngularFireStorage,
+    private fb: FormBuilder,
+    private angularFirestore: AngularFirestore
+  ) {
+    this.newPostId = this.angularFirestore.createId();
+  }
 
   ngOnInit(): void {}
 
@@ -58,4 +66,6 @@ export class AddPostComponent implements OnInit {
         this.percentageChanges$ = of();
       });
   }
+
+  protected onCreatePost() {}
 }

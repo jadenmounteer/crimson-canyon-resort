@@ -3,6 +3,14 @@
 
   <form [formGroup]="form">
     <!-- title input-->
+    <label>Title</label>
+    <input
+      class="form-control"
+      type="text"
+      required
+      name="familyName"
+      required
+    />
 
     <!-- message input -->
 
@@ -20,4 +28,13 @@
       <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
     </div>
   </form>
+
+  <!-- Submit button -->
+  <button
+    [disabled]="!form.valid"
+    class="btn btn-primary"
+    (click)="onCreatePost()"
+  >
+    Submit
+  </button>
 </div>
