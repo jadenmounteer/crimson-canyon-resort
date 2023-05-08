@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable, catchError, concatMap, last, tap, throwError } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  concatMap,
+  last,
+  of,
+  tap,
+  throwError,
+} from 'rxjs';
 
 @Component({
   selector: 'app-add-post',
@@ -39,6 +47,8 @@ export class AddPostComponent implements OnInit {
           return throwError(err);
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.percentageChanges$ = of();
+      });
   }
 }
