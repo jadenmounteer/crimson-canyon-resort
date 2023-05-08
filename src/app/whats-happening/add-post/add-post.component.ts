@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { FormBuilder, Validators } from '@angular/forms';
 import {
   Observable,
   catchError,
@@ -19,7 +20,13 @@ export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];
 
-  constructor(private storage: AngularFireStorage) {}
+  form = this.fb.group({
+    title: ['', Validators.required],
+    message: ['', Validators.required],
+    fileURLs: [''],
+  });
+
+  constructor(private storage: AngularFireStorage, private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 

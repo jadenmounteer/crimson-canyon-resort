@@ -1,12 +1,23 @@
 <div class="add-post-container card">
   <h3>Add a post</h3>
-  <input type="file" (change)="uploadFile($event)" />
-  <div class="upload-progress" *ngIf="percentageChanges$ | async as percentage">
-    <app-loading-spinner></app-loading-spinner>
-    <span>{{ percentage / 100 | percent }}</span>
-  </div>
 
-  <div class="files-to-upload">
-    <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
-  </div>
+  <form [formGroup]="form">
+    <!-- title input-->
+
+    <!-- message input -->
+
+    <!-- File input -->
+    <input type="file" (change)="uploadFile($event)" />
+    <div
+      class="upload-progress"
+      *ngIf="percentageChanges$ | async as percentage"
+    >
+      <app-loading-spinner></app-loading-spinner>
+      <span>{{ percentage / 100 | percent }}</span>
+    </div>
+
+    <div class="files-to-upload">
+      <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
+    </div>
+  </form>
 </div>
