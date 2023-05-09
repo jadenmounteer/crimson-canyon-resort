@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { FormBuilder, Validators } from '@angular/forms';
 import {
   Observable,
   catchError,
@@ -28,7 +27,6 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     private storage: AngularFireStorage,
-    private fb: FormBuilder,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
     private whatsHappeningService: WhatsHappeningService
@@ -68,7 +66,6 @@ export class AddPostComponent implements OnInit {
   }
 
   protected onCreatePost(form: NgForm) {
-    console.log('In create post method');
     const newPost: Partial<Post> = {
       userId: this.authService.userId,
       fileURLs: this.iconURLs,
@@ -81,7 +78,8 @@ export class AddPostComponent implements OnInit {
       .createPost(newPost, this.newPostId)
       .pipe(
         tap((post) => {
-          console.log('Created new post: ', post);
+          this.displaySuccessMessage();
+          this.clearForm(form);
         }),
         catchError((err) => {
           console.log(err);
@@ -89,5 +87,14 @@ export class AddPostComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  private displaySuccessMessage() {
+    alert(`Successfully created post`);
+  }
+
+  private clearForm(form: NgForm) {
+    form.reset();
+    this.iconURLs = [];
   }
 }
