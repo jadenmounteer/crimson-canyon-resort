@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
@@ -24,6 +24,7 @@ export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];
   private newPostId: string;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(
     private storage: AngularFireStorage,
@@ -96,5 +97,6 @@ export class AddPostComponent implements OnInit {
   private clearForm(form: NgForm) {
     form.reset();
     this.iconURLs = [];
+    this.fileInput.nativeElement.value = '';
   }
 }
