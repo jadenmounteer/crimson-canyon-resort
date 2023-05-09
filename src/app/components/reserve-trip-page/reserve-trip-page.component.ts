@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IconService } from 'src/app/services/icon.service';
 import { AuthService } from '../auth/auth.service';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { Reservation } from 'src/app/types/reservation';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Router } from '@angular/router';

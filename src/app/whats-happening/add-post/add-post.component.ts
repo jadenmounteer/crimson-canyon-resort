@@ -25,6 +25,7 @@ export class AddPostComponent implements OnInit {
   protected iconURLs: string[] = [];
   private newPostId: string;
   @ViewChild('fileInput') fileInput!: ElementRef;
+  protected displaySuccessMsg: boolean = false;
 
   constructor(
     private storage: AngularFireStorage,
@@ -91,7 +92,7 @@ export class AddPostComponent implements OnInit {
   }
 
   private displaySuccessMessage() {
-    alert(`Successfully created post`);
+    this.displaySuccessMsg = true;
   }
 
   private clearForm(form: NgForm) {
