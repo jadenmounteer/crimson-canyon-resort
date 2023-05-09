@@ -3,7 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../components/auth/auth.service';
 import { Router } from '@angular/router';
 import { Post } from './post';
-import { from, map } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
+import { convertSnaps } from '../services/db-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,12 @@ export class WhatsHappeningService {
         };
       })
     );
+  }
+
+  public fetchPosts(): Observable<Post[]> {
+    return this.firestore
+      .collection('posts')
+      .get()
+      .pipe(map((result) => convertSnaps<Post>(result)));
   }
 }
