@@ -96,6 +96,10 @@ export class AddPostComponent implements OnInit {
 
   private clearForm(form: NgForm) {
     form.reset();
+    this.clearFiles();
+  }
+
+  protected clearFiles() {
     this.iconURLs = [];
     this.fileInput.nativeElement.value = '';
   }

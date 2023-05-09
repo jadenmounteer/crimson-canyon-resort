@@ -26,7 +26,17 @@
     ></textarea>
 
     <!-- File input -->
-    <input type="file" (change)="uploadFile($event)" #fileInput />
+    <span class="file-input-container">
+      <input type="file" (change)="uploadFile($event)" #fileInput />
+
+      <span
+        *ngIf="iconURLs.length > 0"
+        class="reset-files-button"
+        (click)="clearFiles()"
+        >&#10006;</span
+      >
+    </span>
+
     <div
       class="upload-progress"
       *ngIf="percentageChanges$ | async as percentage"

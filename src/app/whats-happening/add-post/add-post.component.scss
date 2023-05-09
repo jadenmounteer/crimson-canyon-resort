@@ -19,3 +19,15 @@
   gap: 4px;
   align-items: center;
 }
+
+.file-input-container {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
+.reset-files-button {
+  color: red;
+  cursor: pointer;
+}
