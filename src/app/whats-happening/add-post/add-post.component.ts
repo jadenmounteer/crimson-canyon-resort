@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
@@ -27,6 +34,7 @@ export class AddPostComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   protected displaySuccessMsg: boolean = false;
   protected displayErrorMsg: boolean = false;
+  @Output() createPostEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private storage: AngularFireStorage,
@@ -83,6 +91,7 @@ export class AddPostComponent implements OnInit {
         tap((post) => {
           this.displaySuccessMessage();
           this.clearForm(form);
+          this.createPostEvent.emit();
         }),
         catchError((err) => {
           this.displayErrorMsg = true;

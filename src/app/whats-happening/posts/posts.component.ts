@@ -7,7 +7,7 @@ import { Post } from '../post';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
-  @Input() posts: Array<Post> = [];
+  @Input() posts!: Post[] | null;
 
   constructor() {}
 
