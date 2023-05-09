@@ -26,6 +26,7 @@ export class AddPostComponent implements OnInit {
   private newPostId: string;
   @ViewChild('fileInput') fileInput!: ElementRef;
   protected displaySuccessMsg: boolean = false;
+  protected displayErrorMsg: boolean = false;
 
   constructor(
     private storage: AngularFireStorage,
@@ -84,7 +85,7 @@ export class AddPostComponent implements OnInit {
           this.clearForm(form);
         }),
         catchError((err) => {
-          console.log(err);
+          this.displayErrorMsg = true;
           return throwError(err);
         })
       )

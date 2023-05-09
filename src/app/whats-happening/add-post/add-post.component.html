@@ -66,3 +66,15 @@
     Successfully added post! 🥳
   </ngb-alert></span
 >
+
+<span
+  ><ngb-alert
+    class="danger-alert"
+    [dismissible]="true"
+    [animation]="true"
+    type="danger"
+    *ngIf="displayErrorMsg"
+  >
+    Unable to add post. Please reach out to Jaden for help! 😭
+  </ngb-alert></span
+>
