@@ -10,7 +10,7 @@ import { Post } from './post';
   styleUrls: ['./whats-happening.component.scss'],
 })
 export class WhatsHappeningComponent implements OnInit {
-  protected contentLoaded: boolean = true;
+  protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
 
   constructor(
@@ -24,5 +24,6 @@ export class WhatsHappeningComponent implements OnInit {
 
   protected loadPosts(): void {
     this.posts$ = this.whatsHappeningService.fetchPosts();
+    this.contentLoaded = true;
   }
 }

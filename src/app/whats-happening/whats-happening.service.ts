@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Post } from './post';
 import { Observable, from, map } from 'rxjs';
 import { convertSnaps } from '../services/db-utils';
+import { serverTimestamp } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,10 @@ export class WhatsHappeningService {
   ) {}
 
   public createPost(newPost: Partial<Post>, postId: string) {
+    const updated_at_timestamp = serverTimestamp();
+
+    console.log(updated_at_timestamp);
+
     const createPostObs$ = from(
       this.firestore.doc(`posts/${postId}`).set(newPost)
     );

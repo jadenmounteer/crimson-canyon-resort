@@ -82,7 +82,7 @@ export class AddPostComponent implements OnInit {
       fileURLs: this.iconURLs,
       title: form.value.title,
       message: form.value.message,
-      createdDate: Date.now(),
+      createdDate: new Date().toDateString(),
     };
 
     this.whatsHappeningService
