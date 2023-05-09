@@ -81,6 +81,7 @@
             class="nav-link"
             [routerLink]="'whats-happening'"
             (click)="isMenuCollapsed = true"
+            *ngIf="isAuth"
             >What's Happening
           </a>
         </li>
