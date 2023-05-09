@@ -30,7 +30,7 @@ import { WhatsHappeningService } from '../whats-happening.service';
 export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];
-  private newPostId: string;
+
   @ViewChild('fileInput') fileInput!: ElementRef;
   protected displaySuccessMsg: boolean = false;
   protected displayErrorMsg: boolean = false;
@@ -41,9 +41,7 @@ export class AddPostComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
     private whatsHappeningService: WhatsHappeningService
-  ) {
-    this.newPostId = this.angularFirestore.createId();
-  }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -77,6 +75,8 @@ export class AddPostComponent implements OnInit {
   }
 
   protected onCreatePost(form: NgForm) {
+    const newPostId = this.angularFirestore.createId();
+
     const newPost: Partial<Post> = {
       userId: this.authService.userId,
       fileURLs: this.iconURLs,
@@ -86,7 +86,7 @@ export class AddPostComponent implements OnInit {
     };
 
     this.whatsHappeningService
-      .createPost(newPost, this.newPostId)
+      .createPost(newPost, newPostId)
       .pipe(
         tap((post) => {
           this.displaySuccessMessage();
