@@ -11,6 +11,8 @@ import {
   tap,
   throwError,
 } from 'rxjs';
+import { Post } from '../post';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-post',
@@ -21,12 +23,6 @@ export class AddPostComponent implements OnInit {
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];
   private newPostId: string;
-
-  form = this.fb.group({
-    title: ['', Validators.required],
-    message: ['', Validators.required],
-    fileURLs: [''],
-  });
 
   constructor(
     private storage: AngularFireStorage,
@@ -67,5 +63,7 @@ export class AddPostComponent implements OnInit {
       });
   }
 
-  protected onCreatePost() {}
+  protected onCreatePost(form: NgForm) {
+    // const newPost: Post = {};
+  }
 }

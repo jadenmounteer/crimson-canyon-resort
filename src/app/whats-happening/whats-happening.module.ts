@@ -6,7 +6,7 @@ import { WhatsHappeningComponent } from './whats-happening.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AddPostComponent } from './add-post/add-post.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [WhatsHappeningComponent, AddPostComponent],
@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UiComponentsModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class WhatsHappeningModule {}
