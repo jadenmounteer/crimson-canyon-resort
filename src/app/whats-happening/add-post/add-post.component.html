@@ -15,6 +15,15 @@
     />
 
     <!-- message input -->
+    <label>Message</label>
+    <textarea
+      class="form-control"
+      id="message"
+      rows="3"
+      ngModel
+      name="message"
+      required
+    ></textarea>
 
     <!-- File input -->
     <input type="file" (change)="uploadFile($event)" />

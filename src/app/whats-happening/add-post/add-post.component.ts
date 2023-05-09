@@ -13,6 +13,7 @@ import {
 } from 'rxjs';
 import { Post } from '../post';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/components/auth/auth.service';
 
 @Component({
   selector: 'app-add-post',
@@ -27,7 +28,8 @@ export class AddPostComponent implements OnInit {
   constructor(
     private storage: AngularFireStorage,
     private fb: FormBuilder,
-    private angularFirestore: AngularFirestore
+    private angularFirestore: AngularFirestore,
+    private authService: AuthService
   ) {
     this.newPostId = this.angularFirestore.createId();
   }
@@ -64,6 +66,13 @@ export class AddPostComponent implements OnInit {
   }
 
   protected onCreatePost(form: NgForm) {
-    // const newPost: Post = {};
+    const newPost: Post = {
+      id: this.newPostId,
+      userId: this.authService.userId,
+      fileURLs: this.iconURLs,
+      title: form.value.title,
+      message: form.value.message,
+      createdDate: Date.now(),
+    };
   }
 }
