@@ -4,5 +4,5 @@ export interface Post {
   fileURLs: string[] | undefined;
   title: string;
   message: string;
-  createdDate: string;
+  createdDate: number;
 }
