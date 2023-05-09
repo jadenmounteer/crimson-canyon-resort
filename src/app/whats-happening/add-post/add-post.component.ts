@@ -14,6 +14,7 @@ import {
 import { Post } from '../post';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/auth.service';
+import { WhatsHappeningService } from '../whats-happening.service';
 
 @Component({
   selector: 'app-add-post',
@@ -29,7 +30,8 @@ export class AddPostComponent implements OnInit {
     private storage: AngularFireStorage,
     private fb: FormBuilder,
     private angularFirestore: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private whatsHappeningService: WhatsHappeningService
   ) {
     this.newPostId = this.angularFirestore.createId();
   }
@@ -66,6 +68,7 @@ export class AddPostComponent implements OnInit {
   }
 
   protected onCreatePost(form: NgForm) {
+    console.log('In create post method');
     const newPost: Partial<Post> = {
       userId: this.authService.userId,
       fileURLs: this.iconURLs,
@@ -73,5 +76,15 @@ export class AddPostComponent implements OnInit {
       message: form.value.message,
       createdDate: Date.now(),
     };
+
+    this.whatsHappeningService.createPost(newPost, this.newPostId).pipe(
+      tap((post) => {
+        console.log('Created new post: ', post);
+      }),
+      catchError((err) => {
+        console.log(err);
+        return throwError(err);
+      })
+    );
   }
 }
