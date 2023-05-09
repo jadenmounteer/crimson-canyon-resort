@@ -66,8 +66,7 @@ export class AddPostComponent implements OnInit {
   }
 
   protected onCreatePost(form: NgForm) {
-    const newPost: Post = {
-      id: this.newPostId,
+    const newPost: Partial<Post> = {
       userId: this.authService.userId,
       fileURLs: this.iconURLs,
       title: form.value.title,
