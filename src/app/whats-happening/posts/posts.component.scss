@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+.post-img {
+  width: 300px;
+}
+
+.posts-wrapper {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.post {
+  width: 100%;
+  @include for-tablet-landscape-up {
+    width: 90%;
+  }
+}

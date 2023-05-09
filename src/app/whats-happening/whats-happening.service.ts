@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Post } from './post';
 import { Observable, from, map } from 'rxjs';
 import { convertSnaps } from '../services/db-utils';
-import { serverTimestamp } from 'firebase/firestore';
+import { serverTimestamp, query, orderBy } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class WhatsHappeningService {
 
   public fetchPosts(): Observable<Post[]> {
     return this.firestore
-      .collection('posts')
+      .collection('posts', (ref) => ref.orderBy('createdDate', 'desc'))
       .get()
       .pipe(map((result) => convertSnaps<Post>(result)));
   }

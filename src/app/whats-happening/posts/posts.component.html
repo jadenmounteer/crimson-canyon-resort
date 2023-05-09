@@ -1,5 +1,8 @@
-<div *ngFor="let post of posts" class="card">
-  <span>{{ post.title }}</span>
-  <span> {{ post.createdDate }} </span>
-  <p>{{ post.message }}</p>
+<div class="posts-wrapper">
+  <div *ngFor="let post of posts" class="card post">
+    <span>{{ post.title }}</span>
+    <span> {{ post.createdDate }} </span>
+    <p>{{ post.message }}</p>
+    <img *ngFor="let url of post.fileURLs" [src]="url" class="post-img" />
+  </div>
 </div>
