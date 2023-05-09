@@ -77,14 +77,17 @@ export class AddPostComponent implements OnInit {
       createdDate: Date.now(),
     };
 
-    this.whatsHappeningService.createPost(newPost, this.newPostId).pipe(
-      tap((post) => {
-        console.log('Created new post: ', post);
-      }),
-      catchError((err) => {
-        console.log(err);
-        return throwError(err);
-      })
-    );
+    this.whatsHappeningService
+      .createPost(newPost, this.newPostId)
+      .pipe(
+        tap((post) => {
+          console.log('Created new post: ', post);
+        }),
+        catchError((err) => {
+          console.log(err);
+          return throwError(err);
+        })
+      )
+      .subscribe();
   }
 }
