@@ -82,7 +82,7 @@ export class AddPostComponent implements OnInit {
       fileURLs: this.iconURLs,
       message: form.value.message,
       createdDate: Date.now(),
-      createdByUserName: 'Joe',
+      createdByUserName: this.authService.userDisplayName,
     };
 
     this.whatsHappeningService

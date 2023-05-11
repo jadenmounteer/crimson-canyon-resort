@@ -16,6 +16,7 @@ export class AuthService {
   public isAuthenticated: boolean = false;
   public userId: string | undefined;
   public user$: Observable<User | null | undefined>;
+  public userDisplayName: string | null | undefined = null;
 
   constructor(
     private router: Router,
@@ -45,6 +46,7 @@ export class AuthService {
 
   private updateUserData(user: firebase.User | null) {
     this.userId = user?.uid;
+    this.userDisplayName = user?.displayName;
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user?.uid}`
