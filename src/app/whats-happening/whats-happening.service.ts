@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Post } from './post';
 import { Observable, from, map } from 'rxjs';
 import { convertSnaps } from '../services/db-utils';
+import { User } from '../types/user';
 
 @Injectable({
   providedIn: 'root',
@@ -36,5 +37,12 @@ export class WhatsHappeningService {
       .collection('posts', (ref) => ref.orderBy('createdDate', 'desc'))
       .get()
       .pipe(map((result) => convertSnaps<Post>(result)));
+  }
+
+  public getUsersBasedOnId(userId: string): Observable<User[]> {
+    return this.firestore
+      .collection('users', (ref) => ref.where('userId', '==', userId))
+      .get()
+      .pipe(map((result) => convertSnaps<User>(result)));
   }
 }

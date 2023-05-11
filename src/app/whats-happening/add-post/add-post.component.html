@@ -2,18 +2,6 @@
   <h3>Add a post</h3>
 
   <form #f="ngForm" (ngSubmit)="onCreatePost(f)">
-    <!-- title input-->
-    <label>Title</label>
-    <input
-      class="form-control"
-      type="text"
-      required
-      ngModel
-      id="title"
-      name="title"
-      required
-    />
-
     <!-- message input -->
     <label>Message</label>
     <textarea

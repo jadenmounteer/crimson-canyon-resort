@@ -80,9 +80,9 @@ export class AddPostComponent implements OnInit {
     const newPost: Partial<Post> = {
       userId: this.authService.userId,
       fileURLs: this.iconURLs,
-      title: form.value.title,
       message: form.value.message,
       createdDate: Date.now(),
+      createdByUserName: 'Joe',
     };
 
     this.whatsHappeningService
