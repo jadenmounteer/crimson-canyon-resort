@@ -87,6 +87,16 @@ export class AddOrEditPostModalComponent implements OnInit {
       });
   }
 
+  protected updatePost() {
+    if (this.newPost.id) {
+      this.whatsHappeningService
+        .updatePost(this.newPost.id, this.newPost)
+        .subscribe(() => {
+          this.activeModal.close('success');
+        });
+    }
+  }
+
   protected onCreatePost(form: NgForm) {
     const newPostId = this.angularFirestore.createId();
 
