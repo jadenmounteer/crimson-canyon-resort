@@ -14,7 +14,11 @@
     <div ngbDropdown #dropdownMenu="ngbDropdown">
       <div ngbDropdownMenu>
         <button ngbDropdownItem>Edit post</button>
-        <button ngbDropdownItem class="delete-dropdown-item">
+        <button
+          ngbDropdownItem
+          class="delete-dropdown-item"
+          (click)="onDeletePost(post.id)"
+        >
           Delete Post
         </button>
       </div>

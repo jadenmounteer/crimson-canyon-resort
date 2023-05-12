@@ -43,7 +43,6 @@ export class AddNewPostModalComponent implements OnInit {
   protected iconURLs: string[] = [];
 
   @ViewChild('fileInput') fileInput!: ElementRef;
-  protected displaySuccessMsg: boolean = false;
   protected displayErrorMsg: boolean = false;
 
   protected uploadFile(event: any) {
@@ -90,7 +89,6 @@ export class AddNewPostModalComponent implements OnInit {
       .createPost(newPost, newPostId)
       .pipe(
         tap((post) => {
-          this.displaySuccessMessage();
           this.clearForm(form);
           this.activeModal.close('success');
         }),
@@ -100,10 +98,6 @@ export class AddNewPostModalComponent implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  private displaySuccessMessage() {
-    this.displaySuccessMsg = true;
   }
 
   private clearForm(form: NgForm) {

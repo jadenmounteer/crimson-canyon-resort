@@ -1,12 +1,44 @@
 <app-page-wrapper [contentLoaded]="contentLoaded">
   <div pageHeader>
     <h1>What's Happening at Crimson Canyon</h1>
+
+    <ngb-alert
+      class="success-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="success"
+      *ngIf="displayNewPostMessage"
+    >
+      Successfully added post! 🥳
+    </ngb-alert>
+
+    <ngb-alert
+      class="danger-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="danger"
+      *ngIf="displayErrorMsg"
+    >
+      Unable to add post. Please reach out to Jaden for help! 😭
+    </ngb-alert>
+
+    <ngb-alert
+      class="success-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="success"
+      *ngIf="displayDeletedPostMessage"
+    >
+      Successfully deleted post! 🥳
+    </ngb-alert>
   </div>
   <div pageContent>
     <div class="page-content-container">
       <app-posts
         [posts]="posts$ | async"
-        (addedNewPost)="loadPosts()"
+        (addedNewPost)="onAddedNewPost()"
+        (deletedPost)="onDeletedPost()"
+        (somethingWentWrong)="displayErrorMsg = true"
       ></app-posts>
     </div>
   </div>

@@ -12,6 +12,9 @@ import { Post } from './post';
 export class WhatsHappeningComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
+  protected displayNewPostMessage: boolean = false;
+  protected displayDeletedPostMessage: boolean = false;
+  protected displayErrorMsg: boolean = false;
 
   constructor(
     private afs: AngularFirestore,
@@ -25,5 +28,15 @@ export class WhatsHappeningComponent implements OnInit {
   protected loadPosts(): void {
     this.posts$ = this.whatsHappeningService.fetchPosts();
     this.contentLoaded = true;
+  }
+
+  protected onAddedNewPost(): void {
+    this.loadPosts();
+    this.displayNewPostMessage = true;
+  }
+
+  protected onDeletedPost(): void {
+    this.loadPosts();
+    this.displayDeletedPostMessage = true;
   }
 }
