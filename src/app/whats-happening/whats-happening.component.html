@@ -8,7 +8,6 @@
         [posts]="posts$ | async"
         (addedNewPost)="loadPosts()"
       ></app-posts>
-      <app-add-post (createPostEvent)="loadPosts()"></app-add-post>
     </div>
   </div>
 </app-page-wrapper>
