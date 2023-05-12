@@ -3,6 +3,7 @@
     <h1>What's Happening at Crimson Canyon</h1>
 
     <ngb-alert
+      (closed)="removeAllMessages()"
       class="success-alert"
       [dismissible]="true"
       [animation]="true"
@@ -13,6 +14,18 @@
     </ngb-alert>
 
     <ngb-alert
+      (closed)="removeAllMessages()"
+      class="success-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="success"
+      *ngIf="displaySavedChangesMessage"
+    >
+      Changes saved! ✅
+    </ngb-alert>
+
+    <ngb-alert
+      (closed)="removeAllMessages()"
       class="danger-alert"
       [dismissible]="true"
       [animation]="true"
@@ -23,22 +36,24 @@
     </ngb-alert>
 
     <ngb-alert
+      (closed)="removeAllMessages()"
       class="success-alert"
       [dismissible]="true"
       [animation]="true"
       type="success"
       *ngIf="displayDeletedPostMessage"
     >
-      Successfully deleted post! 🥳
+      Successfully deleted post! 🗑️
     </ngb-alert>
   </div>
   <div pageContent>
     <div class="page-content-container">
       <app-posts
         [posts]="posts$ | async"
-        (addedNewPost)="onAddedNewPost()"
-        (deletedPost)="onDeletedPost()"
-        (somethingWentWrong)="displayErrorMsg = true"
+        (addedNewPost)="removeAllMessages(); onAddedNewPost()"
+        (deletedPost)="removeAllMessages(); onDeletedPost()"
+        (somethingWentWrong)="removeAllMessages(); displayErrorMsg = true"
+        (editedPost)="removeAllMessages(); displaySavedChangesMessage = true"
       ></app-posts>
     </div>
   </div>

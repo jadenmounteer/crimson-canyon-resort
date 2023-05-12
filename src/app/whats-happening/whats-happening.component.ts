@@ -15,6 +15,7 @@ export class WhatsHappeningComponent implements OnInit {
   protected displayNewPostMessage: boolean = false;
   protected displayDeletedPostMessage: boolean = false;
   protected displayErrorMsg: boolean = false;
+  protected displaySavedChangesMessage: boolean = false;
 
   constructor(
     private afs: AngularFirestore,
@@ -39,5 +40,12 @@ export class WhatsHappeningComponent implements OnInit {
   protected onDeletedPost(): void {
     this.loadPosts();
     this.displayDeletedPostMessage = true;
+  }
+
+  protected removeAllMessages(): void {
+    this.displayNewPostMessage = false;
+    this.displayDeletedPostMessage = false;
+    this.displayErrorMsg = false;
+    this.displaySavedChangesMessage = false;
   }
 }

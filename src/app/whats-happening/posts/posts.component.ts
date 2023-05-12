@@ -16,6 +16,7 @@ import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-
 export class PostsComponent implements OnInit {
   @Input() posts!: Post[] | null;
   @Output() addedNewPost: EventEmitter<any> = new EventEmitter();
+  @Output() editedPost: EventEmitter<any> = new EventEmitter();
   @Output() deletedPost: EventEmitter<any> = new EventEmitter();
   @Output() somethingWentWrong: EventEmitter<any> = new EventEmitter();
   protected currentUserIsAdmin$!: Observable<boolean>;
@@ -76,5 +77,11 @@ export class PostsComponent implements OnInit {
     const modalRef = this.modalService.open(AddOrEditPostModalComponent);
     modalRef.componentInstance.postToEdit = post;
     modalRef.componentInstance.title = 'Edit post';
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.editedPost.emit();
+      }
+    });
   }
 }
