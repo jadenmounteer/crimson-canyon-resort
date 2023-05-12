@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../post';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditPostModalComponent } from '../add-new-post-modal/add-or-edit-post-modal.component';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, Subscription, catchError, tap, throwError } from 'rxjs';
 import { AdministrationService } from 'src/app/services/administration.service';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { WhatsHappeningService } from '../whats-happening.service';
@@ -20,7 +20,7 @@ export class PostsComponent implements OnInit {
   @Output() deletedPost: EventEmitter<any> = new EventEmitter();
   @Output() somethingWentWrong: EventEmitter<any> = new EventEmitter();
   protected currentUserIsAdmin$!: Observable<boolean>;
-  // protected userId: number;
+  private authSubscription!: Subscription;
 
   constructor(
     private modalService: NgbModal,
@@ -30,7 +30,11 @@ export class PostsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.grabCurrentUserAdminStatus();
+    this.authSubscription = this.authService.authChange.subscribe(
+      (authStatus) => {
+        this.grabCurrentUserAdminStatus();
+      }
+    );
   }
 
   protected addNewPost(): void {
@@ -48,6 +52,8 @@ export class PostsComponent implements OnInit {
       this.currentUserIsAdmin$ = this.adminService.checkIfUserIsAdmin(
         this.authService.userId
       );
+
+      console.log(this.currentUserIsAdmin$);
     }
   }
 
