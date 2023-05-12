@@ -1,4 +1,6 @@
 <div class="posts-wrapper">
+  <button class="btn btn-primary" (click)="addNewPost()">New Post</button>
+
   <div *ngFor="let post of posts" class="card post">
     <span>{{ post.createdByUserName }} </span>
     <span> {{ post.createdDate | date : "MMM d, yy, h:mm a" }} </span>

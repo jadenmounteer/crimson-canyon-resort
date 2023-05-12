@@ -12,4 +12,6 @@ export class PostsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  protected addNewPost(): void {}
 }
