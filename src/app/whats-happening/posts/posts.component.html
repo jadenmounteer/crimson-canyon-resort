@@ -2,35 +2,37 @@
   <button class="btn btn-primary" (click)="addNewPost()">New Post</button>
 
   <div *ngFor="let post of posts" class="card post">
-    <span
-      class="post-menu-options-button"
-      (click)="dropdownMenu.open()"
-      *ngIf="
-        (currentUserIsAdmin$ | async) || post.userId === authService.userId
-      "
-      >&#8230;</span
-    >
+    <div class="post-header">
+      <h6>{{ post.createdByUserName }}</h6>
+      <span
+        class="post-menu-options-button"
+        (click)="dropdownMenu.open()"
+        *ngIf="
+          (currentUserIsAdmin$ | async) || post.userId === authService.userId
+        "
+        >&#8230;</span
+      >
 
-    <div ngbDropdown #dropdownMenu="ngbDropdown">
-      <div ngbDropdownMenu>
-        <button
-          ngbDropdownItem
-          (click)="onEditPost(post)"
-          *ngIf="post.userId === authService.userId"
-        >
-          Edit post
-        </button>
-        <button
-          ngbDropdownItem
-          class="delete-dropdown-item"
-          (click)="onDeletePost(post.id)"
-        >
-          Delete Post
-        </button>
+      <div ngbDropdown #dropdownMenu="ngbDropdown" class="post-options-menu">
+        <div ngbDropdownMenu>
+          <button
+            ngbDropdownItem
+            (click)="onEditPost(post)"
+            *ngIf="post.userId === authService.userId"
+          >
+            Edit post
+          </button>
+          <button
+            ngbDropdownItem
+            class="delete-dropdown-item"
+            (click)="onDeletePost(post.id)"
+          >
+            Delete Post
+          </button>
+        </div>
       </div>
     </div>
 
-    <span>{{ post.createdByUserName }} </span>
     <span> {{ post.createdDate | date : "MMM d, yy, h:mm a" }} </span>
     <p>{{ post.message }}</p>
     <img *ngFor="let url of post.fileURLs" [src]="url" class="post-img" />

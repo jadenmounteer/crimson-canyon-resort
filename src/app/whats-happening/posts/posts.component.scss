@@ -27,3 +27,22 @@
 .delete-dropdown-item:hover {
   color: red;
 }
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post-menu-options-button {
+  margin-left: auto;
+  font-size: 2em;
+  margin-right: 8px;
+  position: relative;
+  top: -12px;
+}
+
+.post-options-menu {
+  left: -156px;
+  top: 12px;
+}
