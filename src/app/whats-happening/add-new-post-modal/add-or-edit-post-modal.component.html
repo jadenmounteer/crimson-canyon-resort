@@ -28,7 +28,7 @@
         <input type="file" (change)="uploadFile($event)" #fileInput />
 
         <span
-          *ngIf="iconURLs.length > 0"
+          *ngIf="newPost.fileURLs!.length > 0"
           class="reset-files-button"
           (click)="clearFiles()"
           >&#10006;</span
@@ -44,7 +44,11 @@
       </div>
 
       <div class="files-to-upload">
-        <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
+        <img
+          *ngFor="let url of newPost.fileURLs"
+          [src]="url"
+          class="uploaded-img"
+        />
       </div>
     </div>
 

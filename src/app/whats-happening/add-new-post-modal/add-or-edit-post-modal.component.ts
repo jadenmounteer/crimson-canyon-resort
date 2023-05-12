@@ -32,9 +32,11 @@ import { WhatsHappeningService } from '../whats-happening.service';
 export class AddOrEditPostModalComponent implements OnInit {
   @Input() postToEdit: Post | undefined;
   @Input() title: string = 'Add New Post';
+  protected percentageChanges$!: Observable<number | undefined>;
 
   protected newPost: Partial<Post> = {
     userId: this.authService.userId,
+    fileURLs: [],
   };
 
   constructor(
@@ -50,9 +52,6 @@ export class AddOrEditPostModalComponent implements OnInit {
       this.newPost = this.postToEdit;
     }
   }
-
-  protected percentageChanges$!: Observable<number | undefined>;
-  protected iconURLs: string[] = [];
 
   @ViewChild('fileInput') fileInput!: ElementRef;
   protected displayErrorMsg: boolean = false;
@@ -75,7 +74,9 @@ export class AddOrEditPostModalComponent implements OnInit {
       .pipe(
         last(),
         concatMap(() => this.storage.ref(filePath).getDownloadURL()),
-        tap((url) => this.iconURLs.push(url)),
+        tap((url) => {
+          if (this.newPost.fileURLs) this.newPost.fileURLs.push(url);
+        }),
         catchError((err) => {
           console.log(err);
           return throwError(err);
@@ -91,7 +92,7 @@ export class AddOrEditPostModalComponent implements OnInit {
 
     const newPost: Partial<Post> = {
       userId: this.authService.userId,
-      fileURLs: this.iconURLs,
+      fileURLs: this.newPost.fileURLs,
       message: form.value.message,
       createdDate: Date.now(),
       createdByUserName: this.authService.userDisplayName,
@@ -118,7 +119,7 @@ export class AddOrEditPostModalComponent implements OnInit {
   }
 
   protected clearFiles() {
-    this.iconURLs = [];
+    this.newPost.fileURLs = [];
     this.fileInput.nativeElement.value = '';
   }
 }
