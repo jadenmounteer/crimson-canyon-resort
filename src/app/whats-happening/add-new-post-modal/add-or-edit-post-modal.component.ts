@@ -90,16 +90,12 @@ export class AddOrEditPostModalComponent implements OnInit {
   protected onCreatePost(form: NgForm) {
     const newPostId = this.angularFirestore.createId();
 
-    const newPost: Partial<Post> = {
-      userId: this.authService.userId,
-      fileURLs: this.newPost.fileURLs,
-      message: form.value.message,
-      createdDate: Date.now(),
-      createdByUserName: this.authService.userDisplayName,
-    };
+    this.newPost.createdDate = Date.now();
+
+    this.newPost.createdByUserName = this.authService.userDisplayName;
 
     this.whatsHappeningService
-      .createPost(newPost, newPostId)
+      .createPost(this.newPost, newPostId)
       .pipe(
         tap((post) => {
           this.clearForm(form);
