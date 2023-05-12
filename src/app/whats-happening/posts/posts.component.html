@@ -13,7 +13,13 @@
 
     <div ngbDropdown #dropdownMenu="ngbDropdown">
       <div ngbDropdownMenu>
-        <button ngbDropdownItem (click)="onEditPost(post)">Edit post</button>
+        <button
+          ngbDropdownItem
+          (click)="onEditPost(post)"
+          *ngIf="post.userId === authService.userId"
+        >
+          Edit post
+        </button>
         <button
           ngbDropdownItem
           class="delete-dropdown-item"

@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  Input,
   OnInit,
   Output,
   ViewChild,
@@ -29,6 +30,13 @@ import { WhatsHappeningService } from '../whats-happening.service';
   styleUrls: ['./add-or-edit-post-modal.component.scss'],
 })
 export class AddOrEditPostModalComponent implements OnInit {
+  @Input() postToEdit: Post | undefined;
+  @Input() title: string = 'Add New Post';
+
+  protected newPost: Partial<Post> = {
+    userId: this.authService.userId,
+  };
+
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
@@ -37,7 +45,11 @@ export class AddOrEditPostModalComponent implements OnInit {
     private whatsHappeningService: WhatsHappeningService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.postToEdit) {
+      this.newPost = this.postToEdit;
+    }
+  }
 
   protected percentageChanges$!: Observable<number | undefined>;
   protected iconURLs: string[] = [];

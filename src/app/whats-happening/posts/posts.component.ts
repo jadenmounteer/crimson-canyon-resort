@@ -6,6 +6,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AdministrationService } from 'src/app/services/administration.service';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { WhatsHappeningService } from '../whats-happening.service';
+import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-posts',
@@ -50,21 +51,30 @@ export class PostsComponent implements OnInit {
   }
 
   protected onDeletePost(postId: string) {
-    console.log('Deleting post');
-    this.whatsHappeningService
-      .deletePost(postId)
-      .pipe(
-        tap(() => {
-          console.log('Emitting event');
-          this.deletedPost.emit();
-        }),
-        catchError((err) => {
-          this.somethingWentWrong.emit();
-          return throwError(err);
-        })
-      )
-      .subscribe();
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Are you sure you want to delete this post?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.whatsHappeningService
+          .deletePost(postId)
+          .pipe(
+            tap(() => {
+              console.log('Emitting event');
+              this.deletedPost.emit();
+            }),
+            catchError((err) => {
+              this.somethingWentWrong.emit();
+              return throwError(err);
+            })
+          )
+          .subscribe();
+      }
+    });
   }
 
-  protected onEditPost(post: Post) {}
+  protected onEditPost(post: Post) {
+    const modalRef = this.modalService.open(AddOrEditPostModalComponent);
+    modalRef.componentInstance.postToEdit = post;
+    modalRef.componentInstance.title = 'Edit post';
+  }
 }

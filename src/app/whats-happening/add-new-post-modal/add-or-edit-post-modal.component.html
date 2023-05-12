@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add New Post</h4>
+  <h4 class="modal-title">{{ title }}</h4>
 
   <button
     type="button"
@@ -12,15 +12,13 @@
 <form #f="ngForm" (ngSubmit)="onCreatePost(f)">
   <div class="modal-body">
     <div class="add-post-container">
-      <h3>Add a post</h3>
-
       <!-- message input -->
       <label>Message</label>
       <textarea
         class="form-control"
         id="message"
         rows="3"
-        ngModel
+        [ngModel]="newPost.message"
         name="message"
         required
       ></textarea>
