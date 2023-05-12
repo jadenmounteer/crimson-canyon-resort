@@ -4,7 +4,10 @@
   </div>
   <div pageContent>
     <div class="page-content-container">
-      <app-posts [posts]="posts$ | async"></app-posts>
+      <app-posts
+        [posts]="posts$ | async"
+        (addedNewPost)="loadPosts()"
+      ></app-posts>
       <app-add-post (createPostEvent)="loadPosts()"></app-add-post>
     </div>
   </div>

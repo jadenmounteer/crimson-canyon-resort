@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   OnInit,
   Output,
   ViewChild,
@@ -46,7 +45,6 @@ export class AddNewPostModalComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   protected displaySuccessMsg: boolean = false;
   protected displayErrorMsg: boolean = false;
-  @Output() createPostEvent: EventEmitter<any> = new EventEmitter();
 
   protected uploadFile(event: any) {
     const file: File = event.target.files[0];
@@ -94,7 +92,7 @@ export class AddNewPostModalComponent implements OnInit {
         tap((post) => {
           this.displaySuccessMessage();
           this.clearForm(form);
-          this.createPostEvent.emit();
+          this.activeModal.close('success');
         }),
         catchError((err) => {
           this.displayErrorMsg = true;
