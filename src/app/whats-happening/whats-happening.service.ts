@@ -45,4 +45,8 @@ export class WhatsHappeningService {
       .get()
       .pipe(map((result) => convertSnaps<User>(result)));
   }
+
+  public deletePost(postId: string): Observable<void> {
+    return from(this.firestore.doc(`posts/${postId}`).delete());
+  }
 }
