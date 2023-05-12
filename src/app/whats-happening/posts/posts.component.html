@@ -2,17 +2,21 @@
   <button class="btn btn-primary" (click)="addNewPost()">New Post</button>
 
   <div *ngFor="let post of posts" class="card post">
-    <span class="post-menu-options-button" (click)="dropdownMenu.open()"
+    <span
+      class="post-menu-options-button"
+      (click)="dropdownMenu.open()"
+      *ngIf="
+        (currentUserIsAdmin$ | async) || post.userId === authService.userId
+      "
       >&#8230;</span
     >
 
     <div ngbDropdown #dropdownMenu="ngbDropdown">
       <div ngbDropdownMenu>
+        <button ngbDropdownItem>Edit post</button>
         <button ngbDropdownItem class="delete-dropdown-item">
           Delete Post
         </button>
-        <button ngbDropdownItem>Another Action</button>
-        <button ngbDropdownItem>Something else is here</button>
       </div>
     </div>
 
