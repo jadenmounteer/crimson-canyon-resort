@@ -31,6 +31,7 @@ export class WhatsHappeningComponent implements OnInit {
   }
 
   protected onAddedNewPost(): void {
+    console.log('Added new post');
     this.loadPosts();
     this.displayNewPostMessage = true;
   }

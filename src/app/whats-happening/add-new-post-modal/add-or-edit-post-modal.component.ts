@@ -108,7 +108,6 @@ export class AddOrEditPostModalComponent implements OnInit {
       .createPost(this.newPost, newPostId)
       .pipe(
         tap((post) => {
-          this.clearForm(form);
           this.activeModal.close('success');
         }),
         catchError((err) => {
@@ -117,11 +116,6 @@ export class AddOrEditPostModalComponent implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  private clearForm(form: NgForm) {
-    form.reset();
-    this.clearFiles();
   }
 
   protected clearFiles() {
