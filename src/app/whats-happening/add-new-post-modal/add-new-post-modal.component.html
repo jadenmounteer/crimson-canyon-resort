@@ -9,11 +9,11 @@
   ></button>
 </div>
 
-<div class="modal-body">
-  <div class="add-post-container">
-    <h3>Add a post</h3>
+<form #f="ngForm" (ngSubmit)="onCreatePost(f)">
+  <div class="modal-body">
+    <div class="add-post-container">
+      <h3>Add a post</h3>
 
-    <form #f="ngForm" (ngSubmit)="onCreatePost(f)">
       <!-- message input -->
       <label>Message</label>
       <textarea
@@ -48,50 +48,36 @@
       <div class="files-to-upload">
         <img *ngFor="let url of iconURLs" [src]="url" class="uploaded-img" />
       </div>
-      <!-- Submit button -->
-      <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
-        Submit
-      </button>
-    </form>
+    </div>
+
+    <span
+      ><ngb-alert
+        class="success-alert"
+        [dismissible]="true"
+        [animation]="true"
+        type="success"
+        *ngIf="displaySuccessMsg"
+      >
+        Successfully added post! 🥳
+      </ngb-alert></span
+    >
+
+    <span
+      ><ngb-alert
+        class="danger-alert"
+        [dismissible]="true"
+        [animation]="true"
+        type="danger"
+        *ngIf="displayErrorMsg"
+      >
+        Unable to add post. Please reach out to Jaden for help! 😭
+      </ngb-alert></span
+    >
   </div>
-
-  <span
-    ><ngb-alert
-      class="success-alert"
-      [dismissible]="true"
-      [animation]="true"
-      type="success"
-      *ngIf="displaySuccessMsg"
-    >
-      Successfully added post! 🥳
-    </ngb-alert></span
-  >
-
-  <span
-    ><ngb-alert
-      class="danger-alert"
-      [dismissible]="true"
-      [animation]="true"
-      type="danger"
-      *ngIf="displayErrorMsg"
-    >
-      Unable to add post. Please reach out to Jaden for help! 😭
-    </ngb-alert></span
-  >
-</div>
-<div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-primary"
-    (click)="activeModal.close('Yes')"
-  >
-    Yes
-  </button>
-  <button
-    type="button"
-    class="btn btn-secondary"
-    (click)="activeModal.close('No')"
-  >
-    No
-  </button>
-</div>
+  <div class="modal-footer">
+    <!-- Submit button -->
+    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
+      Submit
+    </button>
+  </div>
+</form>
