@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../post';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddNewPostModalComponent } from '../add-new-post-modal/add-new-post-modal.component';
+import { AddOrEditPostModalComponent } from '../add-new-post-modal/add-or-edit-post-modal.component';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AdministrationService } from 'src/app/services/administration.service';
 import { AuthService } from 'src/app/components/auth/auth.service';
@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
   }
 
   protected addNewPost(): void {
-    const modalRef = this.modalService.open(AddNewPostModalComponent);
+    const modalRef = this.modalService.open(AddOrEditPostModalComponent);
 
     modalRef.result.then((result) => {
       if (result === 'success') {
@@ -65,4 +65,6 @@ export class PostsComponent implements OnInit {
       )
       .subscribe();
   }
+
+  protected onEditPost(post: Post) {}
 }

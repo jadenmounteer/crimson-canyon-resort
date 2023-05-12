@@ -24,11 +24,11 @@ import { AuthService } from 'src/app/components/auth/auth.service';
 import { WhatsHappeningService } from '../whats-happening.service';
 
 @Component({
-  selector: 'app-add-new-post-modal',
-  templateUrl: './add-new-post-modal.component.html',
-  styleUrls: ['./add-new-post-modal.component.scss'],
+  selector: 'app-add-or-edit-post-modal',
+  templateUrl: './add-or-edit-post-modal.component.html',
+  styleUrls: ['./add-or-edit-post-modal.component.scss'],
 })
-export class AddNewPostModalComponent implements OnInit {
+export class AddOrEditPostModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
