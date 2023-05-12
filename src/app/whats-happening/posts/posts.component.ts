@@ -60,7 +60,6 @@ export class PostsComponent implements OnInit {
           .deletePost(postId)
           .pipe(
             tap(() => {
-              console.log('Emitting event');
               this.deletedPost.emit();
             }),
             catchError((err) => {

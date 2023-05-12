@@ -78,7 +78,6 @@ export class AddOrEditPostModalComponent implements OnInit {
           if (this.newPost.fileURLs) this.newPost.fileURLs.push(url);
         }),
         catchError((err) => {
-          console.log(err);
           return throwError(err);
         })
       )

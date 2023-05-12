@@ -51,8 +51,6 @@ export class WhatsHappeningService {
   }
 
   public updatePost(postId: string, changes: Partial<Post>): Observable<any> {
-    console.log(`updating post: ${postId}`);
-    console.log(changes);
     return from(this.firestore.doc(`posts/${postId}`).update(changes));
   }
 }
