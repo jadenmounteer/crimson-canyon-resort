@@ -97,7 +97,7 @@ export class AddOrEditPostModalComponent implements OnInit {
     }
   }
 
-  protected onCreatePost(form: NgForm) {
+  protected onCreatePost() {
     const newPostId = this.angularFirestore.createId();
 
     this.newPost.createdDate = Date.now();

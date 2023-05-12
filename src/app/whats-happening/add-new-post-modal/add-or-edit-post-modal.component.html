@@ -9,7 +9,7 @@
   ></button>
 </div>
 
-<form #f="ngForm" (ngSubmit)="onCreatePost(f)">
+<form #f="ngForm">
   <div class="modal-body">
     <div class="add-post-container">
       <!-- message input -->
@@ -66,8 +66,22 @@
   </div>
   <div class="modal-footer">
     <!-- Submit button -->
-    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
+    <button
+      [disabled]="!f.valid"
+      type="submit"
+      class="btn btn-primary"
+      *ngIf="!postToEdit"
+      (click)="onCreatePost()"
+    >
       Submit
+    </button>
+    <button
+      [disabled]="!f.valid"
+      class="btn btn-primary"
+      *ngIf="postToEdit"
+      (click)="updatePost()"
+    >
+      Save Changes
     </button>
   </div>
 </form>
