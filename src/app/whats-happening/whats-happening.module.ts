@@ -9,9 +9,10 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostsComponent } from './posts/posts.component';
+import { AddNewPostModalComponent } from './add-new-post-modal/add-new-post-modal.component';
 
 @NgModule({
-  declarations: [WhatsHappeningComponent, AddPostComponent, PostsComponent],
+  declarations: [WhatsHappeningComponent, AddPostComponent, PostsComponent, AddNewPostModalComponent],
   imports: [
     CommonModule,
     WhatsHappeningRoutingModule,
