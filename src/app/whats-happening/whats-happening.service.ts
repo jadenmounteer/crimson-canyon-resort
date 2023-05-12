@@ -49,4 +49,8 @@ export class WhatsHappeningService {
   public deletePost(postId: string): Observable<void> {
     return from(this.firestore.doc(`posts/${postId}`).delete());
   }
+
+  public updatePost(postId: string, changes: Partial<Post>): Observable<any> {
+    return from(this.firestore.doc(`posts/${postId}`).update(changes));
+  }
 }
