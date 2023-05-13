@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { PendingRequest } from 'src/app/types/pending-request';
+import { AccessRequest } from 'src/app/types/access-request';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { catchError, tap, throwError } from 'rxjs';
@@ -20,7 +20,7 @@ export class RequestToCreateAccountPageComponent implements OnInit {
 
   protected onSubmit(form: NgForm): void {
     const newRequestId = this.angularFirestore.createId();
-    const newRequest: Partial<PendingRequest> = {
+    const newRequest: Partial<AccessRequest> = {
       email: form.value.email,
       name: form.value.yourName,
       approved: false,
