@@ -1,7 +1,10 @@
 <app-page-wrapper [contentLoaded]="true">
   <div pageHeader><h1>Request to create an account</h1></div>
   <div pageContent>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ngb-alert [dismissible]="false" *ngIf="requestSent" type="success">
+      {{ requestSentMessage }}
+    </ngb-alert>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!requestSent">
       <div class="form-group">
         <input
           type="email"

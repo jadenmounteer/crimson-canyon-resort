@@ -11,6 +11,8 @@ import { catchError, tap, throwError } from 'rxjs';
   styleUrls: ['./request-to-create-account-page.component.scss'],
 })
 export class RequestToCreateAccountPageComponent implements OnInit {
+  protected requestSent: boolean = false;
+  protected requestSentMessage: string = '';
   constructor(
     private angularFirestore: AngularFirestore,
     private authorizedEmailsService: AuthorizedEmailsService
@@ -30,10 +32,10 @@ export class RequestToCreateAccountPageComponent implements OnInit {
       .createPendingRequest(newRequest, newRequestId)
       .pipe(
         tap((newRequest) => {
-          console.log('Success!');
+          this.requestSent = true;
+          this.requestSentMessage = `Your request has been sent. You will receive an email at ${form.value.email} once your request has been approved.`;
         }),
         catchError((err) => {
-          // this.displayErrorMsg = true;
           return throwError(err);
         })
       )
