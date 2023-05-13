@@ -1,9 +1,18 @@
-<app-page-wrapper [contentLoaded]="true">
+<app-page-wrapper [contentLoaded]="contentLoaded">
   <div pageHeader><h1>Request to create an account</h1></div>
   <div pageContent>
     <ngb-alert [dismissible]="false" *ngIf="requestSent" type="success">
       {{ requestSentMessage }}
     </ngb-alert>
+
+    <ngb-alert
+      [dismissible]="true"
+      (closed)="emailExistsMsg = ''"
+      *ngIf="emailExistsMsg"
+    >
+      {{ emailExistsMsg }}
+    </ngb-alert>
+
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!requestSent">
       <div class="form-group">
         <input

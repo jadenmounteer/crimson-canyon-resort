@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AccessRequest } from '../types/access-request';
-import { from, map } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
+import { convertSnaps } from './db-utils';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,12 @@ export class AuthorizedEmailsService {
         };
       })
     );
+  }
+
+  public fetchRequests(): Observable<AccessRequest[]> {
+    return this.firestore
+      .collection('accessRequests')
+      .get()
+      .pipe(map((result) => convertSnaps<AccessRequest>(result)));
   }
 }
