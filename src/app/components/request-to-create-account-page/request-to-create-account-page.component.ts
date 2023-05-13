@@ -23,13 +23,14 @@ export class RequestToCreateAccountPageComponent implements OnInit {
     const newRequest: Partial<PendingRequest> = {
       email: form.value.email,
       name: form.value.yourName,
+      approved: false,
     };
 
     this.authorizedEmailsService
       .createPendingRequest(newRequest, newRequestId)
       .pipe(
         tap((newRequest) => {
-          // this.activeModal.close('success');
+          console.log('Success!');
         }),
         catchError((err) => {
           // this.displayErrorMsg = true;
