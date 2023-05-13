@@ -1,7 +1,7 @@
 <app-page-wrapper [contentLoaded]="true">
   <div pageHeader><h1>Request to create an account</h1></div>
   <div pageContent>
-    <form #f="ngForm">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <input
           type="email"
@@ -16,10 +16,10 @@
 
       <div class="form-group">
         <input
-          type="password"
-          placeholder="Password"
+          type="text"
+          placeholder="Your name"
           ngModel
-          name="password"
+          name="yourName"
           required
           minlength="6"
           #pwInput="ngModel"
