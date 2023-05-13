@@ -28,6 +28,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
 import { AdministrationModule } from './administration/administration.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
+import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
     ConfirmModalComponent,
     LoginPageComponent,
     SignUpPageComponent,
+    RequestToCreateAccountPageComponent,
   ],
   imports: [
     BrowserModule,
