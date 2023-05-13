@@ -1,1 +1,35 @@
-<p>request-to-create-account-page works!</p>
+<app-page-wrapper [contentLoaded]="true">
+  <div pageHeader><h1>Request to create an account</h1></div>
+  <div pageContent>
+    <form #f="ngForm">
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Email"
+          ngModel
+          name="email"
+          required
+          #emailInput="ngModel"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Password"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          #pwInput="ngModel"
+          class="form-control"
+        />
+      </div>
+
+      <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
+        Request Access
+      </button>
+    </form>
+  </div>
+</app-page-wrapper>
