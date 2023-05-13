@@ -11,6 +11,7 @@ import { ReservationBookedPageComponent } from './components/reservation-booked-
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.component';
+import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpPageComponent,
+  },
+  {
+    path: 'request-to-create-account-page',
+    component: RequestToCreateAccountPageComponent,
   },
 
   {
@@ -45,6 +50,7 @@ const routes: Routes = [
     component: ReservationDetailsComponent,
     canActivate: [AuthGuard],
   },
+
   {
     path: 'administration',
     loadChildren: () =>
@@ -57,7 +63,13 @@ const routes: Routes = [
     path: 'page-not-found-page',
     component: PageNotFoundPageComponent,
   },
-  { path: 'whats-happening', loadChildren: () => import('./whats-happening/whats-happening.module').then(m => m.WhatsHappeningModule) },
+  {
+    path: 'whats-happening',
+    loadChildren: () =>
+      import('./whats-happening/whats-happening.module').then(
+        (m) => m.WhatsHappeningModule
+      ),
+  },
   // {
   //   path: 'exercise-library',
   //   component: ExerciseLibraryComponent,

@@ -39,6 +39,14 @@
             : "Are you new here? Click here to create an account."
         }}</a
       >
+
+      <a
+        class="link-primary"
+        *ngIf="newUser"
+        (click)="navigateToRequestAccessPage()"
+      >
+        Need to get your email address approved? Click here.
+      </a>
     </form>
   </div>
 </div>

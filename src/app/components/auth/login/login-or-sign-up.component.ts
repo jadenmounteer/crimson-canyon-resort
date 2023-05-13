@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { IconService } from 'src/app/services/icon.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-or-sign-up',
@@ -15,7 +15,8 @@ export class LoginOrSignUpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public icon: IconService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -40,5 +41,9 @@ export class LoginOrSignUpComponent implements OnInit {
 
   public switchToLoginOrSignUp() {
     this.newUser = !this.newUser;
+  }
+
+  protected navigateToRequestAccessPage() {
+    this.router.navigate(['request-to-create-account-page']);
   }
 }
