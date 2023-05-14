@@ -69,7 +69,7 @@ export class RequestToCreateAccountPageComponent implements OnInit {
         this.requests[i].email === emailToCheckFor &&
         !this.requests[i].approved
       ) {
-        this.emailExistsMsg = `A request for the email address ${emailToCheckFor} is already currently pending `;
+        this.emailExistsMsg = `A request for the email address ${emailToCheckFor} is currently pending `;
         return true;
       }
     }
