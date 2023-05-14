@@ -1,0 +1,37 @@
+<h3>Pending Email Authorization Requests</h3>
+<p>
+  If any prospective users have requested to create accounts email addresses,
+  they will appear here. Please approve or decline them.
+</p>
+<table class="table" *ngIf="contentLoaded">
+  <thead>
+    <tr>
+      <th scope="col">Requested By</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of pendingRequests$ | async">
+      <td scope="row">
+        {{ request.name }}
+      </td>
+      <td scope="row">
+        {{ request.email }}
+      </td>
+      <td>
+        <button type="button" class="btn btn-link">Approve</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-link cancel-button">
+          Decline
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<span class="loading-icon" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</span>

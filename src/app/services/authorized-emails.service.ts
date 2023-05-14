@@ -34,4 +34,11 @@ export class AuthorizedEmailsService {
       .get()
       .pipe(map((result) => convertSnaps<AccessRequest>(result)));
   }
+
+  public fetchPendingRequests(): Observable<AccessRequest[]> {
+    return this.firestore
+      .collection('accessRequests', (ref) => ref.where('approved', '==', false))
+      .get()
+      .pipe(map((result) => convertSnaps<AccessRequest>(result)));
+  }
 }
