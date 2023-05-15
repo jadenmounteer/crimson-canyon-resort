@@ -1,4 +1,4 @@
-<span *ngIf="(pendingRequests$ | async)!.length > 0">
+<span *ngIf="pendingRequests.length > 0">
   <h3>Pending Email Authorization Requests</h3>
   <p>
     Prospective users have requested to create accounts. Please approve or
@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let request of pendingRequests$ | async">
+      <tr *ngFor="let request of pendingRequests">
         <td scope="row">
           {{ request.name }}
         </td>

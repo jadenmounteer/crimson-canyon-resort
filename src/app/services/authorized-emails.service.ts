@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AccessRequest } from '../types/access-request';
-import { Observable, from, map } from 'rxjs';
+import { Observable, from, map, Subject } from 'rxjs';
 import { convertSnaps } from './db-utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizedEmailsService {
+  public requestsChanged = new Subject();
   constructor(private firestore: AngularFirestore) {}
 
   public createPendingRequest(
@@ -46,12 +47,14 @@ export class AuthorizedEmailsService {
     requestId: string,
     changes: Partial<AccessRequest>
   ): Observable<any> {
+    this.requestsChanged.next([requestId]);
     return from(
       this.firestore.doc(`accessRequests/${requestId}`).update(changes)
     );
   }
 
   public deleteRequest(requestId: string): Observable<void> {
+    this.requestsChanged.next([requestId]);
     return from(this.firestore.doc(`accessRequests/${requestId}`).delete());
   }
 }

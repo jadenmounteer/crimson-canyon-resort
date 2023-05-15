@@ -10,15 +10,26 @@ import { AccessRequest } from 'src/app/types/access-request';
   styleUrls: ['./pending-authorization-requests.component.scss'],
 })
 export class PendingAuthorizationRequestsComponent implements OnInit {
-  protected pendingRequests$: Observable<AccessRequest[]>;
+  protected pendingRequests: AccessRequest[] = [];
   protected contentLoaded: boolean = false;
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
     public icon: IconService
   ) {
-    this.pendingRequests$ = this.authorizedEmailsService.fetchPendingRequests();
+    this.loadRequests();
+    this.authorizedEmailsService.requestsChanged.subscribe((requestId) => {
+      this.loadRequests();
+    });
+  }
 
-    this.contentLoaded = true;
+  private loadRequests() {
+    this.contentLoaded = false;
+    this.authorizedEmailsService
+      .fetchPendingRequests()
+      .subscribe((requests) => {
+        this.pendingRequests = requests;
+        this.contentLoaded = true;
+      });
   }
 
   ngOnInit(): void {}
