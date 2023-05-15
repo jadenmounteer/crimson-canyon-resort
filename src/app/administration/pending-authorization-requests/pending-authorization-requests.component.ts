@@ -19,9 +19,6 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
     public icon: IconService
   ) {
     this.loadRequests();
-    this.authorizedEmailsService.requestsChanged.subscribe((requestId) => {
-      this.loadRequests();
-    });
   }
 
   private loadRequests() {
@@ -44,6 +41,7 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
         tap(() => {
           this.removeAllMessages();
           this.displayApprovedMessage = true;
+          this.loadRequests();
         }),
         catchError((err) => {
           return throwError(err);
@@ -60,6 +58,7 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
         tap(() => {
           this.removeAllMessages();
           this.displayDeclineMessage = true;
+          this.loadRequests();
         }),
         catchError((err) => {
           return throwError(err);
