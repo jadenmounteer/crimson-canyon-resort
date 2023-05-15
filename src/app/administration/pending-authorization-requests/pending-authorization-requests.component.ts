@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { catchError, tap, throwError } from 'rxjs';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
