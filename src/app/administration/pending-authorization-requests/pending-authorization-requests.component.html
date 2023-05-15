@@ -1,3 +1,25 @@
+<ngb-alert
+  (closed)="removeAllMessages()"
+  class="success-alert"
+  [dismissible]="true"
+  [animation]="true"
+  type="success"
+  *ngIf="displayApprovedMessage"
+>
+  Successfully approved request. 🥳
+</ngb-alert>
+
+<ngb-alert
+  (closed)="removeAllMessages()"
+  class="success-alert"
+  [dismissible]="true"
+  [animation]="true"
+  type="success"
+  *ngIf="displayDeclineMessage"
+>
+  You just declined a request. You must be angry at someone. 😡
+</ngb-alert>
+
 <span *ngIf="pendingRequests.length > 0">
   <h3>Pending Email Authorization Requests</h3>
   <p>

@@ -6,9 +6,19 @@ import { AdministrationPageComponent } from './administration-page/administratio
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { ReservationsByUserComponent } from './reservations-by-user/reservations-by-user.component';
 import { PendingAuthorizationRequestsComponent } from './pending-authorization-requests/pending-authorization-requests.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [AdministrationPageComponent, ReservationsByUserComponent, PendingAuthorizationRequestsComponent],
-  imports: [CommonModule, AdministrationRoutingModule, UiComponentsModule],
+  declarations: [
+    AdministrationPageComponent,
+    ReservationsByUserComponent,
+    PendingAuthorizationRequestsComponent,
+  ],
+  imports: [
+    CommonModule,
+    AdministrationRoutingModule,
+    UiComponentsModule,
+    NgbModule,
+  ],
 })
 export class AdministrationModule {}
