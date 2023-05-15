@@ -13,6 +13,16 @@
       {{ emailExistsMsg }}
     </ngb-alert>
 
+    <ngb-alert
+      class="danger-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="danger"
+      *ngIf="displayBadEmailMsg"
+    >
+      Please type in a valid email address.
+    </ngb-alert>
+
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!requestSent">
       <div class="form-group">
         <input

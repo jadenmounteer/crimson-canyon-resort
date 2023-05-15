@@ -12,6 +12,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 })
 export class RequestToCreateAccountPageComponent implements OnInit {
   protected requestSent: boolean = false;
+  protected displayBadEmailMsg: boolean = false;
   protected requestSentMessage: string = '';
   protected accessRequests$!: Observable<AccessRequest[]>;
   protected contentLoaded: boolean = false;
@@ -27,10 +28,13 @@ export class RequestToCreateAccountPageComponent implements OnInit {
   ngOnInit(): void {}
 
   protected onSubmit(form: NgForm): void {
-    const emailExists: boolean = this.checkIfRequestExists(form.value.email);
+    const validEmail: boolean = this.checkIfValidEmail(form.value.email);
+    if (!validEmail) {
+      return;
+    }
 
     // If so, is it approved?
-
+    const emailExists: boolean = this.checkIfRequestExists(form.value.email);
     if (!emailExists) {
       const newRequestId = this.angularFirestore.createId();
       const newRequest: Partial<AccessRequest> = {
@@ -52,6 +56,19 @@ export class RequestToCreateAccountPageComponent implements OnInit {
         )
         .subscribe();
     }
+  }
+
+  private checkIfValidEmail(email: string): boolean {
+    const regexCheck =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!regexCheck.test(email)) {
+      this.displayBadEmailMsg = true;
+      return false;
+    }
+
+    this.displayBadEmailMsg = false;
+
+    return true;
   }
 
   private checkIfRequestExists(emailToCheckFor: string): boolean {
