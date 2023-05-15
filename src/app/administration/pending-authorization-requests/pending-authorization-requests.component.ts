@@ -21,4 +21,8 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  protected acceptRequest() {}
+
+  protected declineRequest() {}
 }

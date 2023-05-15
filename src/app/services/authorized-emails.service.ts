@@ -41,4 +41,13 @@ export class AuthorizedEmailsService {
       .get()
       .pipe(map((result) => convertSnaps<AccessRequest>(result)));
   }
+
+  public updateRequest(
+    requestId: string,
+    changes: Partial<AccessRequest>
+  ): Observable<any> {
+    return from(
+      this.firestore.doc(`accessRequests/${requestId}`).update(changes)
+    );
+  }
 }
