@@ -1,1 +1,29 @@
-<p>authorized-emails works!</p>
+<h3>Approved Emails</h3>
+
+<span *ngIf="approvedRequests.length > 0">
+  <p>The following emails have been approved to create accounts</p>
+  <table class="table" *ngIf="contentLoaded">
+    <thead>
+      <tr>
+        <th scope="col">Requested By</th>
+        <th scope="col">Email</th>
+        <th scope="col">Account created?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of approvedRequests">
+        <td scope="row">
+          {{ request.name }}
+        </td>
+        <td scope="row">
+          {{ request.email }}
+        </td>
+        <td scope="row"></td>
+      </tr>
+    </tbody>
+  </table>
+</span>
+
+<span class="loading-icon" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</span>

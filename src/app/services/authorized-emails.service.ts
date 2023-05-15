@@ -43,6 +43,13 @@ export class AuthorizedEmailsService {
       .pipe(map((result) => convertSnaps<AccessRequest>(result)));
   }
 
+  public fetchApprovedRequests(): Observable<AccessRequest[]> {
+    return this.firestore
+      .collection('accessRequests', (ref) => ref.where('approved', '==', true))
+      .get()
+      .pipe(map((result) => convertSnaps<AccessRequest>(result)));
+  }
+
   public updateRequest(
     requestId: string,
     changes: Partial<AccessRequest>
