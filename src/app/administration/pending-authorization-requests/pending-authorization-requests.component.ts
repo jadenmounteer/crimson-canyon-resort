@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { catchError, tap, throwError } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, catchError, tap, throwError } from 'rxjs';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
@@ -9,12 +9,15 @@ import { AccessRequest } from 'src/app/types/access-request';
   templateUrl: './pending-authorization-requests.component.html',
   styleUrls: ['./pending-authorization-requests.component.scss'],
 })
-export class PendingAuthorizationRequestsComponent implements OnInit {
+export class PendingAuthorizationRequestsComponent
+  implements OnInit, OnDestroy
+{
   protected pendingRequests: AccessRequest[] = [];
   protected contentLoaded: boolean = false;
   protected displayApprovedMessage: boolean = false;
   protected displayDeclineMessage: boolean = false;
   protected displayNoMoreRequestsMessage: boolean = false;
+  private requestsSub!: Subscription;
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
     public icon: IconService
@@ -24,7 +27,8 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
 
   private loadRequests(initialLoad: boolean = false) {
     this.contentLoaded = false;
-    this.authorizedEmailsService
+
+    this.requestsSub = this.authorizedEmailsService
       .fetchPendingRequests()
       .subscribe((requests) => {
         this.pendingRequests = requests;
@@ -78,5 +82,9 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
   protected removeAllMessages(): void {
     this.displayApprovedMessage = false;
     this.displayDeclineMessage = false;
+  }
+
+  ngOnDestroy(): void {
+    this.requestsSub.unsubscribe();
   }
 }

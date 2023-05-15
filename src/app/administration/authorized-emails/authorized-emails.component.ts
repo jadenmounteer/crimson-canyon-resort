@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
@@ -7,18 +8,24 @@ import { AccessRequest } from 'src/app/types/access-request';
   templateUrl: './authorized-emails.component.html',
   styleUrls: ['./authorized-emails.component.scss'],
 })
-export class AuthorizedEmailsComponent implements OnInit {
+export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   protected approvedRequests: AccessRequest[] = [];
   protected contentLoaded: boolean = false;
+  private requestsSub!: Subscription;
 
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
     public icon: IconService
   ) {
     this.loadRequests();
-    this.authorizedEmailsService.requestsChanged.subscribe(() => {
-      this.loadRequests();
-    });
+    this.requestsSub = this.authorizedEmailsService.requestsChanged.subscribe(
+      () => {
+        this.loadRequests();
+      }
+    );
+  }
+  ngOnDestroy(): void {
+    this.requestsSub.unsubscribe();
   }
 
   private loadRequests() {
