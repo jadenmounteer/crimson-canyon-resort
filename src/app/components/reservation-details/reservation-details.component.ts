@@ -46,7 +46,7 @@ export class ReservationDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       let id: string | null = params.get('id');
       this.reservation = this.reservationsService.getReservation(id);
-      console.log(this.reservation);
+
       this.contentLoaded = true;
     });
   }

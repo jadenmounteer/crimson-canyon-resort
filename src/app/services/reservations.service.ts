@@ -57,7 +57,6 @@ export class ReservationsService {
   }
 
   public fetchAllReservations() {
-    console.log('Fetching reservations');
     const userId = this.authService.userId;
     this.firestore
       .collection('reservations')
@@ -88,8 +87,6 @@ export class ReservationsService {
   }
 
   public getReservation(id: string | null): Reservation {
-    console.log(`Getting reservation by id: ${id}`);
-    console.log(this.allReservations);
     let reservationToReturn!: Reservation;
 
     if (this.reservations.length > 0) {

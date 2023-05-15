@@ -52,8 +52,6 @@ export class PostsComponent implements OnInit {
       this.currentUserIsAdmin$ = this.adminService.checkIfUserIsAdmin(
         this.authService.userId
       );
-
-      console.log(this.currentUserIsAdmin$);
     }
   }
 
