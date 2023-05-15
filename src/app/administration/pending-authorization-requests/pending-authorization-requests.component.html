@@ -25,16 +25,19 @@
           <fa-icon
             class="accept-button"
             [icon]="icon.faCheckCircle"
-            (click)="acceptRequest()"
+            (click)="acceptRequest(request)"
           ></fa-icon>
         </td>
         <td>
-          <span class="decline-button" (click)="declineRequest()">X</span>
+          <span class="decline-button" (click)="declineRequest(request)"
+            >X</span
+          >
         </td>
       </tr>
     </tbody>
   </table>
 </span>
+
 <span class="loading-icon" *ngIf="!contentLoaded">
   <app-loading-spinner></app-loading-spinner>
 </span>

@@ -50,4 +50,8 @@ export class AuthorizedEmailsService {
       this.firestore.doc(`accessRequests/${requestId}`).update(changes)
     );
   }
+
+  public deleteRequest(requestId: string): Observable<void> {
+    return from(this.firestore.doc(`accessRequests/${requestId}`).delete());
+  }
 }
