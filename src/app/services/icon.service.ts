@@ -7,6 +7,7 @@ import {
   faPencilAlt,
   faTools,
   faCalendarAlt,
+  faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -22,6 +23,7 @@ export class IconService {
   public faPencilAlt = faPencilAlt;
   public faTools = faTools;
   public faCalendarAlt = faCalendarAlt;
+  public faCheckCircle = faCheckCircle;
 
   constructor() {}
 }
