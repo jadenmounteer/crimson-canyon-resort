@@ -14,19 +14,25 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected displayApprovedMessage: boolean = false;
   protected displayDeclineMessage: boolean = false;
+  protected displayNoMoreRequestsMessage: boolean = false;
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
     public icon: IconService
   ) {
-    this.loadRequests();
+    this.loadRequests(true);
   }
 
-  private loadRequests() {
+  private loadRequests(initialLoad: boolean = false) {
     this.contentLoaded = false;
     this.authorizedEmailsService
       .fetchPendingRequests()
       .subscribe((requests) => {
         this.pendingRequests = requests;
+
+        if (this.pendingRequests.length < 1 && !initialLoad) {
+          this.removeAllMessages();
+          this.displayNoMoreRequestsMessage = true;
+        }
         this.contentLoaded = true;
       });
   }

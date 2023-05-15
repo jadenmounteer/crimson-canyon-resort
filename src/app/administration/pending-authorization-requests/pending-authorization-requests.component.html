@@ -15,6 +15,17 @@
   [dismissible]="true"
   [animation]="true"
   type="success"
+  *ngIf="displayNoMoreRequestsMessage"
+>
+  There are no more requests to approve. 🎉
+</ngb-alert>
+
+<ngb-alert
+  (closed)="removeAllMessages()"
+  class="success-alert"
+  [dismissible]="true"
+  [animation]="true"
+  type="success"
   *ngIf="displayDeclineMessage"
 >
   You just declined a request. You must be angry at someone. 😡
