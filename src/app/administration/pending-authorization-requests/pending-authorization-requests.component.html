@@ -9,8 +9,8 @@
       <tr>
         <th scope="col">Requested By</th>
         <th scope="col">Email</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Accept</th>
+        <th scope="col">Decline</th>
       </tr>
     </thead>
     <tbody>
@@ -22,16 +22,9 @@
           {{ request.email }}
         </td>
         <td>
-          <fa-icon
-            class="calendar-button"
-            [icon]="icon.faCheckCircle"
-          ></fa-icon>
+          <fa-icon class="accept-button" [icon]="icon.faCheckCircle"></fa-icon>
         </td>
-        <td>
-          <button type="button" class="btn btn-link cancel-button">
-            Decline
-          </button>
-        </td>
+        <td><span class="decline-button">X</span></td>
       </tr>
     </tbody>
   </table>
