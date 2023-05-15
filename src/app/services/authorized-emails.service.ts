@@ -8,6 +8,7 @@ import { convertSnaps } from './db-utils';
   providedIn: 'root',
 })
 export class AuthorizedEmailsService {
+  public requestsChanged = new Subject();
   constructor(private firestore: AngularFirestore) {}
 
   public createPendingRequest(

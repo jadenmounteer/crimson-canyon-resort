@@ -48,6 +48,7 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
           this.removeAllMessages();
           this.displayApprovedMessage = true;
           this.loadRequests();
+          this.authorizedEmailsService.requestsChanged.next([request.id]);
         }),
         catchError((err) => {
           return throwError(err);
@@ -65,6 +66,7 @@ export class PendingAuthorizationRequestsComponent implements OnInit {
           this.removeAllMessages();
           this.displayDeclineMessage = true;
           this.loadRequests();
+          this.authorizedEmailsService.requestsChanged.next([request.id]);
         }),
         catchError((err) => {
           return throwError(err);
