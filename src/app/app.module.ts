@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleButtonComponent } from './components/google-button/google-button.component';
 import { NavComponent } from './components/nav/nav.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
@@ -56,9 +55,7 @@ import { RequestToCreateAccountPageComponent } from './components/request-to-cre
     NgbModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-
     FormsModule,
-    FontAwesomeModule,
     NgbCarouselModule,
     NgIf,
     HttpClientModule,
