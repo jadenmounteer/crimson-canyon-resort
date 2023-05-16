@@ -2,6 +2,16 @@
 
 <span *ngIf="approvedRequests.length > 0">
   <p>The following emails have been approved to create accounts and login.</p>
+  <ngb-alert
+    class="success-alert"
+    (closed)="emailAddedMsg = ''"
+    [dismissible]="true"
+    [animation]="true"
+    type="success"
+    *ngIf="emailAddedMsg"
+  >
+    {{ emailAddedMsg }}
+  </ngb-alert>
   <table class="table" *ngIf="contentLoaded">
     <thead>
       <tr>

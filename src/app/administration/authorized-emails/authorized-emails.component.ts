@@ -15,6 +15,7 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   protected approvedRequests: AccessRequest[] = [];
   protected contentLoaded: boolean = false;
   private requestsSub!: Subscription;
+  protected emailAddedMsg: string = '';
 
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
@@ -48,7 +49,7 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   protected onDeleteAuthorization(request: AccessRequest) {
     const modalRef = this.modalService.open(ConfirmModalComponent);
 
-    modalRef.componentInstance.message = `Are you sure you want to delete this authorization? ${request.name} will not be able to login or create an account with ${request.email} until you authorize it again.`;
+    modalRef.componentInstance.message = `Are you sure you want to delete this authorization? Users will not be able to login or create an account with ${request.email} until you authorize it again.`;
 
     modalRef.result.then((result) => {
       if (result === 'Yes') {
@@ -74,6 +75,7 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
     modalRef.result.then((result) => {
       if (result.email) {
         this.approvedRequests.push(result);
+        this.emailAddedMsg = `Successfully added ${result.email} to the list of approved emails.`;
       }
     });
   }
