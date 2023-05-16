@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { Observable, of, Subject, switchMap } from 'rxjs';
+import { Observable, of, Subject, switchMap, from } from 'rxjs';
 import { User } from 'src/app/types/user';
 import { AuthData } from './auth-data.model';
 import {
@@ -76,15 +76,13 @@ export class AuthService {
     });
   }
 
-  registerUser(authData: AuthData) {
-    this.afAuth
-      .createUserWithEmailAndPassword(authData.email, authData.password)
-      .then((result) => {
-        this.onSuccessfulAuthentication();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  registerUser(authData: AuthData): Observable<any> {
+    return from(
+      this.afAuth.createUserWithEmailAndPassword(
+        authData.email,
+        authData.password
+      )
+    );
   }
 
   login(authData: AuthData) {
@@ -105,7 +103,7 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  private onSuccessfulAuthentication() {
+  public onSuccessfulAuthentication() {
     this.isAuthenticated = true;
     this.authChange.next(true);
     // I don't want to navigate the user away from the reservation page if they login on that page.

@@ -5,6 +5,7 @@ import { IconService } from 'src/app/services/icon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { AccessRequest } from 'src/app/types/access-request';
+import { catchError, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login-or-sign-up',
@@ -17,6 +18,7 @@ export class LoginOrSignUpComponent implements OnInit {
   protected emailExistsMessage: string = '';
   protected requests: Array<AccessRequest> = [];
   protected contentLoaded: boolean = false;
+  protected signInErrorMessage: string = '';
 
   constructor(
     private authService: AuthService,
@@ -53,13 +55,14 @@ export class LoginOrSignUpComponent implements OnInit {
       this.displayBadEmailMsg = true;
       return false;
     }
+    let requestApproved: boolean = false;
+    this.requests.forEach((request) => {
+      if (request.email === email && request.approved) {
+        requestApproved = true;
+      }
+    });
 
-    this.emailExistsMessage = this.authorizedEmailService.checkIfRequestExists(
-      email,
-      this.requests
-    );
-
-    if (this.emailExistsMessage === '') {
+    if (requestApproved) {
       return true;
     }
 
@@ -68,10 +71,20 @@ export class LoginOrSignUpComponent implements OnInit {
 
   public onSignUp(form: NgForm) {
     if (this.validateEmailForSignUp(form.value.email)) {
-      this.authService.registerUser({
-        email: form.value.email,
-        password: form.value.password,
-      });
+      this.authService
+        .registerUser({
+          email: form.value.email,
+          password: form.value.password,
+        })
+        .pipe(
+          catchError((err) => {
+            this.signInErrorMessage = err;
+            return throwError(err);
+          })
+        )
+        .subscribe((result) => {
+          this.authService.onSuccessfulAuthentication();
+        });
     }
   }
 

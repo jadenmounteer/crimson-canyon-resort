@@ -19,6 +19,13 @@
       {{ emailExistsMessage }}
     </ngb-alert>
 
+    <ngb-alert
+      [dismissible]="true"
+      (closed)="signInErrorMessage = ''"
+      *ngIf="signInErrorMessage"
+    >
+      {{ signInErrorMessage }}
+    </ngb-alert>
     <form
       #f="ngForm"
       (ngSubmit)="newUser ? onSignUp(f) : onLogin(f)"
