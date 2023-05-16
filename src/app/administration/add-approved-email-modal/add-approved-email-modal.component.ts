@@ -50,7 +50,8 @@ export class AddApprovedEmailModalComponent implements OnInit {
       form.value.email,
       this.requests
     );
-    if (this.emailExistsMessage != '') {
+
+    if (this.emailExistsMessage === '') {
       const newRequestId = this.angularFirestore.createId();
       const newRequest: Partial<AccessRequest> = {
         email: form.value.email,
