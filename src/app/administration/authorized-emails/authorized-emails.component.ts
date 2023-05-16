@@ -5,6 +5,7 @@ import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
+import { AddApprovedEmailModalComponent } from '../add-approved-email-modal/add-approved-email-modal.component';
 @Component({
   selector: 'app-authorized-emails',
   templateUrl: './authorized-emails.component.html',
@@ -67,5 +68,7 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  protected onAddEmail(): void {}
+  protected onAddEmail(): void {
+    const modalRef = this.modalService.open(AddApprovedEmailModalComponent);
+  }
 }
