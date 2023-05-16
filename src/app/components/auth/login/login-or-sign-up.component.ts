@@ -29,6 +29,8 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   public onSignUp(form: NgForm) {
+    // TODO check if the email is authorized
+
     this.authService.registerUser({
       email: form.value.email,
       password: form.value.password,
