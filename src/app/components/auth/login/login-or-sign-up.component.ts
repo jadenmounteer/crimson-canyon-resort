@@ -70,6 +70,7 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   public onSignUp(form: NgForm) {
+    this.signInErrorMessage = '';
     if (this.validateEmailForSignUp(form.value.email)) {
       this.authService
         .registerUser({
