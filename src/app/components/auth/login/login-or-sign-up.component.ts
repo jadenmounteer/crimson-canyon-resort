@@ -66,6 +66,8 @@ export class LoginOrSignUpComponent implements OnInit {
       return true;
     }
 
+    // TODO Email is not approved, so show an alert message letting the user know.
+
     return false;
   }
 
