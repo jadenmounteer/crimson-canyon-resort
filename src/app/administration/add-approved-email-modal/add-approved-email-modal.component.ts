@@ -14,15 +14,26 @@ import { catchError, tap, throwError } from 'rxjs';
 export class AddApprovedEmailModalComponent implements OnInit {
   protected displayBadEmailMsg: boolean = false;
   protected emailExistsMessage: string = '';
-  @Input() requests: AccessRequest[] = [];
+  protected contentLoaded: boolean = false;
+  protected requests: AccessRequest[] = [];
 
   constructor(
     public activeModal: NgbActiveModal,
     private authorizedEmailService: AuthorizedEmailsService,
     private angularFirestore: AngularFirestore
-  ) {}
+  ) {
+    this.loadRequests();
+  }
 
   ngOnInit(): void {}
+
+  private loadRequests() {
+    this.authorizedEmailService.fetchRequests().subscribe((requests) => {
+      this.requests = requests;
+
+      this.contentLoaded = true;
+    });
+  }
 
   protected onSubmit(form: NgForm): void {
     const validEmail: boolean = this.authorizedEmailService.checkIfValidEmail(

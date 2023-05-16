@@ -9,7 +9,7 @@
   ></button>
 </div>
 
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="contentLoaded">
   <div class="modal-body">
     <p>
       Add an approved email to the list. A user will be able to create an
@@ -63,3 +63,6 @@
     </button>
   </div>
 </form>
+<span class="loading-icon" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</span>
