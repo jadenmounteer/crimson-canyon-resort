@@ -46,7 +46,7 @@ export class LoginOrSignUpComponent implements OnInit {
     });
   }
 
-  private validateEmail(email: string): boolean {
+  private validateEmailForSignUp(email: string): boolean {
     const validEmail = this.authorizedEmailService.checkIfValidEmail(email);
 
     if (!validEmail) {
@@ -67,8 +67,7 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   public onSignUp(form: NgForm) {
-    // TODO check if the email is authorized
-    if (this.validateEmail(form.value.email)) {
+    if (this.validateEmailForSignUp(form.value.email)) {
       this.authService.registerUser({
         email: form.value.email,
         password: form.value.password,
