@@ -1,6 +1,29 @@
 <div class="login-page">
   <div class="card">
-    <form #f="ngForm" (ngSubmit)="newUser ? onSignUp(f) : onLogin(f)">
+    <ngb-alert
+      class="danger-alert"
+      (closed)="displayBadEmailMsg = false"
+      [dismissible]="true"
+      [animation]="true"
+      type="danger"
+      *ngIf="displayBadEmailMsg"
+    >
+      Please type in a valid email address.
+    </ngb-alert>
+
+    <ngb-alert
+      [dismissible]="true"
+      (closed)="emailExistsMessage = ''"
+      *ngIf="emailExistsMessage"
+    >
+      {{ emailExistsMessage }}
+    </ngb-alert>
+
+    <form
+      #f="ngForm"
+      (ngSubmit)="newUser ? onSignUp(f) : onLogin(f)"
+      *ngIf="contentLoaded"
+    >
       <h1>{{ newUser ? "Sign Up" : "Login" }}</h1>
       <div class="form-group">
         <input
@@ -48,5 +71,9 @@
         Need to get your email address approved? Click here.
       </a>
     </form>
+
+    <span class="loading-icon" *ngIf="!contentLoaded">
+      <app-loading-spinner></app-loading-spinner>
+    </span>
   </div>
 </div>

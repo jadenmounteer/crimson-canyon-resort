@@ -3,6 +3,8 @@ import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { IconService } from 'src/app/services/icon.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
+import { AccessRequest } from 'src/app/types/access-request';
 
 @Component({
   selector: 'app-login-or-sign-up',
@@ -11,15 +13,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginOrSignUpComponent implements OnInit {
   @Input() newUser: boolean = false;
+  protected displayBadEmailMsg: boolean = false;
+  protected emailExistsMessage: string = '';
+  protected requests: Array<AccessRequest> = [];
+  protected contentLoaded: boolean = false;
 
   constructor(
     private authService: AuthService,
     public icon: IconService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authorizedEmailService: AuthorizedEmailsService
+  ) {
+    this.contentLoaded = false;
+    this.loadAccessRequests();
+  }
 
   ngOnInit(): void {}
+
+  protected loadAccessRequests(): void {
+    this.authorizedEmailService
+      .fetchRequests()
+      .subscribe((requests) => (this.requests = requests));
+
+    this.contentLoaded = true;
+  }
 
   public onLogin(form: NgForm) {
     this.authService.login({
@@ -28,13 +46,34 @@ export class LoginOrSignUpComponent implements OnInit {
     });
   }
 
+  private validateEmail(email: string): boolean {
+    const validEmail = this.authorizedEmailService.checkIfValidEmail(email);
+
+    if (!validEmail) {
+      this.displayBadEmailMsg = true;
+      return false;
+    }
+
+    this.emailExistsMessage = this.authorizedEmailService.checkIfRequestExists(
+      email,
+      this.requests
+    );
+
+    if (this.emailExistsMessage === '') {
+      return true;
+    }
+
+    return false;
+  }
+
   public onSignUp(form: NgForm) {
     // TODO check if the email is authorized
-
-    this.authService.registerUser({
-      email: form.value.email,
-      password: form.value.password,
-    });
+    if (this.validateEmail(form.value.email)) {
+      this.authService.registerUser({
+        email: form.value.email,
+        password: form.value.password,
+      });
+    }
   }
 
   public onOathSignIn() {
