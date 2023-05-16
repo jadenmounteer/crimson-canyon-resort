@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError, tap, throwError } from 'rxjs';
 import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
@@ -40,4 +40,19 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {}
+
+  protected onDeleteAuthorization(request: AccessRequest) {
+    this.authorizedEmailsService
+      .deleteRequest(request.id)
+      .pipe(
+        tap(() => {
+          this.loadRequests();
+          this.authorizedEmailsService.requestsChanged.next([request.id]);
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+      )
+      .subscribe();
+  }
 }

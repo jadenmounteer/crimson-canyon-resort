@@ -1,13 +1,13 @@
 <h3>Approved Emails</h3>
 
 <span *ngIf="approvedRequests.length > 0">
-  <p>The following emails have been approved to create accounts</p>
+  <p>The following emails have been approved to create accounts and login.</p>
   <table class="table" *ngIf="contentLoaded">
     <thead>
       <tr>
         <th scope="col">Requested By</th>
         <th scope="col">Email</th>
-        <th scope="col">Account created?</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,15 @@
         <td scope="row">
           {{ request.email }}
         </td>
-        <td scope="row"></td>
+        <td scope="row">
+          <button
+            type="button"
+            class="btn btn-link delete-button"
+            (click)="onDeleteAuthorization(request)"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
