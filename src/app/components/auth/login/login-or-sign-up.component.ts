@@ -67,6 +67,7 @@ export class LoginOrSignUpComponent implements OnInit {
     }
 
     // TODO Email is not approved, so show an alert message letting the user know.
+    // TODO Also let them know whether they should submit a request, or if there is a request pending. Set a bool above to help with this.
 
     return false;
   }
