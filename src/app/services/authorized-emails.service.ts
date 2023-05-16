@@ -62,4 +62,32 @@ export class AuthorizedEmailsService {
   public deleteRequest(requestId: string): Observable<void> {
     return from(this.firestore.doc(`accessRequests/${requestId}`).delete());
   }
+
+  public checkIfValidEmail(email: string): boolean {
+    const regexCheck =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!regexCheck.test(email)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public checkIfRequestExists(
+    emailToCheckFor: string,
+    requests: Array<AccessRequest>
+  ): string {
+    let emailExistsMsg = '';
+    for (let i = 0; i < requests.length; i++) {
+      if (requests[i].email === emailToCheckFor && requests[i].approved) {
+        emailExistsMsg = `This email address ${emailToCheckFor} has already been approved for account creation.`;
+        return emailExistsMsg;
+      }
+
+      if (requests[i].email === emailToCheckFor && !requests[i].approved) {
+        emailExistsMsg = `A request for the email address ${emailToCheckFor} is currently pending `;
+      }
+    }
+    return emailExistsMsg;
+  }
 }

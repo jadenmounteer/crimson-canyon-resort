@@ -9,22 +9,40 @@
   ></button>
 </div>
 
-<form #f="ngForm">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="modal-body">
     <p>
       Add an approved email to the list. A user will be able to create an
       account and login with this email.
     </p>
-    <!-- message input -->
-    <label>Message</label>
-    <!-- <textarea
-        class="form-control"
-        id="message"
-        rows="3"
-        [(ngModel)]="newPost.message"
-        name="message"
+    <ngb-alert
+      class="danger-alert"
+      [dismissible]="true"
+      [animation]="true"
+      type="danger"
+      *ngIf="displayBadEmailMsg"
+    >
+      Please type in a valid email address.
+    </ngb-alert>
+    <ngb-alert
+      [dismissible]="true"
+      (closed)="emailExistsMessage = ''"
+      *ngIf="emailExistsMessage"
+    >
+      {{ emailExistsMessage }}
+    </ngb-alert>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        placeholder="Email"
+        ngModel
+        name="email"
         required
-      ></textarea> -->
+        #emailInput="ngModel"
+        class="form-control"
+      />
+    </div>
 
     <!-- <span
       ><ngb-alert
@@ -40,14 +58,8 @@
   </div>
   <div class="modal-footer">
     <!-- Submit button -->
-    <!-- <button
-      [disabled]="!f.valid"
-      type="submit"
-      class="btn btn-primary"
-      *ngIf="!postToEdit"
-      (click)="onCreatePost()"
-    >
+    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
       Submit
-    </button> -->
+    </button>
   </div>
 </form>

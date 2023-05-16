@@ -7,10 +7,10 @@
 
     <ngb-alert
       [dismissible]="true"
-      (closed)="emailExistsMsg = ''"
-      *ngIf="emailExistsMsg"
+      (closed)="emailExistsMessage = ''"
+      *ngIf="emailExistsMessage"
     >
-      {{ emailExistsMsg }}
+      {{ emailExistsMessage }}
     </ngb-alert>
 
     <ngb-alert

@@ -17,7 +17,7 @@ export class RequestToCreateAccountPageComponent implements OnInit {
   protected accessRequests$!: Observable<AccessRequest[]>;
   protected contentLoaded: boolean = false;
   protected requests!: Array<AccessRequest>;
-  protected emailExistsMsg: string = '';
+  protected emailExistsMessage: string = '';
   constructor(
     private angularFirestore: AngularFirestore,
     private authorizedEmailsService: AuthorizedEmailsService
@@ -28,14 +28,21 @@ export class RequestToCreateAccountPageComponent implements OnInit {
   ngOnInit(): void {}
 
   protected onSubmit(form: NgForm): void {
-    const validEmail: boolean = this.checkIfValidEmail(form.value.email);
+    const validEmail: boolean = this.authorizedEmailsService.checkIfValidEmail(
+      form.value.email
+    );
     if (!validEmail) {
+      this.displayBadEmailMsg = true;
       return;
     }
+    this.displayBadEmailMsg = false;
 
     // If so, is it approved?
-    const emailExists: boolean = this.checkIfRequestExists(form.value.email);
-    if (!emailExists) {
+    this.emailExistsMessage = this.authorizedEmailsService.checkIfRequestExists(
+      form.value.email,
+      this.requests
+    );
+    if (this.emailExistsMessage != '') {
       const newRequestId = this.angularFirestore.createId();
       const newRequest: Partial<AccessRequest> = {
         email: form.value.email,
@@ -56,41 +63,6 @@ export class RequestToCreateAccountPageComponent implements OnInit {
         )
         .subscribe();
     }
-  }
-
-  private checkIfValidEmail(email: string): boolean {
-    const regexCheck =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!regexCheck.test(email)) {
-      this.displayBadEmailMsg = true;
-      return false;
-    }
-
-    this.displayBadEmailMsg = false;
-
-    return true;
-  }
-
-  private checkIfRequestExists(emailToCheckFor: string): boolean {
-    this.emailExistsMsg = '';
-    for (let i = 0; i < this.requests.length; i++) {
-      if (
-        this.requests[i].email === emailToCheckFor &&
-        this.requests[i].approved
-      ) {
-        this.emailExistsMsg = `This email address ${emailToCheckFor} has already been approved for account creation.`;
-        return true;
-      }
-
-      if (
-        this.requests[i].email === emailToCheckFor &&
-        !this.requests[i].approved
-      ) {
-        this.emailExistsMsg = `A request for the email address ${emailToCheckFor} is currently pending `;
-        return true;
-      }
-    }
-    return false;
   }
 
   protected loadAccessRequests(): void {
