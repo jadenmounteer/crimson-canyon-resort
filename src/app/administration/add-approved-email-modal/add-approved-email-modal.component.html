@@ -1,1 +1,53 @@
-<p>add-approved-email-modal works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Add Approved Email</h4>
+
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+
+<form #f="ngForm">
+  <div class="modal-body">
+    <p>
+      Add an approved email to the list. A user will be able to create an
+      account and login with this email.
+    </p>
+    <!-- message input -->
+    <label>Message</label>
+    <!-- <textarea
+        class="form-control"
+        id="message"
+        rows="3"
+        [(ngModel)]="newPost.message"
+        name="message"
+        required
+      ></textarea> -->
+
+    <!-- <span
+      ><ngb-alert
+        class="danger-alert"
+        [dismissible]="true"
+        [animation]="true"
+        type="danger"
+        *ngIf="displayErrorMsg"
+      >
+        Unable to add post. Please reach out to Jaden for help! 😭
+      </ngb-alert></span
+    > -->
+  </div>
+  <div class="modal-footer">
+    <!-- Submit button -->
+    <!-- <button
+      [disabled]="!f.valid"
+      type="submit"
+      class="btn btn-primary"
+      *ngIf="!postToEdit"
+      (click)="onCreatePost()"
+    >
+      Submit
+    </button> -->
+  </div>
+</form>

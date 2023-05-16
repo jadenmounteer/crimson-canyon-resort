@@ -9,6 +9,7 @@ import { PendingAuthorizationRequestsComponent } from './pending-authorization-r
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorizedEmailsComponent } from './authorized-emails/authorized-emails.component';
 import { AddApprovedEmailModalComponent } from './add-approved-email-modal/add-approved-email-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddApprovedEmailModalComponent } from './add-approved-email-modal/add-a
     AdministrationRoutingModule,
     UiComponentsModule,
     NgbModule,
+    FormsModule,
   ],
 })
 export class AdministrationModule {}
