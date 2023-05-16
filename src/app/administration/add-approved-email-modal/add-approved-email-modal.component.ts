@@ -63,7 +63,7 @@ export class AddApprovedEmailModalComponent implements OnInit {
         .createPendingRequest(newRequest, newRequestId)
         .pipe(
           tap((newRequest) => {
-            this.activeModal.close();
+            this.activeModal.close(newRequest);
           }),
           catchError((err) => {
             return throwError(err);

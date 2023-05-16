@@ -70,5 +70,11 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
 
   protected onAddEmail(): void {
     const modalRef = this.modalService.open(AddApprovedEmailModalComponent);
+
+    modalRef.result.then((result) => {
+      if (result.email) {
+        this.approvedRequests.push(result);
+      }
+    });
   }
 }
