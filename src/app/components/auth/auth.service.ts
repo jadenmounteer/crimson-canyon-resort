@@ -15,6 +15,7 @@ export class AuthService {
   public authChange = new Subject<boolean>();
   public isAuthenticated: boolean = false;
   public userId: string | undefined;
+  public userEmail: string | null | undefined;
   public user$: Observable<User | null | undefined>;
   public userDisplayName: string | null | undefined = null;
 
@@ -46,6 +47,7 @@ export class AuthService {
 
   private updateUserData(user: firebase.User | null) {
     this.userId = user?.uid;
+    this.userEmail = user?.email;
     this.userDisplayName = user?.displayName;
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(

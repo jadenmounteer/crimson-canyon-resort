@@ -6,6 +6,7 @@ import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.serv
 import { IconService } from 'src/app/services/icon.service';
 import { AccessRequest } from 'src/app/types/access-request';
 import { AddApprovedEmailModalComponent } from '../add-approved-email-modal/add-approved-email-modal.component';
+import { AuthService } from 'src/app/components/auth/auth.service';
 @Component({
   selector: 'app-authorized-emails',
   templateUrl: './authorized-emails.component.html',
@@ -20,7 +21,8 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   constructor(
     private authorizedEmailsService: AuthorizedEmailsService,
     public icon: IconService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    protected authService: AuthService
   ) {
     this.loadRequests();
     this.requestsSub = this.authorizedEmailsService.requestsChanged.subscribe(

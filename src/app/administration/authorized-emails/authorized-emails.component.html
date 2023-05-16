@@ -33,6 +33,7 @@
             type="button"
             class="btn btn-link delete-button"
             (click)="onDeleteAuthorization(request)"
+            [disabled]="request.email === authService.userEmail"
           >
             Delete
           </button>
