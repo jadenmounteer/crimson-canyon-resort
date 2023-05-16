@@ -66,4 +66,6 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  protected onAddEmail(): void {}
 }
