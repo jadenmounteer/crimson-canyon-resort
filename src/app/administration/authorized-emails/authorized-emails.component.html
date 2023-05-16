@@ -29,14 +29,22 @@
           {{ request.email }}
         </td>
         <td scope="row">
-          <button
-            type="button"
-            class="btn btn-link delete-button"
-            (click)="onDeleteAuthorization(request)"
-            [disabled]="request.email === authService.userEmail"
+          <span
+            ngbTooltip="{{
+              request.email === authService.userEmail
+                ? 'You cannot delete your own email.'
+                : ''
+            }}"
           >
-            Delete
-          </button>
+            <button
+              type="button"
+              class="btn btn-link delete-button"
+              (click)="onDeleteAuthorization(request)"
+              [disabled]="request.email === authService.userEmail"
+            >
+              Delete
+            </button>
+          </span>
         </td>
       </tr>
     </tbody>
