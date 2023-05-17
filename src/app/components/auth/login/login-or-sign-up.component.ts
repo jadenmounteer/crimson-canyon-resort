@@ -15,6 +15,8 @@ import { catchError, tap, throwError } from 'rxjs';
 export class LoginOrSignUpComponent implements OnInit {
   @Input() newUser: boolean = false;
   protected displayBadEmailMsg: boolean = false;
+  protected displayEmailPendingApprovalMessage: boolean = false;
+  protected displaySubmitRequestMessage: boolean = false;
   protected emailExistsMessage: string = '';
   protected requests: Array<AccessRequest> = [];
   protected contentLoaded: boolean = false;
@@ -60,14 +62,17 @@ export class LoginOrSignUpComponent implements OnInit {
       if (request.email === email && request.approved) {
         requestApproved = true;
       }
+
+      if (request.email && !request.approved) {
+        this.displayEmailPendingApprovalMessage = true;
+      } else {
+        this.displaySubmitRequestMessage = true;
+      }
     });
 
     if (requestApproved) {
       return true;
     }
-
-    // TODO Email is not approved, so show an alert message letting the user know.
-    // TODO Also let them know whether they should submit a request, or if there is a request pending. Set a bool above to help with this.
 
     return false;
   }

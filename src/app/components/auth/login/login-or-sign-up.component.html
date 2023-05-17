@@ -21,6 +21,23 @@
 
     <ngb-alert
       [dismissible]="true"
+      (closed)="displayEmailPendingApprovalMessage = false"
+      *ngIf="displayEmailPendingApprovalMessage"
+    >
+      This email is currently pending approval from the administrators.
+    </ngb-alert>
+
+    <ngb-alert
+      [dismissible]="true"
+      (closed)="displaySubmitRequestMessage = false"
+      *ngIf="displaySubmitRequestMessage"
+    >
+      This email needs to be approved before it can be used. Please submit a
+      request for the administrators to approve it.
+    </ngb-alert>
+
+    <ngb-alert
+      [dismissible]="true"
       type="danger"
       (closed)="signInErrorMessage = ''"
       *ngIf="signInErrorMessage"
