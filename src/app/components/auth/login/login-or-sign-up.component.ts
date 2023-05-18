@@ -50,7 +50,7 @@ export class LoginOrSignUpComponent implements OnInit {
     });
   }
 
-  private validateEmailForSignUp(email: string): boolean {
+  private validateEmailForSignInOrUp(email: string): boolean {
     const validEmail = this.authorizedEmailService.checkIfValidEmail(email);
 
     if (!validEmail) {
@@ -79,7 +79,7 @@ export class LoginOrSignUpComponent implements OnInit {
 
   public onSignUp(form: NgForm) {
     this.signInErrorMessage = '';
-    if (this.validateEmailForSignUp(form.value.email)) {
+    if (this.validateEmailForSignInOrUp(form.value.email)) {
       this.authService
         .registerUser({
           email: form.value.email,
