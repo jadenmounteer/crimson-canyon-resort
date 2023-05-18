@@ -44,6 +44,21 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   public onLogin(form: NgForm) {
+    this.signInErrorMessage = '';
+    if (this.validateEmailForSignInOrUp(form.value.email)) {
+      this.authService
+        .login({
+          email: form.value.email,
+          password: form.value.password,
+        })
+        .pipe(
+          catchError((err) => {
+            this.signInErrorMessage = err;
+            return throwError(err);
+          })
+        );
+    }
+
     this.authService.login({
       email: form.value.email,
       password: form.value.password,
@@ -63,9 +78,9 @@ export class LoginOrSignUpComponent implements OnInit {
         requestApproved = true;
       }
 
-      if (request.email && !request.approved) {
+      if (request.email === email && !request.approved) {
         this.displayEmailPendingApprovalMessage = true;
-      } else {
+      } else if (request.email === email && request.approved) {
         this.displaySubmitRequestMessage = true;
       }
     });
@@ -87,6 +102,7 @@ export class LoginOrSignUpComponent implements OnInit {
         })
         .pipe(
           catchError((err) => {
+            this.displaySubmitRequestMessage = false;
             this.signInErrorMessage = err;
             return throwError(err);
           })
