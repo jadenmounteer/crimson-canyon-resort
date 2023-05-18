@@ -10,7 +10,7 @@ import { Observable, Subject, of } from 'rxjs';
 })
 export class AdministrationService {
   // TODO Add this array to the db
-  private administratorIds: string[] = ['NzBQdjuDQ2ZnkQZgb3sYWiDp8f82'];
+  private administratorIds: string[] = ['10uQlIaMaBeFQeZAYz9WhjBy82r1'];
   private currentUserId: string | undefined;
 
   constructor(
