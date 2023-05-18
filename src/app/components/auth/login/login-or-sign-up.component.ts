@@ -80,10 +80,12 @@ export class LoginOrSignUpComponent implements OnInit {
 
       if (request.email === email && !request.approved) {
         this.displayEmailPendingApprovalMessage = true;
-      } else if (request.email === email && request.approved) {
-        this.displaySubmitRequestMessage = true;
       }
     });
+
+    if (!requestApproved && !this.displayEmailPendingApprovalMessage) {
+      this.displaySubmitRequestMessage = true;
+    }
 
     if (requestApproved) {
       return true;
