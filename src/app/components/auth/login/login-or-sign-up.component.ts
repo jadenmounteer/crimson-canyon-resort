@@ -116,7 +116,7 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   public onOathSignIn() {
-    this.authService.googleSignin();
+    this.authService.googleSignIn();
   }
 
   public switchToLoginOrSignUp() {
