@@ -37,14 +37,6 @@ export class AuthService {
     );
   }
 
-  // The oath was inspired by https://fireship.io/lessons/angularfire-google-oauth/
-  // Note that if you change domains, for the login with google to work you have to add the domain to the list of authorized domains in firebase console.
-  async googleSignIn() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const credential = await this.afAuth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
-  }
-
   private updateUserData(user: firebase.User | null) {
     this.userId = user?.uid;
     this.userEmail = user?.email;

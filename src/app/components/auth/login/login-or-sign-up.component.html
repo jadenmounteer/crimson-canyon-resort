@@ -78,7 +78,6 @@
       <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
         {{ newUser ? "Sign Up" : "Login" }}
       </button>
-      <app-google-button (click)="onOathSignIn()"></app-google-button>
 
       <a class="link-primary" (click)="switchToLoginOrSignUp()">
         {{
