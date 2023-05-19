@@ -106,6 +106,9 @@ export class LoginOrSignUpComponent implements OnInit {
         )
         .subscribe((result) => {
           this.authService.createUserData(result.user, form.value.displayName);
+          result.user.updateProfile({
+            displayName: form.value.displayName,
+          });
           this.authService.onSuccessfulAuthentication();
         });
     }
