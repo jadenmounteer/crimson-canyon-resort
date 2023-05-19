@@ -46,6 +46,8 @@ export class AuthService {
       `users/${user?.uid}`
     );
 
+    // userRef.update(user);
+
     const data = {
       uid: user!.uid,
       email: user!.email,
