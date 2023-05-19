@@ -50,6 +50,17 @@
       *ngIf="contentLoaded"
     >
       <h1>{{ newUser ? "Sign Up" : "Login" }}</h1>
+      <div class="form-group" *ngIf="newUser">
+        <input
+          type="text"
+          placeholder="Your name"
+          ngModel
+          name="displayName"
+          required
+          #displayName="ngModel"
+          class="form-control"
+        />
+      </div>
       <div class="form-group">
         <input
           type="email"

@@ -54,7 +54,7 @@ export class AuthService {
     return userRef.update(data);
   }
 
-  public createUserData(user: firebase.User | null) {
+  public createUserData(user: firebase.User | null, displayName: string) {
     this.userId = user?.uid;
     this.userEmail = user?.email;
     this.userDisplayName = user?.displayName;
@@ -66,7 +66,7 @@ export class AuthService {
     const data = {
       uid: user!.uid,
       email: user!.email,
-      displayName: user?.displayName,
+      displayName: displayName,
       photoURL: user?.photoURL,
     };
 

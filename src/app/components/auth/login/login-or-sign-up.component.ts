@@ -105,7 +105,7 @@ export class LoginOrSignUpComponent implements OnInit {
           })
         )
         .subscribe((result) => {
-          this.authService.createUserData(result.user);
+          this.authService.createUserData(result.user, form.value.displayName);
           this.authService.onSuccessfulAuthentication();
         });
     }
