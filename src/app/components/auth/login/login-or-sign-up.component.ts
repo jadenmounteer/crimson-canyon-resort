@@ -58,11 +58,6 @@ export class LoginOrSignUpComponent implements OnInit {
           })
         );
     }
-
-    this.authService.login({
-      email: form.value.email,
-      password: form.value.password,
-    });
   }
 
   private validateEmailForSignInOrUp(email: string): boolean {
