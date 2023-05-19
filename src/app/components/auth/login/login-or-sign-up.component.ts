@@ -89,7 +89,7 @@ export class LoginOrSignUpComponent implements OnInit {
     return false;
   }
 
-  public onSignUp(form: NgForm) {
+  public async onSignUp(form: NgForm) {
     this.signInErrorMessage = '';
     if (this.validateEmailForSignInOrUp(form.value.email)) {
       this.authService
@@ -105,6 +105,7 @@ export class LoginOrSignUpComponent implements OnInit {
           })
         )
         .subscribe((result) => {
+          this.authService.createUserData(result.user);
           this.authService.onSuccessfulAuthentication();
         });
     }

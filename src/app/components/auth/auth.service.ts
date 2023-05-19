@@ -49,6 +49,24 @@ export class AuthService {
     const data = {
       uid: user!.uid,
       email: user!.email,
+      photoURL: user?.photoURL,
+    };
+
+    return userRef.update(data);
+  }
+
+  public createUserData(user: firebase.User | null) {
+    this.userId = user?.uid;
+    this.userEmail = user?.email;
+    this.userDisplayName = user?.displayName;
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<Partial<User>> = this.afs.doc(
+      `users/${user?.uid}`
+    );
+
+    const data = {
+      uid: user!.uid,
+      email: user!.email,
       displayName: user?.displayName,
       photoURL: user?.photoURL,
     };
@@ -58,6 +76,8 @@ export class AuthService {
 
   iniAuthListener() {
     this.afAuth.authState.subscribe((user) => {
+      console.log('Logging in as user');
+      console.log(user);
       if (user) {
         this.onSuccessfulAuthentication();
         this.updateUserData(user);
