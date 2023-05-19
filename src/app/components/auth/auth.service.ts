@@ -49,7 +49,6 @@ export class AuthService {
     const data = {
       uid: user!.uid,
       email: user!.email,
-      photoURL: user?.photoURL,
     };
 
     return userRef.update(data);
