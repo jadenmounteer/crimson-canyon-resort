@@ -17,6 +17,7 @@ export class LoginOrSignUpComponent implements OnInit {
   protected displayBadEmailMsg: boolean = false;
   protected displayEmailPendingApprovalMessage: boolean = false;
   protected displaySubmitRequestMessage: boolean = false;
+  protected displayLoggedInMessage: boolean = false;
   protected emailExistsMessage: string = '';
   protected requests: Array<AccessRequest> = [];
   protected contentLoaded: boolean = false;
@@ -57,7 +58,9 @@ export class LoginOrSignUpComponent implements OnInit {
             return throwError(err);
           })
         )
-        .subscribe();
+        .subscribe(() => {
+          this.displayLoggedInMessage = true;
+        });
     }
   }
 
@@ -110,6 +113,7 @@ export class LoginOrSignUpComponent implements OnInit {
           result.user.updateProfile({
             displayName: form.value.displayName,
           });
+          this.displayLoggedInMessage = true;
           this.authService.onSuccessfulAuthentication();
         });
     }

@@ -12,6 +12,17 @@
     </ngb-alert>
 
     <ngb-alert
+      class="success-alert"
+      (closed)="displayLoggedInMessage = false"
+      [dismissible]="true"
+      [animation]="true"
+      type="success"
+      *ngIf="displayLoggedInMessage"
+    >
+      You are logged in! 🥳
+    </ngb-alert>
+
+    <ngb-alert
       [dismissible]="true"
       (closed)="emailExistsMessage = ''"
       *ngIf="emailExistsMessage"
