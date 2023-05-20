@@ -56,7 +56,8 @@ export class LoginOrSignUpComponent implements OnInit {
             this.signInErrorMessage = err;
             return throwError(err);
           })
-        );
+        )
+        .subscribe();
     }
   }
 
