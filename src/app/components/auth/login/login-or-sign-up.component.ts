@@ -14,6 +14,7 @@ import { catchError, tap, throwError } from 'rxjs';
 })
 export class LoginOrSignUpComponent implements OnInit {
   @Input() newUser: boolean = false;
+  @Input() navigateUserAwayOnLogin: boolean = true;
   protected displayBadEmailMsg: boolean = false;
   protected displayEmailPendingApprovalMessage: boolean = false;
   protected displaySubmitRequestMessage: boolean = false;
@@ -26,7 +27,6 @@ export class LoginOrSignUpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public icon: IconService,
-    private route: ActivatedRoute,
     private router: Router,
     private authorizedEmailService: AuthorizedEmailsService
   ) {
@@ -59,8 +59,16 @@ export class LoginOrSignUpComponent implements OnInit {
           })
         )
         .subscribe(() => {
+          this.checkIfNavigateUserAway();
           this.displayLoggedInMessage = true;
         });
+    }
+  }
+
+  private checkIfNavigateUserAway() {
+    if (this.navigateUserAwayOnLogin) {
+      this.router.navigate(['']);
+      return;
     }
   }
 
@@ -113,8 +121,9 @@ export class LoginOrSignUpComponent implements OnInit {
           result.user.updateProfile({
             displayName: form.value.displayName,
           });
-          this.displayLoggedInMessage = true;
           this.authService.onSuccessfulAuthentication();
+          this.checkIfNavigateUserAway();
+          this.displayLoggedInMessage = true;
         });
     }
   }
