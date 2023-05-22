@@ -137,6 +137,10 @@ export class LoginOrSignUpComponent implements OnInit {
     this.router.navigate(['request-to-create-account-page']);
   }
 
+  protected navigateToForgotPassword() {
+    this.router.navigate(['forgot-password']);
+  }
+
   protected toggleShowPassword(): void {
     this.showPassword = !this.showPassword;
   }

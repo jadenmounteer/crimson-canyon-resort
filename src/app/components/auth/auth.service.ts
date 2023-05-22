@@ -90,6 +90,17 @@ export class AuthService {
     });
   }
 
+  public forgotPassword(passwordResetEmail: string) {
+    return this.afAuth
+      .sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Resent email sent. Check your inbox.');
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
+  }
+
   registerUser(authData: AuthData): Observable<any> {
     return from(
       this.afAuth.createUserWithEmailAndPassword(
