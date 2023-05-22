@@ -12,7 +12,7 @@ export class AdministrationService {
   // TODO Add this array to the db
   private administratorIds: string[] = [
     'qHZkXAhQuLa0N21MPkCdu72pfvw2',
-    '1QTZLccR6sRcCzWjH8V87APMWxt1',
+    'wDxAyqOoslWFam9z7tbKTU5bI2I2',
   ];
   private currentUserId: string | undefined;
 
