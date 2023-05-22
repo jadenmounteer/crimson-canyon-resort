@@ -95,9 +95,12 @@
           #pwInput="ngModel"
           class="form-control"
         />
+      </div>
 
+      <div class="form-group" class="toggle-password-button">
         <!-- An element to toggle between password visibility -->
-        <input type="checkbox" (click)="toggleShowPassword()" />Show Password
+        <input type="checkbox" (click)="toggleShowPassword()" />
+        Show Password
       </div>
 
       <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
