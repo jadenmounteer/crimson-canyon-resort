@@ -133,9 +133,7 @@
 
     <form
       #resetPasswordForm="ngForm"
-      (ngSubmit)="
-        newUser ? onSignUp(resetPasswordForm) : onLogin(resetPasswordForm)
-      "
+      (ngSubmit)="sendResetPasswordEmail(resetPasswordForm)"
       *ngIf="contentLoaded && forgotPassword"
     >
       <h1>Reset Password</h1>

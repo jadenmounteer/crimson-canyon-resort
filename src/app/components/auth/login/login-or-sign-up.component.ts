@@ -130,19 +130,23 @@ export class LoginOrSignUpComponent implements OnInit {
     }
   }
 
-  public switchToLoginOrSignUp() {
+  public switchToLoginOrSignUp(): void {
     this.newUser = !this.newUser;
   }
 
-  protected navigateToRequestAccessPage() {
+  protected navigateToRequestAccessPage(): void {
     this.router.navigate(['request-to-create-account-page']);
   }
 
-  protected toggleForgotPassword() {
+  protected toggleForgotPassword(): void {
     this.forgotPassword = !this.forgotPassword;
   }
 
   protected toggleShowPassword(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  protected sendResetPasswordEmail(form: NgForm): void {
+    this.authService.forgotPassword(form.value.email);
   }
 }
