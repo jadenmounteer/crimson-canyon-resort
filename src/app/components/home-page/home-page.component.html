@@ -9,6 +9,15 @@
       <div *ngIf="isAuth">
         <h1>Welcome {{ authService.userDisplayName }}</h1>
       </div>
+
+      <div *ngIf="!isAuth">
+        <button class="btn btn-primary" (click)="router.navigate(['login'])">
+          Login
+        </button>
+        <button class="btn btn-primary" (click)="router.navigate(['sign-up'])">
+          Sign Up
+        </button>
+      </div>
     </div>
     <div pageContent>
       <div class="centered">
