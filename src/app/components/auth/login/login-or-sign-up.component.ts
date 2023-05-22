@@ -24,6 +24,7 @@ export class LoginOrSignUpComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected signInErrorMessage: string = '';
   protected showPassword: boolean = false;
+  protected forgotPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -137,8 +138,8 @@ export class LoginOrSignUpComponent implements OnInit {
     this.router.navigate(['request-to-create-account-page']);
   }
 
-  protected navigateToForgotPassword() {
-    this.router.navigate(['forgot-password']);
+  protected toggleForgotPassword() {
+    this.forgotPassword = !this.forgotPassword;
   }
 
   protected toggleShowPassword(): void {

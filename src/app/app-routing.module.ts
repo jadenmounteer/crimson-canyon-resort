@@ -27,10 +27,6 @@ const routes: Routes = [
     component: SignUpPageComponent,
   },
   {
-    path: 'forgot-password',
-    component: SignUpPageComponent,
-  },
-  {
     path: 'request-to-create-account-page',
     component: RequestToCreateAccountPageComponent,
   },
