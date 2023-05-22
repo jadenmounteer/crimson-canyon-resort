@@ -23,6 +23,17 @@
     </ngb-alert>
 
     <ngb-alert
+      class="success-alert"
+      (closed)="emailSentMessage = ''"
+      [dismissible]="true"
+      [animation]="true"
+      type="success"
+      *ngIf="emailSentMessage"
+    >
+      {{ emailSentMessage }}
+    </ngb-alert>
+
+    <ngb-alert
       [dismissible]="true"
       (closed)="emailExistsMessage = ''"
       *ngIf="emailExistsMessage"

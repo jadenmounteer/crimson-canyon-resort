@@ -19,6 +19,7 @@ export class LoginOrSignUpComponent implements OnInit {
   protected displayEmailPendingApprovalMessage: boolean = false;
   protected displaySubmitRequestMessage: boolean = false;
   protected displayLoggedInMessage: boolean = false;
+  protected emailSentMessage: string = '';
   protected emailExistsMessage: string = '';
   protected requests: Array<AccessRequest> = [];
   protected contentLoaded: boolean = false;
@@ -147,6 +148,15 @@ export class LoginOrSignUpComponent implements OnInit {
   }
 
   protected sendResetPasswordEmail(form: NgForm): void {
-    this.authService.forgotPassword(form.value.email);
+    this.authService
+      .forgotPassword(form.value.email)
+      .then(() => {
+        this.toggleForgotPassword();
+        this.emailSentMessage = `An email has been sent to ${form.value.email} for you to reset your password. Please check your
+        inbox.`;
+      })
+      .catch((error) => {
+        window.alert(error);
+      });
   }
 }
