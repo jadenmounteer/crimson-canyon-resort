@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -13,11 +12,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public isAuth: boolean = false;
   public contentLoaded: boolean = false;
   private authSubscription!: Subscription;
-  constructor(
-    titleService: Title,
-    protected authService: AuthService,
-    protected router: Router
-  ) {
+  constructor(titleService: Title, protected authService: AuthService) {
     titleService.setTitle('Crimson Canyon Resort | Home');
   }
 
