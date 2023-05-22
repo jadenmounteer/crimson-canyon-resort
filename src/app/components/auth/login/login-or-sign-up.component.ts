@@ -23,6 +23,7 @@ export class LoginOrSignUpComponent implements OnInit {
   protected requests: Array<AccessRequest> = [];
   protected contentLoaded: boolean = false;
   protected signInErrorMessage: string = '';
+  protected showPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -134,5 +135,9 @@ export class LoginOrSignUpComponent implements OnInit {
 
   protected navigateToRequestAccessPage() {
     this.router.navigate(['request-to-create-account-page']);
+  }
+
+  protected toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
 }

@@ -80,8 +80,6 @@ export class AuthService {
 
   iniAuthListener() {
     this.afAuth.authState.subscribe((user) => {
-      console.log('Logging in as user');
-      console.log(user);
       if (user) {
         this.onSuccessfulAuthentication();
         this.updateUserData(user);

@@ -86,7 +86,7 @@
 
       <div class="form-group">
         <input
-          type="password"
+          [type]="showPassword ? 'text' : 'password'"
           placeholder="Password"
           ngModel
           name="password"
@@ -95,6 +95,9 @@
           #pwInput="ngModel"
           class="form-control"
         />
+
+        <!-- An element to toggle between password visibility -->
+        <input type="checkbox" (click)="toggleShowPassword()" />Show Password
       </div>
 
       <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
