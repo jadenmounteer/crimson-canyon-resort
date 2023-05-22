@@ -4,8 +4,16 @@
     <app-check-availability-menu></app-check-availability-menu>
   </div>
 
-  <div class="home-page-section"></div>
-  <div class="centered">
-    <app-weather></app-weather>
-  </div>
+  <app-page-wrapper [contentLoaded]="contentLoaded">
+    <div pageHeader>
+      <div *ngIf="isAuth">
+        <h1>Welcome {{ authService.userDisplayName }}</h1>
+      </div>
+    </div>
+    <div pageContent>
+      <div class="centered">
+        <app-weather></app-weather>
+      </div>
+    </div>
+  </app-page-wrapper>
 </div>

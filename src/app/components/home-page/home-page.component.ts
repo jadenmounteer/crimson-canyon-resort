@@ -10,13 +10,15 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
   public isAuth: boolean = false;
+  public contentLoaded: boolean = false;
   private authSubscription!: Subscription;
-  constructor(titleService: Title, private authService: AuthService) {
+  constructor(titleService: Title, protected authService: AuthService) {
     titleService.setTitle('Crimson Canyon Resort | Home');
   }
 
   ngOnInit(): void {
     this.setAuthSubscription();
+    this.contentLoaded = true;
   }
 
   private setAuthSubscription(): void {
