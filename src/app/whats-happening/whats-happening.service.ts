@@ -39,6 +39,13 @@ export class WhatsHappeningService {
       .pipe(map((result) => convertSnaps<Post>(result)));
   }
 
+  public fetchRecentPosts(): Observable<Post[]> {
+    return this.firestore
+      .collection('posts', (ref) => ref.orderBy('createdDate', 'desc').limit(3))
+      .get()
+      .pipe(map((result) => convertSnaps<Post>(result)));
+  }
+
   public getUsersBasedOnId(userId: string): Observable<User[]> {
     return this.firestore
       .collection('users', (ref) => ref.where('userId', '==', userId))

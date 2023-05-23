@@ -18,6 +18,8 @@
       </div>
     </div>
     <div pageContent>
+      <app-whats-happening-section *ngIf="isAuth"></app-whats-happening-section>
+
       <div class="centered">
         <app-weather></app-weather>
       </div>

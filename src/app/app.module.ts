@@ -27,6 +27,7 @@ import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.comp
 import { AdministrationModule } from './administration/administration.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
+import { WhatsHappeningSectionComponent } from './components/whats-happening-section/whats-happening-section.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RequestToCreateAccountPageComponent } from './components/request-to-cre
     LoginPageComponent,
     SignUpPageComponent,
     RequestToCreateAccountPageComponent,
+    WhatsHappeningSectionComponent,
   ],
   imports: [
     BrowserModule,
