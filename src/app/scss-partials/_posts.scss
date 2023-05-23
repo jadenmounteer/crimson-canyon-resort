@@ -1,0 +1,56 @@
+.post-img {
+  width: 300px;
+}
+
+.posts-wrapper {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.post {
+  width: 100%;
+  @include for-tablet-landscape-up {
+    width: 90%;
+  }
+}
+
+.post-menu-options-button {
+  cursor: pointer;
+}
+
+.delete-dropdown-item {
+  color: red;
+}
+
+.delete-dropdown-item:hover {
+  color: red;
+}
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-menu-options-button {
+  margin-left: auto;
+  font-size: 2em;
+  margin-right: 8px;
+  position: relative;
+  top: -15px;
+}
+
+.post-options-menu {
+  left: -156px;
+  top: 12px;
+}
+
+.post-title {
+  font-weight: bolder;
+}
+
+.post-date {
+  font-weight: normal;
+}
