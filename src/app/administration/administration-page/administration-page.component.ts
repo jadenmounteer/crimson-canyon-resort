@@ -13,13 +13,21 @@ export class AdministrationPageComponent implements OnInit {
 
   /**
    * Here is the documentation for Angular Full Calendar: https://fullcalendar.io/docs/angular
+   * Here is an example project: https://github.com/fullcalendar/fullcalendar-examples
    */
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
-    weekends: false,
+    weekends: true,
     events: [{ title: 'Meeting', start: new Date() }],
     handleWindowResize: true,
+    editable: true,
+    selectable: true,
+    /* you can update a remote database when these fire:
+    eventAdd:
+    eventChange:
+    eventRemove:
+    */
   };
 
   constructor(private administrationService: AdministrationService) {}

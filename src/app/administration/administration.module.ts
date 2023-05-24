@@ -11,6 +11,7 @@ import { AuthorizedEmailsComponent } from './authorized-emails/authorized-emails
 import { AddApprovedEmailModalComponent } from './add-approved-email-modal/add-approved-email-modal.component';
 import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { AdminCalendarComponent } from './admin-calendar/admin-calendar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     PendingAuthorizationRequestsComponent,
     AuthorizedEmailsComponent,
     AddApprovedEmailModalComponent,
+    AdminCalendarComponent,
   ],
   imports: [
     CommonModule,
