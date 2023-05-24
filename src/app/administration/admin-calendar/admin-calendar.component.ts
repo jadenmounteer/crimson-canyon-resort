@@ -7,6 +7,7 @@ import {
 } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
+import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-admin-calendar',
@@ -20,7 +21,7 @@ export class AdminCalendarComponent implements OnInit {
    * Here is an example project: https://github.com/fullcalendar/fullcalendar-examples
    */
   calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin],
+    plugins: [dayGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
     weekends: true,
     events: INITIAL_EVENTS,
