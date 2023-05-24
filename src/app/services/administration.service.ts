@@ -13,6 +13,7 @@ export class AdministrationService {
   private administratorIds: string[] = [
     'qHZkXAhQuLa0N21MPkCdu72pfvw2',
     'wDxAyqOoslWFam9z7tbKTU5bI2I2',
+    'MRNzGOH6PTUCkMk7QDXtPRhEd1g2',
   ];
   private currentUserId: string | undefined;
 
