@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthorizedEmailsComponent } from './authorized-emails/authorized-emails.component';
 import { AddApprovedEmailModalComponent } from './add-approved-email-modal/add-approved-email-modal.component';
 import { FormsModule } from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     UiComponentsModule,
     NgbModule,
     FormsModule,
+    FullCalendarModule,
   ],
 })
 export class AdministrationModule {}
