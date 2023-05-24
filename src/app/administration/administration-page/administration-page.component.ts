@@ -10,11 +10,16 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 })
 export class AdministrationPageComponent implements OnInit {
   protected contentLoaded: boolean = false;
+
+  /**
+   * Here is the documentation for Angular Full Calendar: https://fullcalendar.io/docs/angular
+   */
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
     initialView: 'dayGridMonth',
     weekends: false,
     events: [{ title: 'Meeting', start: new Date() }],
+    handleWindowResize: true,
   };
 
   constructor(private administrationService: AdministrationService) {}
