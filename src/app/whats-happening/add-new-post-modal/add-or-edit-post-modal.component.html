@@ -51,26 +51,19 @@
       <!-- Video Input -->
       <span class="file-input-container">
         <button
-          class="btn btn-secondary"
+          class="btn btn-secondary disabled"
           onclick="document.getElementById('getVideo').click()"
         >
           Add a video
         </button>
         <input
           type="file"
-          (change)="uploadFile($event)"
           #videoInput
           accept="video/mp4,video/x-m4v,video/*"
           style="display: none"
           id="getVideo"
+          disabled
         />
-
-        <span
-          *ngIf="newPost.fileURLs!.length > 0"
-          class="reset-files-button"
-          (click)="clearFiles()"
-          >&#10006;</span
-        >
       </span>
 
       <div
