@@ -1,5 +1,8 @@
 .add-post-container {
   max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
 }
 
 .uploaded-img {
