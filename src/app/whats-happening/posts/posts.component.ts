@@ -38,12 +38,6 @@ export class PostsComponent implements OnInit {
   }
 
   protected addNewPost(): void {
-    if (this.posts) {
-      this.posts.forEach((post) => {
-        if (post.fileURLs) console.log(post.fileURLs[0].split('.').pop());
-      });
-    }
-
     const modalRef = this.modalService.open(AddOrEditPostModalComponent);
 
     modalRef.result.then((result) => {
