@@ -17,6 +17,20 @@ export class WhatsHappeningService {
     private router: Router
   ) {}
 
+  public urlIsVideo(url: String): boolean {
+    if (
+      url.includes('.mov') ||
+      url.includes('.m4v') ||
+      url.includes('.mp4') ||
+      url.includes('.wav') ||
+      url.includes('.m4b') ||
+      url.includes('.3gp')
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   public createPost(newPost: Partial<Post>, postId: string) {
     const createPostObs$ = from(
       this.firestore.doc(`posts/${postId}`).set(newPost)

@@ -40,7 +40,22 @@
 
     <p>{{ post.message }}</p>
     <div class="post-files">
-      <img *ngFor="let url of post.fileURLs" [src]="url" class="post-img" />
+      <span *ngFor="let url of post.fileURLs">
+        <img
+          *ngIf="!whatsHappeningService.urlIsVideo(url)"
+          [src]="url"
+          class="post-img"
+        />
+        <video
+          *ngIf="whatsHappeningService.urlIsVideo(url)"
+          class="post-img"
+          controls
+        >
+          <source [src]="url" />
+          There was a problem displaying this video. Please reach out to Jaden
+          for help.
+        </video>
+      </span>
     </div>
   </div>
 </div>
