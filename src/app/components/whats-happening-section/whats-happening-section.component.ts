@@ -14,7 +14,7 @@ export class WhatsHappeningSectionComponent implements OnInit {
   protected posts$!: Observable<Post[]>;
 
   constructor(
-    private whatsHappeningService: WhatsHappeningService,
+    protected whatsHappeningService: WhatsHappeningService,
     protected router: Router
   ) {
     this.loadPosts();

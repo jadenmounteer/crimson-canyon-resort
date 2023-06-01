@@ -44,11 +44,11 @@
         <img
           *ngIf="!whatsHappeningService.urlIsVideo(url)"
           [src]="url"
-          class="post-img"
+          class="post-file"
         />
         <video
           *ngIf="whatsHappeningService.urlIsVideo(url)"
-          class="post-img"
+          class="post-file"
           controls
         >
           <source [src]="url" />
