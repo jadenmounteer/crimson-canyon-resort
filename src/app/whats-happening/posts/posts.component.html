@@ -41,7 +41,6 @@
     <p>{{ post.message }}</p>
     <div class="post-files">
       <img *ngFor="let url of post.fileURLs" [src]="url" class="post-img" />
-      <span *ngFor="let url of post.fileURLs"> {{ url }}</span>
     </div>
   </div>
 </div>
