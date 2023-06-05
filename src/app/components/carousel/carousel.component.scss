@@ -1,5 +1,11 @@
+@import "../../../styles.scss";
+
 .carousel {
-  // max-width: 2000px;
+  @include for-tablet-landscape-up {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 img {
