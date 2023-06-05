@@ -80,6 +80,16 @@
           [src]="url"
           class="uploaded-img"
         />
+
+        <video
+          class="uploaded-img"
+          controls
+          *ngFor="let url of newPost.videoURLs"
+        >
+          <source [src]="url" />
+          There was a problem displaying this video. Please reach out to Jaden
+          for help.
+        </video>
       </div>
     </div>
 
