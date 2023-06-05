@@ -37,6 +37,7 @@ export class AddOrEditPostModalComponent implements OnInit {
   protected newPost: Partial<Post> = {
     userId: this.authService.userId,
     fileURLs: [],
+    videoURLs: [],
   };
 
   constructor(
