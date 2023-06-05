@@ -39,13 +39,6 @@
           style="display: none"
           id="getFile"
         />
-
-        <span
-          *ngIf="newPost.fileURLs!.length > 0"
-          class="reset-files-button"
-          (click)="clearFiles()"
-          >&#10006;</span
-        >
       </span>
 
       <!-- Video Input -->
@@ -90,6 +83,13 @@
           There was a problem displaying this video. Please reach out to Jaden
           for help.
         </video>
+
+        <span
+          *ngIf="newPost.fileURLs!.length > 0 || newPost.fileURLs!.length > 0"
+          class="reset-files-button"
+          (click)="clearFiles()"
+          >&#10006;</span
+        >
       </div>
     </div>
 

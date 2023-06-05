@@ -55,6 +55,7 @@ export class AddOrEditPostModalComponent implements OnInit {
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;
+  @ViewChild('videoInput') videoInput!: ElementRef;
   protected displayErrorMsg: boolean = false;
 
   protected uploadFile(event: any) {
@@ -151,5 +152,7 @@ export class AddOrEditPostModalComponent implements OnInit {
   protected clearFiles() {
     this.newPost.fileURLs = [];
     this.fileInput.nativeElement.value = '';
+    this.newPost.videoURLs = [];
+    this.videoInput.nativeElement.value = '';
   }
 }
