@@ -86,6 +86,36 @@ export class AddOrEditPostModalComponent implements OnInit {
       });
   }
 
+  protected uploadVideo(event: any) {
+    const file: File = event.target.files[0];
+    // TODO Put the post ID into this filepath to have a separate folder per post.
+    // const filePath = `posts/${this.postID}`;
+    const filePath = `posts/${file.name}`;
+
+    // TODO We may want to only upload this when we submit the form
+    const task = this.storage.upload(filePath, file, {
+      cacheControl: 'max-age=2592000,public',
+    });
+
+    this.percentageChanges$ = task.percentageChanges();
+
+    task
+      .snapshotChanges()
+      .pipe(
+        last(),
+        concatMap(() => this.storage.ref(filePath).getDownloadURL()),
+        tap((url) => {
+          if (this.newPost.videoURLs) this.newPost.videoURLs.push(url);
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+      )
+      .subscribe(() => {
+        this.percentageChanges$ = of();
+      });
+  }
+
   protected updatePost() {
     if (this.newPost.id) {
       this.whatsHappeningService
