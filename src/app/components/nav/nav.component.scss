@@ -1,6 +1,8 @@
+@import "../../../styles.scss";
+
 .navbar,
 .dropdown-menu {
-  background-color: rgba(0, 0, 0);
+  background-color: $navBarColor;
 }
 
 .navbar-logo-img {
@@ -9,7 +11,7 @@
 
 a,
 button {
-  color: #fff;
+  color: #fff !important;
 }
 
 a {
@@ -20,7 +22,7 @@ a {
 .nav-link:focus,
 .active,
 .a:hover {
-  color: #ababab;
+  color: #ababab !important;
 }
 
 .dropdown-item:hover {
