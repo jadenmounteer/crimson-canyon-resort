@@ -51,19 +51,18 @@
       <!-- Video Input -->
       <span class="file-input-container">
         <button
-          class="btn btn-secondary disabled"
+          class="btn btn-secondary"
           onclick="document.getElementById('getVideo').click()"
-          (change)="uploadVideo($event)"
         >
           Add a video
         </button>
         <input
           type="file"
           #videoInput
+          (change)="uploadVideo($event)"
           accept="video/mp4,video/x-m4v,video/*"
           style="display: none"
           id="getVideo"
-          disabled
         />
       </span>
 
