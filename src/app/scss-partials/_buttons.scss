@@ -9,3 +9,13 @@
   background-color: $lightHighlightColor !important;
   border-color: $lightHighlightColor !important;
 }
+
+.btn-secondary {
+  background-color: $secondaryColor !important;
+  border-color: $secondaryColor !important;
+}
+
+.btn-secondary:hover {
+  background-color: $secondaryLighterColor !important;
+  border-color: $secondaryLighterColor !important;
+}
