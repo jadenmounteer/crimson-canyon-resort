@@ -11,7 +11,7 @@
   @include for-tablet-landscape-up {
     width: 98vh;
     max-width: 2000px;
-    height: 100px;
+    height: 160px;
   }
 }
 
@@ -34,7 +34,8 @@ form {
   color: $lightest;
 }
 
-label {
+label,
+h2 {
   color: $lightest;
 }
 

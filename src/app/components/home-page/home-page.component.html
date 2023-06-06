@@ -7,7 +7,7 @@
   <app-page-wrapper [contentLoaded]="contentLoaded">
     <div pageHeader>
       <div *ngIf="isAuth">
-        <h1>Welcome {{ authService.userDisplayName }}</h1>
+        <h1>Welcome {{ authService.userDisplayName }}.</h1>
       </div>
 
       <div *ngIf="!isAuth">
