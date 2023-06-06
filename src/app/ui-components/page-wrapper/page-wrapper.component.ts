@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PageWrapperComponent implements OnInit {
   @Input() contentLoaded: boolean = false;
+  @Input() bannerImageUrl: string | undefined;
   constructor() {}
 
   ngOnInit(): void {}

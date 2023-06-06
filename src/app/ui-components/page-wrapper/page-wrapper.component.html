@@ -5,6 +5,9 @@
 </div>
 
 <div class="page-container" *ngIf="contentLoaded">
+  <div class="banner-image" *ngIf="bannerImageUrl">
+    <img [src]="bannerImageUrl" />
+  </div>
   <div class="page-header">
     <ng-content select="[pageHeader]"> </ng-content>
   </div>
