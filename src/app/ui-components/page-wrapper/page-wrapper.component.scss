@@ -40,5 +40,10 @@
   padding-right: 24px;
   @include for-tablet-landscape-up {
     max-width: 70vw;
+    display: flex;
+    flex-direction: column;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 }
