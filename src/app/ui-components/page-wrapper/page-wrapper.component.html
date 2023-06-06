@@ -12,14 +12,16 @@
   *ngIf="contentLoaded"
   [ngClass]="{ 'display-background-image': bannerImageUrl }"
 >
-  <div class="page-header">
-    <ng-content select="[pageHeader]"> </ng-content>
-  </div>
-  <div>
-    <ng-content select="[pageContent]"></ng-content>
-  </div>
+  <div class="content-wrapper">
+    <div class="page-header">
+      <ng-content select="[pageHeader]"> </ng-content>
+    </div>
+    <div>
+      <ng-content select="[pageContent]"></ng-content>
+    </div>
 
-  <div class="page-footer">
-    <ng-content select="[pageFooter]"> </ng-content>
+    <div class="page-footer">
+      <ng-content select="[pageFooter]"> </ng-content>
+    </div>
   </div>
 </div>

@@ -8,7 +8,8 @@
 }
 
 .page-container {
-  padding: $spacing-large;
+  padding-top: $spacing-large;
+  padding-bottom: $spacing-large * 2;
 }
 
 .display-background-image {
@@ -32,4 +33,12 @@
 
 .banner-image {
   width: 100%;
+}
+
+.content-wrapper {
+  padding-left: 24px;
+  padding-right: 24px;
+  @include for-tablet-landscape-up {
+    max-width: 70vw;
+  }
 }
