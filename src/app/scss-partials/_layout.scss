@@ -38,3 +38,9 @@ $nav-bar-height: 101px;
 .modal-content {
   margin-top: 106px;
 }
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-large;
+}

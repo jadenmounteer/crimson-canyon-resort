@@ -2,7 +2,7 @@
   <app-carousel></app-carousel>
 
   <app-page-wrapper [contentLoaded]="contentLoaded">
-    <div pageContent>
+    <div pageContent class="centered-content">
       <div class="check-availability-banner">
         <app-check-availability-menu></app-check-availability-menu>
       </div>
@@ -12,10 +12,12 @@
           [navigateUserAwayOnLogin]="false"
         ></app-login-or-sign-up>
       </div>
-      <app-whats-happening-section
-        *ngIf="isAuth"
-        [userDisplayName]="authService.userDisplayName"
-      ></app-whats-happening-section>
+      <div class="centered">
+        <app-whats-happening-section
+          *ngIf="isAuth"
+          [userDisplayName]="authService.userDisplayName"
+        ></app-whats-happening-section>
+      </div>
 
       <div class="centered">
         <app-weather></app-weather>
