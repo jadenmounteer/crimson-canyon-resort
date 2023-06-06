@@ -2,7 +2,7 @@
   <app-carousel></app-carousel>
 
   <app-page-wrapper [contentLoaded]="contentLoaded">
-    <div pageHeader>
+    <div pageContent>
       <div class="check-availability-banner">
         <app-check-availability-menu></app-check-availability-menu>
       </div>
@@ -12,8 +12,6 @@
           [navigateUserAwayOnLogin]="false"
         ></app-login-or-sign-up>
       </div>
-    </div>
-    <div pageContent>
       <app-whats-happening-section
         *ngIf="isAuth"
         [userDisplayName]="authService.userDisplayName"
