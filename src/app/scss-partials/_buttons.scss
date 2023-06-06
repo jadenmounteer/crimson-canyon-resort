@@ -1,0 +1,11 @@
+@import "./colors";
+
+.btn-primary {
+  background-color: $highlightColor !important;
+  border-color: $highlightColor !important;
+}
+
+.btn-primary:hover {
+  background-color: $lightHighlightColor !important;
+  border-color: $lightHighlightColor !important;
+}
