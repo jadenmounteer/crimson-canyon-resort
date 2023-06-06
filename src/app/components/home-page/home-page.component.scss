@@ -14,18 +14,6 @@
   justify-content: center;
 }
 
-app-carousel {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-app-check-availability-menu {
-  @include for-tablet-landscape-up {
-    position: relative;
-    top: -60px;
-  }
-}
-
 .centered {
   display: flex;
   justify-content: center;
