@@ -21,7 +21,7 @@ form {
   justify-content: space-between;
   gap: 10px;
   @include for-tablet-landscape-up {
-    align-items: center;
+    align-items: end;
     flex-direction: row;
   }
 }
