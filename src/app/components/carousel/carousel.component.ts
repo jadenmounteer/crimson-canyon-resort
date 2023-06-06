@@ -11,9 +11,9 @@ export class CarouselComponent {
   // );
 
   public images = [
-    './assets/images/Front.png',
-    './assets/images/Rear.png',
-    './assets/images/Living Rm looking to back yard.png',
-    './assets/images/Right Rear.png',
+    'assets/images/Front.png',
+    'assets/images/Rear.png',
+    'assets/images/Living Rm looking to back yard.png',
+    'assets/images/Right Rear.png',
   ];
 }
