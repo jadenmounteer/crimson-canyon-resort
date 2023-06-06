@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/whats-happening/post';
@@ -12,6 +12,7 @@ import { WhatsHappeningService } from 'src/app/whats-happening/whats-happening.s
 export class WhatsHappeningSectionComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
+  @Input() userDisplayName: string | undefined | null;
 
   constructor(
     protected whatsHappeningService: WhatsHappeningService,

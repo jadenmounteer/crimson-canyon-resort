@@ -1,5 +1,8 @@
 <span *ngIf="contentLoaded">
-  <h2>What's Happening at Crimson Canyon Resort?</h2>
+  <h2>
+    Welcome {{ userDisplayName }}. See the latest happenings and Crimson Canyon
+    Resort.
+  </h2>
 
   <div class="posts-wrapper">
     <div *ngFor="let post of posts$ | async" class="card post">

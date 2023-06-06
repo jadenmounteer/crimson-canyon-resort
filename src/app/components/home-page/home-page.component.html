@@ -6,10 +6,6 @@
 
   <app-page-wrapper [contentLoaded]="contentLoaded">
     <div pageHeader>
-      <div *ngIf="isAuth">
-        <h1>Welcome {{ authService.userDisplayName }}.</h1>
-      </div>
-
       <div *ngIf="!isAuth">
         <app-login-or-sign-up
           *ngIf="!isAuth"
@@ -18,7 +14,10 @@
       </div>
     </div>
     <div pageContent>
-      <app-whats-happening-section *ngIf="isAuth"></app-whats-happening-section>
+      <app-whats-happening-section
+        *ngIf="isAuth"
+        [userDisplayName]="authService.userDisplayName"
+      ></app-whats-happening-section>
 
       <div class="centered">
         <app-weather></app-weather>
