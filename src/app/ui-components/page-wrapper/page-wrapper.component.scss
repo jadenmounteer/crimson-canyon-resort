@@ -15,7 +15,7 @@
 .display-background-image {
   @include for-tablet-landscape-up {
     min-height: 100vh;
-    background-image: url("assets/images/Rear.png");
+    background-image: url("../../../assets/images/Rear.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: auto;
