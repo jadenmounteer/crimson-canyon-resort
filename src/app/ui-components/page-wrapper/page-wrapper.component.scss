@@ -11,8 +11,23 @@
   padding: $spacing-large;
 }
 
+.display-background-image {
+  @include for-tablet-landscape-up {
+    background-image: url("../../../assets/images/Rear.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+  }
+}
+
 .animation-wrapper {
   width: 400px;
+}
+
+.banner-image-container {
+  @include for-tablet-landscape-up {
+    display: none;
+  }
 }
 
 .banner-image {
