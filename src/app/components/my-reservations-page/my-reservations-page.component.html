@@ -7,49 +7,53 @@
   </div>
 
   <div pageContent class="page-content-wrapper">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Arrival</th>
-          <th scope="col">Departure</th>
-          <th scope="col">Private Visit?</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let reservation of myReservations">
-          <td scope="row">
-            {{ reservation.arrivalDate.month }}/{{
-              reservation.arrivalDate.day
-            }}/{{ reservation.arrivalDate.year }}
-          </td>
-          <td>
-            {{ reservation.departureDate.month }}/{{
-              reservation.departureDate.day
-            }}/{{ reservation.departureDate.year }}
-          </td>
-          <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-link"
-              (click)="reservationsService.viewReservationDetails(reservation)"
-            >
-              View
-            </button>
-          </td>
-          <td>
-            <button
-              type="button"
-              class="btn btn-link cancel-button"
-              (click)="onDeleteReservation(reservation)"
-            >
-              Cancel
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Arrival</th>
+            <th scope="col">Departure</th>
+            <th scope="col">Private Visit?</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of myReservations">
+            <td scope="row">
+              {{ reservation.arrivalDate.month }}/{{
+                reservation.arrivalDate.day
+              }}/{{ reservation.arrivalDate.year }}
+            </td>
+            <td>
+              {{ reservation.departureDate.month }}/{{
+                reservation.departureDate.day
+              }}/{{ reservation.departureDate.year }}
+            </td>
+            <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-link"
+                (click)="
+                  reservationsService.viewReservationDetails(reservation)
+                "
+              >
+                View
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-link cancel-button"
+                (click)="onDeleteReservation(reservation)"
+              >
+                Cancel
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </app-page-wrapper>
