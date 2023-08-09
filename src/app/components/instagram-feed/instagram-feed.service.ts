@@ -10,8 +10,8 @@ export class InstagramFeedService {
   constructor(private http: HttpClient) {}
 
   public getInstaData(): Observable<any> {
-    return this.http.get(
-      `${environment.instagramFeed.url}${environment.instagramFeed.authorizationKey}`
-    );
+    const url = `${environment.instagramFeed.url}${environment.instagramFeed.authorizationKey}`;
+    console.log(url);
+    return this.http.get(url);
   }
 }

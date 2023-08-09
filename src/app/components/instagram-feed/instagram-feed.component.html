@@ -3,13 +3,34 @@
 </span>
 
 <span *ngIf="!loading">
-  <div *ngFor="let post of instaData">
-    <span>{{ post.caption }}</span>
-    <img *ngIf="post.media_type === 'IMAGE'" [src]="post.media_url" />
-    <video
-      *ngIf="post.media_type === 'VIDEO'"
-      [src]="post.media_url"
-      controls
-    ></video>
+  <div class="posts-wrapper">
+    <div *ngFor="let post of instaData" class="card post">
+      <div class="post-header">
+        <h6 class="post-title">{{ post.username }}</h6>
+        <h6 class="post-date">
+          {{ post.timestamp | date : "MMM d, yy, h:mm a" }}
+        </h6>
+      </div>
+
+      <p>{{ post.caption }}</p>
+      <div class="post-files">
+        <img
+          *ngIf="post.media_type === 'IMAGE'"
+          class="post-file"
+          [src]="post.media_url"
+        />
+        <img
+          *ngIf="post.media_type === 'CAROUSEL_ALBUM'"
+          class="post-file"
+          [src]="post.media_url"
+        />
+        <video
+          class="post-file"
+          *ngIf="post.media_type === 'VIDEO'"
+          [src]="post.media_url"
+          controls
+        ></video>
+      </div>
+    </div>
   </div>
 </span>
