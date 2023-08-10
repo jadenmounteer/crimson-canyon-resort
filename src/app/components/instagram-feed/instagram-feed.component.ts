@@ -14,7 +14,6 @@ export class InstagramFeedComponent implements OnInit, OnDestroy {
   constructor(private instagramFeedService: InstagramFeedService) {}
 
   ngOnInit(): void {
-    // TODO destroy this
     this.instaSubscription = this.instagramFeedService
       .getInstaData()
       .subscribe((data) => {

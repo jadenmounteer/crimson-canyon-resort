@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,4 +14,20 @@ export class InstagramFeedService {
     console.log(url);
     return this.http.get(url);
   }
+
+  // Copilot made this. Can I use this?
+  // public formatInstaData(data: any): any {
+  //   const formattedData = data.data.map((item: any) => {
+  //     return {
+  //       id: item.id,
+  //       media_type: item.media_type,
+  //       media_url: item.media_url,
+  //       username: item.username,
+  //       timestamp: item.timestamp,
+  //       permalink: item.permalink,
+  //       caption: item.caption,
+  //     };
+  //   });
+  //   return formattedData;
+  // }
 }
