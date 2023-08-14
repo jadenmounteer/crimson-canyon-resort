@@ -13,11 +13,11 @@
         ></app-login-or-sign-up>
       </div>
       <div>
-        <app-instagram-feed></app-instagram-feed>
-        <!-- <app-whats-happening-section
+        <app-whats-happening-section
           *ngIf="isAuth"
           [userDisplayName]="authService.userDisplayName"
-        ></app-whats-happening-section> -->
+        ></app-whats-happening-section>
+        <app-instagram-feed *ngIf="isAuth"></app-instagram-feed>
       </div>
 
       <div class="centered">

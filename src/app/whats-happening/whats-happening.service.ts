@@ -41,7 +41,7 @@ export class WhatsHappeningService {
 
   public fetchRecentPosts(): Observable<Post[]> {
     return this.firestore
-      .collection('posts', (ref) => ref.orderBy('createdDate', 'desc').limit(3))
+      .collection('posts', (ref) => ref.orderBy('createdDate', 'desc').limit(1))
       .get()
       .pipe(map((result) => convertSnaps<Post>(result)));
   }
