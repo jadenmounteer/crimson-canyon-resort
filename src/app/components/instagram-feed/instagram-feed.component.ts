@@ -17,6 +17,7 @@ export class InstagramFeedComponent implements OnInit, OnDestroy {
     this.instaSubscription = this.instagramFeedService
       .getInstaData()
       .subscribe((data) => {
+        console.log(data);
         this.instaData = data.data;
         console.log(this.instaData);
         this.loading = false;
