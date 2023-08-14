@@ -13,8 +13,20 @@
       </div>
 
       <p>{{ post.caption }}</p>
-      <div class="post-files" [ngSwitch]="post.media_type">
-        <img *ngSwitchCase="'IMAGE'" class="post-file" [src]="post.media_url" />
+      <div [ngSwitch]="post.media_type">
+        <div class="post-files">
+          <img
+            *ngSwitchCase="'IMAGE'"
+            class="post-file"
+            [src]="post.media_url"
+          />
+          <video
+            *ngSwitchCase="'VIDEO'"
+            class="post-file"
+            [src]="post.media_url"
+            controls
+          ></video>
+        </div>
 
         <div *ngSwitchCase="'CAROUSEL_ALBUM'" class="post-files">
           <div *ngFor="let file of post.children.data">
@@ -31,13 +43,6 @@
             ></video>
           </div>
         </div>
-
-        <video
-          *ngSwitchCase="'VIDEO'"
-          class="post-file"
-          [src]="post.media_url"
-          controls
-        ></video>
       </div>
     </div>
   </div>
