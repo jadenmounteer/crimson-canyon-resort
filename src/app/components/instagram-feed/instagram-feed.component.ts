@@ -19,7 +19,7 @@ export class InstagramFeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.instaSubscription = this.instagramFeedService
-      .getInstaData()
+      .getHomePageInstaData()
       .subscribe((data) => {
         console.log(data);
         this.instaData = data.data;

@@ -9,8 +9,8 @@ import { Observable, of } from 'rxjs';
 export class InstagramFeedService {
   constructor(private http: HttpClient) {}
 
-  public getInstaData(): Observable<any> {
-    const url = `${environment.instagramFeed.url}${environment.instagramFeed.authorizationKey}`;
+  public getHomePageInstaData(): Observable<any> {
+    const url = `${environment.instagramFeed.homePageUrl}${environment.instagramFeed.authorizationKey}`;
     console.log(url);
     return this.http.get(url);
   }
