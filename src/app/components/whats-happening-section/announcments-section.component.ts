@@ -5,11 +5,11 @@ import { Post } from 'src/app/announcements/post';
 import { AnnouncementsService } from 'src/app/announcements/announcements.service';
 
 @Component({
-  selector: 'app-whats-happening-section',
-  templateUrl: './whats-happening-section.component.html',
-  styleUrls: ['./whats-happening-section.component.scss'],
+  selector: 'app-announcements-section',
+  templateUrl: './announcements-section.component.html',
+  styleUrls: ['./announcements-section.component.scss'],
 })
-export class WhatsHappeningSectionComponent implements OnInit {
+export class AnnouncementsSectionComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
   @Input() userDisplayName: string | undefined | null;

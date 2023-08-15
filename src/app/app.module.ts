@@ -27,7 +27,7 @@ import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.comp
 import { AdministrationModule } from './administration/administration.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
-import { WhatsHappeningSectionComponent } from './components/whats-happening-section/whats-happening-section.component';
+import { AnnouncementsSectionComponent } from './components/whats-happening-section/announcments-section.component';
 import { InstagramFeedComponent } from './components/instagram-feed/instagram-feed.component';
 
 @NgModule({
@@ -48,7 +48,7 @@ import { InstagramFeedComponent } from './components/instagram-feed/instagram-fe
     LoginPageComponent,
     SignUpPageComponent,
     RequestToCreateAccountPageComponent,
-    WhatsHappeningSectionComponent,
+    AnnouncementsSectionComponent,
     InstagramFeedComponent,
   ],
   imports: [
