@@ -1,5 +1,7 @@
 <div class="posts-wrapper">
-  <button class="btn btn-primary" (click)="addNewPost()">NEW POST</button>
+  <button class="btn btn-primary" (click)="addNewPost()">
+    New Announcement
+  </button>
 
   <div *ngFor="let post of posts" class="card post">
     <div class="post-header">
@@ -25,14 +27,14 @@
             (click)="onEditPost(post)"
             *ngIf="post.userId === authService.userId"
           >
-            Edit post
+            Edit announcement
           </button>
           <button
             ngbDropdownItem
             class="delete-dropdown-item"
             (click)="onDeletePost(post.id)"
           >
-            Delete Post
+            Delete announcement
           </button>
         </div>
       </div>

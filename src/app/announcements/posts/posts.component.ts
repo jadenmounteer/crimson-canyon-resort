@@ -79,7 +79,7 @@ export class PostsComponent implements OnInit {
   protected onEditPost(post: Post) {
     const modalRef = this.modalService.open(AddOrEditPostModalComponent);
     modalRef.componentInstance.postToEdit = post;
-    modalRef.componentInstance.title = 'Edit post';
+    modalRef.componentInstance.title = 'Edit announcement';
 
     modalRef.result.then((result) => {
       if (result === 'success') {
