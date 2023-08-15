@@ -15,7 +15,7 @@ export class WhatsHappeningSectionComponent implements OnInit {
   @Input() userDisplayName: string | undefined | null;
 
   constructor(
-    protected whatsHappeningService: WhatsHappeningService,
+    protected announcementsService: WhatsHappeningService,
     protected router: Router
   ) {
     this.loadPosts();
@@ -24,7 +24,7 @@ export class WhatsHappeningSectionComponent implements OnInit {
   ngOnInit(): void {}
 
   protected loadPosts(): void {
-    this.posts$ = this.whatsHappeningService.fetchRecentPosts();
+    this.posts$ = this.announcementsService.fetchRecentPosts();
     this.contentLoaded = true;
   }
 }
