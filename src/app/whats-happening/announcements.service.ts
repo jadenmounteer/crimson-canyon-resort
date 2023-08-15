@@ -10,7 +10,7 @@ import { User } from '../types/user';
 @Injectable({
   providedIn: 'root',
 })
-export class WhatsHappeningService {
+export class AnnouncementsService {
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService,

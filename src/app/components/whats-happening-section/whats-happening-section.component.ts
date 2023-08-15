@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/whats-happening/post';
-import { WhatsHappeningService } from 'src/app/whats-happening/whats-happening.service';
+import { AnnouncementsService } from 'src/app/whats-happening/announcements.service';
 
 @Component({
   selector: 'app-whats-happening-section',
@@ -15,7 +15,7 @@ export class WhatsHappeningSectionComponent implements OnInit {
   @Input() userDisplayName: string | undefined | null;
 
   constructor(
-    protected announcementsService: WhatsHappeningService,
+    protected announcementsService: AnnouncementsService,
     protected router: Router
   ) {
     this.loadPosts();

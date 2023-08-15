@@ -22,7 +22,7 @@ import {
 import { Post } from '../post';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/auth.service';
-import { WhatsHappeningService } from '../whats-happening.service';
+import { AnnouncementsService } from '../announcements.service';
 
 @Component({
   selector: 'app-add-or-edit-post-modal',
@@ -45,7 +45,7 @@ export class AddOrEditPostModalComponent implements OnInit {
     private storage: AngularFireStorage,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
-    private whatsHappeningService: WhatsHappeningService
+    private announcementsService: AnnouncementsService
   ) {}
 
   ngOnInit(): void {
@@ -120,7 +120,7 @@ export class AddOrEditPostModalComponent implements OnInit {
 
   protected updatePost() {
     if (this.newPost.id) {
-      this.whatsHappeningService
+      this.announcementsService
         .updatePost(this.newPost.id, this.newPost)
         .subscribe(() => {
           this.activeModal.close('success');
@@ -135,7 +135,7 @@ export class AddOrEditPostModalComponent implements OnInit {
 
     this.newPost.createdByUserName = this.authService.userDisplayName;
 
-    this.whatsHappeningService
+    this.announcementsService
       .createPost(this.newPost, newPostId)
       .pipe(
         tap((post) => {

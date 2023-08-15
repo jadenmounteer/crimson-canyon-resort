@@ -5,7 +5,7 @@ import { AddOrEditPostModalComponent } from '../add-new-post-modal/add-or-edit-p
 import { Observable, Subscription, catchError, tap, throwError } from 'rxjs';
 import { AdministrationService } from 'src/app/services/administration.service';
 import { AuthService } from 'src/app/components/auth/auth.service';
-import { WhatsHappeningService } from '../whats-happening.service';
+import { AnnouncementsService } from '../announcements.service';
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 
 @Component({
@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
     private modalService: NgbModal,
     private adminService: AdministrationService,
     protected authService: AuthService,
-    protected whatsHappeningService: WhatsHappeningService
+    protected announcementsService: AnnouncementsService
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class PostsComponent implements OnInit {
     modalRef.componentInstance.message = `Are you sure you want to delete this post?`;
     modalRef.result.then((result) => {
       if (result === 'Yes') {
-        this.whatsHappeningService
+        this.announcementsService
           .deletePost(postId)
           .pipe(
             tap(() => {

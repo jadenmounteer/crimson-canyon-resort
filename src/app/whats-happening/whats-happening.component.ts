@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { WhatsHappeningService } from './whats-happening.service';
+import { AnnouncementsService } from './announcements.service';
 import { Observable } from 'rxjs';
 import { Post } from './post';
 
@@ -19,7 +19,7 @@ export class WhatsHappeningComponent implements OnInit {
 
   constructor(
     private afs: AngularFirestore,
-    private whatsHappeningService: WhatsHappeningService
+    private announcementsService: AnnouncementsService
   ) {
     this.loadPosts();
   }
@@ -27,7 +27,7 @@ export class WhatsHappeningComponent implements OnInit {
   ngOnInit(): void {}
 
   protected loadPosts(): void {
-    this.posts$ = this.whatsHappeningService.fetchPosts();
+    this.posts$ = this.announcementsService.fetchPosts();
     this.contentLoaded = true;
   }
 
