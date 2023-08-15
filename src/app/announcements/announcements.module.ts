@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AnnouncementsRoutingModule } from './whats-happening-routing.module';
+import { AnnouncementsRoutingModule } from './announcements-routing.module';
 import { AnnouncementsComponent } from './announcements.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
