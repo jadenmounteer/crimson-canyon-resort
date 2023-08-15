@@ -12,13 +12,13 @@
           [navigateUserAwayOnLogin]="false"
         ></app-login-or-sign-up>
       </div>
-      <div>
-        <app-announcements-section
-          *ngIf="isAuth"
-          [userDisplayName]="authService.userDisplayName"
-        ></app-announcements-section>
-        <app-instagram-feed *ngIf="isAuth"></app-instagram-feed>
-      </div>
+
+      <app-announcements-section
+        *ngIf="isAuth"
+        [userDisplayName]="authService.userDisplayName"
+      ></app-announcements-section>
+
+      <app-instagram-feed *ngIf="isAuth"></app-instagram-feed>
 
       <div class="centered">
         <app-weather></app-weather>
