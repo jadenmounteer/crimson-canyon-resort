@@ -3,6 +3,8 @@
 </span>
 
 <span *ngIf="!loading">
+  <fa-icon class="instagram-logo" [icon]="icon.faInstagram"></fa-icon>
+
   <div class="posts-wrapper">
     <div *ngFor="let post of instaData" class="card post">
       <div class="post-header">

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { InstagramFeedService } from './instagram-feed.service';
 import { Subscription } from 'rxjs';
+import { IconService } from 'src/app/services/icon.service';
 
 @Component({
   selector: 'app-instagram-feed',
@@ -11,7 +12,10 @@ export class InstagramFeedComponent implements OnInit, OnDestroy {
   private instaSubscription!: Subscription;
   protected instaData: Array<any> | undefined;
   protected loading: boolean = true;
-  constructor(private instagramFeedService: InstagramFeedService) {}
+  constructor(
+    private instagramFeedService: InstagramFeedService,
+    public icon: IconService
+  ) {}
 
   ngOnInit(): void {
     this.instaSubscription = this.instagramFeedService

@@ -9,7 +9,7 @@ import {
   faCalendarAlt,
   faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,7 @@ export class IconService {
   public faTools = faTools;
   public faCalendarAlt = faCalendarAlt;
   public faCheckCircle = faCheckCircle;
+  public faInstagram = faInstagram;
 
   constructor() {}
 }
