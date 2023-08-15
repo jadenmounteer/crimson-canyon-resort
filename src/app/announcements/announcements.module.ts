@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { WhatsHappeningRoutingModule } from './whats-happening-routing.module';
-import { WhatsHappeningComponent } from './whats-happening.component';
+import { AnnouncementsRoutingModule } from './whats-happening-routing.module';
+import { AnnouncementsComponent } from './announcements.component';
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,13 +12,13 @@ import { AddOrEditPostModalComponent } from './add-new-post-modal/add-or-edit-po
 
 @NgModule({
   declarations: [
-    WhatsHappeningComponent,
+    AnnouncementsComponent,
     PostsComponent,
     AddOrEditPostModalComponent,
   ],
   imports: [
     CommonModule,
-    WhatsHappeningRoutingModule,
+    AnnouncementsRoutingModule,
     UiComponentsModule,
     AngularFireStorageModule,
     ReactiveFormsModule,
@@ -26,4 +26,4 @@ import { AddOrEditPostModalComponent } from './add-new-post-modal/add-or-edit-po
     NgbModule,
   ],
 })
-export class WhatsHappeningModule {}
+export class AnnouncementsModule {}

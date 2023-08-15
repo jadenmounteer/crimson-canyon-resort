@@ -64,10 +64,10 @@ const routes: Routes = [
     component: PageNotFoundPageComponent,
   },
   {
-    path: 'whats-happening',
+    path: 'announcements',
     loadChildren: () =>
-      import('./whats-happening/whats-happening.module').then(
-        (m) => m.WhatsHappeningModule
+      import('./announcements/announcements.module').then(
+        (m) => m.AnnouncementsModule
       ),
   },
   // {

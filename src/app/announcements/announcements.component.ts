@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { Post } from './post';
 
 @Component({
-  selector: 'app-whats-happening',
-  templateUrl: './whats-happening.component.html',
-  styleUrls: ['./whats-happening.component.scss'],
+  selector: 'app-announcements',
+  templateUrl: './announcements.component.html',
+  styleUrls: ['./announcements.component.scss'],
 })
-export class WhatsHappeningComponent implements OnInit {
+export class AnnouncementsComponent implements OnInit {
   protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
   protected displayNewPostMessage: boolean = false;

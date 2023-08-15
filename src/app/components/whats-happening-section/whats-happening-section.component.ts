@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Post } from 'src/app/whats-happening/post';
-import { AnnouncementsService } from 'src/app/whats-happening/announcements.service';
+import { Post } from 'src/app/announcements/post';
+import { AnnouncementsService } from 'src/app/announcements/announcements.service';
 
 @Component({
   selector: 'app-whats-happening-section',
