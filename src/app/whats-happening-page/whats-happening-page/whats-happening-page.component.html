@@ -1,1 +1,12 @@
-<p>whats-happening-page works!</p>
+<app-page-wrapper
+  [contentLoaded]="!loading"
+  bannerImageUrl="assets/images/Left Rear.png"
+>
+  <div pageHeader>
+    <h2 class="page-title">See the latest happenings at the resort.</h2>
+  </div>
+
+  <div pageContent>
+    <app-instagram-feed [instaData]="instaData"></app-instagram-feed>
+  </div>
+</app-page-wrapper>
