@@ -31,6 +31,7 @@ import { InstagramFeedComponent } from './components/instagram-feed/instagram-fe
 import { WhatsHappeningHomePageSectionComponent } from './components/whats-happening-home-page-section/whats-happening-home-page-section.component';
 import { WhatsHappeningPageModule } from './whats-happening-page/whats-happening-page.module';
 import { AnnouncementsSectionComponent } from './components/announcements-section/announcments-section.component';
+import { InstagramFeedModule } from './components/instagram-feed/instagram-feed.module';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,6 @@ import { AnnouncementsSectionComponent } from './components/announcements-sectio
     SignUpPageComponent,
     RequestToCreateAccountPageComponent,
     AnnouncementsSectionComponent,
-    InstagramFeedComponent,
     WhatsHappeningHomePageSectionComponent,
   ],
   imports: [
@@ -67,6 +67,7 @@ import { AnnouncementsSectionComponent } from './components/announcements-sectio
     AdministrationModule,
     UiComponentsModule,
     WhatsHappeningPageModule,
+    InstagramFeedModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
