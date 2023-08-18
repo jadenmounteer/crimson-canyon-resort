@@ -3,6 +3,7 @@
 .carousel {
   @include for-tablet-landscape-up {
     width: 90%;
+    max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
   }
