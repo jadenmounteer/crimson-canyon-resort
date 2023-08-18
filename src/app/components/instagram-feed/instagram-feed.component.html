@@ -1,59 +1,49 @@
-<span class="loading-icon" *ngIf="loading">
-  <app-loading-spinner></app-loading-spinner>
-</span>
-
-<span *ngIf="!loading">
-  <h2 class="page-title">See the latest happenings at the resort.</h2>
+<div class="sub-title">
   <fa-icon class="instagram-logo" [icon]="icon.faInstagram"></fa-icon>
+  <a
+    class="link-primary"
+    href="https://www.instagram.com/crimsoncanyonresort/"
+    target="_blank"
+    >Follow Crimson Canyon Resort on Instagram</a
+  >
+</div>
 
-  <div class="posts-wrapper">
-    <div *ngFor="let post of instaData" class="card post">
-      <div class="post-header">
-        <h6 class="post-title">{{ post.username }}</h6>
-        <h6 class="post-date">
-          {{ post.timestamp | date : "MMM d, yy, h:mm a" }}
-        </h6>
+<div class="posts-wrapper">
+  <div *ngFor="let post of instaData" class="card post">
+    <div class="post-header">
+      <h6 class="post-title">{{ post.username }}</h6>
+      <h6 class="post-date">
+        {{ post.timestamp | date : "MMM d, yy, h:mm a" }}
+      </h6>
+    </div>
+
+    <p>{{ post.caption }}</p>
+    <div [ngSwitch]="post.media_type">
+      <div class="post-files">
+        <img *ngSwitchCase="'IMAGE'" class="post-file" [src]="post.media_url" />
+        <video
+          *ngSwitchCase="'VIDEO'"
+          class="post-file"
+          [src]="post.media_url"
+          controls
+        ></video>
       </div>
 
-      <p>{{ post.caption }}</p>
-      <div [ngSwitch]="post.media_type">
-        <div class="post-files">
+      <div *ngSwitchCase="'CAROUSEL_ALBUM'" class="post-files">
+        <div *ngFor="let file of post.children.data">
           <img
-            *ngSwitchCase="'IMAGE'"
+            *ngIf="file.media_type === 'IMAGE'"
             class="post-file"
-            [src]="post.media_url"
+            [src]="file.media_url"
           />
           <video
-            *ngSwitchCase="'VIDEO'"
             class="post-file"
-            [src]="post.media_url"
+            *ngIf="file.media_type === 'VIDEO'"
+            [src]="file.media_url"
             controls
           ></video>
-        </div>
-
-        <div *ngSwitchCase="'CAROUSEL_ALBUM'" class="post-files">
-          <div *ngFor="let file of post.children.data">
-            <img
-              *ngIf="file.media_type === 'IMAGE'"
-              class="post-file"
-              [src]="file.media_url"
-            />
-            <video
-              class="post-file"
-              *ngIf="file.media_type === 'VIDEO'"
-              [src]="file.media_url"
-              controls
-            ></video>
-          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <button
-    class="btn btn-primary btn-lg btn-block see-more-button"
-    (click)="router.navigate(['whats-happening'])"
-  >
-    View More
-  </button>
-</span>
+</div>

@@ -18,7 +18,9 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
-      <app-instagram-feed *ngIf="isAuth"></app-instagram-feed>
+      <app-whats-happening-home-page-section
+        *ngIf="isAuth"
+      ></app-whats-happening-home-page-section>
 
       <div class="centered">
         <app-weather></app-weather>

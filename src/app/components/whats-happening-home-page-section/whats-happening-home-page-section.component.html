@@ -1,0 +1,14 @@
+<span class="loading-icon" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+</span>
+
+<span *ngIf="!loading">
+  <h2 class="page-title">See the latest happenings at the resort.</h2>
+  <app-instagram-feed [instaData]="instaData"></app-instagram-feed>
+  <button
+    class="btn btn-primary btn-lg btn-block see-more-button"
+    (click)="router.navigate(['whats-happening'])"
+  >
+    View More Posts
+  </button>
+</span>

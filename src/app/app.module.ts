@@ -29,6 +29,7 @@ import { UiComponentsModule } from './ui-components/ui-components.module';
 import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
 import { AnnouncementsSectionComponent } from './components/whats-happening-section/announcments-section.component';
 import { InstagramFeedComponent } from './components/instagram-feed/instagram-feed.component';
+import { WhatsHappeningHomePageSectionComponent } from './components/whats-happening-home-page-section/whats-happening-home-page-section.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { InstagramFeedComponent } from './components/instagram-feed/instagram-fe
     RequestToCreateAccountPageComponent,
     AnnouncementsSectionComponent,
     InstagramFeedComponent,
+    WhatsHappeningHomePageSectionComponent,
   ],
   imports: [
     BrowserModule,
