@@ -16,11 +16,9 @@ export class WhatsHappeningPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.instaSubscription = this.instagramFeedService
-      .getHomePageInstaData()
+      .getAllInstaData()
       .subscribe((data) => {
-        console.log(data);
         this.instaData = data.data;
-        console.log(this.instaData);
         this.loading = false;
       });
   }

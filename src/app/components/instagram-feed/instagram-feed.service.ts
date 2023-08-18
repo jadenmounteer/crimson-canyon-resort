@@ -11,7 +11,11 @@ export class InstagramFeedService {
 
   public getHomePageInstaData(): Observable<any> {
     const url = `${environment.instagramFeed.homePageUrl}${environment.instagramFeed.authorizationKey}`;
-    console.log(url);
+    return this.http.get(url);
+  }
+
+  public getAllInstaData(): Observable<any> {
+    const url = `${environment.instagramFeed.url}${environment.instagramFeed.authorizationKey}`;
     return this.http.get(url);
   }
 

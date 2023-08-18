@@ -24,9 +24,7 @@ export class WhatsHappeningHomePageSectionComponent
     this.instaSubscription = this.instagramFeedService
       .getHomePageInstaData()
       .subscribe((data) => {
-        console.log(data);
         this.instaData = data.data;
-        console.log(this.instaData);
         this.loading = false;
       });
   }
