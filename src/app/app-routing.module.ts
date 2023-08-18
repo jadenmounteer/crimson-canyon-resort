@@ -70,6 +70,13 @@ const routes: Routes = [
         (m) => m.AnnouncementsModule
       ),
   },
+  {
+    path: 'whats-happening',
+    loadChildren: () =>
+      import('./whats-happening-page/whats-happening-page.module').then(
+        (m) => m.WhatsHappeningPageModule
+      ),
+  },
   // {
   //   path: 'exercise-library',
   //   component: ExerciseLibraryComponent,

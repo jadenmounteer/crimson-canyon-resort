@@ -30,6 +30,7 @@ import { RequestToCreateAccountPageComponent } from './components/request-to-cre
 import { AnnouncementsSectionComponent } from './components/whats-happening-section/announcments-section.component';
 import { InstagramFeedComponent } from './components/instagram-feed/instagram-feed.component';
 import { WhatsHappeningHomePageSectionComponent } from './components/whats-happening-home-page-section/whats-happening-home-page-section.component';
+import { WhatsHappeningPageModule } from './whats-happening-page/whats-happening-page.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { WhatsHappeningHomePageSectionComponent } from './components/whats-happe
     HttpClientModule,
     AdministrationModule,
     UiComponentsModule,
+    WhatsHappeningPageModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
