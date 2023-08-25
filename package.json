@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deployToGithubPages": "sh src/scripts/deploy-to-github-pages.sh",
+    "deployToFirebase": "sh src/scripts/deploy-to-firebase.sh",
     "lint": "ng lint"
   },
   "private": true,
