@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/crimson-canyon-resort",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
