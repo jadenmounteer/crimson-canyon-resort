@@ -1,6 +1,5 @@
-<h3>Approved Emails</h3>
-
-<span *ngIf="approvedRequests.length > 0">
+<span *ngIf="approvedRequests.length > 0" class="card">
+  <h3>Approved Emails</h3>
   <p>The following emails have been approved to create accounts and login.</p>
   <ngb-alert
     class="success-alert"
@@ -50,7 +49,9 @@
     </tbody>
   </table>
 
-  <button class="btn btn-primary" (click)="onAddEmail()">Add Email</button>
+  <div>
+    <button class="btn btn-primary" (click)="onAddEmail()">Add Email</button>
+  </div>
 </span>
 
 <span class="loading-icon" *ngIf="!contentLoaded">

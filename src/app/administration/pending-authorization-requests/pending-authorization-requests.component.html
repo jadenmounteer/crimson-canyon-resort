@@ -31,7 +31,7 @@
   You just declined a request. You must be angry at someone. 😡
 </ngb-alert>
 
-<span *ngIf="pendingRequests.length > 0">
+<span *ngIf="pendingRequests.length > 0" class="card">
   <h3>Pending Email Authorization Requests</h3>
   <p>
     Prospective users have requested to create accounts. Please approve or
@@ -69,8 +69,8 @@
       </tr>
     </tbody>
   </table>
-</span>
 
-<span class="loading-icon" *ngIf="!contentLoaded">
-  <app-loading-spinner></app-loading-spinner>
+  <span class="loading-icon" *ngIf="!contentLoaded">
+    <app-loading-spinner></app-loading-spinner>
+  </span>
 </span>
