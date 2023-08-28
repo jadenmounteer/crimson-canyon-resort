@@ -8,6 +8,7 @@ import {
   faTools,
   faCalendarAlt,
   faCheckCircle,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -25,6 +26,7 @@ export class IconService {
   public faCalendarAlt = faCalendarAlt;
   public faCheckCircle = faCheckCircle;
   public faInstagram = faInstagram;
+  public faTrash = faTrash;
 
   constructor() {}
 }
