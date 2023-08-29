@@ -37,8 +37,8 @@
 }
 
 .content-wrapper {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 12px;
+  padding-right: 12px;
   @include for-tablet-landscape-up {
     max-width: 1500px;
     display: flex;

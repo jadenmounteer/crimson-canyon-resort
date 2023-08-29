@@ -15,7 +15,6 @@
             <th scope="col">Departure</th>
             <th scope="col">Private Visit?</th>
             <th scope="col"></th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -32,24 +31,17 @@
             </td>
             <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
             <td>
-              <button
-                type="button"
-                class="btn btn-link"
-                (click)="
-                  reservationsService.viewReservationDetails(reservation)
-                "
-              >
-                View
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                class="btn btn-link cancel-button"
-                (click)="onDeleteReservation(reservation)"
-              >
-                Cancel
-              </button>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  (click)="
+                    reservationsService.viewReservationDetails(reservation)
+                  "
+                >
+                  View
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
