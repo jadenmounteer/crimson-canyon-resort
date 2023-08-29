@@ -77,6 +77,13 @@ const routes: Routes = [
         (m) => m.WhatsHappeningPageModule
       ),
   },
+  {
+    path: 'donut-saturday-game',
+    loadChildren: () =>
+      import('./donut-saturday-game/donut-saturday-game.module').then(
+        (m) => m.DonutSaturdayGameModule
+      ),
+  },
   // {
   //   path: 'exercise-library',
   //   component: ExerciseLibraryComponent,
