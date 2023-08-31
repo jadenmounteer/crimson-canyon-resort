@@ -30,16 +30,6 @@ import { AnnouncementsService } from '../announcements.service';
   styleUrls: ['./add-or-edit-post-modal.component.scss'],
 })
 export class AddOrEditPostModalComponent implements OnInit {
-  @Input() postToEdit: Post | undefined;
-  @Input() title: string = 'Add New Post';
-  protected percentageChanges$!: Observable<number | undefined>;
-
-  protected newPost: Partial<Post> = {
-    userId: this.authService.userId,
-    fileURLs: [],
-    videoURLs: [],
-  };
-
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
@@ -48,7 +38,18 @@ export class AddOrEditPostModalComponent implements OnInit {
     private announcementsService: AnnouncementsService
   ) {}
 
+  @Input() postToEdit: Post | undefined;
+  @Input() title: string = 'Add New Post';
+  protected percentageChanges$!: Observable<number | undefined>;
+
+  protected newPost: Partial<Post> = {
+    userId: '',
+    fileURLs: [],
+    videoURLs: [],
+  };
+
   ngOnInit(): void {
+    this.newPost.userId = this.authService.userId;
     if (this.postToEdit) {
       this.newPost = this.postToEdit;
     }
