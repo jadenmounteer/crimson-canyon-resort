@@ -17,8 +17,8 @@ export class DonutSaturdayGameComponent implements OnInit {
       width: 800,
       scene: [MainScene],
       parent: 'gameContainer',
-      title: 'Grim RPG',
-      backgroundColor: '#18216D',
+      title: 'Donut Saturday',
+      backgroundColor: '#2eb5de',
       physics: {
         default: 'matter',
         matter: {
