@@ -34,7 +34,7 @@ export class DonutSaturdayGameComponent implements OnInit {
 }
 
 class MainScene extends Phaser.Scene {
-  platforms!: Phaser.Physics.Arcade.StaticGroup;
+  ground!: Phaser.Physics.Arcade.StaticGroup;
   constructor() {
     super({ key: 'MainScene' });
   }
@@ -45,11 +45,14 @@ class MainScene extends Phaser.Scene {
       'assets/donut-saturday-game/background/Ground.png'
     );
 
-    this.platforms = this.physics.add.staticGroup();
+    this.ground = this.physics.add.staticGroup();
   }
 
   create() {
-    this.platforms.create(100, 100, 'ground');
+    this.ground.create(200, 475, 'ground');
+    this.ground.create(350, 475, 'ground');
+    this.ground.create(600, 475, 'ground');
+    this.ground.create(600, 475, 'ground');
   }
   override update() {}
 }
