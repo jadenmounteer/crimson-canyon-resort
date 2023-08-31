@@ -49,7 +49,7 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.ground.create(200, 475, 'ground');
+    this.ground.create(190, 475, 'ground');
     this.ground.create(350, 475, 'ground');
     this.ground.create(600, 475, 'ground');
     this.ground.create(600, 475, 'ground');
