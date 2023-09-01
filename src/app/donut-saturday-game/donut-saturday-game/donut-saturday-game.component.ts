@@ -48,7 +48,7 @@ class MainMenu extends Phaser.Scene {
     super({ key: 'MainMenu' });
   }
 
-  toggleFullScreen() {
+  private toggleFullScreen(): void {
     if (this.scale.isFullscreen) {
       this.scale.stopFullscreen();
     } else {
@@ -56,11 +56,19 @@ class MainMenu extends Phaser.Scene {
     }
   }
 
+  private switchToScene2(): void {
+    this.scene.start('Scene2');
+  }
+
   preload() {
     this.load.image(
       'ground',
       'assets/donut-saturday-game/background/Ground.png'
     );
+    this.load.spritesheet('fullscreen', 'assets/images/fullscreen.png', {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
 
     this.ground = this.physics.add.staticGroup();
   }
@@ -72,15 +80,20 @@ class MainMenu extends Phaser.Scene {
     this.ground.create(600, 475, 'ground');
   }
   override update() {
+    // const button = this.add
+    //   .image(800 - 16, 16, 'ground', 0)
+    //   .setOrigin(1, 0)
+    //   .setInteractive();
+
     const button = this.add
-      .image(800 - 16, 16, 'ground', 0)
+      .image(800 - 16, 16, 'fullscreen', 0)
       .setOrigin(1, 0)
       .setInteractive();
 
     button.on(
       'pointerup',
       () => {
-        this.scene.start('Scene2');
+        this.switchToScene2;
         this.toggleFullScreen();
       },
       this
