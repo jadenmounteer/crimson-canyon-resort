@@ -48,6 +48,14 @@ class MainMenu extends Phaser.Scene {
     super({ key: 'MainMenu' });
   }
 
+  toggleFullScreen() {
+    if (this.scale.isFullscreen) {
+      this.scale.stopFullscreen();
+    } else {
+      this.scale.startFullscreen();
+    }
+  }
+
   preload() {
     this.load.image(
       'ground',
@@ -73,6 +81,7 @@ class MainMenu extends Phaser.Scene {
       'pointerup',
       () => {
         this.scene.start('Scene2');
+        this.toggleFullScreen();
       },
       this
     );
