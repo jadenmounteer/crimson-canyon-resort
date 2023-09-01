@@ -13,12 +13,15 @@ export class DonutSaturdayGameComponent implements OnInit {
   constructor() {
     this.config = {
       type: Phaser.AUTO,
-      height: 600,
-      width: 800,
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+      },
       scene: [MainScene],
       parent: 'gameContainer',
       title: 'Donut Saturday',
       backgroundColor: '#2eb5de',
+
       physics: {
         default: 'arcade',
         arcade: {
@@ -28,8 +31,14 @@ export class DonutSaturdayGameComponent implements OnInit {
       },
     };
   }
+
+  public setFullScreen() {
+    // this.phaserGame.scale.startFullscreen();
+  }
+
   ngOnInit() {
     this.phaserGame = new Phaser.Game(this.config);
+    this.setFullScreen();
   }
 }
 
@@ -54,5 +63,10 @@ class MainScene extends Phaser.Scene {
     this.ground.create(600, 475, 'ground');
     this.ground.create(600, 475, 'ground');
   }
-  override update() {}
+  override update() {
+    const button = this.add
+      .image(800 - 16, 16, 'ground', 0)
+      .setOrigin(1, 0)
+      .setInteractive();
+  }
 }

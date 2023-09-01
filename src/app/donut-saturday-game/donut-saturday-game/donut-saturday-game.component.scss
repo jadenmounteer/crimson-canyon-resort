@@ -1,4 +1,37 @@
+@import "../../../styles.scss";
 .game-parent {
+  height: 500px;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.game-page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../../assets/images/donut-saturday-background.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.game-section {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
+// .donut-saturday-title {
+//   border-radius: 50%;
+//   border: 8px solid white;
+//   width: 300px;
+//   max-width: 100%;
+//   height: 100px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-left: auto;
+//   margin-right: auto;
+//   background-color: pink;
+//   margin-top: 12px;
+//   margin-bottom: 12px;
+// }
