@@ -17,7 +17,7 @@ export class DonutSaturdayGameComponent implements OnInit {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-      scene: [MainScene],
+      scene: [MainMenu, Scene2],
       parent: 'gameContainer',
       title: 'Donut Saturday',
       backgroundColor: '#2eb5de',
@@ -42,10 +42,10 @@ export class DonutSaturdayGameComponent implements OnInit {
   }
 }
 
-class MainScene extends Phaser.Scene {
+class MainMenu extends Phaser.Scene {
   ground!: Phaser.Physics.Arcade.StaticGroup;
   constructor() {
-    super({ key: 'MainScene' });
+    super({ key: 'MainMenu' });
   }
 
   preload() {
@@ -68,5 +68,47 @@ class MainScene extends Phaser.Scene {
       .image(800 - 16, 16, 'ground', 0)
       .setOrigin(1, 0)
       .setInteractive();
+
+    button.on(
+      'pointerup',
+      () => {
+        this.scene.start('Scene2');
+      },
+      this
+    );
+  }
+}
+
+class Scene2 extends Phaser.Scene {
+  ground!: Phaser.Physics.Arcade.StaticGroup;
+  constructor() {
+    super({ key: 'Scene2' });
+  }
+
+  preload() {
+    this.load.image(
+      'ground',
+      'assets/donut-saturday-game/background/Ground.png'
+    );
+
+    this.ground = this.physics.add.staticGroup();
+  }
+
+  create() {
+    this.ground.create(190, 475, 'ground');
+  }
+  override update() {
+    const button = this.add
+      .image(800 - 16, 16, 'ground', 0)
+      .setOrigin(1, 0)
+      .setInteractive();
+
+    button.on(
+      'pointerup',
+      () => {
+        this.scene.start('MainMenu');
+      },
+      this
+    );
   }
 }
