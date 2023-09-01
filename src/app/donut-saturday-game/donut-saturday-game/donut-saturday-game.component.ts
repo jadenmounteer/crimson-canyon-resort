@@ -32,13 +32,8 @@ export class DonutSaturdayGameComponent implements OnInit {
     };
   }
 
-  public setFullScreen() {
-    // this.phaserGame.scale.startFullscreen();
-  }
-
   ngOnInit() {
     this.phaserGame = new Phaser.Game(this.config);
-    this.setFullScreen();
   }
 }
 
@@ -80,11 +75,6 @@ class MainMenu extends Phaser.Scene {
     this.ground.create(600, 475, 'ground');
   }
   override update() {
-    // const button = this.add
-    //   .image(800 - 16, 16, 'ground', 0)
-    //   .setOrigin(1, 0)
-    //   .setInteractive();
-
     const button = this.add
       .image(800 - 16, 16, 'fullscreen', 0)
       .setOrigin(1, 0)
