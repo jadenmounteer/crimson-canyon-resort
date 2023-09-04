@@ -51,10 +51,6 @@ class MainMenu extends Phaser.Scene {
     }
   }
 
-  private switchToScene2(): void {
-    this.scene.start('Scene2');
-  }
-
   preload() {
     this.load.image(
       'ground',
@@ -64,31 +60,44 @@ class MainMenu extends Phaser.Scene {
       frameWidth: 64,
       frameHeight: 64,
     });
+    this.load.image(
+      'start-button',
+      'assets/donut-saturday-game/start-button.png'
+    );
 
     this.ground = this.physics.add.staticGroup();
   }
 
   create() {
-    this.ground.create(190, 475, 'ground');
-    this.ground.create(350, 475, 'ground');
-    this.ground.create(600, 475, 'ground');
-    this.ground.create(600, 475, 'ground');
-  }
-  override update() {
-    const button = this.add
+    const fullScreenButton = this.add
       .image(800 - 16, 16, 'fullscreen', 0)
       .setOrigin(1, 0)
       .setInteractive();
 
-    button.on(
+    const startGameButton = this.add
+      .image(500 - 16, 16, 'start-button', 0)
+      .setOrigin(1, 0)
+      .setInteractive();
+
+    startGameButton.setScale(0.5);
+
+    fullScreenButton.on(
       'pointerup',
       () => {
-        this.switchToScene2;
         this.toggleFullScreen();
       },
       this
     );
+
+    startGameButton.on(
+      'pointerup',
+      () => {
+        this.scene.start('Scene2');
+      },
+      this
+    );
   }
+  override update() {}
 }
 
 class Scene2 extends Phaser.Scene {
@@ -107,7 +116,7 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
-    this.ground.create(190, 475, 'ground');
+    // this.ground.create(190, 475, 'ground');
   }
   override update() {
     const button = this.add
