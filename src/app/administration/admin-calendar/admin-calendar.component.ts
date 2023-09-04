@@ -68,7 +68,7 @@ export class AdminCalendarComponent implements OnInit {
     }
   }
 
-  handleEventClick(clickInfo: EventClickArg) {
+  private promptToDeleteEvent(clickInfo: EventClickArg) {
     if (
       confirm(
         `Are you sure you want to delete the event '${clickInfo.event.title}'`
@@ -76,6 +76,10 @@ export class AdminCalendarComponent implements OnInit {
     ) {
       clickInfo.event.remove();
     }
+  }
+
+  handleEventClick(clickInfo: EventClickArg) {
+    this.promptToDeleteEvent(clickInfo);
   }
 
   handleEvents(events: EventApi[]) {
