@@ -80,7 +80,7 @@ export class AdminCalendarComponent implements OnInit {
     calendarOptions.weekends = !calendarOptions.weekends;
   }
 
-  handleDateSelect(selectInfo: DateSelectArg) {
+  private createNewEvent(selectInfo: DateSelectArg) {
     const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
@@ -96,6 +96,8 @@ export class AdminCalendarComponent implements OnInit {
       });
     }
   }
+
+  handleDateSelect(selectInfo: DateSelectArg) {}
 
   private viewEvent(clickInfo: EventClickArg) {
     const reservation = this.reservations.find(
