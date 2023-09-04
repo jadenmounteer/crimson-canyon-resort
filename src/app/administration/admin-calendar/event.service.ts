@@ -8,12 +8,34 @@ import { Reservation } from 'src/app/types/reservation';
 export class EventService {
   constructor() {}
 
+  private getArrivalDate(reservation: Reservation): Date {
+    const arrivalDate = new Date(
+      reservation.arrivalDate.year,
+      reservation.arrivalDate.month - 1,
+      reservation.arrivalDate.day
+    );
+
+    return arrivalDate;
+  }
+
+  private getDepartureDate(reservation: Reservation): Date {
+    const departureDate = new Date(
+      reservation.departureDate.year,
+      reservation.departureDate.month - 1,
+      reservation.departureDate.day
+    );
+
+    return departureDate;
+  }
+
   public convertReservationToEvent(reservation: Reservation): EventInput {
     const event: EventInput = {
       id: reservation.id,
       title: reservation.familyName,
-      start: new Date().toISOString().replace(/T.*$/, ''),
-      end: new Date().toISOString().replace(/T.*$/, '') + 'T03:00:00',
+      start: this.getArrivalDate(reservation).toISOString().replace(/T.*$/, ''),
+      end:
+        this.getDepartureDate(reservation).toISOString().replace(/T.*$/, '') +
+        'T03:00:00',
     };
 
     return event;
