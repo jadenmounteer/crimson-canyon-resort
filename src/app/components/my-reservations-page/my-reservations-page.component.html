@@ -7,7 +7,7 @@
   </div>
 
   <div pageContent class="page-content-wrapper">
-    <div class="card">
+    <div class="card" *ngIf="myReservations.length > 0">
       <table class="table">
         <thead>
           <tr>
@@ -46,6 +46,23 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="card" *ngIf="myReservations.length <= 0">
+      <app-animation [animationKey]="'palmTreeAnimation'"> </app-animation>
+
+      <div class="page-content">
+        <h4>You don't have any reservations</h4>
+        <span class="buttons-menu">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="router.navigate(['reserve-trip-page'])"
+          >
+            Book Now
+          </button>
+        </span>
+      </div>
     </div>
   </div>
 </app-page-wrapper>

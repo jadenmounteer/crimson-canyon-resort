@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-reservations-page',
@@ -17,7 +18,8 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
 
   constructor(
     protected reservationsService: ReservationsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
