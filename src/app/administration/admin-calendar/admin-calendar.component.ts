@@ -97,18 +97,18 @@ export class AdminCalendarComponent implements OnInit {
     }
   }
 
-  private promptToDeleteEvent(clickInfo: EventClickArg) {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`
-      )
-    ) {
-      clickInfo.event.remove();
+  private viewEvent(clickInfo: EventClickArg) {
+    const reservation = this.reservations.find(
+      (reservation) => reservation.id === clickInfo.event._def.publicId
+    );
+
+    if (reservation) {
+      this.reservationsService.viewReservationDetails(reservation);
     }
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    this.promptToDeleteEvent(clickInfo);
+    this.viewEvent(clickInfo);
   }
 
   handleEvents(events: EventApi[]) {
