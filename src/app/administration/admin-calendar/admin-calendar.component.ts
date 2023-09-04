@@ -46,7 +46,7 @@ export class AdminCalendarComponent implements OnInit {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    eventService: EventService,
+    private eventService: EventService,
     protected reservationsService: ReservationsService
   ) {}
 
@@ -54,7 +54,9 @@ export class AdminCalendarComponent implements OnInit {
     this.reservationsService.allReservationsChanged.subscribe(
       (reservations) => {
         this.reservations = reservations;
-        // FIXME convert the reservations to events
+
+        this.calendarOptions.initialEvents =
+          this.eventService.createListOfEvents(reservations);
 
         this.contentLoaded = true;
       }
