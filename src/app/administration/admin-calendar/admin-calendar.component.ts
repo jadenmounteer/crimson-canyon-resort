@@ -8,6 +8,7 @@ import {
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import interactionPlugin from '@fullcalendar/interaction';
+import { EventService } from './event.service';
 
 @Component({
   selector: 'app-admin-calendar',
@@ -38,7 +39,10 @@ export class AdminCalendarComponent implements OnInit {
   */
   };
   currentEvents: EventApi[] = [];
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    eventService: EventService
+  ) {}
 
   ngOnInit(): void {}
 
