@@ -1,6 +1,10 @@
-<full-calendar [options]="calendarOptions">
+<full-calendar [options]="calendarOptions" *ngIf="contentLoaded">
   <ng-template #eventContent let-arg>
     <b>{{ arg.timeText }}</b>
     <i>{{ arg.event.title }}</i>
   </ng-template>
 </full-calendar>
+
+<span class="loading-icon" *ngIf="!contentLoaded">
+  <app-loading-spinner></app-loading-spinner>
+</span>

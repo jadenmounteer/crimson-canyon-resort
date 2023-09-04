@@ -9,6 +9,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventService } from './event.service';
+import { ReservationsService } from 'src/app/services/reservations.service';
+import { Reservation } from 'src/app/types/reservation';
 
 @Component({
   selector: 'app-admin-calendar',
@@ -39,12 +41,27 @@ export class AdminCalendarComponent implements OnInit {
   */
   };
   currentEvents: EventApi[] = [];
+  protected reservations: Array<Reservation> = [];
+  protected contentLoaded: boolean = false;
+
   constructor(
     private changeDetector: ChangeDetectorRef,
-    eventService: EventService
+    eventService: EventService,
+    protected reservationsService: ReservationsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.reservationsService.allReservationsChanged.subscribe(
+      (reservations) => {
+        this.reservations = reservations;
+        // FIXME convert the reservations to events
+
+        this.contentLoaded = true;
+      }
+    );
+
+    this.reservationsService.fetchAllReservations();
+  }
 
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
