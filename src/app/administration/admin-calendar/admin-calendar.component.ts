@@ -58,7 +58,7 @@ export class AdminCalendarComponent implements OnInit {
       weekends: true,
       events: events,
       handleWindowResize: true,
-      editable: true,
+      editable: false,
       selectable: true,
       select: this.handleDateSelect.bind(this),
       eventClick: this.handleEventClick.bind(this),
