@@ -4,6 +4,7 @@ import {
   DateSelectArg,
   EventApi,
   EventClickArg,
+  EventInput,
 } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
@@ -23,23 +24,7 @@ export class AdminCalendarComponent implements OnInit {
    * Here is the documentation for Angular Full Calendar: https://fullcalendar.io/docs/angular
    * Here is an example project: https://github.com/fullcalendar/fullcalendar-examples
    */
-  calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin, interactionPlugin],
-    initialView: 'dayGridMonth',
-    weekends: true,
-    events: INITIAL_EVENTS,
-    handleWindowResize: true,
-    editable: true,
-    selectable: true,
-    select: this.handleDateSelect.bind(this),
-    eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this),
-    /* you can update a remote database when these fire:
-  eventAdd:
-  eventChange:
-  eventRemove:
-  */
-  };
+  calendarOptions!: CalendarOptions;
   currentEvents: EventApi[] = [];
   protected reservations: Array<Reservation> = [];
   protected contentLoaded: boolean = false;
@@ -55,14 +40,35 @@ export class AdminCalendarComponent implements OnInit {
       (reservations) => {
         this.reservations = reservations;
 
-        this.calendarOptions.initialEvents =
-          this.eventService.createListOfEvents(reservations);
+        const events = this.eventService.createListOfEvents(reservations);
+
+        this.initializeCalendarOptions(events);
 
         this.contentLoaded = true;
       }
     );
 
     this.reservationsService.fetchAllReservations();
+  }
+
+  private initializeCalendarOptions(events: EventInput[]) {
+    this.calendarOptions = {
+      plugins: [dayGridPlugin, interactionPlugin],
+      initialView: 'dayGridMonth',
+      weekends: true,
+      events: events,
+      handleWindowResize: true,
+      editable: true,
+      selectable: true,
+      select: this.handleDateSelect.bind(this),
+      eventClick: this.handleEventClick.bind(this),
+      eventsSet: this.handleEvents.bind(this),
+      /* you can update a remote database when these fire:
+    eventAdd:
+    eventChange:
+    eventRemove:
+    */
+    };
   }
 
   handleCalendarToggle() {
