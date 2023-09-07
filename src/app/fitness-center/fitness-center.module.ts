@@ -6,9 +6,10 @@ import { FitnessCenterPageComponent } from './fitness-center-page/fitness-center
 import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { LeaderboardSectionComponent } from './leaderboard-section/leaderboard-section.component';
 
 @NgModule({
-  declarations: [FitnessCenterPageComponent],
+  declarations: [FitnessCenterPageComponent, LeaderboardSectionComponent],
   imports: [
     CommonModule,
     FitnessCenterRoutingModule,
