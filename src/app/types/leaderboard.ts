@@ -3,6 +3,7 @@ export interface LeaderBoard {
   createdBy: string;
   name: string;
   leaderBoardEntry: LeaderBoardEntry[];
+  active: boolean;
 }
 
 export interface LeaderBoardEntry {
