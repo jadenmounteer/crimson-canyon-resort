@@ -16,6 +16,13 @@
     <h5>It looks like there are no leader boards created.</h5>
   </div>
 
+  <div
+    class="leader-boards-list"
+    *ngFor="let leaderBoard of leaderBoards$ | async"
+  >
+    <span>{{ leaderBoard.name }}</span>
+  </div>
+
   <button class="btn btn-secondary" (click)="createNewLeaderBoard()">
     Create New Leader Board
   </button>
