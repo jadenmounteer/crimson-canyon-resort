@@ -4,6 +4,7 @@ import { AddOrEditLeaderBoardModalComponent } from '../add-or-edit-leader-board-
 import { LeaderBoard } from 'src/app/types/leaderboard';
 import { LeaderBoardService } from '../leaderBoard.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/components/auth/auth.service';
 
 @Component({
   selector: 'app-leaderboard-section',
@@ -13,13 +14,19 @@ import { Observable } from 'rxjs';
 export class LeaderboardSectionComponent implements OnInit {
   protected loading: boolean = true;
   protected leaderBoards$!: Observable<LeaderBoard[]>;
+  protected userId!: string;
   constructor(
     private modalService: NgbModal,
-    private leaderBoardService: LeaderBoardService
+    private leaderBoardService: LeaderBoardService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadLeaderBoards();
+
+    if (this.authService.userId) {
+      this.userId = this.authService.userId;
+    }
   }
 
   private loadLeaderBoards(): void {
