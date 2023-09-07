@@ -10,4 +10,5 @@ export type AnimationKeys =
   | 'cactusLoadingAnimation'
   | 'nightFewCloudsAnimation'
   | 'nightClearSkyAnimation'
-  | 'fitness';
+  | 'fitness'
+  | 'exercising';

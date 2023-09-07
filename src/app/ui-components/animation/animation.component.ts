@@ -54,6 +54,11 @@ export class AnimationComponent implements OnInit {
       'fitness',
       'https://lottie.host/f6ed9f15-267d-4fc9-8ceb-07f2cd9125aa/LVHy5otyar.json',
     ],
+
+    [
+      'exercising',
+      'https://lottie.host/d2104479-4176-417d-8747-455e4919eee5/tsTpvXtniS.json',
+    ],
   ]);
 
   @Input() animationKey!: AnimationKeys;
