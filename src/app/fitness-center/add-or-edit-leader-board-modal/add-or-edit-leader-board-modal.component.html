@@ -26,6 +26,16 @@
         {{ errorMessage }}
       </ngb-alert></span
     >
+
+    <label>Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [(ngModel)]="newLeaderBoard.name"
+      name="name"
+      required
+    />
   </div>
   <div class="modal-footer">
     <button [disabled]="!f.valid" type="submit" class="btn btn-primary">

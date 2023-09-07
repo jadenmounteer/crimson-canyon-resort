@@ -12,7 +12,7 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
   @Input() title: string = 'Add New Leader Board 🏋️‍♀️';
   @Input() leaderBoardToEdit: LeaderBoard | undefined;
   protected loading: boolean = true;
-  protected displayErrorMsg: boolean = true;
+  protected displayErrorMsg: boolean = false;
   protected errorMessage: string =
     'Unable to add leader board. Please reach out to Jaden for help! 😭';
 
@@ -31,6 +31,9 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.newLeaderBoard.userId = this.authService.userId;
+    if (this.authService.userDisplayName) {
+      this.newLeaderBoard.createdBy = this.authService.userDisplayName;
+    }
     if (this.leaderBoardToEdit) {
       this.newLeaderBoard = this.leaderBoardToEdit;
     }
