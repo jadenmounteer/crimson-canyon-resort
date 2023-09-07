@@ -1,13 +1,13 @@
 export interface LeaderBoard {
-  uid: string;
+  userId: string;
   createdBy: string;
   name: string;
-  leaderBoardEntry: LeaderBoardEntry[];
+  leaderBoardEntries: LeaderBoardEntry[];
   active: boolean;
 }
 
 export interface LeaderBoardEntry {
-  uid: string;
+  userId: string;
   individualName: string;
   date: Date;
   score: string;

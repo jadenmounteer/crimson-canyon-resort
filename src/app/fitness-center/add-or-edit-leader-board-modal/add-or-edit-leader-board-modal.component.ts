@@ -10,6 +10,15 @@ import { LeaderBoard } from 'src/app/types/leaderboard';
 export class AddOrEditLeaderBoardModalComponent implements OnInit {
   @Input() title: string = 'Add New Leader Board 🏋️‍♀️';
   @Input() leaderBoardToEdit: LeaderBoard | undefined;
+
+  protected newLeaderBoard: Partial<LeaderBoard> = {
+    userId: '',
+    createdBy: '',
+    name: '',
+    leaderBoardEntries: [],
+    active: true,
+  };
+
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {}
