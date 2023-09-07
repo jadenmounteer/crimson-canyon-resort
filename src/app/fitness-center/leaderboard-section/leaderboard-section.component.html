@@ -1,7 +1,11 @@
 <div class="card leader-boards-card">
   <h4>Leader Boards</h4>
 
-  <div class="no-leaderboards-section">
+  <span class="loading-icon" *ngIf="loading">
+    <app-loading-spinner></app-loading-spinner
+  ></span>
+
+  <div class="no-leaderboards-section" *ngIf="!loading">
     <div class="animation-wrapper">
       <app-animation [animationKey]="'fitness'" animationSize="small">
       </app-animation>
