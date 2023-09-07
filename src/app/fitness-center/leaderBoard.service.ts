@@ -23,9 +23,7 @@ export class LeaderBoardService {
     leaderBoardId: string
   ) {
     const createLeaderBoardObs$ = from(
-      this.firestore
-        .doc(`fitness-center/leader-boards/${leaderBoardId}`)
-        .set(newLeaderBoard)
+      this.firestore.doc(`leader-boards/${leaderBoardId}`).set(newLeaderBoard)
     );
 
     return createLeaderBoardObs$.pipe(
