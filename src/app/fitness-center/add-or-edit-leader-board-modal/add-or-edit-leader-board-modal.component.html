@@ -47,7 +47,12 @@
     ></textarea>
   </div>
   <div class="modal-footer">
-    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
+    <button
+      [disabled]="!f.valid"
+      *ngIf="!leaderBoardToEdit"
+      type="submit"
+      class="btn btn-primary"
+    >
       Submit
     </button>
     <button

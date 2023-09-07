@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { LeaderBoard } from 'src/app/types/leaderboard';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-add-or-edit-leader-board-modal',
@@ -27,17 +28,39 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private authService: AuthService
+    private authService: AuthService,
+    private angularFirestore: AngularFirestore
   ) {}
 
   ngOnInit(): void {
     this.newLeaderBoard.userId = this.authService.userId;
-    if (this.authService.userDisplayName) {
-      this.newLeaderBoard.createdBy = this.authService.userDisplayName;
-    }
+
     if (this.leaderBoardToEdit) {
       this.newLeaderBoard = this.leaderBoardToEdit;
     }
     this.loading = false;
+  }
+
+  protected onCreateLeaderBoard() {
+    const newLeaderBoardId = this.angularFirestore.createId();
+
+    this.newLeaderBoard.createdDate = Date.now();
+
+    if (this.authService.userDisplayName) {
+      this.newLeaderBoard.createdBy = this.authService.userDisplayName;
+    }
+
+    // this.announcementsService
+    //   .createPost(this.newPost, newLeaderBoardId)
+    //   .pipe(
+    //     tap((post) => {
+    //       this.activeModal.close('success');
+    //     }),
+    //     catchError((err) => {
+    //       this.displayErrorMsg = true;
+    //       return throwError(err);
+    //     })
+    //   )
+    //   .subscribe();
   }
 }

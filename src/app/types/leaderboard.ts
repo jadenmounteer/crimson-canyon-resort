@@ -5,6 +5,7 @@ export interface LeaderBoard {
   description: string | null;
   leaderBoardEntries: LeaderBoardEntry[];
   active: boolean;
+  createdDate: number;
 }
 
 export interface LeaderBoardEntry {
