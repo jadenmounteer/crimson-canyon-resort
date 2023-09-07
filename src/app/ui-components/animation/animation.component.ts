@@ -52,7 +52,7 @@ export class AnimationComponent implements OnInit {
     ],
     [
       'fitness',
-      'https://lottie.host/?file=f6ed9f15-267d-4fc9-8ceb-07f2cd9125aa/LVHy5otyar.json',
+      'https://lottie.host/f6ed9f15-267d-4fc9-8ceb-07f2cd9125aa/LVHy5otyar.json',
     ],
   ]);
 
