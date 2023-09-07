@@ -22,7 +22,11 @@
         <h6>{{ leaderBoard.name }}</h6>
 
         <p>{{ leaderBoard.description }}</p>
-        <button *ngIf="leaderBoard.userId === userId" class="btn btn-primary">
+        <button
+          *ngIf="leaderBoard.userId === userId"
+          class="btn btn-primary"
+          (click)="editLeaderBoard(leaderBoard)"
+        >
           Edit
         </button>
       </div>
