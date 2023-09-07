@@ -7,9 +7,10 @@ import { UiComponentsModule } from '../ui-components/ui-components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LeaderboardSectionComponent } from './leaderboard-section/leaderboard-section.component';
+import { AddOrEditLeaderBoardModalComponent } from './add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
 
 @NgModule({
-  declarations: [FitnessCenterPageComponent, LeaderboardSectionComponent],
+  declarations: [FitnessCenterPageComponent, LeaderboardSectionComponent, AddOrEditLeaderBoardModalComponent],
   imports: [
     CommonModule,
     FitnessCenterRoutingModule,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddOrEditLeaderBoardModalComponent } from '../add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
 
 @Component({
   selector: 'app-leaderboard-section',
@@ -6,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaderboard-section.component.scss'],
 })
 export class LeaderboardSectionComponent implements OnInit {
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {}
 
   protected createNewLeaderBoard(): void {
-    console.log('createNewLeaderBoard');
+    const modalRef = this.modalService.open(AddOrEditLeaderBoardModalComponent);
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        // this.addedNewPost.emit();
+      }
+    });
   }
 }
