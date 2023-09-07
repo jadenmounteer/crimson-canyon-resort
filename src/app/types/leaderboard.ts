@@ -2,6 +2,7 @@ export interface LeaderBoard {
   userId: string;
   createdBy: string;
   name: string;
+  description: string | null;
   leaderBoardEntries: LeaderBoardEntry[];
   active: boolean;
 }

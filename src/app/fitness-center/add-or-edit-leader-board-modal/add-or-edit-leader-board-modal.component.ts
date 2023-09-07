@@ -22,6 +22,7 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
     name: '',
     leaderBoardEntries: [],
     active: true,
+    description: null,
   };
 
   constructor(
