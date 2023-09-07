@@ -43,6 +43,15 @@ export class LeaderBoardService {
       .pipe(map((result) => convertSnaps<LeaderBoard>(result)));
   }
 
+  public updateLeaderBoard(
+    leaderBoardId: string,
+    changes: Partial<LeaderBoard>
+  ): Observable<any> {
+    return from(
+      this.firestore.doc(`leader-boards/${leaderBoardId}`).update(changes)
+    );
+  }
+
   // public fetchRecentPosts(): Observable<Post[]> {
   //   return this.firestore
   //     .collection('posts', (ref) => ref.orderBy('createdDate', 'desc').limit(1))
@@ -59,9 +68,5 @@ export class LeaderBoardService {
 
   // public deletePost(postId: string): Observable<void> {
   //   return from(this.firestore.doc(`posts/${postId}`).delete());
-  // }
-
-  // public updatePost(postId: string, changes: Partial<Post>): Observable<any> {
-  //   return from(this.firestore.doc(`posts/${postId}`).update(changes));
   // }
 }

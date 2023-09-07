@@ -47,7 +47,7 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
     this.newLeaderBoard.userId = this.authService.userId;
 
     if (this.leaderBoardToEdit) {
-      this.newLeaderBoard = this.leaderBoardToEdit;
+      this.newLeaderBoard = { ...this.leaderBoardToEdit };
     }
     this.loading = false;
   }
@@ -74,5 +74,15 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  protected updateLeaderBoard(): void {
+    if (this.newLeaderBoard.id) {
+      this.leaderBoardService
+        .updateLeaderBoard(this.newLeaderBoard.id, this.newLeaderBoard)
+        .subscribe(() => {
+          this.activeModal.close('success');
+        });
+    }
   }
 }

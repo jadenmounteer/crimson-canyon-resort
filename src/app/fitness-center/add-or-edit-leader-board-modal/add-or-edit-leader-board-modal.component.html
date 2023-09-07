@@ -60,6 +60,7 @@
       [disabled]="!f.valid"
       class="btn btn-primary"
       *ngIf="leaderBoardToEdit"
+      (click)="updateLeaderBoard()"
     >
       Save Changes
     </button>

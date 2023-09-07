@@ -1,4 +1,5 @@
 export interface LeaderBoard {
+  id: string;
   userId: string;
   createdBy: string;
   name: string;
@@ -9,6 +10,7 @@ export interface LeaderBoard {
 }
 
 export interface LeaderBoardEntry {
+  id: string;
   userId: string;
   individualName: string;
   date: Date;

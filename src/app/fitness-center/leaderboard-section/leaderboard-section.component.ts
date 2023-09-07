@@ -41,7 +41,7 @@ export class LeaderboardSectionComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result === 'success') {
-        // this.addedNewPost.emit();
+        this.loadLeaderBoards();
       }
     });
   }
