@@ -64,5 +64,14 @@
     >
       Save Changes
     </button>
+
+    <button
+      [disabled]="!f.valid"
+      class="btn btn-danger"
+      *ngIf="leaderBoardToEdit"
+      (click)="onDeleteLeaderBoard(leaderBoardToEdit)"
+    >
+      Delete Leader Board
+    </button>
   </div>
 </form>

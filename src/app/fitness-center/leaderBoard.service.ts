@@ -52,6 +52,10 @@ export class LeaderBoardService {
     );
   }
 
+  public deleteLeaderBoard(leaderBoardId: string): Observable<void> {
+    return from(this.firestore.doc(`leader-boards/${leaderBoardId}`).delete());
+  }
+
   // public fetchRecentPosts(): Observable<Post[]> {
   //   return this.firestore
   //     .collection('posts', (ref) => ref.orderBy('createdDate', 'desc').limit(1))
@@ -64,9 +68,5 @@ export class LeaderBoardService {
   //     .collection('users', (ref) => ref.where('userId', '==', userId))
   //     .get()
   //     .pipe(map((result) => convertSnaps<User>(result)));
-  // }
-
-  // public deletePost(postId: string): Observable<void> {
-  //   return from(this.firestore.doc(`posts/${postId}`).delete());
   // }
 }

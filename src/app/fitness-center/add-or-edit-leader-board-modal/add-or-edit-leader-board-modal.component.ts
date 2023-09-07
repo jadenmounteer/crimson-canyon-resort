@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { LeaderBoard } from 'src/app/types/leaderboard';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -13,6 +13,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
+import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-add-or-edit-leader-board-modal',
@@ -40,7 +41,8 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private authService: AuthService,
     private angularFirestore: AngularFirestore,
-    private leaderBoardService: LeaderBoardService
+    private leaderBoardService: LeaderBoardService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -84,5 +86,28 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
           this.activeModal.close('success');
         });
     }
+  }
+
+  protected onDeleteLeaderBoard(leaderBoard: LeaderBoard) {
+    const leaderBoardId = leaderBoard.id;
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Are you sure you want to delete the ${leaderBoard.name} leader board?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.leaderBoardService
+          .deleteLeaderBoard(leaderBoardId)
+          .pipe(
+            tap(() => {
+              this.activeModal.close('success');
+            }),
+            catchError((err) => {
+              this.displayErrorMsg = true;
+              this.errorMessage = err;
+              return throwError(err);
+            })
+          )
+          .subscribe();
+      }
+    });
   }
 }
