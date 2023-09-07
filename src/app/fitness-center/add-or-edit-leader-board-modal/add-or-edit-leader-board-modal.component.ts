@@ -12,6 +12,9 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
   @Input() title: string = 'Add New Leader Board 🏋️‍♀️';
   @Input() leaderBoardToEdit: LeaderBoard | undefined;
   protected loading: boolean = true;
+  protected displayErrorMsg: boolean = true;
+  protected errorMessage: string =
+    'Unable to add leader board. Please reach out to Jaden for help! 😭';
 
   protected newLeaderBoard: Partial<LeaderBoard> = {
     userId: '',
