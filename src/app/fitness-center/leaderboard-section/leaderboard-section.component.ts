@@ -30,6 +30,7 @@ export class LeaderboardSectionComponent implements OnInit {
   }
 
   private loadLeaderBoards(): void {
+    this.loading = true;
     this.leaderBoards$ = this.leaderBoardService.fetchLeaderBoards();
     this.loading = false;
   }
