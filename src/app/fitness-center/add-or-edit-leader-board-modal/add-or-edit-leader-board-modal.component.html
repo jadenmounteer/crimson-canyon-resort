@@ -9,7 +9,11 @@
   ></button>
 </div>
 
-<form #f="ngForm">
+<span class="loading-icon" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+</span>
+
+<form #f="ngForm" *ngIf="!loading">
   <div class="modal-body"></div>
   <div class="modal-footer">
     <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
