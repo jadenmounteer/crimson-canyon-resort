@@ -17,9 +17,13 @@
   </div>
 
   <div class="leader-boards-list">
-    <div *ngFor="let leaderBoard of leaderBoards$ | async">
-      <h6>{{ leaderBoard.name }}</h6>
-      <p>{{ leaderBoard.description }}</p>
+    <div *ngFor="let leaderBoard of leaderBoards$ | async" class="leader-board">
+      <div class="name-section">
+        <h6>{{ leaderBoard.name }}</h6>
+
+        <p>{{ leaderBoard.description }}</p>
+        <button class="btn btn-primary">Edit</button>
+      </div>
 
       <div class="card"></div>
     </div>
