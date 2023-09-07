@@ -50,6 +50,10 @@ export class AnimationComponent implements OnInit {
       'nightClearSkyAnimation',
       'https://assets3.lottiefiles.com/temp/lf20_y6mY2A.json',
     ],
+    [
+      'fitness',
+      'https://lottie.host/?file=f6ed9f15-267d-4fc9-8ceb-07f2cd9125aa/LVHy5otyar.json',
+    ],
   ]);
 
   @Input() animationKey!: AnimationKeys;

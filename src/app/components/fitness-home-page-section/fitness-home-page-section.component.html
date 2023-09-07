@@ -1,0 +1,14 @@
+<span class="loading-icon" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+</span>
+
+<span *ngIf="!loading">
+  <h2 class="page-title">Work out at the fitness center.</h2>
+
+  <button
+    class="btn btn-primary btn-lg btn-block see-more-button"
+    (click)="router.navigate(['fitness-center'])"
+  >
+    Check it out 🏋️‍♀️
+  </button>
+</span>

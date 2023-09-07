@@ -22,6 +22,9 @@
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>
 
+      <app-fitness-home-page-section *ngIf="isAuth">
+      </app-fitness-home-page-section>
+
       <div class="centered">
         <app-weather></app-weather>
       </div>

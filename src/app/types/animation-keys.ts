@@ -9,4 +9,5 @@ export type AnimationKeys =
   | 'stormAnimation'
   | 'cactusLoadingAnimation'
   | 'nightFewCloudsAnimation'
-  | 'nightClearSkyAnimation';
+  | 'nightClearSkyAnimation'
+  | 'fitness';
