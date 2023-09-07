@@ -36,12 +36,12 @@ export class LeaderBoardService {
     );
   }
 
-  // public fetchPosts(): Observable<Post[]> {
-  //   return this.firestore
-  //     .collection('posts', (ref) => ref.orderBy('createdDate', 'desc'))
-  //     .get()
-  //     .pipe(map((result) => convertSnaps<Post>(result)));
-  // }
+  public fetchLeaderBoards(): Observable<LeaderBoard[]> {
+    return this.firestore
+      .collection('leader-boards', (ref) => ref.orderBy('createdDate', 'desc'))
+      .get()
+      .pipe(map((result) => convertSnaps<LeaderBoard>(result)));
+  }
 
   // public fetchRecentPosts(): Observable<Post[]> {
   //   return this.firestore
