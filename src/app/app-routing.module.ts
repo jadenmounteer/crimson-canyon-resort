@@ -84,6 +84,13 @@ const routes: Routes = [
         (m) => m.DonutSaturdayGameModule
       ),
   },
+  {
+    path: 'fitness-center',
+    loadChildren: () =>
+      import('./fitness-center/fitness-center.module').then(
+        (m) => m.FitnessCenterModule
+      ),
+  },
   // {
   //   path: 'exercise-library',
   //   component: ExerciseLibraryComponent,

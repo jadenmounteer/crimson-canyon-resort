@@ -32,6 +32,7 @@ import { WhatsHappeningHomePageSectionComponent } from './components/whats-happe
 import { WhatsHappeningPageModule } from './whats-happening-page/whats-happening-page.module';
 import { AnnouncementsSectionComponent } from './components/announcements-section/announcments-section.component';
 import { InstagramFeedModule } from './components/instagram-feed/instagram-feed.module';
+import { FitnessCenterModule } from './fitness-center/fitness-center.module';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { InstagramFeedModule } from './components/instagram-feed/instagram-feed.
     UiComponentsModule,
     WhatsHappeningPageModule,
     InstagramFeedModule,
+    FitnessCenterModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
