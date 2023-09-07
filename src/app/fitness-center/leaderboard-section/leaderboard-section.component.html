@@ -5,7 +5,10 @@
     <app-loading-spinner></app-loading-spinner
   ></span>
 
-  <div class="no-leaderboards-section" *ngIf="!loading">
+  <div
+    class="no-leaderboards-section"
+    *ngIf="!loading && !(leaderBoards$ | async)?.length"
+  >
     <div class="animation-wrapper">
       <app-animation [animationKey]="'fitness'" animationSize="small">
       </app-animation>

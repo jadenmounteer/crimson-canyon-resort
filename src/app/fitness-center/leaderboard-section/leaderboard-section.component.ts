@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditLeaderBoardModalComponent } from '../add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
 import { LeaderBoard } from 'src/app/types/leaderboard';
 import { LeaderBoardService } from '../leaderBoard.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-leaderboard-section',
@@ -11,13 +12,18 @@ import { LeaderBoardService } from '../leaderBoard.service';
 })
 export class LeaderboardSectionComponent implements OnInit {
   protected loading: boolean = true;
+  protected leaderBoards$!: Observable<LeaderBoard[]>;
   constructor(
     private modalService: NgbModal,
     private leaderBoardService: LeaderBoardService
   ) {}
 
   ngOnInit(): void {
-    this.leaderBoardService.fetchLeaderBoards();
+    this.loadLeaderBoards();
+  }
+
+  private loadLeaderBoards(): void {
+    this.leaderBoards$ = this.leaderBoardService.fetchLeaderBoards();
     this.loading = false;
   }
 
