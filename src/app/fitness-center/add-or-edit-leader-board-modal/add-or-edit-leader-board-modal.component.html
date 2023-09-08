@@ -27,24 +27,47 @@
       </ngb-alert></span
     >
 
-    <label>*Name </label>
-    <input
-      type="text"
-      class="form-control"
-      id="name"
-      [(ngModel)]="newLeaderBoard.name"
-      name="name"
-      required
-    />
+    <div class="form-group">
+      <label>*Name </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="newLeaderBoard.name"
+        name="name"
+        required
+      />
+    </div>
 
-    <label>Description (Optional)</label>
-    <textarea
-      class="form-control"
-      id="description"
-      rows="3"
-      [(ngModel)]="newLeaderBoard.description"
-      name="description"
-    ></textarea>
+    <div class="form-group">
+      <label>Description (Optional)</label>
+      <textarea
+        class="form-control"
+        id="description"
+        rows="3"
+        [(ngModel)]="newLeaderBoard.description"
+        name="description"
+      ></textarea>
+    </div>
+
+    <!-- uOfM dropdown-->
+    <div class="form-group">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Toggle dropdown
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button

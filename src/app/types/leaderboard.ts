@@ -7,6 +7,8 @@ export interface LeaderBoard {
   leaderBoardEntries: LeaderBoardEntry[];
   active: boolean;
   createdDate: number;
+  unitOfMeasure: LeaderBoardUOfM;
+  sortEntriesFromHighestToLowest: boolean;
 }
 
 export interface LeaderBoardEntry {
@@ -16,3 +18,12 @@ export interface LeaderBoardEntry {
   date: Date;
   score: string;
 }
+
+export type LeaderBoardUOfM =
+  | 'minutes'
+  | 'seconds'
+  | 'meters'
+  | 'miles'
+  | 'pounds'
+  | 'kilos'
+  | 'reps';

@@ -35,6 +35,8 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
     leaderBoardEntries: [],
     active: true,
     description: null,
+    sortEntriesFromHighestToLowest: true,
+    unitOfMeasure: 'reps',
   };
 
   constructor(
