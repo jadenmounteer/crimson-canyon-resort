@@ -33,8 +33,13 @@ export class AddOrEditEntryModalComponent implements OnInit {
     this.loading = false;
   }
 
-  private checkIfEntryExists() {
-    // TODO check if an entry exists for this user on this leaderboard
-    // TODO set the entry data and title accordingly
+  private checkIfEntryExists(): void {
+    this.leaderBoard.leaderBoardEntries.forEach((entry) => {
+      if (entry.userId === this.authService.userId) {
+        this.newEntry = { ...entry };
+        this.title = 'Update Your Leader Board Entry 🏋️‍♀️';
+        return;
+      }
+    });
   }
 }
