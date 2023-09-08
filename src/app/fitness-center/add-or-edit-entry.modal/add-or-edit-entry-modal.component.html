@@ -26,6 +26,41 @@
         {{ errorMessage }}
       </ngb-alert></span
     >
+
+    <div class="form-group">
+      <label
+        >What is your (new) score in {{ leaderBoard.unitOfMeasure }}?</label
+      >
+      <input
+        type="number"
+        class="form-control"
+        id="score"
+        [(ngModel)]="newEntry.score"
+        name="score"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <div class="date-field">
+        <input
+          type="text"
+          ngbDatepicker
+          required
+          name="entryDate"
+          #entryDate="ngbDatepicker"
+          [(ngModel)]="newEntry.date"
+          class="form-control"
+          (click)="entryDate.toggle()"
+        />
+        <fa-icon
+          class="calendar-button"
+          [icon]="icon.faCalendarAlt"
+          (click)="entryDate.toggle()"
+        ></fa-icon>
+      </div>
+    </div>
   </div>
 
   <div class="modal-footer">

@@ -3,6 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LeaderBoard, LeaderBoardEntry } from 'src/app/types/leaderboard';
+import { IconService } from 'src/app/services/icon.service';
 
 @Component({
   selector: 'app-add-or-edit-entry-modal',
@@ -28,7 +29,8 @@ export class AddOrEditEntryModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     private authService: AuthService,
-    private angularFirestore: AngularFirestore
+    private angularFirestore: AngularFirestore,
+    public icon: IconService
   ) {}
 
   ngOnInit(): void {
