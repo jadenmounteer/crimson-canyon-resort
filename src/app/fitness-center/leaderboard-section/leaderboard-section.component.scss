@@ -33,3 +33,19 @@
 .name-section {
   margin-bottom: 12px;
 }
+
+.leader-board-header {
+  display: flex;
+
+  flex-direction: row;
+}
+
+.created-by {
+  margin-left: auto;
+}
+
+.leader-board {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}

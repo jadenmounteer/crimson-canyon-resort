@@ -17,22 +17,46 @@
   </div>
 
   <div class="leader-boards-list">
-    <div *ngFor="let leaderBoard of leaderBoards$ | async" class="leader-board">
+    <div
+      *ngFor="let leaderBoard of leaderBoards$ | async"
+      class="leader-board card"
+    >
       <div class="name-section">
-        <h6>{{ leaderBoard.name }}</h6>
-        <small>Created by: {{ leaderBoard.createdBy }}</small>
+        <div class="leader-board-header">
+          <h6>{{ leaderBoard.name }}</h6>
+
+          <span
+            class="post-menu-options-button"
+            (click)="dropdownMenu.open()"
+            *ngIf="leaderBoard.userId === userId"
+            >&#8230;</span
+          >
+
+          <div
+            ngbDropdown
+            #dropdownMenu="ngbDropdown"
+            class="post-options-menu"
+          >
+            <div ngbDropdownMenu>
+              <button
+                ngbDropdownItem
+                (click)="editLeaderBoard(leaderBoard)"
+                *ngIf="leaderBoard.userId === userId"
+              >
+                Edit announcement
+              </button>
+            </div>
+          </div>
+
+          <small class="created-by"
+            >Created by: {{ leaderBoard.createdBy }}</small
+          >
+        </div>
 
         <p>{{ leaderBoard.description }}</p>
-        <button
-          *ngIf="leaderBoard.userId === userId"
-          class="btn btn-primary"
-          (click)="editLeaderBoard(leaderBoard)"
-        >
-          Edit
-        </button>
       </div>
 
-      <div class="card"></div>
+      <!-- <div class="card"></div> -->
     </div>
   </div>
 
