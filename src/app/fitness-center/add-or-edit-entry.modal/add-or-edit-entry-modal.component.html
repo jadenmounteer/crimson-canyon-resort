@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ title }}</h4>
+
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+
+<span class="loading-icon" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+</span>
+
+<form #f="ngForm" *ngIf="!loading">
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <!-- <button
+      [disabled]="!f.valid"
+      *ngIf="!leaderBoardToEdit"
+      type="submit"
+      class="btn btn-primary"
+      (click)="onCreateLeaderBoard()"
+    >
+      Submit
+    </button>
+    <button
+      [disabled]="!f.valid"
+      class="btn btn-primary"
+      *ngIf="leaderBoardToEdit"
+      (click)="updateLeaderBoard()"
+    >
+      Save Changes
+    </button> -->
+
+    <!-- <button
+      [disabled]="!f.valid"
+      class="btn btn-danger"
+      *ngIf="leaderBoardToEdit"
+      (click)="onDeleteLeaderBoard(leaderBoardToEdit)"
+    >
+      Delete Leader Board
+    </button> -->
+  </div>
+</form>

@@ -8,9 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { LeaderboardSectionComponent } from './leaderboard-section/leaderboard-section.component';
 import { AddOrEditLeaderBoardModalComponent } from './add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
+import { AddOrEditEntryModalComponent } from './add-or-edit-entry.modal/add-or-edit-entry-modal.component';
 
 @NgModule({
-  declarations: [FitnessCenterPageComponent, LeaderboardSectionComponent, AddOrEditLeaderBoardModalComponent],
+  declarations: [
+    FitnessCenterPageComponent,
+    LeaderboardSectionComponent,
+    AddOrEditLeaderBoardModalComponent,
+    AddOrEditEntryModalComponent,
+  ],
   imports: [
     CommonModule,
     FitnessCenterRoutingModule,

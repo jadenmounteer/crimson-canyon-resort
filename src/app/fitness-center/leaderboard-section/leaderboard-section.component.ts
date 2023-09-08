@@ -6,6 +6,7 @@ import { LeaderBoardService } from '../leaderBoard.service';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { AdministrationService } from 'src/app/services/administration.service';
+import { AddOrEditEntryModalComponent } from '../add-or-edit-entry.modal/add-or-edit-entry-modal.component';
 
 @Component({
   selector: 'app-leaderboard-section',
@@ -71,6 +72,16 @@ export class LeaderboardSectionComponent implements OnInit, OnDestroy {
 
   protected createNewLeaderBoard(): void {
     const modalRef = this.modalService.open(AddOrEditLeaderBoardModalComponent);
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.loadLeaderBoards();
+      }
+    });
+  }
+
+  protected addOrEditEntry(leaderBoard: LeaderBoard): void {
+    const modalRef = this.modalService.open(AddOrEditEntryModalComponent);
 
     modalRef.result.then((result) => {
       if (result === 'success') {
