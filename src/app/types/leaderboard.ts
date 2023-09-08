@@ -16,9 +16,10 @@ export interface LeaderBoardEntry {
   userId: string;
   individualName: string;
   date: Date;
-  score: string;
+  score: number;
 }
 
+// update the dropdown in add-or-edit-leader-board-modal.component.html accordingly
 export type LeaderBoardUOfM =
   | 'minutes'
   | 'seconds'
@@ -27,4 +28,6 @@ export type LeaderBoardUOfM =
   | 'pounds'
   | 'kilos'
   | 'reps'
-  | 'sets';
+  | 'sets'
+  | 'rounds'
+  | 'calories';
