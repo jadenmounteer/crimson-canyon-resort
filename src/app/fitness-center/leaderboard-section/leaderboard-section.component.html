@@ -21,9 +21,14 @@
       *ngFor="let leaderBoard of leaderBoards$ | async"
       class="leader-board card"
     >
-      <div class="name-section">
+      <div class="info-section">
         <div class="leader-board-header">
-          <h6>{{ leaderBoard.name }}</h6>
+          <div class="name-section">
+            <h6>{{ leaderBoard.name }}</h6>
+            <small class="created-by"
+              >Created by: {{ leaderBoard.createdBy }}</small
+            >
+          </div>
 
           <span
             class="post-menu-options-button"
@@ -41,14 +46,10 @@
           >
             <div ngbDropdownMenu>
               <button ngbDropdownItem (click)="editLeaderBoard(leaderBoard)">
-                Edit announcement
+                Edit leader board
               </button>
             </div>
           </div>
-
-          <small class="created-by"
-            >Created by: {{ leaderBoard.createdBy }}</small
-          >
         </div>
 
         <p>{{ leaderBoard.description }}</p>
