@@ -31,6 +31,10 @@
       <label
         >What is your (new) score in {{ leaderBoard.unitOfMeasure }}?</label
       >
+      <!-- TODO Make the new score input not show the previous score.-->
+      <small *ngIf="editingExistingEntry"
+        >Previous Score: {{ newEntry.score }}</small
+      >
       <input
         type="number"
         class="form-control"
@@ -64,31 +68,12 @@
   </div>
 
   <div class="modal-footer">
-    <!-- <button
-      [disabled]="!f.valid"
-      *ngIf="!leaderBoardToEdit"
-      type="submit"
-      class="btn btn-primary"
-      (click)="onCreateLeaderBoard()"
-    >
+    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
       Submit
     </button>
-    <button
-      [disabled]="!f.valid"
-      class="btn btn-primary"
-      *ngIf="leaderBoardToEdit"
-      (click)="updateLeaderBoard()"
-    >
-      Save Changes
-    </button> -->
 
-    <!-- <button
-      [disabled]="!f.valid"
-      class="btn btn-danger"
-      *ngIf="leaderBoardToEdit"
-      (click)="onDeleteLeaderBoard(leaderBoardToEdit)"
-    >
-      Delete Leader Board
-    </button> -->
+    <button class="btn btn-danger" *ngIf="editingExistingEntry">
+      Delete Entry
+    </button>
   </div>
 </form>

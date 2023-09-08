@@ -17,6 +17,7 @@ export class AddOrEditEntryModalComponent implements OnInit {
   protected errorMessage: string =
     'Unable to add leader board entry. Please reach out to Jaden for help! 😭';
   protected loading: boolean = true;
+  protected editingExistingEntry: boolean = false;
 
   protected newEntry: Partial<LeaderBoardEntry> = {
     userId: '',
@@ -47,6 +48,7 @@ export class AddOrEditEntryModalComponent implements OnInit {
       if (entry.userId === this.authService.userId) {
         this.newEntry = { ...entry };
         this.title = `Updating ${this.leaderBoard.name} leader board entry for  ${entry.individualName} 🏋️‍♀️`;
+        this.editingExistingEntry = true;
         return;
       }
     });
