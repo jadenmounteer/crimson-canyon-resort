@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Post } from '../post';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditPostModalComponent } from '../add-new-post-modal/add-or-edit-post-modal.component';
@@ -13,7 +20,7 @@ import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
   @Input() posts!: Post[] | null;
   @Output() addedNewPost: EventEmitter<any> = new EventEmitter();
   @Output() editedPost: EventEmitter<any> = new EventEmitter();
@@ -35,6 +42,10 @@ export class PostsComponent implements OnInit {
         this.grabCurrentUserAdminStatus();
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 
   protected addNewPost(): void {

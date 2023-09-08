@@ -28,7 +28,9 @@
           <span
             class="post-menu-options-button"
             (click)="dropdownMenu.open()"
-            *ngIf="leaderBoard.userId === userId"
+            *ngIf="
+              (currentUserIsAdmin$ | async) || leaderBoard.userId === userId
+            "
             >&#8230;</span
           >
 
@@ -38,11 +40,7 @@
             class="post-options-menu"
           >
             <div ngbDropdownMenu>
-              <button
-                ngbDropdownItem
-                (click)="editLeaderBoard(leaderBoard)"
-                *ngIf="leaderBoard.userId === userId"
-              >
+              <button ngbDropdownItem (click)="editLeaderBoard(leaderBoard)">
                 Edit announcement
               </button>
             </div>

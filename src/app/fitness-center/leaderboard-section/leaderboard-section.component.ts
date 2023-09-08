@@ -1,31 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditLeaderBoardModalComponent } from '../add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
 import { LeaderBoard } from 'src/app/types/leaderboard';
 import { LeaderBoardService } from '../leaderBoard.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/components/auth/auth.service';
+import { AdministrationService } from 'src/app/services/administration.service';
 
 @Component({
   selector: 'app-leaderboard-section',
   templateUrl: './leaderboard-section.component.html',
   styleUrls: ['./leaderboard-section.component.scss'],
 })
-export class LeaderboardSectionComponent implements OnInit {
+export class LeaderboardSectionComponent implements OnInit, OnDestroy {
   protected loading: boolean = true;
   protected leaderBoards$!: Observable<LeaderBoard[]>;
   protected userId!: string;
+  protected currentUserIsAdmin$!: Observable<boolean>;
+  private authSubscription!: Subscription;
+
   constructor(
     private modalService: NgbModal,
     private leaderBoardService: LeaderBoardService,
-    private authService: AuthService
+    private authService: AuthService,
+    private adminService: AdministrationService
   ) {}
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.loadLeaderBoards();
 
     if (this.authService.userId) {
       this.userId = this.authService.userId;
+    }
+
+    this.authSubscription = this.authService.authChange.subscribe(
+      (authStatus) => {
+        this.grabCurrentUserAdminStatus();
+      }
+    );
+  }
+
+  private grabCurrentUserAdminStatus() {
+    if (this.authService.userId) {
+      this.currentUserIsAdmin$ = this.adminService.checkIfUserIsAdmin(
+        this.authService.userId
+      );
     }
   }
 
