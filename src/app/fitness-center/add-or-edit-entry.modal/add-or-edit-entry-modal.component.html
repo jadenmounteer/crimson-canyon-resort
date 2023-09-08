@@ -14,7 +14,20 @@
 </span>
 
 <form #f="ngForm" *ngIf="!loading">
-  <div class="modal-body"></div>
+  <div class="modal-body">
+    <span
+      ><ngb-alert
+        class="danger-alert"
+        [dismissible]="true"
+        [animation]="true"
+        type="danger"
+        *ngIf="displayErrorMsg"
+      >
+        {{ errorMessage }}
+      </ngb-alert></span
+    >
+  </div>
+
   <div class="modal-footer">
     <!-- <button
       [disabled]="!f.valid"

@@ -12,6 +12,10 @@ import { LeaderBoard, LeaderBoardEntry } from 'src/app/types/leaderboard';
 export class AddOrEditEntryModalComponent implements OnInit {
   @Input() title: string = 'Add New Leader Board Entry 🏋️‍♀️';
   @Input() leaderBoard!: LeaderBoard;
+  protected displayErrorMsg: boolean = false;
+  protected errorMessage: string =
+    'Unable to add leader board entry. Please reach out to Jaden for help! 😭';
+  protected loading: boolean = true;
 
   protected newEntry: Partial<LeaderBoardEntry> = {
     userId: '',
@@ -20,7 +24,6 @@ export class AddOrEditEntryModalComponent implements OnInit {
     score: 0,
   };
 
-  protected loading: boolean = true;
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
@@ -29,6 +32,10 @@ export class AddOrEditEntryModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.newEntry.userId = this.authService.userId;
+    if (this.authService.userDisplayName) {
+      this.newEntry.individualName = this.authService.userDisplayName;
+    }
     this.checkIfEntryExists();
     this.loading = false;
   }
@@ -37,7 +44,7 @@ export class AddOrEditEntryModalComponent implements OnInit {
     this.leaderBoard.leaderBoardEntries.forEach((entry) => {
       if (entry.userId === this.authService.userId) {
         this.newEntry = { ...entry };
-        this.title = 'Update Your Leader Board Entry 🏋️‍♀️';
+        this.title = `Updating ${this.leaderBoard.name} leader board entry for  ${entry.individualName} 🏋️‍♀️`;
         return;
       }
     });
