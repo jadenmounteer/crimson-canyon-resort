@@ -26,4 +26,5 @@ export type LeaderBoardUOfM =
   | 'miles'
   | 'pounds'
   | 'kilos'
-  | 'reps';
+  | 'reps'
+  | 'sets';
