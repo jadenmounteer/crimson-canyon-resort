@@ -38,7 +38,7 @@ export class LeaderboardSectionComponent implements OnInit {
   protected editLeaderBoard(leaderBoard: LeaderBoard): void {
     const modalRef = this.modalService.open(AddOrEditLeaderBoardModalComponent);
     modalRef.componentInstance.leaderBoardToEdit = leaderBoard;
-    modalRef.componentInstance.title = `Edit ${leaderBoard.name}}`;
+    modalRef.componentInstance.title = `Edit ${leaderBoard.name}`;
 
     modalRef.result.then((result) => {
       if (result === 'success') {
