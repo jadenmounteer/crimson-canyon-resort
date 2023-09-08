@@ -82,6 +82,7 @@ export class LeaderboardSectionComponent implements OnInit, OnDestroy {
 
   protected addOrEditEntry(leaderBoard: LeaderBoard): void {
     const modalRef = this.modalService.open(AddOrEditEntryModalComponent);
+    modalRef.componentInstance.leaderBoard = leaderBoard;
 
     modalRef.result.then((result) => {
       if (result === 'success') {
