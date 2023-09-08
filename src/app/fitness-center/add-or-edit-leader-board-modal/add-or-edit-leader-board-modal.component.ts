@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/components/auth/auth.service';
-import { LeaderBoard } from 'src/app/types/leaderboard';
+import { LeaderBoard, LeaderBoardUOfM } from 'src/app/types/leaderboard';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LeaderBoardService } from '../leaderBoard.service';
 import {
@@ -111,5 +111,13 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
           .subscribe();
       }
     });
+  }
+
+  protected setUOfM(uOfM: LeaderBoardUOfM) {
+    this.newLeaderBoard.unitOfMeasure = uOfM;
+  }
+
+  protected setSortEntriesFromHighestToLowest(sort: boolean) {
+    this.newLeaderBoard.sortEntriesFromHighestToLowest = sort;
   }
 }

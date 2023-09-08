@@ -57,23 +57,25 @@
         <button
           type="button"
           class="btn btn-outline-primary"
-          id="dropdownBasic1"
+          id="uOfM"
           ngbDropdownToggle
         >
           {{ newLeaderBoard.unitOfMeasure }}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <!-- Follow the leaderBoardUOfM type -->
-          <button ngbDropdownItem>minutes</button>
-          <button ngbDropdownItem>seconds</button>
-          <button ngbDropdownItem>meters</button>
-          <button ngbDropdownItem>miles</button>
-          <button ngbDropdownItem>pounds</button>
-          <button ngbDropdownItem>kilos</button>
-          <button ngbDropdownItem>reps</button>
-          <button ngbDropdownItem>sets</button>
-          <button ngbDropdownItem>rounds</button>
-          <button ngbDropdownItem>calories</button>
+          <button ngbDropdownItem (click)="setUOfM('minutes')">minutes</button>
+          <button ngbDropdownItem (click)="setUOfM('seconds')">seconds</button>
+          <button ngbDropdownItem (click)="setUOfM('meters')">meters</button>
+          <button ngbDropdownItem (click)="setUOfM('miles')">miles</button>
+          <button ngbDropdownItem (click)="setUOfM('pounds')">pounds</button>
+          <button ngbDropdownItem (click)="setUOfM('kilos')">kilos</button>
+          <button ngbDropdownItem (click)="setUOfM('reps')">reps</button>
+          <button ngbDropdownItem (click)="setUOfM('sets')">sets</button>
+          <button ngbDropdownItem (click)="setUOfM('rounds')">rounds</button>
+          <button ngbDropdownItem (click)="setUOfM('calories')">
+            calories
+          </button>
         </div>
       </div>
     </div>
@@ -85,15 +87,31 @@
         <button
           type="button"
           class="btn btn-outline-primary"
-          id="dropdownBasic1"
+          id="sortEntries"
           ngbDropdownToggle
         >
-          {{ newLeaderBoard.sortEntriesFromHighestToLowest }}
+          <span>
+            {{
+              newLeaderBoard.sortEntriesFromHighestToLowest
+                ? "Highest to lowest"
+                : "Lowest to highest"
+            }}
+          </span>
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <!-- Follow the leaderBoardUOfM type -->
-          <button ngbDropdownItem>Highest to lowest</button>
-          <button ngbDropdownItem>Lowest to highest</button>
+          <button
+            ngbDropdownItem
+            (click)="setSortEntriesFromHighestToLowest(true)"
+          >
+            Highest to lowest
+          </button>
+          <button
+            ngbDropdownItem
+            (click)="setSortEntriesFromHighestToLowest(false)"
+          >
+            Lowest to highest
+          </button>
         </div>
       </div>
     </div>
