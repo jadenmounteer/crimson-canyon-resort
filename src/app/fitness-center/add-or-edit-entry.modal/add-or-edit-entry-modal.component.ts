@@ -24,7 +24,10 @@ export class AddOrEditEntryModalComponent implements OnInit {
     userId: '',
     individualName: '',
     date: new Date(),
-    score: 0,
+    scoreInMinutes: 0,
+    scoreInSeconds: 0,
+    scoreInMilliseconds: 0,
+    scoreInReps: 0,
   };
 
   constructor(

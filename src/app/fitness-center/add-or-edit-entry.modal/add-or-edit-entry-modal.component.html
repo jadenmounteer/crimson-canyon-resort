@@ -32,17 +32,54 @@
         >What is your (new) score in {{ leaderBoard.unitOfMeasure }}?</label
       >
       <!-- TODO Make the new score input not show the previous score.-->
-      <small *ngIf="editingExistingEntry"
+      <!-- <small *ngIf="editingExistingEntry"
         >Previous Score: {{ newEntry.score }}</small
-      >
-      <input
-        type="number"
-        class="form-control"
-        id="score"
-        [(ngModel)]="newEntry.score"
-        name="score"
-        required
-      />
+      > -->
+
+      <div *ngIf="leaderBoard.unitOfMeasure === 'timeInMinutes'">
+        <input
+          type="number"
+          class="form-control"
+          id="minutes"
+          [(ngModel)]="newEntry.scoreInMinutes"
+          name="minutes"
+          required
+        />
+        <label>Minutes</label>
+
+        <input
+          type="number"
+          class="form-control"
+          id="seconds"
+          [(ngModel)]="newEntry.scoreInSeconds"
+          name="seconds"
+          required
+        />
+        <label>Seconds</label>
+
+        <input
+          type="number"
+          class="form-control"
+          id="milliseconds"
+          [(ngModel)]="newEntry.scoreInMilliseconds"
+          name="milliseconds"
+          required
+        />
+        <label>Milliseconds</label>
+      </div>
+
+      <div *ngIf="leaderBoard.unitOfMeasure === 'reps'">
+        <input
+          type="number"
+          class="form-control"
+          id="score"
+          [(ngModel)]="newEntry.scoreInReps"
+          name="score"
+          required
+        />
+      </div>
+
+      <div *ngIf="leaderBoard.unitOfMeasure; typeOf: entryTimeInMinutes"></div>
     </div>
 
     <div class="form-group">

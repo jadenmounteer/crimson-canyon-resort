@@ -7,7 +7,7 @@ export interface LeaderBoard {
   leaderBoardEntries: LeaderBoardEntry[];
   active: boolean;
   createdDate: number;
-  unitOfMeasure: LeaderBoardUOfM;
+  unitOfMeasure: LeaderBoardUOfMType;
   sortEntriesFromHighestToLowest: boolean;
 }
 
@@ -16,18 +16,20 @@ export interface LeaderBoardEntry {
   userId: string;
   individualName: string;
   date: Date;
-  score: number;
+  scoreInMinutes: number;
+  scoreInSeconds: number;
+  scoreInMilliseconds: number;
+  scoreInReps: number;
 }
 
-// update the dropdown in add-or-edit-leader-board-modal.component.html accordingly
-export type LeaderBoardUOfM =
-  | 'minutes'
-  | 'seconds'
-  | 'meters'
-  | 'miles'
-  | 'pounds'
-  | 'kilos'
-  | 'reps'
-  | 'sets'
-  | 'rounds'
-  | 'calories';
+export type LeaderBoardUOfMType = 'timeInMinutes' | 'reps';
+
+export interface EntryTimeInMinutes {
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+}
+
+export interface reps {
+  numberOfReps: number;
+}

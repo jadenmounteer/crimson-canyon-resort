@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/components/auth/auth.service';
-import { LeaderBoard, LeaderBoardUOfM } from 'src/app/types/leaderboard';
+import {
+  LeaderBoard,
+  EntryTimeInMinutes,
+  LeaderBoardUOfMType,
+} from 'src/app/types/leaderboard';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LeaderBoardService } from '../leaderBoard.service';
 import {
@@ -113,7 +117,7 @@ export class AddOrEditLeaderBoardModalComponent implements OnInit {
     });
   }
 
-  protected setUOfM(uOfM: LeaderBoardUOfM) {
+  protected setUOfM(uOfM: LeaderBoardUOfMType) {
     this.newLeaderBoard.unitOfMeasure = uOfM;
   }
 
