@@ -53,13 +53,34 @@
         </div>
 
         <p>{{ leaderBoard.description }}</p>
-
-        <button class="btn btn-primary" (click)="addOrEditEntry(leaderBoard)">
-          Add or Update Entry
-        </button>
       </div>
 
-      <!-- <div class="card"></div> -->
+      <div class="entries-section" *ngIf="leaderBoard.leaderBoardEntries">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entry of leaderBoard.leaderBoardEntries">
+              <td scope="row">{{ entry.individualName }}</td>
+              <td *ngIf="leaderBoard.unitOfMeasure === 'timeInMinutes'">
+                {{ entry.scoreInMinutes }}:{{ entry.scoreInSeconds }}.{{
+                  entry.scoreInMilliseconds
+                }}
+              </td>
+              <td *ngIf="leaderBoard.unitOfMeasure === 'reps'">
+                {{ entry.scoreInReps }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="btn btn-primary" (click)="addOrEditEntry(leaderBoard)">
+        Add or Update Entry
+      </button>
     </div>
   </div>
 
