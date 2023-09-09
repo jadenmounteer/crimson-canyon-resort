@@ -27,6 +27,19 @@
       </ngb-alert></span
     >
 
+    <div class="form-group inline-form-group">
+      <label>Name of Individual</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        [(ngModel)]="newEntry.individualName"
+        name="name"
+        required
+      />
+    </div>
+    <br />
+
     <label>What is your (new) score?</label>
 
     <div

@@ -43,9 +43,6 @@ export class AddOrEditEntryModalComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO We don't want to do this
-    if (this.authService.userDisplayName) {
-      this.newEntry.individualName = this.authService.userDisplayName;
-    }
 
     if (this.entryToEdit) {
       this.newEntry = { ...this.entryToEdit };
