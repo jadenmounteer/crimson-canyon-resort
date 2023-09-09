@@ -42,7 +42,10 @@
 }
 
 .leader-board {
-  width: 90%;
+  width: 100%;
+  @include for-tablet-portrait-up {
+    width: 90%;
+  }
   margin-left: auto;
   margin-right: auto;
 }
@@ -52,4 +55,11 @@
   flex-direction: row;
   align-items: baseline;
   gap: 8px;
+}
+
+.button-cell {
+  text-align: right;
+  @include for-tablet-portrait-up {
+    text-align: center;
+  }
 }

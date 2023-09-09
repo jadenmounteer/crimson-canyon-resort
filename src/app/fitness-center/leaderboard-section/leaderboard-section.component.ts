@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditLeaderBoardModalComponent } from '../add-or-edit-leader-board-modal/add-or-edit-leader-board-modal.component';
-import { LeaderBoard } from 'src/app/types/leaderboard';
+import { LeaderBoard, LeaderBoardEntry } from 'src/app/types/leaderboard';
 import { LeaderBoardService } from '../leaderBoard.service';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/components/auth/auth.service';
@@ -80,10 +80,16 @@ export class LeaderboardSectionComponent implements OnInit, OnDestroy {
     });
   }
 
-  protected addOrEditEntry(leaderBoard: LeaderBoard): void {
-    // TODO First check if there are any existing entries. If so, pop a modal for them to choose which entry to edit.
+  protected addOrEditEntry(
+    leaderBoard: LeaderBoard,
+    entryToEdit: LeaderBoardEntry | undefined = undefined
+  ): void {
     const modalRef = this.modalService.open(AddOrEditEntryModalComponent);
     modalRef.componentInstance.leaderBoard = leaderBoard;
+    if (entryToEdit) {
+      modalRef.componentInstance.entryToEdit = entryToEdit;
+      modalRef.componentInstance.title = `Editing ${entryToEdit.individualName}'s entry for ${leaderBoard.name}`;
+    }
 
     modalRef.result.then((result) => {
       if (result === 'success') {

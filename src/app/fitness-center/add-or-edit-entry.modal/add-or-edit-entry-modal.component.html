@@ -127,6 +127,7 @@
     <button
       [disabled]="!f.valid"
       type="submit"
+      *ngIf="!editingExistingEntry"
       class="btn btn-primary"
       (click)="onCreateNewLeaderBoardEntry()"
     >

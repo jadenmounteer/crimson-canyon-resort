@@ -42,8 +42,6 @@ export class AddOrEditEntryModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // TODO We don't want to do this
-
     if (this.entryToEdit) {
       this.newEntry = { ...this.entryToEdit };
       this.editingExistingEntry = true;
@@ -54,11 +52,16 @@ export class AddOrEditEntryModalComponent implements OnInit {
 
   protected updateExistingLeaderBoardEntry(): void {
     if (this.newEntry.id) {
+      let newLeaderBoardEntries: LeaderBoardEntry[] = [];
       this.leaderBoard.leaderBoardEntries.forEach((entry) => {
-        if (entry.id === this.newEntry.id) {
-          entry = this.newEntry;
+        if (entry.id == this.newEntry.id) {
+          newLeaderBoardEntries.push(this.newEntry);
+          return;
         }
+        newLeaderBoardEntries.push(entry);
       });
+
+      this.leaderBoard.leaderBoardEntries = newLeaderBoardEntries;
 
       this.leaderBoardService
         .updateLeaderBoard(this.leaderBoard.id, this.leaderBoard)
