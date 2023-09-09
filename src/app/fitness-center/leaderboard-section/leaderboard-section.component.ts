@@ -81,6 +81,7 @@ export class LeaderboardSectionComponent implements OnInit, OnDestroy {
   }
 
   protected addOrEditEntry(leaderBoard: LeaderBoard): void {
+    // TODO First check if there are any existing entries. If so, pop a modal for them to choose which entry to edit.
     const modalRef = this.modalService.open(AddOrEditEntryModalComponent);
     modalRef.componentInstance.leaderBoard = leaderBoard;
 

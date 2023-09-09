@@ -13,6 +13,7 @@ import { IconService } from 'src/app/services/icon.service';
 export class AddOrEditEntryModalComponent implements OnInit {
   @Input() title: string = 'Add New Leader Board Entry 🏋️‍♀️';
   @Input() leaderBoard!: LeaderBoard;
+  @Input() entryToEdit: LeaderBoardEntry | undefined;
   protected displayErrorMsg: boolean = false;
   protected errorMessage: string =
     'Unable to add leader board entry. Please reach out to Jaden for help! 😭';
@@ -39,18 +40,11 @@ export class AddOrEditEntryModalComponent implements OnInit {
     if (this.authService.userDisplayName) {
       this.newEntry.individualName = this.authService.userDisplayName;
     }
-    this.checkIfEntryExists();
-    this.loading = false;
-  }
 
-  private checkIfEntryExists(): void {
-    this.leaderBoard.leaderBoardEntries.forEach((entry) => {
-      if (entry.userId === this.authService.userId) {
-        this.newEntry = { ...entry };
-        this.title = `Updating ${this.leaderBoard.name} leader board entry for  ${entry.individualName} 🏋️‍♀️`;
-        this.editingExistingEntry = true;
-        return;
-      }
-    });
+    if (this.entryToEdit) {
+    }
+    this.newEntry = { ...this.entryToEdit };
+
+    this.loading = false;
   }
 }
