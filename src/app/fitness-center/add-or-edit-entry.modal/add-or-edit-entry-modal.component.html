@@ -60,6 +60,7 @@
           [(ngModel)]="newEntry.scoreInMinutes"
           name="minutes"
           required
+          min="0"
         />
       </div>
 
@@ -97,29 +98,6 @@
         name="score"
         required
       />
-    </div>
-
-    <div class="form-section">
-      <div class="form-group inline-form-group">
-        <label>Date</label>
-        <div class="date-field">
-          <input
-            type="text"
-            ngbDatepicker
-            required
-            name="entryDate"
-            #entryDate="ngbDatepicker"
-            [(ngModel)]="newEntry.date"
-            class="form-control"
-            (click)="entryDate.toggle()"
-          />
-          <fa-icon
-            class="calendar-button"
-            [icon]="icon.faCalendarAlt"
-            (click)="entryDate.toggle()"
-          ></fa-icon>
-        </div>
-      </div>
     </div>
   </div>
 

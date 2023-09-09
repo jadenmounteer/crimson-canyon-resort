@@ -25,7 +25,6 @@ export class AddOrEditEntryModalComponent implements OnInit {
   protected newEntry: LeaderBoardEntry = {
     id: '',
     individualName: '',
-    date: new Date(),
     scoreInMinutes: 0,
     scoreInSeconds: 0,
     scoreInMilliseconds: 0,
