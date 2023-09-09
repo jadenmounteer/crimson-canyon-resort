@@ -27,16 +27,19 @@
       </ngb-alert></span
     >
 
-    <div class="form-group">
-      <label
-        >What is your (new) score in {{ leaderBoard.unitOfMeasure }}?</label
-      >
+    <label>What is your (new) score?</label>
+
+    <div
+      *ngIf="leaderBoard.unitOfMeasure === 'timeInMinutes'"
+      class="form-section"
+    >
       <!-- TODO Make the new score input not show the previous score.-->
       <!-- <small *ngIf="editingExistingEntry"
         >Previous Score: {{ newEntry.score }}</small
       > -->
 
-      <div *ngIf="leaderBoard.unitOfMeasure === 'timeInMinutes'">
+      <div class="form-group inline-form-group">
+        <label>Minutes</label>
         <input
           type="number"
           class="form-control"
@@ -45,8 +48,10 @@
           name="minutes"
           required
         />
-        <label>Minutes</label>
+      </div>
 
+      <div class="form-group inline-form-group">
+        <label>Seconds</label>
         <input
           type="number"
           class="form-control"
@@ -55,8 +60,10 @@
           name="seconds"
           required
         />
-        <label>Seconds</label>
+      </div>
 
+      <div class="form-group inline-form-group">
+        <label>Milliseconds</label>
         <input
           type="number"
           class="form-control"
@@ -65,48 +72,62 @@
           name="milliseconds"
           required
         />
-        <label>Milliseconds</label>
       </div>
-
-      <div *ngIf="leaderBoard.unitOfMeasure === 'reps'">
-        <input
-          type="number"
-          class="form-control"
-          id="score"
-          [(ngModel)]="newEntry.scoreInReps"
-          name="score"
-          required
-        />
-      </div>
-
-      <div *ngIf="leaderBoard.unitOfMeasure; typeOf: entryTimeInMinutes"></div>
     </div>
 
-    <div class="form-group">
-      <label>Date</label>
-      <div class="date-field">
-        <input
-          type="text"
-          ngbDatepicker
-          required
-          name="entryDate"
-          #entryDate="ngbDatepicker"
-          [(ngModel)]="newEntry.date"
-          class="form-control"
-          (click)="entryDate.toggle()"
-        />
-        <fa-icon
-          class="calendar-button"
-          [icon]="icon.faCalendarAlt"
-          (click)="entryDate.toggle()"
-        ></fa-icon>
+    <div *ngIf="leaderBoard.unitOfMeasure === 'reps'" class="form-section">
+      <input
+        type="number"
+        class="form-control"
+        id="score"
+        [(ngModel)]="newEntry.scoreInReps"
+        name="score"
+        required
+      />
+    </div>
+
+    <div class="form-section">
+      <div class="form-group inline-form-group">
+        <label>Date</label>
+        <div class="date-field">
+          <input
+            type="text"
+            ngbDatepicker
+            required
+            name="entryDate"
+            #entryDate="ngbDatepicker"
+            [(ngModel)]="newEntry.date"
+            class="form-control"
+            (click)="entryDate.toggle()"
+          />
+          <fa-icon
+            class="calendar-button"
+            [icon]="icon.faCalendarAlt"
+            (click)="entryDate.toggle()"
+          ></fa-icon>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="modal-footer">
-    <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
+    <button
+      [disabled]="!f.valid"
+      type="submit"
+      class="btn btn-primary"
+      (click)="onCreateNewLeaderBoardEntry()"
+    >
       Submit
+    </button>
+
+    <button
+      [disabled]="!f.valid"
+      *ngIf="editingExistingEntry"
+      type="submit"
+      class="btn btn-primary"
+      (click)="updateExistingLeaderBoardEntry()"
+    >
+      Save Changes
     </button>
 
     <button class="btn btn-danger" *ngIf="editingExistingEntry">

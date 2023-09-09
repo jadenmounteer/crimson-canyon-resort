@@ -13,7 +13,6 @@ export interface LeaderBoard {
 
 export interface LeaderBoardEntry {
   id: string;
-  userId: string;
   individualName: string;
   date: Date;
   scoreInMinutes: number;
