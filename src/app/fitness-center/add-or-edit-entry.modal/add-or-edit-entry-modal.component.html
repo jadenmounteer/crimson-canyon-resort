@@ -122,7 +122,11 @@
       Save Changes
     </button>
 
-    <button class="btn btn-danger" *ngIf="editingExistingEntry">
+    <button
+      class="btn btn-danger"
+      *ngIf="editingExistingEntry"
+      (click)="onDeleteEntry()"
+    >
       Delete Entry
     </button>
   </div>

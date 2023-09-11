@@ -6,6 +6,7 @@ import { LeaderBoard, LeaderBoardEntry } from 'src/app/types/leaderboard';
 import { IconService } from 'src/app/services/icon.service';
 import { LeaderBoardService } from '../leaderBoard.service';
 import { catchError, tap, throwError } from 'rxjs';
+import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-add-or-edit-entry-modal',
@@ -88,5 +89,41 @@ export class AddOrEditEntryModalComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  protected onDeleteEntry() {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.message = `Are you sure you want to delete ${this.newEntry.individualName}'s leader board entry?`;
+    modalRef.result.then((result) => {
+      if (result === 'Yes') {
+        this.leaderBoard.leaderBoardEntries =
+          this.deleteLeaderBoardEntryFromArray();
+
+        this.leaderBoardService
+          .updateLeaderBoard(this.leaderBoard.id, this.leaderBoard)
+          .pipe(
+            tap((leaderBoard) => {
+              this.activeModal.close('success');
+            }),
+            catchError((err) => {
+              this.displayErrorMsg = true;
+              this.errorMessage = err;
+              return throwError(err);
+            })
+          )
+          .subscribe();
+      }
+    });
+  }
+
+  private deleteLeaderBoardEntryFromArray(): Array<LeaderBoardEntry> {
+    let newList: LeaderBoardEntry[] = [];
+    this.leaderBoard.leaderBoardEntries.forEach((entry) => {
+      if (entry.id != this.newEntry.id) {
+        newList.push(entry);
+      }
+    });
+
+    return newList;
   }
 }
