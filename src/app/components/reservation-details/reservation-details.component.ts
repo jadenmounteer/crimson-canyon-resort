@@ -2,13 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IconService } from 'src/app/services/icon.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { AuthService } from '../auth/auth.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { Router } from '@angular/router';
+import { DatePickerService } from 'src/app/services/date-picker.service';
 
 @Component({
   selector: 'app-reservation-details',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./reservation-details.component.scss'],
 })
 export class ReservationDetailsComponent implements OnInit {
+  protected todaysDate!: NgbDate;
   public contentLoaded: boolean = false;
   public reservation!: Reservation;
   public isAuth: boolean = false;
@@ -28,8 +30,11 @@ export class ReservationDetailsComponent implements OnInit {
     private reservationsService: ReservationsService,
     private authService: AuthService,
     private modalService: NgbModal,
-    private router: Router
-  ) {}
+    private router: Router,
+    private datePickerService: DatePickerService
+  ) {
+    this.todaysDate = this.datePickerService.getTodaysDate();
+  }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.authChange.subscribe(

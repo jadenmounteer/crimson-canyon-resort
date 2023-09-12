@@ -27,6 +27,7 @@
                 class="form-control"
                 [disabled]="!editing"
                 (click)="arrivalDateInput.toggle()"
+                [minDate]="todaysDate"
               />
               <fa-icon
                 class="calendar-button"
@@ -51,6 +52,7 @@
                 class="form-control"
                 (click)="departureDateInput.toggle()"
                 [disabled]="!editing"
+                [minDate]="todaysDate"
               />
               <fa-icon
                 class="calendar-button"

@@ -26,6 +26,7 @@
                 [(ngModel)]="arrivalDate"
                 class="form-control"
                 (click)="arrivalDateInput.toggle()"
+                [minDate]="todaysDate"
               />
               <fa-icon
                 class="calendar-button"
@@ -47,6 +48,7 @@
                 [(ngModel)]="departureDate"
                 class="form-control"
                 (click)="departureDateInput.toggle()"
+                [minDate]="todaysDate"
               />
               <fa-icon
                 class="calendar-button"
