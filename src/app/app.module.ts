@@ -12,7 +12,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgIf } from '@angular/common';
-import { CheckAvailabilityMenu } from './components/CheckAvailabilityMenu/check-availability-menu.component';
+import { CheckAvailabilityMenuComponent } from './components/CheckAvailabilityMenu/check-availability-menu.component';
 import { ReserveTripPageComponent } from './components/reserve-trip-page/reserve-trip-page.component';
 import { PageNotFoundPageComponent } from './components/page-not-found-page/page-not-found-page.component';
 import { WeatherComponent } from './components/weather/weather.component';
@@ -42,7 +42,7 @@ import { FitnessHomePageSectionComponent } from './components/fitness-home-page-
     NavComponent,
     HomePageComponent,
     CarouselComponent,
-    CheckAvailabilityMenu,
+    CheckAvailabilityMenuComponent,
     ReserveTripPageComponent,
     PageNotFoundPageComponent,
     WeatherComponent,
