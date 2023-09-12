@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DatePickerService } from 'src/app/services/date-picker.service';
 import { IconService } from 'src/app/services/icon.service';
 
@@ -12,6 +12,7 @@ import { IconService } from 'src/app/services/icon.service';
 })
 export class CheckAvailabilityMenuComponent {
   protected todaysDate!: NgbDate;
+
   constructor(
     public icon: IconService,
     private router: Router,
@@ -29,5 +30,9 @@ export class CheckAvailabilityMenuComponent {
         },
       },
     });
+  }
+
+  isDisabled(date: NgbDateStruct): boolean {
+    return date.day === 20;
   }
 }
