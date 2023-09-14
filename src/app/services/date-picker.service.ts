@@ -12,12 +12,16 @@ export class DatePickerService implements OnDestroy {
   private reservations: Reservation[] = [];
   public datePickerLoading$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(true);
+  private datesOfPrivateVisits: NgbDateStruct[] = [];
 
   constructor(protected reservationsService: ReservationsService) {
     this.reservationsSubscription$ =
       this.reservationsService.allReservationsChanged.subscribe(
         (reservations) => {
           this.reservations = reservations;
+          this.datesOfPrivateVisits = this.getDatesOfPrivateVisits(
+            this.reservations
+          );
           this.datePickerLoading$.next(false);
         }
       );
@@ -26,10 +30,6 @@ export class DatePickerService implements OnDestroy {
   }
   ngOnDestroy(): void {
     this.reservationsSubscription$.unsubscribe();
-  }
-
-  isDisabled(date: NgbDateStruct): boolean {
-    return date.day === 20;
   }
 
   public getTodaysDate(): NgbDate {
@@ -46,4 +46,14 @@ export class DatePickerService implements OnDestroy {
     }
     return privateDates;
   }
+
+  // IMPORTANT This needs to be an arrow function to work properly.
+  public isDisabled = (
+    date: NgbDateStruct,
+    current: { month: number; year: number } | undefined
+  ) => {
+    return this.datesOfPrivateVisits.find((x) => NgbDate.from(x)?.equals(date))
+      ? true
+      : false;
+  };
 }
