@@ -14,6 +14,12 @@ export class DatePickerService implements OnDestroy {
     new BehaviorSubject<boolean>(true);
   private datesOfPrivateVisits: NgbDateStruct[] = [];
 
+  disabledDates: NgbDateStruct[] = [
+    { year: 2023, month: 9, day: 22 },
+    { year: 2023, month: 9, day: 23 },
+    { year: 2023, month: 9, day: 24 },
+  ];
+
   constructor(protected reservationsService: ReservationsService) {
     this.reservationsSubscription$ =
       this.reservationsService.allReservationsChanged.subscribe(
@@ -42,9 +48,46 @@ export class DatePickerService implements OnDestroy {
     for (const reservation of reservations) {
       if (reservation.privateVisit) {
         privateDates.push(reservation.arrivalDate);
+        // FIXME push all dates in between these dates
+        privateDates.push(reservation.departureDate);
+        const datesInBetween = this.getDatesInBetween(
+          reservation.arrivalDate,
+          reservation.departureDate
+        );
+        console.log(datesInBetween);
+        datesInBetween.forEach((date) => {
+          privateDates.push(date);
+        });
       }
     }
     return privateDates;
+  }
+
+  private getDatesInBetween(
+    arrivalDate: NgbDateStruct,
+    departureDate: NgbDateStruct
+  ): NgbDateStruct[] {
+    const datesInBetween: NgbDateStruct[] = [];
+    const arrivalDateAsDate = new Date(
+      arrivalDate.year,
+      arrivalDate.month,
+      arrivalDate.day
+    );
+    const departureDateAsDate = new Date(
+      departureDate.year,
+      departureDate.month,
+      departureDate.day
+    );
+    const differenceInDays =
+      (departureDateAsDate.getTime() - arrivalDateAsDate.getTime()) /
+      (1000 * 3600 * 24);
+    for (let i = 0; i < differenceInDays; i++) {
+      const date = new Date(arrivalDateAsDate.getTime() + i * 1000 * 3600 * 24);
+      datesInBetween.push(
+        new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+      );
+    }
+    return datesInBetween;
   }
 
   // IMPORTANT This needs to be an arrow function to work properly.
@@ -52,8 +95,11 @@ export class DatePickerService implements OnDestroy {
     date: NgbDateStruct,
     current: { month: number; year: number } | undefined
   ) => {
-    return this.datesOfPrivateVisits.find((x) => NgbDate.from(x)?.equals(date))
-      ? true
-      : false;
+    for (const dateOfPrivateVisit of this.datesOfPrivateVisits) {
+      if (NgbDate.from(dateOfPrivateVisit)?.equals(date)) {
+        return true;
+      }
+    }
+    return false;
   };
 }
