@@ -1,41 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { DatePickerService } from 'src/app/services/date-picker.service';
 import { IconService } from 'src/app/services/icon.service';
-import { ReservationsService } from 'src/app/services/reservations.service';
-import { Reservation } from 'src/app/types/reservation';
 
 @Component({
   selector: 'app-check-availability-menu',
   templateUrl: './check-availability-menu.component.html',
   styleUrls: ['./check-availability-menu.component.scss'],
 })
-export class CheckAvailabilityMenuComponent implements OnInit {
+export class CheckAvailabilityMenuComponent implements OnInit, OnDestroy {
   protected todaysDate!: NgbDate;
-  private reservations: Array<Reservation> = [];
   protected loading: boolean = true;
+  public datePickerLoading$: Subscription;
 
   constructor(
     public icon: IconService,
     private router: Router,
-    private datePickerService: DatePickerService,
-    protected reservationsService: ReservationsService
+    protected datePickerService: DatePickerService
   ) {
     this.todaysDate = this.datePickerService.getTodaysDate();
+    this.datePickerLoading$ =
+      this.datePickerService.datePickerLoading$.subscribe((loading) => {
+        this.loading = loading;
+      });
+  }
+  ngOnDestroy(): void {
+    this.datePickerLoading$.unsubscribe();
   }
 
-  public ngOnInit(): void {
-    this.reservationsService.allReservationsChanged.subscribe(
-      (reservations) => {
-        this.reservations = reservations;
-        this.loading = false;
-      }
-    );
-
-    this.reservationsService.fetchAllReservations();
-  }
+  public ngOnInit(): void {}
 
   public onSubmit(form: NgForm) {
     this.router.navigate(['reserve-trip-page'], {
@@ -46,9 +42,5 @@ export class CheckAvailabilityMenuComponent implements OnInit {
         },
       },
     });
-  }
-
-  isDisabled(date: NgbDateStruct): boolean {
-    return date.day === 20;
   }
 }
