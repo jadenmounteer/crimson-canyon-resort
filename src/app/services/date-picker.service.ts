@@ -11,4 +11,6 @@ export class DatePickerService {
     const date = new Date();
     return new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
   }
+
+  // public getListOfPrivateDates
 }

@@ -1,5 +1,10 @@
-<div class="check-availability-container">
+<span class="loading-icon" *ngIf="loading">
+  <app-loading-spinner></app-loading-spinner>
+</span>
+
+<div class="check-availability-container" *ngIf="!loading">
   <h2>Book your next stay</h2>
+
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="check-availability-form-group">
       <label>Arrive</label>
