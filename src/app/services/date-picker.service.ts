@@ -54,7 +54,6 @@ export class DatePickerService implements OnDestroy {
           reservation.arrivalDate,
           reservation.departureDate
         );
-        console.log(datesInBetween);
         datesInBetween.forEach((date) => {
           privateDates.push(date);
         });
