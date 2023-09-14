@@ -48,7 +48,7 @@ export class DatePickerService implements OnDestroy {
     for (const reservation of reservations) {
       if (reservation.privateVisit) {
         privateDates.push(reservation.arrivalDate);
-        // FIXME push all dates in between these dates
+
         privateDates.push(reservation.departureDate);
         const datesInBetween = this.getDatesInBetween(
           reservation.arrivalDate,
