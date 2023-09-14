@@ -84,7 +84,7 @@ export class DatePickerService implements OnDestroy {
     for (let i = 0; i < differenceInDays; i++) {
       const date = new Date(arrivalDateAsDate.getTime() + i * 1000 * 3600 * 24);
       datesInBetween.push(
-        new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
+        new NgbDate(date.getFullYear(), date.getMonth(), date.getDate())
       );
     }
     return datesInBetween;
