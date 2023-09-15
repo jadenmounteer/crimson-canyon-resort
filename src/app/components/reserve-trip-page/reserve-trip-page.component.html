@@ -27,6 +27,7 @@
                 class="form-control"
                 (click)="arrivalDateInput.toggle()"
                 [minDate]="todaysDate"
+                [markDisabled]="datePickerService.isDisabled"
               />
               <fa-icon
                 class="calendar-button"
@@ -49,6 +50,7 @@
                 class="form-control"
                 (click)="departureDateInput.toggle()"
                 [minDate]="todaysDate"
+                [markDisabled]="datePickerService.isDisabled"
               />
               <fa-icon
                 class="calendar-button"

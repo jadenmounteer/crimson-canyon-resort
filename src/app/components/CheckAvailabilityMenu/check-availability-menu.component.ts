@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +11,7 @@ import { IconService } from 'src/app/services/icon.service';
   templateUrl: './check-availability-menu.component.html',
   styleUrls: ['./check-availability-menu.component.scss'],
 })
-export class CheckAvailabilityMenuComponent implements OnInit, OnDestroy {
+export class CheckAvailabilityMenuComponent implements OnDestroy {
   protected todaysDate!: NgbDate;
   protected loading: boolean = true;
   public datePickerLoading$: Subscription;
@@ -30,8 +30,6 @@ export class CheckAvailabilityMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.datePickerLoading$.unsubscribe();
   }
-
-  public ngOnInit(): void {}
 
   public onSubmit(form: NgForm) {
     this.router.navigate(['reserve-trip-page'], {

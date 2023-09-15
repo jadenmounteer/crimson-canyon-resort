@@ -24,6 +24,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public departureDate: Date | undefined;
   public dateAvailable!: boolean | undefined;
   protected arrivalDateInvalid: boolean = false;
+  public datePickerLoading$!: Subscription;
 
   constructor(
     titleService: Title,
@@ -31,7 +32,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     public icon: IconService,
     private reservationsService: ReservationsService,
     private router: Router,
-    private datePickerService: DatePickerService
+    protected datePickerService: DatePickerService
   ) {
     titleService.setTitle('Crimson Canyon Resort | Reserve Trip');
     this.todaysDate = this.datePickerService.getTodaysDate();
@@ -56,7 +57,10 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
       this.dateAvailable = true;
     }
 
-    this.contentLoaded = true;
+    this.datePickerLoading$ =
+      this.datePickerService.datePickerLoading$.subscribe((loading) => {
+        this.contentLoaded = !loading;
+      });
   }
 
   private getArrivalAndDepartureDate() {
@@ -67,6 +71,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+    this.datePickerLoading$.unsubscribe();
   }
 
   public checkAvailability() {
