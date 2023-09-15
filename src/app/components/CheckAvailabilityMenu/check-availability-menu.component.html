@@ -5,6 +5,28 @@
 <div class="check-availability-container" *ngIf="!loading">
   <h2>Book your next stay</h2>
 
+  <ng-template
+    #dayTemplate
+    let-date="date"
+    let-disabled="disabled"
+    let-selected="selected"
+  >
+    <span
+      *ngIf="disabled"
+      class="date-unavailable"
+      ngbTooltip="This date is unavailable."
+      >X</span
+    >
+    <span
+      class="custom-day"
+      *ngIf="!disabled"
+      [class.bg-primary]="selected"
+      ngbTooltip="This date is available."
+    >
+      {{ date.day }}
+    </span>
+  </ng-template>
+
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="check-availability-form-group">
       <label>Arrive</label>
@@ -20,6 +42,7 @@
           (click)="arrivalDateInput.toggle()"
           [minDate]="todaysDate"
           [markDisabled]="datePickerService.isDisabled"
+          [dayTemplate]="dayTemplate"
         />
         <fa-icon
           class="calendar-button"
@@ -57,6 +80,7 @@
         type="submit"
         [disabled]="!f.valid"
         class="btn btn-primary btn-lg"
+        ngbTooltip="This date is unavailable."
       >
         Check Availability
       </button>
