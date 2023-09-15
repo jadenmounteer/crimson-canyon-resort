@@ -6,6 +6,19 @@
     <h1 class="page-title">Reserve Your Trip</h1>
   </div>
 
+  <ng-template
+    #dayTemplate
+    let-date="date"
+    let-disabled="disabled"
+    let-selected="selected"
+  >
+    <app-day-template
+      [disabled]="disabled"
+      [selected]="selected"
+      [date]="date"
+    ></app-day-template>
+  </ng-template>
+
   <div pageContent class="page-content-wrapper">
     <div class="form-container">
       <div class="card booking-form">
@@ -28,6 +41,7 @@
                 (click)="arrivalDateInput.toggle()"
                 [minDate]="todaysDate"
                 [markDisabled]="datePickerService.isDisabled"
+                [dayTemplate]="dayTemplate"
               />
               <fa-icon
                 class="calendar-button"
@@ -51,6 +65,7 @@
                 (click)="departureDateInput.toggle()"
                 [minDate]="todaysDate"
                 [markDisabled]="datePickerService.isDisabled"
+                [dayTemplate]="dayTemplate"
               />
               <fa-icon
                 class="calendar-button"

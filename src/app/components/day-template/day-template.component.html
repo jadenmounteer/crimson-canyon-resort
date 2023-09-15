@@ -1,0 +1,14 @@
+<span
+  *ngIf="disabled"
+  class="date-unavailable"
+  ngbTooltip="This date is unavailable."
+  >X</span
+>
+<span
+  class="custom-day"
+  *ngIf="!disabled"
+  [class.selected]="selected"
+  ngbTooltip="This date is available."
+>
+  {{ date.day }}
+</span>

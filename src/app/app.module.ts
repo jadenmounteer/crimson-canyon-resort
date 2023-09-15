@@ -34,6 +34,7 @@ import { AnnouncementsSectionComponent } from './components/announcements-sectio
 import { InstagramFeedModule } from './components/instagram-feed/instagram-feed.module';
 import { FitnessCenterModule } from './fitness-center/fitness-center.module';
 import { FitnessHomePageSectionComponent } from './components/fitness-home-page-section/fitness-home-page-section.component';
+import { DayTemplateComponent } from './components/day-template/day-template.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { FitnessHomePageSectionComponent } from './components/fitness-home-page-
     AnnouncementsSectionComponent,
     WhatsHappeningHomePageSectionComponent,
     FitnessHomePageSectionComponent,
+    DayTemplateComponent,
   ],
   imports: [
     BrowserModule,

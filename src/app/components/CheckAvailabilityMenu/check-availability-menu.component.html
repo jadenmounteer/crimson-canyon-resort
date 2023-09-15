@@ -11,20 +11,11 @@
     let-disabled="disabled"
     let-selected="selected"
   >
-    <span
-      *ngIf="disabled"
-      class="date-unavailable"
-      ngbTooltip="This date is unavailable."
-      >X</span
-    >
-    <span
-      class="custom-day"
-      *ngIf="!disabled"
-      [class.bg-primary]="selected"
-      ngbTooltip="This date is available."
-    >
-      {{ date.day }}
-    </span>
+    <app-day-template
+      [disabled]="disabled"
+      [selected]="selected"
+      [date]="date"
+    ></app-day-template>
   </ng-template>
 
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
@@ -66,6 +57,7 @@
           (click)="departureDateInput.toggle()"
           [minDate]="todaysDate"
           [markDisabled]="datePickerService.isDisabled"
+          [dayTemplate]="dayTemplate"
         />
         <fa-icon
           class="calendar-button"
