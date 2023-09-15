@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,13 +16,14 @@ import { DatePickerService } from 'src/app/services/date-picker.service';
   templateUrl: './reservation-details.component.html',
   styleUrls: ['./reservation-details.component.scss'],
 })
-export class ReservationDetailsComponent implements OnInit {
+export class ReservationDetailsComponent implements OnInit, OnDestroy {
   protected todaysDate!: NgbDate;
   public contentLoaded: boolean = false;
   public reservation!: Reservation;
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
   protected editing: boolean = false;
+  public datePickerLoading$!: Subscription;
 
   constructor(
     public icon: IconService,
@@ -31,9 +32,13 @@ export class ReservationDetailsComponent implements OnInit {
     private authService: AuthService,
     private modalService: NgbModal,
     private router: Router,
-    private datePickerService: DatePickerService
+    protected datePickerService: DatePickerService
   ) {
     this.todaysDate = this.datePickerService.getTodaysDate();
+  }
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+    this.datePickerLoading$.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -52,7 +57,10 @@ export class ReservationDetailsComponent implements OnInit {
       let id: string | null = params.get('id');
       this.reservation = this.reservationsService.getReservation(id);
 
-      this.contentLoaded = true;
+      this.datePickerLoading$ =
+        this.datePickerService.datePickerLoading$.subscribe((loading) => {
+          this.contentLoaded = !loading;
+        });
     });
   }
 

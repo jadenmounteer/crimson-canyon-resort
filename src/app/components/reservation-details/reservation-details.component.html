@@ -28,6 +28,7 @@
                 [disabled]="!editing"
                 (click)="arrivalDateInput.toggle()"
                 [minDate]="todaysDate"
+                [markDisabled]="datePickerService.isDisabled"
               />
               <fa-icon
                 class="calendar-button"
@@ -53,6 +54,7 @@
                 (click)="departureDateInput.toggle()"
                 [disabled]="!editing"
                 [minDate]="todaysDate"
+                [markDisabled]="datePickerService.isDisabled"
               />
               <fa-icon
                 class="calendar-button"
