@@ -4,11 +4,17 @@
   ngbTooltip="This date is unavailable."
   >X</span
 >
+
 <span
   class="custom-day"
   *ngIf="!disabled"
   [class.selected]="selected"
-  ngbTooltip="This date is available."
+  [class.nonPrivateVisit]="datePickerService.isNonPrivateVisit(date)"
+  [ngbTooltip]="
+    datePickerService.isNonPrivateVisit(date)
+      ? 'A non-private visit is scheduled for this date. You can still schedule on this date.'
+      : 'This date is available.'
+  "
 >
   {{ date.day }}
 </span>

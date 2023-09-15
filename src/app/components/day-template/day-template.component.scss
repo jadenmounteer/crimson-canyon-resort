@@ -23,12 +23,22 @@
   display: flex;
   align-items: center;
   color: $lightest;
-  background-color: $highlightColor;
+  background-color: red;
   padding: 0.185rem 0.25rem;
   border-radius: 0.25rem;
   justify-content: center;
+  opacity: 0.5;
 }
 
 .selected {
   background-color: $secondaryColor;
+}
+
+.nonPrivateVisit {
+  background-color: $highlightColor;
+  color: $lightest;
+}
+
+.nonPrivateVisit:hover {
+  background-color: $lightHighlightColor;
 }

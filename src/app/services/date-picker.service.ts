@@ -13,6 +13,7 @@ export class DatePickerService implements OnDestroy {
   public datePickerLoading$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(true);
   private datesOfPrivateVisits: NgbDateStruct[] = [];
+  private datesOfNonPrivateVisits: NgbDateStruct[] = [];
 
   disabledDates: NgbDateStruct[] = [
     { year: 2023, month: 9, day: 22 },
@@ -28,6 +29,11 @@ export class DatePickerService implements OnDestroy {
           this.datesOfPrivateVisits = this.getDatesOfPrivateVisits(
             this.reservations
           );
+
+          this.datesOfNonPrivateVisits = this.getDatesOfNonPrivateVisits(
+            this.reservations
+          );
+
           this.datePickerLoading$.next(false);
         }
       );
@@ -43,7 +49,9 @@ export class DatePickerService implements OnDestroy {
     return new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
   }
 
-  public getDatesOfPrivateVisits(reservations: Reservation[]): NgbDateStruct[] {
+  private getDatesOfPrivateVisits(
+    reservations: Reservation[]
+  ): NgbDateStruct[] {
     const privateDates: NgbDateStruct[] = [];
     for (const reservation of reservations) {
       if (reservation.privateVisit) {
@@ -60,6 +68,27 @@ export class DatePickerService implements OnDestroy {
       }
     }
     return privateDates;
+  }
+
+  private getDatesOfNonPrivateVisits(
+    reservations: Reservation[]
+  ): NgbDateStruct[] {
+    const nonPrivateDates: NgbDateStruct[] = [];
+    for (const reservation of reservations) {
+      if (!reservation.privateVisit) {
+        nonPrivateDates.push(reservation.arrivalDate);
+
+        nonPrivateDates.push(reservation.departureDate);
+        const datesInBetween = this.getDatesInBetween(
+          reservation.arrivalDate,
+          reservation.departureDate
+        );
+        datesInBetween.forEach((date) => {
+          nonPrivateDates.push(date);
+        });
+      }
+    }
+    return nonPrivateDates;
   }
 
   private getDatesInBetween(
@@ -87,6 +116,15 @@ export class DatePickerService implements OnDestroy {
       );
     }
     return datesInBetween;
+  }
+
+  isNonPrivateVisit(date: NgbDateStruct) {
+    for (const dateOfNonPrivateVisit of this.datesOfNonPrivateVisits) {
+      if (NgbDate.from(dateOfNonPrivateVisit)?.equals(date)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   // IMPORTANT This needs to be an arrow function to work properly.
