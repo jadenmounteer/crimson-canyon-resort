@@ -164,6 +164,20 @@
               [disabled]="!editing"
             ></textarea>
           </div>
+
+          <span *ngIf="!validDates">
+            <ngb-alert type="danger" [dismissible]="false">
+              {{ this.invalidDatesMessage }}
+            </ngb-alert>
+          </span>
+
+          <span
+            *ngIf="editing === true && isAuth && validDates && !dateAvailable"
+            ><ngb-alert [type]="dateAvailabilityType" [dismissible]="false">
+              {{ dateAvailabilityMessage }}
+            </ngb-alert></span
+          >
+
           <button
             type="submit"
             class="btn btn-primary"

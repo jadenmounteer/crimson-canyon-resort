@@ -146,7 +146,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.datePickerLoading$.unsubscribe();
   }
 
-  public checkAvailability() {
+  protected checkAvailability() {
     if (!this.arrivalDate || !this.departureDate) {
       throw new Error('Arrival date or departure date is undefined');
     }
