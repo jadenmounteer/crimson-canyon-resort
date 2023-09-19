@@ -69,3 +69,9 @@ a {
   -o-transform: translateY(-13px) rotate(-45deg);
   transform: translateY(-13px) rotate(-45deg);
 }
+
+.weather-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
