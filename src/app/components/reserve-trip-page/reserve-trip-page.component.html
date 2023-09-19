@@ -96,7 +96,7 @@
               event during this time. Please select another date.
             </ngb-alert></span
           >
-          <span *ngIf="dateAvailable === true && isAuth"
+          <span *ngIf="dateAvailable === true && isAuth && validDates"
             ><ngb-alert type="success" [dismissible]="false">
               This date is available. 🙌
             </ngb-alert></span
