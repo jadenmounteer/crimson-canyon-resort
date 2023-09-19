@@ -1,13 +1,20 @@
 <span
-  *ngIf="disabled"
-  class="date-unavailable"
+  *ngIf="disabled && !datePickerService.isPrivateVisit(date)"
+  class="past-date"
+  ngbTooltip="This date is unavailable."
+  >{{ date.day }}</span
+>
+
+<span
+  *ngIf="datePickerService.isPrivateVisit(date) && disabled"
+  class="private-visit"
   ngbTooltip="This date is unavailable."
   >X</span
 >
 
 <span
   class="custom-day"
-  *ngIf="!disabled"
+  *ngIf="!disabled && !datePickerService.isPrivateVisit(date)"
   [class.selected]="selected"
   [class.nonPrivateVisit]="datePickerService.isNonPrivateVisit(date)"
   [ngbTooltip]="

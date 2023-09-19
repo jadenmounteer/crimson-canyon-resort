@@ -19,7 +19,7 @@
   background-color: #e6e6e6;
 }
 
-.date-unavailable {
+.private-visit {
   display: flex;
   align-items: center;
   color: $lightest;
@@ -27,7 +27,7 @@
   padding: 0.185rem 0.25rem;
   border-radius: 0.25rem;
   justify-content: center;
-  opacity: 0.5;
+  pointer-events: all;
 }
 
 .selected {
@@ -41,4 +41,8 @@
 
 .nonPrivateVisit:hover {
   background-color: $lightHighlightColor;
+}
+
+.past-date {
+  opacity: 0.5;
 }

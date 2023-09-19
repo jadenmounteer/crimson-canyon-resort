@@ -11,6 +11,7 @@ export class DayTemplateComponent implements OnInit {
   @Input() disabled: boolean = false;
   @Input() selected: boolean = false;
   @Input() date!: NgbDate;
+  @Input() privateVisit: boolean = false;
 
   constructor(protected datePickerService: DatePickerService) {}
 

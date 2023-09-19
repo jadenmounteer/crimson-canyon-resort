@@ -118,9 +118,18 @@ export class DatePickerService implements OnDestroy {
     return datesInBetween;
   }
 
-  isNonPrivateVisit(date: NgbDateStruct) {
+  public isNonPrivateVisit(date: NgbDateStruct): boolean {
     for (const dateOfNonPrivateVisit of this.datesOfNonPrivateVisits) {
       if (NgbDate.from(dateOfNonPrivateVisit)?.equals(date)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public isPrivateVisit(date: NgbDateStruct): boolean {
+    for (const dateOfPrivateVisit of this.datesOfPrivateVisits) {
+      if (NgbDate.from(dateOfPrivateVisit)?.equals(date)) {
         return true;
       }
     }
