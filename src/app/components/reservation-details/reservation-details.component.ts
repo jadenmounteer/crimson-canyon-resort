@@ -74,7 +74,7 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
   public onChangeReservation(form: NgForm): void {
     this.checkAvailability(form.value.arrivalDate, form.value.departureDate);
 
-    if (this.dateAvailable) {
+    if (this.dateAvailable && this.validDates) {
       const updatedReservation: Reservation = {
         id: this.reservation.id,
         userId: this.authService.userId,
