@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IconService } from 'src/app/services/icon.service';
 import { AuthService } from '../auth/auth.service';
-import { Reservation } from 'src/app/types/reservation';
+import { DayMonthYear, Reservation } from 'src/app/types/reservation';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Router } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
@@ -20,11 +20,13 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public contentLoaded: boolean = false;
   public isAuth: boolean = false;
   private authSubscription!: Subscription;
-  public arrivalDate: Date | undefined;
-  public departureDate: Date | undefined;
+  public arrivalDate: DayMonthYear | undefined;
+  public departureDate: DayMonthYear | undefined;
   public dateAvailable!: boolean | undefined;
   protected arrivalDateInvalid: boolean = false;
   public datePickerLoading$!: Subscription;
+  protected validDates: boolean = true;
+  protected invalidDatesMessage: string = '';
 
   constructor(
     titleService: Title,
@@ -54,13 +56,60 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
 
     if (this.arrivalDate && this.departureDate) {
       // TODO check if the date is available here
-      this.dateAvailable = true;
+      this.validDates = this.validateDates(
+        this.arrivalDate,
+        this.departureDate
+      );
+
+      if (this.validDates) {
+        this.dateAvailable = this.checkIfDateIsAvailable();
+      }
     }
 
     this.datePickerLoading$ =
       this.datePickerService.datePickerLoading$.subscribe((loading) => {
         this.contentLoaded = !loading;
       });
+  }
+
+  private validateDates(
+    arrivalDate: DayMonthYear,
+    departureDate: DayMonthYear
+  ): boolean {
+    let valid = true;
+
+    if (this.arrivalDateIsAfterDepartureDate(arrivalDate, departureDate)) {
+      valid = false;
+      this.invalidDatesMessage =
+        'Slow down there tiger. Your arrival date cannot be after the departure date. 🐯';
+    }
+
+    return valid;
+  }
+
+  private arrivalDateIsAfterDepartureDate(
+    arrivalDate: DayMonthYear,
+    departureDate: DayMonthYear
+  ): boolean {
+    let arrivalDateIsAfterDepartureDate = false;
+
+    if (arrivalDate.year > departureDate.year) {
+      arrivalDateIsAfterDepartureDate = true;
+    } else if (arrivalDate.year === departureDate.year) {
+      if (arrivalDate.month > departureDate.month) {
+        arrivalDateIsAfterDepartureDate = true;
+      } else if (arrivalDate.month === departureDate.month) {
+        if (arrivalDate.day > departureDate.day) {
+          arrivalDateIsAfterDepartureDate = true;
+        }
+      }
+    }
+
+    return arrivalDateIsAfterDepartureDate;
+  }
+
+  private checkIfDateIsAvailable(): boolean {
+    return true;
   }
 
   private getArrivalAndDepartureDate() {

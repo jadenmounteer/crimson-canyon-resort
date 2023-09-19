@@ -81,6 +81,12 @@
             </ngb-alert></span
           >
 
+          <span *ngIf="!validDates">
+            <ngb-alert type="danger" [dismissible]="false">
+              {{ this.invalidDatesMessage }}
+            </ngb-alert>
+          </span>
+
           <span *ngIf="dateAvailable === false"
             ><ngb-alert type="danger" [dismissible]="false">
               This date is not available. Someone may have booked a private
