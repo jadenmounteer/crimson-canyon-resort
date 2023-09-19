@@ -117,6 +117,8 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     departureDate: DayMonthYear
   ): boolean {
     let dateIsAvailable = true;
+    this.dateAvailabilityMessage = 'This date is available. 🙌';
+    this.dateAvailabilityType = 'success';
 
     const datesInBetween =
       this.datePickerService.getDatesBetweenArrivalAndDepartureDates(
@@ -131,7 +133,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
         dateIsAvailable = false;
         this.dateAvailabilityType = 'danger';
         this.dateAvailabilityMessage =
-          'Sorry, but this date is unavailable. There is a private visit scheduled. 🙅';
+          'Sorry, but this reservation is unavailable. There is a private visit scheduled during this time. 🙅';
         break;
       }
 

@@ -84,24 +84,18 @@
             </ngb-alert></span
           >
 
-          <span *ngIf="dateAvailable === true && validDates"
-            ><ngb-alert [dismissible]="false" [type]="dateAvailabilityType">
-              {{ dateAvailabilityMessage }}
-            </ngb-alert></span
-          >
-
           <span *ngIf="!validDates">
             <ngb-alert type="danger" [dismissible]="false">
               {{ this.invalidDatesMessage }}
             </ngb-alert>
           </span>
 
-          <span *ngIf="dateAvailable === false"
-            ><ngb-alert type="danger" [dismissible]="false">
-              This date is not available. Someone may have booked a private
-              event during this time. Please select another date.
+          <span *ngIf="dateAvailable === false && isAuth && validDates"
+            ><ngb-alert [type]="dateAvailabilityType" [dismissible]="false">
+              {{ dateAvailabilityMessage }}
             </ngb-alert></span
           >
+
           <span *ngIf="dateAvailable === true && isAuth && validDates"
             ><ngb-alert [type]="dateAvailabilityType" [dismissible]="false">
               {{ dateAvailabilityMessage }}
