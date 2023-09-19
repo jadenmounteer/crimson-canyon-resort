@@ -70,4 +70,11 @@ export class WeatherService {
       `${environment.weather.currentWeatherApiUrl}/forecast?lat=${this.stGeorgeLat}&lon=${this.stGeorgeLong}&units=imperial&appid=${currentWeatherApiKEy}`
     );
   }
+
+  public checkIfDayIcon(iconName: string): boolean {
+    if (iconName.includes('d')) {
+      return true;
+    }
+    return false;
+  }
 }

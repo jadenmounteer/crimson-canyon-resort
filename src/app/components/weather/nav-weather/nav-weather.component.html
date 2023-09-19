@@ -1,4 +1,15 @@
 <div class="weather-wrapper">
   <fa-icon [icon]="icon.faSun" *ngIf="weatherIcon === 'faSun'"></fa-icon>
+  <fa-icon [icon]="icon.faMoon" *ngIf="weatherIcon === 'faMoon'"></fa-icon>
+  <fa-icon [icon]="icon.faCloud" *ngIf="weatherIcon === 'faCloud'"></fa-icon>
+  <fa-icon
+    [icon]="icon.faUmbrella"
+    *ngIf="weatherIcon === 'faUmbrella'"
+  ></fa-icon>
+  <fa-icon
+    [icon]="icon.faSnowman"
+    *ngIf="weatherIcon === 'faSnowman'"
+  ></fa-icon>
+
   <span class="current-temp">{{ currentTemperature }}&#8457;</span>
 </div>

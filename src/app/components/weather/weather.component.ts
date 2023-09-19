@@ -66,7 +66,8 @@ export class WeatherComponent implements OnInit {
       this.currentWeather.date = new Date(this.currentWeatherData.dt * 1000);
 
       // Check if day or night
-      const dayIcon: boolean = this.checkIfDayIcon(currentWeatherIcon);
+      const dayIcon: boolean =
+        this.weatherService.checkIfDayIcon(currentWeatherIcon);
 
       this.currentWeather.animation = this.weatherService.getWeatherAnimation(
         this.currentWeather.description,
@@ -80,13 +81,6 @@ export class WeatherComponent implements OnInit {
       // Separate the data into days
       this.organizeForecastData(data.list);
     });
-  }
-
-  private checkIfDayIcon(iconName: string): boolean {
-    if (iconName.includes('d')) {
-      return true;
-    }
-    return false;
   }
 
   private organizeForecastData(listOfData: any) {
