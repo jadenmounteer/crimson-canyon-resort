@@ -83,34 +83,18 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   ): boolean {
     let valid = true;
 
-    if (this.arrivalDateIsAfterDepartureDate(arrivalDate, departureDate)) {
+    if (
+      this.datePickerService.arrivalDateIsAfterDepartureDate(
+        arrivalDate,
+        departureDate
+      )
+    ) {
       valid = false;
       this.invalidDatesMessage =
         'Slow down there tiger. Your arrival date cannot be after the departure date. 🐯';
     }
 
     return valid;
-  }
-
-  private arrivalDateIsAfterDepartureDate(
-    arrivalDate: DayMonthYear,
-    departureDate: DayMonthYear
-  ): boolean {
-    let arrivalDateIsAfterDepartureDate = false;
-
-    if (arrivalDate.year > departureDate.year) {
-      arrivalDateIsAfterDepartureDate = true;
-    } else if (arrivalDate.year === departureDate.year) {
-      if (arrivalDate.month > departureDate.month) {
-        arrivalDateIsAfterDepartureDate = true;
-      } else if (arrivalDate.month === departureDate.month) {
-        if (arrivalDate.day > departureDate.day) {
-          arrivalDateIsAfterDepartureDate = true;
-        }
-      }
-    }
-
-    return arrivalDateIsAfterDepartureDate;
   }
 
   private checkIfReservationIsAvailable(

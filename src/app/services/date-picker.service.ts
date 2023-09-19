@@ -204,4 +204,25 @@ export class DatePickerService implements OnDestroy {
     }
     return datesInBetween;
   }
+
+  public arrivalDateIsAfterDepartureDate(
+    arrivalDate: DayMonthYear,
+    departureDate: DayMonthYear
+  ): boolean {
+    let arrivalDateIsAfterDepartureDate = false;
+
+    if (arrivalDate.year > departureDate.year) {
+      arrivalDateIsAfterDepartureDate = true;
+    } else if (arrivalDate.year === departureDate.year) {
+      if (arrivalDate.month > departureDate.month) {
+        arrivalDateIsAfterDepartureDate = true;
+      } else if (arrivalDate.month === departureDate.month) {
+        if (arrivalDate.day > departureDate.day) {
+          arrivalDateIsAfterDepartureDate = true;
+        }
+      }
+    }
+
+    return arrivalDateIsAfterDepartureDate;
+  }
 }
