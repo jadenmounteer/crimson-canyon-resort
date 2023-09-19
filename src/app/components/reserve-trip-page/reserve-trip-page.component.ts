@@ -29,6 +29,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   protected invalidDatesMessage: string = '';
   protected dateAvailabilityMessage: string = 'This date is available. 🙌';
   protected dateAvailabilityType: 'success' | 'danger' | 'warning' = 'success';
+  protected reservationDuringNonPrivateVisit: boolean = false;
 
   constructor(
     titleService: Title,
@@ -119,6 +120,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     let dateIsAvailable = true;
     this.dateAvailabilityMessage = 'This date is available. 🙌';
     this.dateAvailabilityType = 'success';
+    this.reservationDuringNonPrivateVisit = false;
 
     const datesInBetween =
       this.datePickerService.getDatesBetweenArrivalAndDepartureDates(
@@ -138,6 +140,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
       }
 
       if (this.datePickerService.dateLandsOnNonPrivateVisit(date)) {
+        this.reservationDuringNonPrivateVisit = true;
         this.dateAvailabilityType = 'warning';
         this.dateAvailabilityMessage =
           'Looks like there is a reservation already scheduled during your stay. That is ok. It is public so you can still visit! 🙌';

@@ -162,7 +162,7 @@
 
           <div
             class="check-availability-form-group form-check"
-            *ngIf="isAuth && dateAvailable"
+            *ngIf="isAuth && dateAvailable && !reservationDuringNonPrivateVisit"
           >
             <input
               type="checkbox"
