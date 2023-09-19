@@ -151,4 +151,10 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.reservationsService.addNewReservation(reservation);
     this.router.navigate(['reservation-booked-page']);
   }
+
+  protected onDateChange() {
+    if (this.dateAvailable) {
+      this.checkAvailability();
+    }
+  }
 }

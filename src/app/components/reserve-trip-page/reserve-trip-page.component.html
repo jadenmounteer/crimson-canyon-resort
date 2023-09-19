@@ -37,6 +37,7 @@
                 name="arrivalDate"
                 #arrivalDateInput="ngbDatepicker"
                 [(ngModel)]="arrivalDate"
+                (ngModelChange)="onDateChange()"
                 class="form-control"
                 (click)="arrivalDateInput.toggle()"
                 [minDate]="todaysDate"
@@ -66,6 +67,7 @@
                 [minDate]="todaysDate"
                 [markDisabled]="datePickerService.isDisabled"
                 [dayTemplate]="dayTemplate"
+                (ngModelChange)="onDateChange()"
               />
               <fa-icon
                 class="calendar-button"
@@ -217,7 +219,7 @@
           <div class="book-now-button" *ngIf="isAuth && dateAvailable">
             <button
               type="submit"
-              [disabled]="!f.valid"
+              [disabled]="!f.valid || !validDates"
               class="btn btn-primary btn-lg"
             >
               Book
