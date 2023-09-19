@@ -75,9 +75,10 @@
             </div>
           </div>
 
-          <span *ngIf="dateAvailable === undefined"
+          <span *ngIf="dateAvailable === undefined && validDates"
             ><ngb-alert [dismissible]="false">
               Please select an arrival and departure date to check availability.
+              👆
             </ngb-alert></span
           >
 
@@ -95,7 +96,7 @@
           >
           <span *ngIf="dateAvailable === true && isAuth"
             ><ngb-alert type="success" [dismissible]="false">
-              This date is available.
+              This date is available. 🙌
             </ngb-alert></span
           >
 
@@ -112,7 +113,7 @@
 
           <span *ngIf="dateAvailable && isAuth"
             ><ngb-alert [dismissible]="false">
-              Please fill out the below information to continue booking.
+              Please fill out the below information to continue booking. 👇
             </ngb-alert></span
           >
 

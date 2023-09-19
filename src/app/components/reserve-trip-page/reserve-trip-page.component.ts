@@ -124,7 +124,14 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   }
 
   public checkAvailability() {
-    this.dateAvailable = true;
+    if (!this.arrivalDate || !this.departureDate) {
+      throw new Error('Arrival date or departure date is undefined');
+    }
+    this.validDates = this.validateDates(this.arrivalDate, this.departureDate);
+
+    if (this.validDates) {
+      this.dateAvailable = this.checkIfDateIsAvailable();
+    }
   }
 
   public onBook(form: NgForm) {
