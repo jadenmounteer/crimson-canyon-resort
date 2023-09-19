@@ -1,5 +1,7 @@
 @import "../../../../styles.scss";
 
-fa-icon {
+.weather-wrapper {
   color: $backgroundColor;
+  display: flex;
+  gap: 4px;
 }
