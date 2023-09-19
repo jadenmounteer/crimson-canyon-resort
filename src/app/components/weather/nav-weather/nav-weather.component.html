@@ -1,4 +1,4 @@
 <div class="weather-wrapper">
-  <fa-icon [icon]="icon.faSun"></fa-icon>
+  <fa-icon [icon]="icon.faSun" *ngIf="weatherIcon === 'faSun'"></fa-icon>
   <span class="current-temp">90F</span>
 </div>

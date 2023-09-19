@@ -7,6 +7,8 @@ import { IconService } from 'src/app/services/icon.service';
   styleUrls: ['./nav-weather.component.scss'],
 })
 export class NavWeatherComponent implements OnInit {
+  weatherIcon: string = 'faSun';
+
   constructor(public icon: IconService) {}
 
   ngOnInit(): void {}
