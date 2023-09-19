@@ -9,6 +9,11 @@ import {
   faCalendarAlt,
   faCheckCircle,
   faTrash,
+  faSun,
+  faCloud,
+  faUmbrella,
+  faSnowman,
+  faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -27,6 +32,11 @@ export class IconService {
   public faCheckCircle = faCheckCircle;
   public faInstagram = faInstagram;
   public faTrash = faTrash;
+  public faSun = faSun;
+  public faCloud = faCloud;
+  public faUmbrella = faUmbrella;
+  public faSnowman = faSnowman;
+  public faMoon = faMoon;
 
   constructor() {}
 }
