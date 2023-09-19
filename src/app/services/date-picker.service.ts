@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Reservation } from '../types/reservation';
+import { DayMonthYear, Reservation } from '../types/reservation';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ReservationsService } from './reservations.service';
 
@@ -148,4 +148,60 @@ export class DatePickerService implements OnDestroy {
     }
     return false;
   };
+
+  public dateLandsOnPrivateVisit(date: DayMonthYear): boolean {
+    for (const dateOfPrivateVisit of this.datesOfPrivateVisits) {
+      if (
+        dateOfPrivateVisit.year === date.year &&
+        dateOfPrivateVisit.month === date.month &&
+        dateOfPrivateVisit.day === date.day
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public dateLandsOnNonPrivateVisit(date: DayMonthYear): boolean {
+    for (const dateOfNonPrivateVisit of this.datesOfNonPrivateVisits) {
+      if (
+        dateOfNonPrivateVisit.year === date.year &&
+        dateOfNonPrivateVisit.month === date.month &&
+        dateOfNonPrivateVisit.day === date.day
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public getDatesBetweenArrivalAndDepartureDates(
+    arrivalDate: DayMonthYear,
+    departureDate: DayMonthYear
+  ): Array<DayMonthYear> {
+    const datesInBetween: DayMonthYear[] = [];
+
+    const arrivalDateAsDate = new Date(
+      arrivalDate.year,
+      arrivalDate.month,
+      arrivalDate.day
+    );
+    const departureDateAsDate = new Date(
+      departureDate.year,
+      departureDate.month,
+      departureDate.day
+    );
+    const differenceInDays =
+      (departureDateAsDate.getTime() - arrivalDateAsDate.getTime()) /
+      (1000 * 3600 * 24);
+    for (let i = 0; i < differenceInDays; i++) {
+      const date = new Date(arrivalDateAsDate.getTime() + i * 1000 * 3600 * 24);
+      datesInBetween.push({
+        day: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear(),
+      });
+    }
+    return datesInBetween;
+  }
 }

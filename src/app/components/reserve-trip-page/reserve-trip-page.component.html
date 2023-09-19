@@ -84,6 +84,12 @@
             </ngb-alert></span
           >
 
+          <span *ngIf="dateAvailable === true && validDates"
+            ><ngb-alert [dismissible]="false" [type]="dateAvailabilityType">
+              {{ dateAvailabilityMessage }}
+            </ngb-alert></span
+          >
+
           <span *ngIf="!validDates">
             <ngb-alert type="danger" [dismissible]="false">
               {{ this.invalidDatesMessage }}
@@ -97,16 +103,11 @@
             </ngb-alert></span
           >
           <span *ngIf="dateAvailable === true && isAuth && validDates"
-            ><ngb-alert type="success" [dismissible]="false">
-              This date is available. 🙌
+            ><ngb-alert [type]="dateAvailabilityType" [dismissible]="false">
+              {{ dateAvailabilityMessage }}
             </ngb-alert></span
           >
 
-          <span *ngIf="dateAvailable === true && !isAuth"
-            ><ngb-alert type="success" [dismissible]="false">
-              This date is available.
-            </ngb-alert></span
-          >
           <span *ngIf="dateAvailable && !isAuth"
             ><ngb-alert [dismissible]="false">
               Please login to book this trip.

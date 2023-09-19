@@ -27,6 +27,8 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
   public datePickerLoading$!: Subscription;
   protected validDates: boolean = true;
   protected invalidDatesMessage: string = '';
+  protected dateAvailabilityMessage: string = 'This date is available. 🙌';
+  protected dateAvailabilityType: 'success' | 'danger' | 'warning' = 'success';
 
   constructor(
     titleService: Title,
@@ -55,14 +57,16 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.getArrivalAndDepartureDate();
 
     if (this.arrivalDate && this.departureDate) {
-      // TODO check if the date is available here
       this.validDates = this.validateDates(
         this.arrivalDate,
         this.departureDate
       );
 
       if (this.validDates) {
-        this.dateAvailable = this.checkIfDateIsAvailable();
+        this.dateAvailable = this.checkIfReservationIsAvailable(
+          this.arrivalDate,
+          this.departureDate
+        );
       }
     }
 
@@ -108,8 +112,38 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     return arrivalDateIsAfterDepartureDate;
   }
 
-  private checkIfDateIsAvailable(): boolean {
-    return true;
+  private checkIfReservationIsAvailable(
+    arrivalDate: DayMonthYear,
+    departureDate: DayMonthYear
+  ): boolean {
+    let dateIsAvailable = true;
+
+    const datesInBetween =
+      this.datePickerService.getDatesBetweenArrivalAndDepartureDates(
+        arrivalDate,
+        departureDate
+      );
+
+    const datesToCheck = [arrivalDate, departureDate, ...datesInBetween];
+
+    for (const date of datesToCheck) {
+      if (this.datePickerService.dateLandsOnPrivateVisit(date)) {
+        dateIsAvailable = false;
+        this.dateAvailabilityType = 'danger';
+        this.dateAvailabilityMessage =
+          'Sorry, but this date is unavailable. There is a private visit scheduled. 🙅';
+        break;
+      }
+
+      if (this.datePickerService.dateLandsOnNonPrivateVisit(date)) {
+        this.dateAvailabilityType = 'warning';
+        this.dateAvailabilityMessage =
+          'Looks like there is a reservation already scheduled during your stay. That is ok. It is public so you can still visit! 🙌';
+        break;
+      }
+    }
+
+    return dateIsAvailable;
   }
 
   private getArrivalAndDepartureDate() {
@@ -130,7 +164,10 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
     this.validDates = this.validateDates(this.arrivalDate, this.departureDate);
 
     if (this.validDates) {
-      this.dateAvailable = this.checkIfDateIsAvailable();
+      this.dateAvailable = this.checkIfReservationIsAvailable(
+        this.arrivalDate,
+        this.departureDate
+      );
     }
   }
 
