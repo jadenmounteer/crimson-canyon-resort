@@ -11,6 +11,8 @@ export class CountdownToInstagramTokenRefreshComponent {
   protected daysUntilTokenExpires: number =
     this.getDaysUntilTokenExpiresFromDateOfLastRefresh(5184000);
 
+  protected showDocumentation: boolean = false;
+
   constructor() {}
 
   private getDaysUntilTokenExpiresFromDateOfLastRefresh(
@@ -22,5 +24,9 @@ export class CountdownToInstagramTokenRefreshComponent {
         (this.todaysDate.getTime() - this.dateOfLastRefresh.getTime()) / 1000) /
       secondsInADay;
     return Math.round(daysUntilTokenExpires);
+  }
+
+  protected toggleShowDocumentation(): void {
+    this.showDocumentation = !this.showDocumentation;
   }
 }

@@ -1,15 +1,44 @@
 <h3>Countdown to Instagram Token Refresh</h3>
-<p>
-  We use an instagram token to display instagram content. It will need to be
-  refreshed by Jaden before it expires.
-</p>
-
 <div>
-  <strong>Date of last refresh:</strong>
-  {{ dateOfLastRefresh | date : "MMM d, yyyy" }}.
+  <p>
+    We use an instagram token to display instagram content. It will need to be
+    refreshed by Jaden before it expires.
+  </p>
+
+  <div>
+    <strong>Date of last refresh:</strong>
+    {{ dateOfLastRefresh | date : "MMM d, yyyy" }}.
+  </div>
+
+  <div>
+    <strong>Expires in:</strong>
+    {{ daysUntilTokenExpires }} days.
+  </div>
 </div>
+<br />
 
-<div>
-  <strong>Expires in:</strong>
-  {{ daysUntilTokenExpires }} days.
+<button class="btn btn-primary" (click)="toggleShowDocumentation()">
+  Learn how to refresh token 📝
+</button>
+
+<div *ngIf="showDocumentation" class="documentation-section">
+  <br />
+  <h4>How to refresh instagram token</h4>
+  <span>
+    If the token is not already expired, grab an updated token by using the
+    documentation from the following link: </span
+  ><br />
+  <a
+    href="https://developers.facebook.com/docs/instagram-basic-display-api/guides/long-lived-access-tokens/"
+    >Get long lived access token.</a
+  ><br /><br />
+
+  <span>
+    If the token is expired, get a short-lived access token valid for 1 hour,
+    then get the long-lived access token from the link above. </span
+  ><br />
+  <a
+    href="https://developers.facebook.com/docs/instagram-basic-display-api/getting-started"
+    >Get short-lived access token.</a
+  >
 </div>
