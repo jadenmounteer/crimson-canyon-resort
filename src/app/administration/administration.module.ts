@@ -12,6 +12,7 @@ import { AddApprovedEmailModalComponent } from './add-approved-email-modal/add-a
 import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { AdminCalendarComponent } from './admin-calendar/admin-calendar.component';
+import { CountdownToInstagramTokenRefreshComponent } from './countdown-to-instagram-token-refresh/countdown-to-instagram-token-refresh.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AdminCalendarComponent } from './admin-calendar/admin-calendar.componen
     AuthorizedEmailsComponent,
     AddApprovedEmailModalComponent,
     AdminCalendarComponent,
+    CountdownToInstagramTokenRefreshComponent,
   ],
   imports: [
     CommonModule,
