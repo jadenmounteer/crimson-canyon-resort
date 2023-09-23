@@ -1,1 +1,15 @@
-<p>countdown-to-instagram-token-refresh works!</p>
+<h3>Countdown to Instagram Token Refresh</h3>
+<p>
+  We use an instagram token to display instagram content. It will need to be
+  refreshed by Jaden before it expires.
+</p>
+
+<div>
+  <strong>Date of last refresh:</strong>
+  {{ dateOfLastRefresh | date : "MMM d, yyyy" }}.
+</div>
+
+<div>
+  <strong>Expires in:</strong>
+  {{ daysUntilTokenExpires }} days.
+</div>
