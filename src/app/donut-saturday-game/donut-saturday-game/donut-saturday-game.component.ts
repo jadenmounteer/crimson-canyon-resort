@@ -17,7 +17,7 @@ export class DonutSaturdayGameComponent implements OnInit, OnDestroy {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-      scene: [MainMenu, CharacterSelection],
+      scene: [MainMenu, CharacterSelection, DonutArena],
       parent: 'gameContainer',
       title: 'Donut Saturday',
       backgroundColor: '#2eb5de',
@@ -113,6 +113,7 @@ class MainMenu extends Phaser.Scene {
 }
 
 class CharacterSelection extends Phaser.Scene {
+  characterChosen: string = '';
   ground!: Phaser.Physics.Arcade.StaticGroup;
   constructor() {
     super({ key: 'CharacterSelection' });
@@ -131,8 +132,52 @@ class CharacterSelection extends Phaser.Scene {
     // this.ground.create(190, 475, 'ground');
   }
   override update() {
+    this.characterChosen = 'grandpa';
     const button = this.add
       .image(800 - 16, 16, 'ground', 0)
+      .setOrigin(1, 0)
+      .setInteractive();
+
+    button.on(
+      'pointerup',
+      () => {
+        this.scene.start('DonutArena', {
+          characterChosen: this.characterChosen,
+        });
+      },
+      this
+    );
+  }
+}
+
+class DonutArena extends Phaser.Scene {
+  character: string = '';
+  ground!: Phaser.Physics.Arcade.StaticGroup;
+  constructor() {
+    super({ key: 'DonutArena' });
+  }
+
+  init(data: any) {
+    this.character = data.characterChosen;
+  }
+
+  preload() {
+    this.load.image(
+      'ground',
+      'assets/donut-saturday-game/background/Ground.png'
+    );
+
+    this.ground = this.physics.add.staticGroup();
+  }
+
+  create() {
+    console.log(this.character);
+    // this.ground.create(190, 475, 'ground');
+  }
+  override update() {
+    this.character = 'grandpa';
+    const button = this.add
+      .image(500 - 16, 16, 'ground', 0)
       .setOrigin(1, 0)
       .setInteractive();
 
