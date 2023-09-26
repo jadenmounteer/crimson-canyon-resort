@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Phaser from 'phaser'; //import Phaser
 
 @Component({
@@ -6,7 +6,7 @@ import Phaser from 'phaser'; //import Phaser
   templateUrl: './donut-saturday-game.component.html',
   styleUrls: ['./donut-saturday-game.component.scss'],
 })
-export class DonutSaturdayGameComponent implements OnInit {
+export class DonutSaturdayGameComponent implements OnInit, OnDestroy {
   //declare phaserGame variable, the ! is needed for it to be valid code in Angular, we just have to make sure we initialize it in ngOnInit
   phaserGame!: Phaser.Game;
   config: Phaser.Types.Core.GameConfig;
@@ -17,7 +17,7 @@ export class DonutSaturdayGameComponent implements OnInit {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
       },
-      scene: [MainMenu, Scene2],
+      scene: [MainMenu, CharacterSelection],
       parent: 'gameContainer',
       title: 'Donut Saturday',
       backgroundColor: '#2eb5de',
@@ -34,6 +34,9 @@ export class DonutSaturdayGameComponent implements OnInit {
 
   ngOnInit() {
     this.phaserGame = new Phaser.Game(this.config);
+  }
+  ngOnDestroy(): void {
+    this.phaserGame.destroy(true);
   }
 }
 
@@ -102,17 +105,17 @@ class MainMenu extends Phaser.Scene {
     startGameButton.on(
       'pointerup',
       () => {
-        this.scene.start('Scene2');
+        this.scene.start('CharacterSelection');
       },
       this
     );
   }
 }
 
-class Scene2 extends Phaser.Scene {
+class CharacterSelection extends Phaser.Scene {
   ground!: Phaser.Physics.Arcade.StaticGroup;
   constructor() {
-    super({ key: 'Scene2' });
+    super({ key: 'CharacterSelection' });
   }
 
   preload() {
