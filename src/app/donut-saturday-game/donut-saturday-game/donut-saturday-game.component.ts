@@ -39,6 +39,7 @@ export class DonutSaturdayGameComponent implements OnInit {
 
 class MainMenu extends Phaser.Scene {
   ground!: Phaser.Physics.Arcade.StaticGroup;
+  music: Phaser.Sound.BaseSound | undefined;
   constructor() {
     super({ key: 'MainMenu' });
   }
@@ -52,6 +53,10 @@ class MainMenu extends Phaser.Scene {
   }
 
   preload() {
+    this.load.audio('donut-saturday-soundtrack', [
+      'assets/donut-saturday-game/audio/dodgeball_mixdown.m4a',
+    ]);
+
     this.load.image(
       'ground',
       'assets/donut-saturday-game/background/Ground.png'
@@ -69,6 +74,11 @@ class MainMenu extends Phaser.Scene {
   }
 
   create() {
+    this.music?.destroy();
+    this.music = this.sound.add('donut-saturday-soundtrack');
+
+    this.music.play();
+
     const fullScreenButton = this.add
       .image(800 - 16, 16, 'fullscreen', 0)
       .setOrigin(1, 0)
@@ -97,7 +107,6 @@ class MainMenu extends Phaser.Scene {
       this
     );
   }
-  override update() {}
 }
 
 class Scene2 extends Phaser.Scene {
