@@ -1,6 +1,8 @@
 export class MainMenu extends Phaser.Scene {
   ground!: Phaser.Physics.Arcade.StaticGroup;
   music: Phaser.Sound.BaseSound | undefined;
+  fire: Phaser.GameObjects.Sprite | undefined;
+
   constructor() {
     super({ key: 'MainMenu' });
   }
@@ -32,6 +34,12 @@ export class MainMenu extends Phaser.Scene {
     );
 
     this.ground = this.physics.add.staticGroup();
+
+    this.load.spritesheet(
+      'fire',
+      'assets/donut-saturday-game/animations/fire/fire.png',
+      { frameWidth: 256, frameHeight: 256 }
+    );
   }
 
   create() {
@@ -67,5 +75,9 @@ export class MainMenu extends Phaser.Scene {
       },
       this
     );
+
+    this.fire = this.add.sprite(100, 100, 'fire');
+    this.fire.setSize(1, 1);
+    this.fire.setScale(1.3, 1.3);
   }
 }
