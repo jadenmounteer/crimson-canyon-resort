@@ -23,7 +23,7 @@ export class DonutSaturdayGameComponent implements OnInit, OnDestroy {
       scene: [MainMenu, CharacterSelection, DonutArena],
       parent: 'gameContainer',
       title: 'Donut Saturday',
-      backgroundColor: '#2eb5de',
+      backgroundColor: 'black',
 
       physics: {
         default: 'arcade',
