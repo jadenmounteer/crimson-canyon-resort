@@ -14,12 +14,12 @@
 
   <p>We use <code>bootstrap-icons</code> to display stars</p>
 
-  <ngb-rating [rate]="5">
+  <!-- Here's the documentation on ngb rating: https://ng-bootstrap.github.io/#/components/rating/examples -->
+  <ngb-rating [rate]="5" [max]="5" [readonly]="false">
     <ng-template let-fill="fill" let-index="index">
       <i
         class="bi-star{{ fill === 100 ? '-fill' : '' }}"
         [class.filled]="fill === 100"
-        [class.low]="index < 3"
       ></i>
     </ng-template>
   </ngb-rating>
@@ -33,13 +33,13 @@
     class="btn btn-primary"
     (click)="activeModal.close('Yes')"
   >
-    Yes
+    Confirm
   </button>
   <button
     type="button"
     class="btn btn-secondary"
     (click)="activeModal.close('No')"
   >
-    No
+    Cancel
   </button>
 </div>

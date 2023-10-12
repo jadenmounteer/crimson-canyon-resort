@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCarouselModule,
+  NgbModule,
+  NgbRatingModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './components/auth/auth.service';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
@@ -82,6 +86,7 @@ import { AddReviewModalComponent } from './components/add-review-modal/add-revie
     WhatsHappeningPageModule,
     InstagramFeedModule,
     FitnessCenterModule,
+    NgbRatingModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
