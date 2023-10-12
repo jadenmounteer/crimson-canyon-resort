@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Review } from '../review/review.type';
 
 @Component({
   selector: 'app-reviews-section',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewsSectionComponent implements OnInit {
   protected loading: boolean = false;
+  protected reviews: Review[] = [];
 
   constructor() {}
 
