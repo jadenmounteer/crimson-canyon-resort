@@ -8,7 +8,10 @@
     <app-review *ngFor="let review of reviews" [review]="review"></app-review>
   </div>
 
-  <button class="btn btn-primary btn-lg btn-block see-more-button">
+  <button
+    class="btn btn-primary btn-lg btn-block see-more-button"
+    *ngIf="isAuth"
+  >
     Leave a review ✍️
   </button>
 </span>

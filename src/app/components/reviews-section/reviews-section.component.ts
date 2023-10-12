@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Review } from '../review/review.type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddReviewModalComponent } from '../add-review-modal/add-review-modal.component';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-reviews-section',
@@ -9,8 +12,16 @@ import { Review } from '../review/review.type';
 export class ReviewsSectionComponent implements OnInit {
   protected loading: boolean = false;
   protected reviews: Review[] = [];
+  @Input() isAuth: boolean = false;
 
-  constructor() {}
+  constructor(
+    private modalService: NgbModal,
+    protected authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
+
+  protected onAddReview() {
+    const modalRef = this.modalService.open(AddReviewModalComponent);
+  }
 }
