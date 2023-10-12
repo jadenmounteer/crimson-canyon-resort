@@ -1,3 +1,11 @@
 <span class="loading-icon" *ngIf="loading">
   <app-loading-spinner></app-loading-spinner>
 </span>
+
+<span *ngIf="!loading">
+  <h2 class="page-title">What are people saying about the resort?</h2>
+
+  <button class="btn btn-primary btn-lg btn-block see-more-button">
+    Leave a review ✍️
+  </button>
+</span>

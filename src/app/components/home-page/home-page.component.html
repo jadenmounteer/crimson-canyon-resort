@@ -18,14 +18,14 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
+      <app-reviews-section></app-reviews-section>
+
       <app-whats-happening-home-page-section
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>
 
       <app-fitness-home-page-section *ngIf="isAuth">
       </app-fitness-home-page-section>
-
-      <!-- <app-reviews-section></app-reviews-section> -->
 
       <div class="centered">
         <app-weather></app-weather>
