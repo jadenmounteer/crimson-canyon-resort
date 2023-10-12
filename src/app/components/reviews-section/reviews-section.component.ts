@@ -21,7 +21,7 @@ export class ReviewsSectionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  protected onAddReview() {
+  protected openAddReviewModal() {
     const modalRef = this.modalService.open(AddReviewModalComponent);
   }
 }
