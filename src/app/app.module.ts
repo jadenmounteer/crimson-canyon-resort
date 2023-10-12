@@ -37,6 +37,7 @@ import { FitnessHomePageSectionComponent } from './components/fitness-home-page-
 import { DayTemplateComponent } from './components/day-template/day-template.component';
 import { NavWeatherComponent } from './components/weather/nav-weather/nav-weather.component';
 import { ReviewsSectionComponent } from './components/reviews-section/reviews-section.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ReviewsSectionComponent } from './components/reviews-section/reviews-se
     DayTemplateComponent,
     NavWeatherComponent,
     ReviewsSectionComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
