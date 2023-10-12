@@ -38,6 +38,7 @@ import { DayTemplateComponent } from './components/day-template/day-template.com
 import { NavWeatherComponent } from './components/weather/nav-weather/nav-weather.component';
 import { ReviewsSectionComponent } from './components/reviews-section/reviews-section.component';
 import { ReviewComponent } from './components/review/review.component';
+import { AddReviewModalComponent } from './components/add-review-modal/add-review-modal.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ReviewComponent } from './components/review/review.component';
     NavWeatherComponent,
     ReviewsSectionComponent,
     ReviewComponent,
+    AddReviewModalComponent,
   ],
   imports: [
     BrowserModule,
