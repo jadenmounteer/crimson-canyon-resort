@@ -10,10 +10,6 @@
 </div>
 
 <div class="modal-body">
-  <p>Custom rating template provided as child element</p>
-
-  <p>We use <code>bootstrap-icons</code> to display stars</p>
-
   <!-- Here's the documentation on ngb rating: https://ng-bootstrap.github.io/#/components/rating/examples -->
   <div class="rating-section" *ngIf="newReview.rating">
     <ngb-rating [rate]="newReview.rating" [max]="5" [readonly]="false">
@@ -24,8 +20,6 @@
         ></i>
       </ng-template>
     </ngb-rating>
-    <hr />
-    <pre>Rate: <b>{{5}}</b></pre>
   </div>
 </div>
 
