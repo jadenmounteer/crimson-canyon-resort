@@ -22,4 +22,6 @@ export class AddReviewModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {}
+
+  protected onCreateReview() {}
 }
