@@ -28,7 +28,7 @@ export class ReviewService {
 
   public fetchReviews(): Observable<Review[]> {
     return this.firestore
-      .collection('reviews', (ref) => ref.orderBy('createdDate', 'desc'))
+      .collection('reviews', (ref) => ref.orderBy('reviewDate', 'desc'))
       .get()
       .pipe(map((result) => convertSnaps<Review>(result)));
   }

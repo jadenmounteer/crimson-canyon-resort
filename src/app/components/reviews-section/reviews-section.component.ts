@@ -23,17 +23,12 @@ export class ReviewsSectionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('initializing component');
     this.loadReviews();
   }
 
   private loadReviews(): void {
-    console.log('loading reviews');
     this.loading = true;
     this.reviews$ = this.reviewService.fetchReviews();
-    this.reviews$.subscribe((review) => {
-      console.log(review);
-    });
     this.loading = false;
   }
 

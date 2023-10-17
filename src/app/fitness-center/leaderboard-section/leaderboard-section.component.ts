@@ -55,9 +55,7 @@ export class LeaderboardSectionComponent implements OnInit, OnDestroy {
   private loadLeaderBoards(): void {
     this.loading = true;
     this.leaderBoards$ = this.leaderBoardService.fetchLeaderBoards();
-    this.leaderBoards$.subscribe((leaderBoard) => {
-      console.log(leaderBoard);
-    });
+
     this.loading = false;
   }
 
