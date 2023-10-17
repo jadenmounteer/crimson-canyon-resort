@@ -1,9 +1,7 @@
-import { DayMonthYear } from 'src/app/types/reservation';
-
 export type Review = {
   id: string;
   userId: string | undefined;
-  reviewDate: DayMonthYear;
+  reviewDate: Date;
   username: string;
   reviewText: string;
   rating: number;

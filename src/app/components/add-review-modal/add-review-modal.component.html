@@ -11,6 +11,17 @@
 
 <form #f="ngForm">
   <div class="modal-body">
+    <span
+      ><ngb-alert
+        class="danger-alert"
+        [dismissible]="true"
+        [animation]="true"
+        type="danger"
+        *ngIf="displayErrorMsg"
+      >
+        {{ errorMessage }}
+      </ngb-alert></span
+    >
     <!-- Here's the documentation on ngb rating: https://ng-bootstrap.github.io/#/components/rating/examples -->
     <div class="rating-section" *ngIf="newReview.rating">
       <ngb-rating [(rate)]="newReview.rating" [max]="5" [readonly]="false">
