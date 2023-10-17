@@ -5,7 +5,11 @@
 <span *ngIf="!loading">
   <h2 class="page-title">What are people saying about the resort?</h2>
   <div class="review-wrapper">
-    <app-review *ngFor="let review of reviews" [review]="review"></app-review>
+    <div *ngFor="let review of reviews$ | async">hello world</div>
+    <app-review
+      *ngFor="let review of reviews$ | async"
+      [review]="review"
+    ></app-review>
   </div>
 
   <button

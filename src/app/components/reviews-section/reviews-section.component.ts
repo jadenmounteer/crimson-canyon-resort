@@ -3,6 +3,8 @@ import { Review } from '../review/review.type';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewModalComponent } from '../add-review-modal/add-review-modal.component';
 import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-reviews-section',
@@ -10,18 +12,37 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./reviews-section.component.scss'],
 })
 export class ReviewsSectionComponent implements OnInit {
-  protected loading: boolean = false;
-  protected reviews: Review[] = [];
+  protected loading: boolean = true;
+  protected reviews$!: Observable<Review[]>;
   @Input() isAuth: boolean = false;
 
   constructor(
     private modalService: NgbModal,
-    protected authService: AuthService
+    protected authService: AuthService,
+    private reviewService: ReviewService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('initializing component');
+    this.loadReviews();
+  }
+
+  private loadReviews(): void {
+    console.log('loading reviews');
+    this.loading = true;
+    this.reviews$ = this.reviewService.fetchReviews();
+    this.reviews$.subscribe((review) => {
+      console.log(review);
+    });
+    this.loading = false;
+  }
 
   protected openAddReviewModal() {
     const modalRef = this.modalService.open(AddReviewModalComponent);
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        this.loadReviews();
+      }
+    });
   }
 }
