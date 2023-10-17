@@ -18,8 +18,6 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
-      <app-reviews-section [isAuth]="isAuth"></app-reviews-section>
-
       <app-whats-happening-home-page-section
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>
@@ -30,6 +28,8 @@
       <div class="centered">
         <app-weather></app-weather>
       </div>
+
+      <app-reviews-section [isAuth]="isAuth"></app-reviews-section>
     </div>
   </app-page-wrapper>
 </div>
