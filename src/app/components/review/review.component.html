@@ -1,7 +1,3 @@
-<p>{{ review.reviewDate | date : "MMM d, yyyy" }}</p>
-<p>{{ review.username }}</p>
-<p>{{ review.reviewText }}</p>
-
 <div class="rating-section">
   <ngb-rating [rate]="review.rating" [max]="5" [readonly]="true">
     <ng-template let-fill="fill" let-index="index">
@@ -12,3 +8,8 @@
     </ng-template>
   </ngb-rating>
 </div>
+
+<h5>"{{ review.reviewText }}"</h5>
+
+<p>{{ review.username }}</p>
+<p>{{ review.reviewDate | date : "MMM d, yyyy" }}</p>
