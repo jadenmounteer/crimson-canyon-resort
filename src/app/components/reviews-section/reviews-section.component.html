@@ -4,12 +4,13 @@
 
 <span *ngIf="!loading">
   <h2 class="page-title">What are people saying about the resort?</h2>
-  <div class="review-wrapper">
+  <div class="review-wrapper" [@slideInRight] *ngIf="this.imageVisible">
     <app-review
       *ngFor="let review of reviews$ | async"
       [review]="review"
     ></app-review>
   </div>
+  <button (click)="toggleImage()">Toggle</button>
 
   <button
     class="btn btn-primary btn-lg btn-block see-more-button"
