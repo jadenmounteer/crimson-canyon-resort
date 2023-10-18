@@ -74,7 +74,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
       setInterval(() => {
         this.cycleThroughReviews();
-      }, 5000);
+      }, 8000);
     });
     this.changeReviewToDisplayInterval.subscribe();
   }
