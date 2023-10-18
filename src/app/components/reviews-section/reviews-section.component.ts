@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Review } from '../review/review.type';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddReviewModalComponent } from '../add-review-modal/add-review-modal.component';
 import { AuthService } from '../auth/auth.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ReviewService } from 'src/app/services/review.service';
 import {
   animate,
@@ -29,11 +29,12 @@ import {
     ]),
   ],
 })
-export class ReviewsSectionComponent implements OnInit {
+export class ReviewsSectionComponent implements OnInit, OnDestroy {
   protected loading: boolean = true;
-  protected reviews$!: Observable<Review[]>;
+  protected reviews: Review[] = [];
   @Input() isAuth: boolean = false;
   protected imageVisible = true;
+  private reviewsSubscription$ = new Subscription();
 
   constructor(
     private modalService: NgbModal,
@@ -45,21 +46,29 @@ export class ReviewsSectionComponent implements OnInit {
     this.loadReviews();
   }
 
+  ngOnDestroy(): void {
+    this.reviewsSubscription$.unsubscribe();
+  }
+
   protected toggleImage() {
     this.imageVisible = !this.imageVisible;
   }
 
   private loadReviews(): void {
     this.loading = true;
-    this.reviews$ = this.reviewService.fetchReviews();
-    this.loading = false;
+    this.reviewsSubscription$ = this.reviewService
+      .fetchReviews()
+      .subscribe((reviews: Review[]) => {
+        this.reviews = reviews;
+        this.loading = false;
+      });
   }
 
   protected openAddReviewModal() {
     const modalRef = this.modalService.open(AddReviewModalComponent);
     modalRef.result.then((result) => {
-      if (result === 'success') {
-        this.loadReviews();
+      if (result !== undefined) {
+        this.reviews.push(result);
       }
     });
   }

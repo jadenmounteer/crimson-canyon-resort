@@ -45,7 +45,7 @@ export class AddReviewModalComponent implements OnInit {
       .createReview(this.newReview, newReviewId)
       .pipe(
         tap((review) => {
-          this.activeModal.close('success');
+          this.activeModal.close(review);
         }),
         catchError((err) => {
           this.displayErrorMsg = true;
