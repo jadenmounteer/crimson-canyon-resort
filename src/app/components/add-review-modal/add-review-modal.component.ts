@@ -16,7 +16,7 @@ export class AddReviewModalComponent implements OnInit {
     userId: '',
     rating: 5,
     reviewText: '',
-    reviewDate: new Date(),
+    reviewDate: Date.now(),
   };
 
   protected displayErrorMsg: boolean = false;
