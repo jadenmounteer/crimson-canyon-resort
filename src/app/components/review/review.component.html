@@ -1,15 +1,19 @@
-<div class="rating-section">
-  <ngb-rating [rate]="review.rating" [max]="5" [readonly]="true">
-    <ng-template let-fill="fill" let-index="index">
-      <i
-        class="bi-star{{ fill === 100 ? '-fill' : '' }} rating-star"
-        [class.filled]="fill === 100"
-      ></i>
-    </ng-template>
-  </ngb-rating>
+<div class="review-wrapper">
+  <div class="rating-section">
+    <ngb-rating [rate]="review.rating" [max]="5" [readonly]="true">
+      <ng-template let-fill="fill" let-index="index">
+        <i
+          class="bi-star{{ fill === 100 ? '-fill' : '' }} rating-star"
+          [class.filled]="fill === 100"
+        ></i>
+      </ng-template>
+    </ngb-rating>
+  </div>
+
+  <h5>
+    <i>"{{ review.reviewText }}"</i>
+  </h5>
+
+  <p>-{{ review.username }}</p>
+  <p>{{ review.reviewDate | date : "MMM d, yyyy" }}</p>
 </div>
-
-<h5>"{{ review.reviewText }}"</h5>
-
-<p>{{ review.username }}</p>
-<p>{{ review.reviewDate | date : "MMM d, yyyy" }}</p>
