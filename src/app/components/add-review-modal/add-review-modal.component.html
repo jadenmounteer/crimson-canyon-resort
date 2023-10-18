@@ -28,14 +28,14 @@
       <ngb-rating [(rate)]="newReview.rating" [max]="5" [readonly]="false">
         <ng-template let-fill="fill" let-index="index">
           <i
-            class="bi-star{{ fill === 100 ? '-fill' : '' }}"
+            class="bi-star{{ fill === 100 ? '-fill' : '' }} rating-star"
             [class.filled]="fill === 100"
           ></i>
         </ng-template>
       </ngb-rating>
     </div>
 
-    <label>What would you like to say?</label>
+    <label>What would you like to say about your experience?</label>
     <textarea
       class="form-control"
       id="reviewText"
