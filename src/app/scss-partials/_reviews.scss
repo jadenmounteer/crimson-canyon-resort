@@ -1,10 +1,12 @@
+@import "./colors";
+
 .rating-star {
   font-size: 2rem;
   padding-right: 0.5rem;
-  color: #b0c4de;
+  color: $secondaryLighterColor;
 }
 .filled {
-  color: #b86027;
+  color: $highlightColor;
 }
 
 .rating-section {
