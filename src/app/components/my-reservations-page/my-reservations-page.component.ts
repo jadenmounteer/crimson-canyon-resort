@@ -5,6 +5,7 @@ import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { Router } from '@angular/router';
+import { AddReviewModalComponent } from '../add-review-modal/add-review-modal.component';
 
 @Component({
   selector: 'app-my-reservations-page',
@@ -42,6 +43,15 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
     modalRef.result.then((result) => {
       if (result === 'Yes') {
         this.reservationsService.deleteReservation(reservation);
+      }
+    });
+  }
+
+  protected openAddReviewModal() {
+    const modalRef = this.modalService.open(AddReviewModalComponent);
+    modalRef.result.then((result) => {
+      if (result !== undefined) {
+        // this.allReviews.push(result);
       }
     });
   }
