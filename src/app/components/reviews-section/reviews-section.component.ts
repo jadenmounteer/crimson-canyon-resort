@@ -58,7 +58,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.toggleReviewVisibility();
-    }, 1000);
+    }, 1500);
     const randomIndex = Math.floor(Math.random() * this.allReviews.length);
     this.reviewToDisplay = this.allReviews[randomIndex];
   }
