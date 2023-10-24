@@ -53,6 +53,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
   protected reviewToDisplay: Review | undefined;
   protected changeReviewToDisplayInterval: Observable<number> =
     new Observable();
+  private indexOfLastReview: number = 0;
 
   constructor(
     private modalService: NgbModal,
@@ -64,18 +65,28 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     this.loadReviews();
   }
 
+  protected shuffleReviews(reviews: Review[]): Review[] {
+    return reviews.sort(() => Math.random() - 0.5);
+  }
+
   ngOnDestroy(): void {
     this.reviewsSubscription$.unsubscribe();
   }
 
-  protected cycleThroughReviews() {
+  protected cycleThroughReviews(): void {
     this.toggleReviewVisibility();
 
     setTimeout(() => {
       this.toggleReviewVisibility();
     }, 1500);
-    const randomIndex = Math.floor(Math.random() * this.allReviews.length);
-    this.reviewToDisplay = this.allReviews[randomIndex];
+
+    if (this.indexOfLastReview < this.allReviews.length - 1) {
+      this.indexOfLastReview += 1;
+    } else {
+      this.indexOfLastReview = 0;
+    }
+
+    this.reviewToDisplay = this.allReviews[this.indexOfLastReview];
   }
 
   private toggleReviewVisibility() {
@@ -99,7 +110,7 @@ export class ReviewsSectionComponent implements OnInit, OnDestroy {
     this.reviewsSubscription$ = this.reviewService
       .fetchReviews()
       .subscribe((reviews: Review[]) => {
-        this.allReviews = reviews;
+        this.allReviews = this.shuffleReviews(reviews);
         this.setChangeReviewToDisplayInterval();
       });
   }
