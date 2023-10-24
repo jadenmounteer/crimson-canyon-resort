@@ -18,13 +18,28 @@ import {
   templateUrl: './reviews-section.component.html',
   styleUrls: ['./reviews-section.component.scss'],
   animations: [
-    trigger('slideInRight', [
+    trigger('fadeIn', [
       transition(':enter', [
-        style({ transform: 'translateX(100%)' }),
-        animate('1000ms ease-out', style({ transform: 'translateX(0)' })),
+        style({
+          opacity: 0,
+        }),
+        animate(
+          '0.2s ease-in',
+          style({
+            opacity: 1,
+          })
+        ),
       ]),
       transition(':leave', [
-        animate('1000ms ease-out', style({ transform: 'translateX(-100%)' })),
+        style({
+          opacity: 1,
+        }),
+        animate(
+          '0.2s ease-out',
+          style({
+            opacity: 0,
+          })
+        ),
       ]),
     ]),
   ],

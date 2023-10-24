@@ -5,7 +5,7 @@
 <span *ngIf="!loading">
   <div class="section-content">
     <div class="review-wrapper-wrapper">
-      <div class="review-wrapper" [@slideInRight] *ngIf="this.reviewVisible">
+      <div class="review-wrapper" [@fadeIn] *ngIf="this.reviewVisible">
         <app-review
           *ngIf="reviewToDisplay"
           [review]="reviewToDisplay"
