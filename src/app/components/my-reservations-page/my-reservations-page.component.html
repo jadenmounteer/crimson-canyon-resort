@@ -7,6 +7,13 @@
   </div>
 
   <div pageContent class="page-content-wrapper">
+    <button
+      class="btn btn-primary btn-lg btn-block see-more-button"
+      (click)="openAddReviewModal()"
+    >
+      Leave a review ✍️
+    </button>
+
     <div class="card" *ngIf="upcomingReservations.length > 0">
       <h4>Upcoming Reservations</h4>
       <table class="table">
@@ -108,12 +115,5 @@
         </tbody>
       </table>
     </div>
-
-    <button
-      class="btn btn-primary btn-lg btn-block see-more-button"
-      (click)="openAddReviewModal()"
-    >
-      Leave a review ✍️
-    </button>
   </div>
 </app-page-wrapper>
