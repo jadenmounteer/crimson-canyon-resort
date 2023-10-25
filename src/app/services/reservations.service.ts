@@ -149,7 +149,9 @@ export class ReservationsService {
     return pastReservations;
   }
 
-  public grabUpcomingReservations(reservations: Array<Reservation>) {
+  public grabUpcomingReservations(
+    reservations: Array<Reservation>
+  ): Array<Reservation> {
     const upcomingReservations: Array<Reservation> = [];
     const today = new Date();
     reservations.forEach((reservation) => {
