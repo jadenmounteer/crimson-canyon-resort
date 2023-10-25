@@ -171,4 +171,12 @@ export class ReservationsService {
     );
     return date;
   }
+
+  public isPastReservation(reservation: Reservation): boolean {
+    const today = new Date();
+    const departureDate = this.convertDayMonthYearToDate(
+      reservation.departureDate
+    );
+    return departureDate < today;
+  }
 }

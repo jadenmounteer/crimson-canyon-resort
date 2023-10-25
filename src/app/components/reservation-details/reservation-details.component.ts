@@ -25,6 +25,7 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
   protected editing: boolean = false;
   public datePickerLoading$!: Subscription;
   protected validDates: boolean = true;
+  protected isPastReservation: boolean = false;
 
   protected invalidDatesMessage: string = '';
   public dateAvailable: boolean = true;
@@ -63,6 +64,10 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       let id: string | null = params.get('id');
       this.reservation = this.reservationsService.getReservation(id);
+
+      this.isPastReservation = this.reservationsService.isPastReservation(
+        this.reservation
+      );
 
       this.datePickerLoading$ =
         this.datePickerService.datePickerLoading$.subscribe((loading) => {

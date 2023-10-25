@@ -197,7 +197,7 @@
 
           <button
             class="btn btn-secondary"
-            *ngIf="!editing"
+            *ngIf="!editing && !isPastReservation"
             (click)="onClickEditButton()"
           >
             Edit
