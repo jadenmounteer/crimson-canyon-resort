@@ -149,6 +149,18 @@ export class ReservationsService {
     return pastReservations;
   }
 
+  public grabUpcomingReservations(reservations: Array<Reservation>) {
+    const upcomingReservations: Array<Reservation> = [];
+    const today = new Date();
+    reservations.forEach((reservation) => {
+      if (this.convertDayMonthYearToDate(reservation.arrivalDate) >= today) {
+        upcomingReservations.push(reservation);
+      }
+    });
+
+    return upcomingReservations;
+  }
+
   public convertDayMonthYearToDate(dayMonthYear: DayMonthYear): Date {
     const date = new Date(
       dayMonthYear.year,

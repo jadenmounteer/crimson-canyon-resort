@@ -7,7 +7,8 @@
   </div>
 
   <div pageContent class="page-content-wrapper">
-    <div class="card" *ngIf="myReservations.length > 0">
+    <div class="card" *ngIf="upcomingReservations.length > 0">
+      <h4>Upcoming Reservations</h4>
       <table class="table">
         <thead>
           <tr>
@@ -18,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let reservation of myReservations">
+          <tr *ngFor="let reservation of upcomingReservations">
             <td scope="row">
               {{ reservation.arrivalDate.month }}/{{
                 reservation.arrivalDate.day
@@ -48,11 +49,11 @@
       </table>
     </div>
 
-    <div class="card" *ngIf="myReservations.length <= 0">
+    <div class="card" *ngIf="upcomingReservations.length <= 0">
       <app-animation [animationKey]="'palmTreeAnimation'"> </app-animation>
 
       <div class="page-content">
-        <h4>You don't have any reservations</h4>
+        <h4>You don't have any upcoming reservations</h4>
         <span class="buttons-menu">
           <button
             type="button"
@@ -63,6 +64,49 @@
           </button>
         </span>
       </div>
+    </div>
+
+    <!-- Past reservations -->
+    <div class="card" *ngIf="pastReservations.length > 0">
+      <h4>Past Reservations</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Arrival</th>
+            <th scope="col">Departure</th>
+            <th scope="col">Private Visit?</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of pastReservations">
+            <td scope="row">
+              {{ reservation.arrivalDate.month }}/{{
+                reservation.arrivalDate.day
+              }}/{{ reservation.arrivalDate.year }}
+            </td>
+            <td>
+              {{ reservation.departureDate.month }}/{{
+                reservation.departureDate.day
+              }}/{{ reservation.departureDate.year }}
+            </td>
+            <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
+            <td>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  (click)="
+                    reservationsService.viewReservationDetails(reservation)
+                  "
+                >
+                  View
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <button

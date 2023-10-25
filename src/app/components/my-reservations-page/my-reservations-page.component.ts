@@ -15,7 +15,8 @@ import { AddReviewModalComponent } from '../add-review-modal/add-review-modal.co
 export class MyReservationsPageComponent implements OnInit, OnDestroy {
   private reservationsSubscription!: Subscription;
   protected contentLoaded: boolean = false;
-  protected myReservations: Array<Reservation> = [];
+  protected upcomingReservations: Array<Reservation> = [];
+  protected pastReservations: Array<Reservation> = [];
 
   constructor(
     protected reservationsService: ReservationsService,
@@ -26,7 +27,10 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reservationsSubscription =
       this.reservationsService.reservationsChanged.subscribe((reservations) => {
-        this.myReservations = reservations;
+        this.upcomingReservations =
+          this.reservationsService.grabUpcomingReservations(reservations);
+        this.pastReservations =
+          this.reservationsService.grabPastReservations(reservations);
         this.contentLoaded = true;
       });
 
