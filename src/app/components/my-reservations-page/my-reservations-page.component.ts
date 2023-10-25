@@ -49,10 +49,5 @@ export class MyReservationsPageComponent implements OnInit, OnDestroy {
 
   protected openAddReviewModal() {
     const modalRef = this.modalService.open(AddReviewModalComponent);
-    modalRef.result.then((result) => {
-      if (result !== undefined) {
-        // this.allReviews.push(result);
-      }
-    });
   }
 }
