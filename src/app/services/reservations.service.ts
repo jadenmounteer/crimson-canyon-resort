@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../components/auth/auth.service';
-import { Reservation } from '../types/reservation';
+import { DayMonthYear, Reservation } from '../types/reservation';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
@@ -30,6 +30,10 @@ export class ReservationsService {
     const userId = this.authService.userId;
     this.firestore
       .collection('reservations', (ref) => ref.where('userId', '==', userId))
+      // grab the reservations if the userId matches and the arrival date is greater than or equal to today
+      // .collection('reservations', (ref) =>
+      //   ref.where('userId', '==', userId).where('arrivalDate', '>=', new Date())
+      // )
       .snapshotChanges()
       .pipe(
         map((docArray: any[]) => {
@@ -129,5 +133,28 @@ export class ReservationsService {
 
   public viewReservationDetails(reservation: Reservation) {
     this.router.navigate([`reservation-details-page/${reservation.id}`]);
+  }
+
+  public grabPastReservations(
+    reservations: Array<Reservation>
+  ): Array<Reservation> {
+    const pastReservations: Array<Reservation> = [];
+    const today = new Date();
+    reservations.forEach((reservation) => {
+      if (this.convertDayMonthYearToDate(reservation.departureDate) < today) {
+        pastReservations.push(reservation);
+      }
+    });
+
+    return pastReservations;
+  }
+
+  public convertDayMonthYearToDate(dayMonthYear: DayMonthYear): Date {
+    const date = new Date(
+      dayMonthYear.year,
+      dayMonthYear.month - 1,
+      dayMonthYear.day
+    );
+    return date;
   }
 }
