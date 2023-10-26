@@ -30,47 +30,48 @@
 >
   You just declined a request. You must be angry at someone. 😡
 </ngb-alert>
+<div class="card" *ngIf="pendingRequests.length > 0">
+  <span>
+    <h3>Pending Email Authorization Requests</h3>
+    <p>
+      Prospective users have requested to create accounts. Please approve or
+      decline them.
+    </p>
+    <table class="table" *ngIf="contentLoaded">
+      <thead>
+        <tr>
+          <th scope="col">Requested By</th>
+          <th scope="col">Email</th>
+          <th scope="col">Accept</th>
+          <th scope="col">Decline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of pendingRequests">
+          <td scope="row">
+            {{ request.name }}
+          </td>
+          <td scope="row">
+            {{ request.email }}
+          </td>
+          <td>
+            <fa-icon
+              class="accept-button"
+              [icon]="icon.faCheckCircle"
+              (click)="acceptRequest(request)"
+            ></fa-icon>
+          </td>
+          <td>
+            <span class="decline-button" (click)="declineRequest(request)"
+              >X</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-<span *ngIf="pendingRequests.length > 0">
-  <h3>Pending Email Authorization Requests</h3>
-  <p>
-    Prospective users have requested to create accounts. Please approve or
-    decline them.
-  </p>
-  <table class="table" *ngIf="contentLoaded">
-    <thead>
-      <tr>
-        <th scope="col">Requested By</th>
-        <th scope="col">Email</th>
-        <th scope="col">Accept</th>
-        <th scope="col">Decline</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let request of pendingRequests">
-        <td scope="row">
-          {{ request.name }}
-        </td>
-        <td scope="row">
-          {{ request.email }}
-        </td>
-        <td>
-          <fa-icon
-            class="accept-button"
-            [icon]="icon.faCheckCircle"
-            (click)="acceptRequest(request)"
-          ></fa-icon>
-        </td>
-        <td>
-          <span class="decline-button" (click)="declineRequest(request)"
-            >X</span
-          >
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <span class="loading-icon" *ngIf="!contentLoaded">
-    <app-loading-spinner></app-loading-spinner>
+    <span class="loading-icon" *ngIf="!contentLoaded">
+      <app-loading-spinner></app-loading-spinner>
+    </span>
   </span>
-</span>
+</div>
