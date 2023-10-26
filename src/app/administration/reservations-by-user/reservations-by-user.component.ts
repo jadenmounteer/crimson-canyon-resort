@@ -11,7 +11,10 @@ import { Reservation } from 'src/app/types/reservation';
 })
 export class ReservationsByUserComponent implements OnInit {
   protected contentLoaded: boolean = false;
-  protected reservations: Array<Reservation> = [];
+  protected upcomingReservations: Array<Reservation> = [];
+  protected pastReservations: Array<Reservation> = [];
+  protected viewingPastReservations: boolean = false;
+
   constructor(
     protected reservationsService: ReservationsService,
     private modalService: NgbModal,
@@ -21,11 +24,18 @@ export class ReservationsByUserComponent implements OnInit {
   ngOnInit(): void {
     this.reservationsService.allReservationsChanged.subscribe(
       (reservations) => {
-        this.reservations = reservations;
+        this.upcomingReservations =
+          this.reservationsService.grabUpcomingReservations(reservations);
+        this.pastReservations =
+          this.reservationsService.grabPastReservations(reservations);
         this.contentLoaded = true;
       }
     );
 
     this.reservationsService.fetchAllReservations();
+  }
+
+  protected toggleViewingPastReservations(): void {
+    this.viewingPastReservations = !this.viewingPastReservations;
   }
 }

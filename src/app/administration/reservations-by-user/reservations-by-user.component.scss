@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .cancel-button {
   color: red;
 }
@@ -10,4 +12,15 @@
   color: red;
   cursor: pointer;
   margin-left: -32px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header > button {
+  @include for-tablet-landscape-up {
+    margin-left: auto;
+  }
 }
