@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
 import { IconService } from 'src/app/services/icon.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { Reservation } from 'src/app/types/reservation';
