@@ -29,14 +29,4 @@ export class ReservationsByUserComponent implements OnInit {
 
     this.reservationsService.fetchAllReservations();
   }
-
-  public onDeleteReservation(reservation: Reservation) {
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-    modalRef.componentInstance.message = `Are you sure you want to cancel the ${reservation.familyName} family reservation?`;
-    modalRef.result.then((result) => {
-      if (result === 'Yes') {
-        this.reservationsService.deleteReservation(reservation);
-      }
-    });
-  }
 }

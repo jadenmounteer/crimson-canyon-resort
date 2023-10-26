@@ -1,51 +1,43 @@
-<h3>Reservations By Family</h3>
-<table class="table" *ngIf="contentLoaded">
-  <thead>
-    <tr>
-      <th scope="col">Family Name</th>
-      <th scope="col">Num of Guests</th>
-      <th scope="col">Arrive</th>
-      <th scope="col">Depart</th>
-      <th scope="col">Private Visit?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let reservation of reservations">
-      <td scope="row">
-        <a
-          class="link-primary"
-          (click)="reservationsService.viewReservationDetails(reservation)"
-          ngbTooltip="View Reservation"
-        >
-          {{ reservation.familyName }}
-        </a>
-      </td>
-      <td scope="row">
-        {{ reservation.numberOfGuests }}
-      </td>
-      <td scope="row">
-        {{ reservation.arrivalDate.month }}/{{ reservation.arrivalDate.day }}/{{
-          reservation.arrivalDate.year
-        }}
-      </td>
-      <td>
-        {{ reservation.departureDate.month }}/{{
-          reservation.departureDate.day
-        }}/{{ reservation.departureDate.year }}
-      </td>
-      <td>{{ reservation.privateVisit ? "Yes" : "No" }}</td>
+<div class="card">
+  <h3>Upcoming Reservations By Family</h3>
+  <table class="table" *ngIf="contentLoaded">
+    <thead>
+      <tr>
+        <th scope="col">Family Name</th>
+        <th scope="col">Num of Guests</th>
+        <th scope="col">Arrive</th>
+        <th scope="col">Depart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations">
+        <td scope="row">
+          <a
+            class="link-primary"
+            (click)="reservationsService.viewReservationDetails(reservation)"
+            ngbTooltip="View Reservation"
+          >
+            {{ reservation.familyName }}
+          </a>
+        </td>
+        <td scope="row">
+          {{ reservation.numberOfGuests }}
+        </td>
+        <td scope="row">
+          {{ reservation.arrivalDate.month }}/{{
+            reservation.arrivalDate.day
+          }}/{{ reservation.arrivalDate.year }}
+        </td>
+        <td>
+          {{ reservation.departureDate.month }}/{{
+            reservation.departureDate.day
+          }}/{{ reservation.departureDate.year }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-      <div class="trash-icon">
-        <fa-icon
-          [icon]="icon.faTrash"
-          (click)="onDeleteReservation(reservation)"
-          ngbTooltip="Delete Reservation"
-        ></fa-icon>
-      </div>
-    </tr>
-  </tbody>
-</table>
-
-<span class="loading-icon" *ngIf="!contentLoaded">
-  <app-loading-spinner></app-loading-spinner>
-</span>
+  <span class="loading-icon" *ngIf="!contentLoaded">
+    <app-loading-spinner></app-loading-spinner>
+  </span>
+</div>
