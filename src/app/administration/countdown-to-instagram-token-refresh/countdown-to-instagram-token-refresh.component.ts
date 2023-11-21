@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./countdown-to-instagram-token-refresh.component.scss'],
 })
 export class CountdownToInstagramTokenRefreshComponent {
-  protected dateOfLastRefresh = new Date('2023-09-23T00:00:00');
+  protected dateOfLastRefresh = new Date('2023-11-21T00:00:00');
   private todaysDate = new Date();
   protected daysUntilTokenExpires: number =
     this.getDaysUntilTokenExpiresFromDateOfLastRefresh(5184000);
