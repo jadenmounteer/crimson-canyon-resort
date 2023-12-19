@@ -29,7 +29,10 @@
         <app-weather></app-weather>
       </div>
 
-      <app-reviews-section [isAuth]="isAuth"></app-reviews-section>
+      <app-reviews-section
+        *ngIf="isAuth"
+        [isAuth]="isAuth"
+      ></app-reviews-section>
     </div>
   </app-page-wrapper>
 </div>
