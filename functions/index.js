@@ -16,12 +16,14 @@ const transportInfo = {
   },
 };
 
+const authData = nodemailer.createTransport(transportInfo);
+
+const adminEmails = ["mounteerjaden@gmail.com", "dadasaurusrex12@gmail.com"];
+
 exports.sendEmailNotification = functions.firestore
   .document("posts/{docId}")
   .onCreate((snap, context) => {
     const notification = snap.data();
-
-    let authData = nodemailer.createTransport(transportInfo);
 
     authData
       .sendMail({
@@ -45,8 +47,6 @@ exports.sendEmailApprovalNotification = functions.firestore
     const notification = snap.data();
 
     if (notification.approved) {
-      let authData = nodemailer.createTransport(transportInfo);
-
       authData
         .sendMail({
           from: SENDER_EMAIL,
@@ -85,4 +85,34 @@ exports.sendEmailApprovalNotification2 = functions.firestore
           console.log(err);
         });
     }
+  });
+
+exports.sendEmailReservationCreated = functions.firestore
+  .document("reservations/{docId}")
+  .onCreate((snap, context) => {
+    const notification = snap.data();
+
+    let emailAddresses = [];
+    adminEmails.forEach((emailAddress) => {
+      emailAddresses.push(emailAddress);
+    });
+
+    authData
+      .sendMail({
+        from: SENDER_EMAIL,
+        to: `${emailAddresses.join(", ")}`,
+        subject: `New Reservation Created by ${notification.familyName}!`, // notification.subject
+        html: `<p>A new reservation has been booked by ${notification.familyName} at Crimson Canyon Resort.</br>
+          They are staying ${notification.arrivalDate.month}/${notification.arrivalDate.day}/${notification.arrivalDate.year} through ${notification.departureDate.month}/${notification.departureDate.day}/${notification.departureDate.year}.
+          <br/> Their plans for food are "${notification.plansForFood}".
+          <br/> They will be bringing ${notification.numberOfVehicles} vehicles.
+          <br/> Additional info: ${notification.additionalInfo}
+           <br/><a href="https://crimson-canyon-resort-prod.web.app/"><br/>View their reservation here</a>`,
+      })
+      .then((res) => {
+        console.log("Successfully sent email.");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
