@@ -18,7 +18,12 @@ const transportInfo = {
 
 const authData = nodemailer.createTransport(transportInfo);
 
-const adminEmails = ["mounteerjaden@gmail.com", "dadasaurusrex12@gmail.com"];
+const testAdminEmails = [
+  "mounteerjaden@gmail.com",
+  "dadasaurusrex12@gmail.com",
+];
+
+const adminEmails = ["jrakisits@gmail.com", "addiesmith76@yahoo.com"];
 
 exports.sendEmailNotification = functions.firestore
   .document("posts/{docId}")
@@ -107,7 +112,7 @@ exports.sendEmailReservationCreated = functions.firestore
           <br/> Their plans for food are "${notification.plansForFood}".
           <br/> They will be bringing ${notification.numberOfVehicles} vehicles.
           <br/> Additional info: ${notification.additionalInfo}
-           <br/><a href="https://crimson-canyon-resort-prod.web.app/"><br/>View their reservation here</a>`,
+           <br/><br/><a href="https://crimson-canyon-resort-prod.web.app/">View their reservation here</a>`,
       })
       .then((res) => {
         console.log("Successfully sent email.");

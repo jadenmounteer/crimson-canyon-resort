@@ -39,7 +39,7 @@ export class AddOrEditPostModalComponent implements OnInit {
   ) {}
 
   @Input() postToEdit: Post | undefined;
-  @Input() title: string = 'Add New Post';
+  @Input() title: string = 'New Announcement';
   protected percentageChanges$!: Observable<number | undefined>;
 
   protected newPost: Partial<Post> = {
