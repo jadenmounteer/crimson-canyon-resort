@@ -11,7 +11,7 @@
 <div class="posts-wrapper">
   <div *ngFor="let post of instaData" class="card post">
     <div class="post-header">
-      <h6 class="post-title">{{ post.username }}</h6>
+      <h6 class="post-created-by-name">{{ post.username }}</h6>
       <h6 class="post-date">
         {{ post.timestamp | date : "MMM d, yy, h:mm a" }}
       </h6>

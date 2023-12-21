@@ -4,13 +4,8 @@
   </button>
 
   <div *ngFor="let post of posts" class="card post">
-    <div class="post-header">
-      <h6 class="post-title">{{ post.createdByUserName }}</h6>
-
-      <h6 class="post-date">
-        {{ post.createdDate | date : "MMM d, yy, h:mm a" }}
-      </h6>
-
+    <div class="post-title-and-menu-header">
+      <h5 class="post-title">{{ post.title }}</h5>
       <span
         class="post-menu-options-button"
         (click)="dropdownMenu.open()"
@@ -19,6 +14,13 @@
         "
         >&#8230;</span
       >
+    </div>
+    <div class="post-header">
+      <h6 class="post-created-by-name">{{ post.createdByUserName }}</h6>
+
+      <h6 class="post-date">
+        {{ post.createdDate | date : "MMM d, yy, h:mm a" }}
+      </h6>
 
       <div ngbDropdown #dropdownMenu="ngbDropdown" class="post-options-menu">
         <div ngbDropdownMenu>

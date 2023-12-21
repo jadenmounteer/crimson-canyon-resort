@@ -5,8 +5,11 @@
 
   <div class="posts-wrapper">
     <div *ngFor="let post of posts$ | async" class="card post">
+      <div class="post-title-and-menu-header">
+        <h5 class="post-title">{{ post.title }}</h5>
+      </div>
       <div class="post-header">
-        <h6 class="post-title">{{ post.createdByUserName }}</h6>
+        <h6 class="post-created-by-name">{{ post.createdByUserName }}</h6>
 
         <h6 class="post-date">
           {{ post.createdDate | date : "MMM d, yy, h:mm a" }}

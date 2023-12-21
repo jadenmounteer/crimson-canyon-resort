@@ -64,11 +64,16 @@
   top: 12px;
 }
 
-.post-title {
-  font-weight: bolder;
+.post-created-by-name {
 }
 
 .post-date {
   font-weight: normal;
   margin-left: auto;
+}
+
+.post-title-and-menu-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
