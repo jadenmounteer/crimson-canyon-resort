@@ -6,20 +6,22 @@ require("dotenv").config();
 
 const { SENDER_EMAIL, SENDER_PASSWORD } = process.env;
 
+const transportInfo = {
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: SENDER_EMAIL,
+    pass: SENDER_PASSWORD,
+  },
+};
+
 exports.sendEmailNotification = functions.firestore
   .document("posts/{docId}")
   .onCreate((snap, context) => {
     const notification = snap.data();
 
-    let authData = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: SENDER_EMAIL,
-        pass: SENDER_PASSWORD,
-      },
-    });
+    let authData = nodemailer.createTransport(transportInfo);
 
     authData
       .sendMail({
@@ -36,29 +38,51 @@ exports.sendEmailNotification = functions.firestore
       });
   });
 
-// TODO send email when email is approved to create account
-// exports.sendEmailApprovalNotification = functions.firestore
-//   .document("accessRequests/{docId}")
-//   .onUpdate((snap, context) => {
-//     // If notification.approved = true, send email to notification.email
-//     const notification = snap.data();
+// TODO send email when email is added approved to create account without a request being sent
+exports.sendEmailApprovalNotification = functions.firestore
+  .document("accessRequests/{docId}")
+  .onCreate((snap, context) => {
+    const notification = snap.data();
 
-//     if (!notification.approved) {
-//       let authData = nodemailer.createTransport({
-//         host: "smtp.gmail.com",
-//         port: 465,
-//         secure: true,
-//         auth: {
-//           user: SENDER_EMAIL,
-//           pass: SENDER_PASSWORD,
-//         },
-//       });
+    if (notification.approved) {
+      let authData = nodemailer.createTransport(transportInfo);
 
-//       authData.sendMail({
-//         from: SENDER_EMAIL,
-//         to: `${notification.email}`, // notification is the firebase document. So I can have an array of emails to send to in the announcement document and loop through them and call send mail on each one. For example: notification.emails.forEach(email => sendMail(email))
-//         subject: "Your email has been approved!", // notification.subject
-//         html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimson-canyon-resort-prod.web.app/">Create an account here</a>`,
-//       });
-//     }
-//   });
+      authData
+        .sendMail({
+          from: SENDER_EMAIL,
+          to: `${notification.email}`,
+          subject: "Your email has been approved!", // notification.subject
+          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimson-canyon-resort-prod.web.app/"><br/>Create an account here</a>`,
+        })
+        .then((res) => {
+          console.log("Successfully sent email.");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
+
+exports.sendEmailApprovalNotification2 = functions.firestore
+  .document("accessRequests/{docId}")
+  .onUpdate((snap, context) => {
+    const notification = snap.data();
+
+    if (notification.approved) {
+      let authData = nodemailer.createTransport(transportInfo);
+
+      authData
+        .sendMail({
+          from: SENDER_EMAIL,
+          to: `${notification.email}`,
+          subject: "Your email has been approved!", // notification.subject
+          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimson-canyon-resort-prod.web.app/"><br/>Create an account here</a>`,
+        })
+        .then((res) => {
+          console.log("Successfully sent email.");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
