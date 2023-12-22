@@ -64,8 +64,7 @@ function createAnnouncementEmailBody(notification) {
 
   if (notification.videoURLs) {
     notification.videoURLs.forEach((videoURL) => {
-      emailBody += `<video controls style="width: 300px; border-radius: 4px;">
-        <source src="${videoURL}"/>
+      emailBody += `<video controls style="width: 300px; border-radius: 4px;" src="${videoURL}">
         There was a problem displaying this video. Please reach out to Jaden
           for help.
       </video><br/>`;
