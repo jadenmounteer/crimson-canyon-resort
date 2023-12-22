@@ -50,6 +50,8 @@ export class AddOrEditPostModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.newPost.userId = this.authService.userId;
+    this.newPost.createdByUserEmail = this.authService.userEmail;
+
     if (this.postToEdit) {
       this.newPost = { ...this.postToEdit };
     }
