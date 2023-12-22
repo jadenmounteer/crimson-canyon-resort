@@ -101,6 +101,14 @@
           >&#10006;</span
         >
       </div>
+
+      <div class="people-to-notify-section">
+        <label>People to notify</label>
+        <div *ngFor="let user of users">
+          <input type="checkbox" name="users" />
+          <span>{{ user.displayName }}</span>
+        </div>
+      </div>
     </div>
 
     <span

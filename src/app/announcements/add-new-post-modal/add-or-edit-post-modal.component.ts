@@ -2,8 +2,8 @@ import {
   Component,
   ElementRef,
   Input,
+  OnDestroy,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,6 +12,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
   Observable,
+  Subscription,
   catchError,
   concatMap,
   last,
@@ -23,20 +24,29 @@ import { Post } from '../post';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { AnnouncementsService } from '../announcements.service';
+import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/types/user';
 
 @Component({
   selector: 'app-add-or-edit-post-modal',
   templateUrl: './add-or-edit-post-modal.component.html',
   styleUrls: ['./add-or-edit-post-modal.component.scss'],
 })
-export class AddOrEditPostModalComponent implements OnInit {
+export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
+  protected users: User[] = [];
+  private usersSub$!: Subscription;
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
-    private announcementsService: AnnouncementsService
+    private announcementsService: AnnouncementsService,
+    private usersService: UsersService
   ) {}
+
+  ngOnDestroy(): void {
+    this.usersSub$.unsubscribe();
+  }
 
   @Input() postToEdit: Post | undefined;
   @Input() title: string = 'New Announcement';
@@ -49,12 +59,19 @@ export class AddOrEditPostModalComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.getUsers();
     this.newPost.userId = this.authService.userId;
     this.newPost.createdByUserEmail = this.authService.userEmail;
 
     if (this.postToEdit) {
       this.newPost = { ...this.postToEdit };
     }
+  }
+
+  private getUsers() {
+    this.usersSub$ = this.usersService.fetchUsers().subscribe((users) => {
+      this.users = users;
+    });
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;
