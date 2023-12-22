@@ -128,8 +128,17 @@
         </table>
       </div>
 
-      <label>Approved emails who haven't created accounts</label>
-      <table class="table">
+      <div class="approved-emails-dropdown-header">
+        <label>View All Approved Emails</label>
+        <p *ngIf="showRequests" (click)="toggleShowRequests()">
+          <i class="arrow right"></i>
+        </p>
+        <p *ngIf="!showRequests" (click)="toggleShowRequests()">
+          <i class="arrow down"></i>
+        </p>
+      </div>
+
+      <table class="table" *ngIf="showRequests">
         <thead>
           <tr>
             <th scope="col"></th>

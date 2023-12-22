@@ -38,6 +38,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   protected users: User[] = [];
   private usersSub$!: Subscription;
   protected approvedRequests: AccessRequest[] = [];
+  protected showRequests = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -120,6 +121,10 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.percentageChanges$ = of();
       });
+  }
+
+  protected toggleShowRequests() {
+    this.showRequests = !this.showRequests;
   }
 
   protected uploadVideo(event: any) {
