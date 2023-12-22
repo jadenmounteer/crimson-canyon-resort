@@ -193,8 +193,26 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     this.requestsToNotify.push(email);
   }
 
+  protected createFinalEmailList(): Array<string> {
+    // merge the two lists into one list without merging duplicates
+    const mergedList: string[] = [];
+    if (this.newPost.emailsToNotify) {
+      mergedList.push(...this.newPost.emailsToNotify);
+    }
+
+    this.requestsToNotify.forEach((requestEmail) => {
+      if (!mergedList.includes(requestEmail)) {
+        mergedList.push(requestEmail);
+      }
+    });
+
+    return mergedList;
+  }
+
   protected onCreatePost() {
     const newPostId = this.angularFirestore.createId();
+
+    this.newPost.emailsToNotify = this.createFinalEmailList();
 
     this.newPost.createdDate = Date.now();
 
