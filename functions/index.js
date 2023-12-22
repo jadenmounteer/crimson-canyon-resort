@@ -30,19 +30,27 @@ exports.sendEmailNotification = functions.firestore
   .onCreate((snap, context) => {
     const notification = snap.data();
 
-    authData
-      .sendMail({
-        from: SENDER_EMAIL,
-        to: "mounteerjaden@gmail.com", // notification is the firebase document. So I can have an array of emails to send to in the announcement document and loop through them and call send mail on each one. For example: notification.emails.forEach(email => sendMail(email))
-        subject: "Hello from Crimson Canyon Resort", // notification.subject
-        html: `<h1>${notification.createdByUserName} just posted an announcement</h1></br><p>${notification.message}</p></br>- <a href="https://crimson-canyon-resort-prod.web.app/">Crimson Canyon Resort</a>`,
-      })
-      .then((res) => {
-        console.log("Successfully sent email.");
-      })
-      .catch((err) => {
-        console.log(err);
+    if (notification.emailsToNotify) {
+      let emailAddresses = [];
+      notification.emailsToNotify.forEach((emailAddress) => {
+        emailAddresses.push(emailAddress);
       });
+
+      authData
+        .sendMail({
+          from: SENDER_EMAIL,
+          to: `${emailAddresses.join(", ")}`, // notification is the firebase document. So I can have an array of emails to send to in the announcement document and loop through them and call send mail on each one. For example: notification.emails.forEach(email => sendMail(email))
+          subject: `${notification.title}`, // notification.subject
+          html: `<p>${notification.message}</p></br>
+          - <a href="https://crimson-canyon-resort-prod.web.app/">See the rest of this announcement at Crimson Canyon Resort</a>`,
+        })
+        .then((res) => {
+          console.log("Successfully sent email.");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   });
 
 // TODO send email when email is added approved to create account without a request being sent
