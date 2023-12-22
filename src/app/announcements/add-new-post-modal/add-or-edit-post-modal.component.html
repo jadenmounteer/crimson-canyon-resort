@@ -102,12 +102,12 @@
         >
       </div>
 
-      <div class="people-to-notify-section">
+      <div class="people-to-notify-section form-group">
         <label>Users to notify ✉️</label>
         <table class="table">
           <thead>
             <tr>
-              <th scope="col"></th>
+              <th scope="col">Notify?</th>
               <th scope="col">User Name</th>
               <th scope="col">Email</th>
             </tr>
@@ -126,40 +126,40 @@
             </tr>
           </tbody>
         </table>
-      </div>
 
-      <div class="approved-emails-dropdown-header">
-        <label>View All Approved Emails</label>
-        <p *ngIf="showRequests" (click)="toggleShowRequests()">
-          <i class="arrow right"></i>
-        </p>
-        <p *ngIf="!showRequests" (click)="toggleShowRequests()">
-          <i class="arrow down"></i>
-        </p>
-      </div>
+        <div class="approved-emails-dropdown-header">
+          <label>View All Approved Emails</label>
+          <p *ngIf="showRequests" (click)="toggleShowRequests()">
+            <i class="arrow right"></i>
+          </p>
+          <p *ngIf="!showRequests" (click)="toggleShowRequests()">
+            <i class="arrow down"></i>
+          </p>
+        </div>
 
-      <table class="table" *ngIf="showRequests">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Requested By</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of approvedRequests">
-            <td scope="row">
-              <input type="checkbox" name="request" />
-            </td>
-            <td scope="row">
-              {{ request.name }}
-            </td>
-            <td scope="row">
-              {{ request.email }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="table" *ngIf="showRequests">
+          <thead>
+            <tr>
+              <th scope="col">Notify?</th>
+              <th scope="col">Requested By</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of approvedRequests">
+              <td scope="row">
+                <input type="checkbox" name="request" />
+              </td>
+              <td scope="row">
+                {{ request.name }}
+              </td>
+              <td scope="row">
+                {{ request.email }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <span
