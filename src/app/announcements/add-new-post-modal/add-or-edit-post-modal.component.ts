@@ -49,7 +49,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   }
 
   @Input() postToEdit: Post | undefined;
-  @Input() title: string = 'New Announcement';
+  @Input() title: string = 'New Announcement 📢';
   protected percentageChanges$!: Observable<number | undefined>;
 
   protected newPost: Partial<Post> = {

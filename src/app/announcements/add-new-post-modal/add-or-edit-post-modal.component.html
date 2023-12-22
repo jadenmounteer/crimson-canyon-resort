@@ -103,12 +103,54 @@
       </div>
 
       <div class="people-to-notify-section">
-        <label>People to notify</label>
-        <div *ngFor="let user of users">
-          <input type="checkbox" name="users" />
-          <span>{{ user.displayName }}</span>
-        </div>
+        <label>Users to notify ✉️</label>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">User Name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td scope="row">
+                <input type="checkbox" name="users" />
+              </td>
+              <td scope="row">
+                {{ user.displayName }}
+              </td>
+              <td scope="row">
+                {{ user.email }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      <label>Approved emails who haven't created accounts</label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td scope="row">
+              <input type="checkbox" name="users" />
+            </td>
+            <td scope="row">
+              {{ user.displayName }}
+            </td>
+            <td scope="row">
+              {{ user.email }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <span
