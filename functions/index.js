@@ -58,14 +58,16 @@ function createAnnouncementEmailBody(notification) {
   let emailBody = `<p>${notification.message}</p></br>`;
   if (notification.fileURLs) {
     notification.fileURLs.forEach((fileURL) => {
-      emailBody += `<img src="${fileURL}"><br/>`;
+      emailBody += `<img src="${fileURL}" style="width: 300px; border-radius: 4px;"><br/>`;
     });
   }
 
   if (notification.videoURLs) {
     notification.videoURLs.forEach((videoURL) => {
-      emailBody += `<video controls>
-        <source src="${videoURL}">
+      emailBody += `<video controls style="width: 300px; border-radius: 4px;">
+        <source src="${videoURL}"/>
+        There was a problem displaying this video. Please reach out to Jaden
+          for help.
       </video><br/>`;
     });
   }

@@ -162,7 +162,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
 
   protected selectAllUsers() {
     this.users.forEach((user) => {
-      if (user.email) {
+      if (user.email && user.email !== this.newPost.createdByUserEmail) {
         this.newPost.emailsToNotify?.push(user.email);
       }
     });
