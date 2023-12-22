@@ -39,6 +39,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   private usersSub$!: Subscription;
   protected approvedRequests: AccessRequest[] = [];
   protected showRequests = false;
+  private requestsToNotify: string[] = [];
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -62,6 +63,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     userId: '',
     fileURLs: [],
     videoURLs: [],
+    emailsToNotify: [],
   };
 
   ngOnInit(): void {
@@ -165,6 +167,30 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
           this.activeModal.close('success');
         });
     }
+  }
+
+  protected addOrRemoveEmailFromList(email: string | null) {
+    if (!email) return;
+    if (this.newPost.emailsToNotify?.includes(email)) {
+      this.newPost.emailsToNotify = this.newPost.emailsToNotify?.filter(
+        (e) => e !== email
+      );
+      return;
+    }
+
+    this.newPost.emailsToNotify?.push(email);
+  }
+
+  protected addOrRemoveEmailFromRequestList(email: string | null) {
+    if (!email) return;
+    if (this.requestsToNotify.includes(email)) {
+      this.newPost.emailsToNotify = this.requestsToNotify.filter(
+        (e) => e !== email
+      );
+      return;
+    }
+
+    this.requestsToNotify.push(email);
   }
 
   protected onCreatePost() {

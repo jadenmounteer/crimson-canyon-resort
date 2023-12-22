@@ -115,7 +115,11 @@
           <tbody>
             <tr *ngFor="let user of users">
               <td scope="row">
-                <input type="checkbox" name="request" />
+                <input
+                  type="checkbox"
+                  name="request"
+                  (click)="addOrRemoveEmailFromList(user.email)"
+                />
               </td>
               <td scope="row">
                 {{ user.displayName }}
@@ -148,7 +152,11 @@
           <tbody>
             <tr *ngFor="let request of approvedRequests">
               <td scope="row">
-                <input type="checkbox" name="request" />
+                <input
+                  type="checkbox"
+                  name="request"
+                  (click)="addOrRemoveEmailFromRequestList(request.email)"
+                />
               </td>
               <td scope="row">
                 {{ request.name }}
