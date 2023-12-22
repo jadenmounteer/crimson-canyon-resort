@@ -64,3 +64,12 @@
   gap: 8px;
   align-items: flex-start;
 }
+
+.people-to-notify-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.select-all-button {
+  margin-left: auto;
+}

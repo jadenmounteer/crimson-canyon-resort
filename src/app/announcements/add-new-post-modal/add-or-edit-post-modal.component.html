@@ -103,7 +103,17 @@
       </div>
 
       <div class="people-to-notify-section form-group">
-        <label>Users to notify ✉️</label>
+        <span class="people-to-notify-header">
+          <label>Users to notify ✉️</label>
+          <button
+            type="button"
+            class="btn btn-link select-all-button"
+            (click)="selectAllUsers()"
+          >
+            Select All
+          </button></span
+        >
+
         <table class="table">
           <thead>
             <tr>
@@ -118,6 +128,9 @@
                 <input
                   type="checkbox"
                   name="request"
+                  [checked]="
+                    user.email && newPost.emailsToNotify?.includes(user.email)
+                  "
                   (click)="addOrRemoveEmailFromList(user.email)"
                 />
               </td>

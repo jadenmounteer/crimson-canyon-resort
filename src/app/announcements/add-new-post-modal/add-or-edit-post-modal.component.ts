@@ -209,6 +209,14 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     return mergedList;
   }
 
+  protected selectAllUsers() {
+    this.users.forEach((user) => {
+      if (user.email) {
+        this.newPost.emailsToNotify?.push(user.email);
+      }
+    });
+  }
+
   protected onCreatePost() {
     const newPostId = this.angularFirestore.createId();
 
