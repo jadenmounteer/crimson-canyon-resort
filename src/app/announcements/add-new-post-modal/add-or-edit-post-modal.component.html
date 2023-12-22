@@ -127,7 +127,7 @@
               <td scope="row">
                 <input
                   type="checkbox"
-                  name="request"
+                  name="notifyUser"
                   [checked]="
                     user.email && newPost.emailsToNotify?.includes(user.email)
                   "
@@ -139,43 +139,6 @@
               </td>
               <td scope="row">
                 {{ user.email }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="approved-emails-dropdown-header">
-          <label>View All Approved Emails</label>
-          <p *ngIf="showRequests" (click)="toggleShowRequests()">
-            <i class="arrow right"></i>
-          </p>
-          <p *ngIf="!showRequests" (click)="toggleShowRequests()">
-            <i class="arrow down"></i>
-          </p>
-        </div>
-
-        <table class="table" *ngIf="showRequests">
-          <thead>
-            <tr>
-              <th scope="col">Notify?</th>
-              <th scope="col">Requested By</th>
-              <th scope="col">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let request of approvedRequests">
-              <td scope="row">
-                <input
-                  type="checkbox"
-                  name="request"
-                  (click)="addOrRemoveEmailFromRequestList(request.email)"
-                />
-              </td>
-              <td scope="row">
-                {{ request.name }}
-              </td>
-              <td scope="row">
-                {{ request.email }}
               </td>
             </tr>
           </tbody>
@@ -195,6 +158,7 @@
       </ngb-alert></span
     >
   </div>
+
   <div class="modal-footer">
     <!-- Submit button -->
     <button

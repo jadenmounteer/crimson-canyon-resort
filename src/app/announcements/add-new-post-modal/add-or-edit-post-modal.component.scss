@@ -40,31 +40,6 @@
   max-width: 500px;
 }
 
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  cursor: pointer;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.approved-emails-dropdown-header {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: flex-start;
-}
-
 .people-to-notify-header {
   display: flex;
   flex-direction: row;

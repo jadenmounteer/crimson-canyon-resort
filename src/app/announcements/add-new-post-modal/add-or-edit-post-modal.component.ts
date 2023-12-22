@@ -21,13 +21,10 @@ import {
   throwError,
 } from 'rxjs';
 import { Post } from '../post';
-import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { AnnouncementsService } from '../announcements.service';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/types/user';
-import { AccessRequest } from 'src/app/types/access-request';
-import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 
 @Component({
   selector: 'app-add-or-edit-post-modal',
@@ -37,18 +34,13 @@ import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.serv
 export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   protected users: User[] = [];
   private usersSub$!: Subscription;
-  protected approvedRequests: AccessRequest[] = [];
-  protected showRequests = false;
-  private requestsToNotify: string[] = [];
-
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
     private announcementsService: AnnouncementsService,
-    private usersService: UsersService,
-    private authorizedEmailsService: AuthorizedEmailsService
+    private usersService: UsersService
   ) {}
 
   ngOnDestroy(): void {
@@ -68,7 +60,6 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadUsers();
-    this.loadRequests();
     this.newPost.userId = this.authService.userId;
     this.newPost.createdByUserEmail = this.authService.userEmail;
 
@@ -81,14 +72,6 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     this.usersSub$ = this.usersService.fetchUsers().subscribe((users) => {
       this.users = users;
     });
-  }
-
-  private loadRequests() {
-    this.authorizedEmailsService
-      .fetchApprovedRequests()
-      .subscribe((requests) => {
-        this.approvedRequests = requests;
-      });
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -123,10 +106,6 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.percentageChanges$ = of();
       });
-  }
-
-  protected toggleShowRequests() {
-    this.showRequests = !this.showRequests;
   }
 
   protected uploadVideo(event: any) {
@@ -181,34 +160,6 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     this.newPost.emailsToNotify?.push(email);
   }
 
-  protected addOrRemoveEmailFromRequestList(email: string | null) {
-    if (!email) return;
-    if (this.requestsToNotify.includes(email)) {
-      this.newPost.emailsToNotify = this.requestsToNotify.filter(
-        (e) => e !== email
-      );
-      return;
-    }
-
-    this.requestsToNotify.push(email);
-  }
-
-  protected createFinalEmailList(): Array<string> {
-    // merge the two lists into one list without merging duplicates
-    const mergedList: string[] = [];
-    if (this.newPost.emailsToNotify) {
-      mergedList.push(...this.newPost.emailsToNotify);
-    }
-
-    this.requestsToNotify.forEach((requestEmail) => {
-      if (!mergedList.includes(requestEmail)) {
-        mergedList.push(requestEmail);
-      }
-    });
-
-    return mergedList;
-  }
-
   protected selectAllUsers() {
     this.users.forEach((user) => {
       if (user.email) {
@@ -219,8 +170,6 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
 
   protected onCreatePost() {
     const newPostId = this.angularFirestore.createId();
-
-    this.newPost.emailsToNotify = this.createFinalEmailList();
 
     this.newPost.createdDate = Date.now();
 
