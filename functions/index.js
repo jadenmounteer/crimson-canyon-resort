@@ -36,13 +36,14 @@ exports.sendEmailNotification = functions.firestore
         emailAddresses.push(emailAddress);
       });
 
+      let emailBody = createAnnouncementEmailBody(notification);
+
       authData
         .sendMail({
           from: SENDER_EMAIL,
           to: `${emailAddresses.join(", ")}`, // notification is the firebase document. So I can have an array of emails to send to in the announcement document and loop through them and call send mail on each one. For example: notification.emails.forEach(email => sendMail(email))
           subject: `${notification.title}`, // notification.subject
-          html: `<p>${notification.message}</p></br>
-          - <a href="https://crimson-canyon-resort-prod.web.app/">See the rest of this announcement at Crimson Canyon Resort</a>`,
+          html: `${emailBody}`,
         })
         .then((res) => {
           console.log("Successfully sent email.");
@@ -52,6 +53,27 @@ exports.sendEmailNotification = functions.firestore
         });
     }
   });
+
+function createAnnouncementEmailBody(notification) {
+  let emailBody = `<p>${notification.message}</p></br>`;
+  if (notification.fileURLs) {
+    notification.fileURLs.forEach((fileURL) => {
+      emailBody += `<img src="${fileURL}"><br/>`;
+    });
+  }
+
+  if (notification.videoURLs) {
+    notification.videoURLs.forEach((videoURL) => {
+      emailBody += `<video controls>
+        <source src="${videoURL}">
+      </video><br/>`;
+    });
+  }
+
+  emailBody += `<br/>- <a href="https://crimson-canyon-resort-prod.web.app/">Crimson Canyon Resort</a>`;
+
+  return emailBody;
+}
 
 // TODO send email when email is added approved to create account without a request being sent
 exports.sendEmailApprovalNotification = functions.firestore
