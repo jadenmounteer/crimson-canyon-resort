@@ -115,7 +115,7 @@
           <tbody>
             <tr *ngFor="let user of users">
               <td scope="row">
-                <input type="checkbox" name="users" />
+                <input type="checkbox" name="request" />
               </td>
               <td scope="row">
                 {{ user.displayName }}
@@ -133,20 +133,20 @@
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">User Name</th>
+            <th scope="col">Requested By</th>
             <th scope="col">Email</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of users">
+          <tr *ngFor="let request of approvedRequests">
             <td scope="row">
-              <input type="checkbox" name="users" />
+              <input type="checkbox" name="request" />
             </td>
             <td scope="row">
-              {{ user.displayName }}
+              {{ request.name }}
             </td>
             <td scope="row">
-              {{ user.email }}
+              {{ request.email }}
             </td>
           </tr>
         </tbody>

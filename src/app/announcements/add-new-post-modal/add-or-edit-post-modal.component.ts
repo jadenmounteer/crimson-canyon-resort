@@ -26,6 +26,8 @@ import { AuthService } from 'src/app/components/auth/auth.service';
 import { AnnouncementsService } from '../announcements.service';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/types/user';
+import { AccessRequest } from 'src/app/types/access-request';
+import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 
 @Component({
   selector: 'app-add-or-edit-post-modal',
@@ -35,13 +37,16 @@ import { User } from 'src/app/types/user';
 export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   protected users: User[] = [];
   private usersSub$!: Subscription;
+  protected approvedRequests: AccessRequest[] = [];
+
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
     private announcementsService: AnnouncementsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authorizedEmailsService: AuthorizedEmailsService
   ) {}
 
   ngOnDestroy(): void {
@@ -59,7 +64,8 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-    this.getUsers();
+    this.loadUsers();
+    this.loadRequests();
     this.newPost.userId = this.authService.userId;
     this.newPost.createdByUserEmail = this.authService.userEmail;
 
@@ -68,10 +74,18 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getUsers() {
+  private loadUsers() {
     this.usersSub$ = this.usersService.fetchUsers().subscribe((users) => {
       this.users = users;
     });
+  }
+
+  private loadRequests() {
+    this.authorizedEmailsService
+      .fetchApprovedRequests()
+      .subscribe((requests) => {
+        this.approvedRequests = requests;
+      });
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;

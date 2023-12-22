@@ -36,7 +36,6 @@ export class AuthorizedEmailsComponent implements OnInit, OnDestroy {
   }
 
   private loadRequests() {
-    console.log('Loading requests');
     this.contentLoaded = false;
     this.authorizedEmailsService
       .fetchApprovedRequests()
