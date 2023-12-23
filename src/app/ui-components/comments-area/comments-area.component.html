@@ -12,20 +12,24 @@
 
     <p>{{ comment.message }}</p>
   </div>
-  <textarea
-    class="form-control"
-    id="message"
-    rows="3"
-    [(ngModel)]="newComment"
-    name="message"
-    required
-  ></textarea>
 
-  <div class="comment-footer">
-    <button class="btn-secondary btn">
-      Add Comment
+  <div class="add-comment-section">
+    <textarea
+      class="form-control"
+      id="message"
+      rows="3"
+      [(ngModel)]="newComment.message"
+      name="message"
+      required
+      placeholder="Type your comment here"
+    ></textarea>
 
-      <fa-icon class="accept-button" [icon]="icon.faComment"></fa-icon>
-    </button>
+    <div class="comment-button">
+      <button class="btn-secondary btn" [disabled]="newComment.message === ''">
+        Add Comment
+
+        <fa-icon class="accept-button" [icon]="icon.faComment"></fa-icon>
+      </button>
+    </div>
   </div>
 </div>

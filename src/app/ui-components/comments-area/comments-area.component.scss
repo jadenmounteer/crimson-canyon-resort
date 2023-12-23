@@ -1,0 +1,11 @@
+.comment-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.add-comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
