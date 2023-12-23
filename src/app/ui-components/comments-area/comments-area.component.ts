@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class CommentsAreaComponent implements OnInit {
   @Input() comments: PostComment[] | undefined = [];
+  protected newComment: string = '';
 
   constructor(public icon: IconService) {}
 

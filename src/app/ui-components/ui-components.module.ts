@@ -6,6 +6,7 @@ import { LottieModule } from 'ngx-lottie';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsAreaComponent } from './comments-area/comments-area.component';
+import { FormsModule } from '@angular/forms';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -23,6 +24,7 @@ export function playerFactory(): any {
     CommonModule,
     LottieModule.forRoot({ player: playerFactory }),
     FontAwesomeModule,
+    FormsModule,
   ],
   exports: [
     PageWrapperComponent,
