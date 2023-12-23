@@ -1,4 +1,15 @@
+@import "../../../styles.scss";
+
 .loading-icon {
   display: flex;
   justify-content: center;
+}
+
+.animation-wrapper {
+  width: 70%;
+  @include for-tablet-portrait-up {
+    width: 25%;
+  }
+  margin-left: auto;
+  margin-right: auto;
 }

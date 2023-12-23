@@ -2,13 +2,24 @@
   <app-loading-spinner></app-loading-spinner>
 </span>
 
-<span *ngIf="!loading">
+<span *ngIf="!loading && instaData">
+  <div *ngIf="instaData.length > 0">
+    <app-instagram-feed [instaData]="instaData"></app-instagram-feed>
+    <button
+      class="btn btn-primary btn-lg btn-block see-more-button"
+      (click)="router.navigate(['whats-happening'])"
+    >
+      View More Posts 🤳
+    </button>
+  </div>
   <h2 class="page-title">See the latest happenings at the resort.</h2>
-  <app-instagram-feed [instaData]="instaData"></app-instagram-feed>
-  <button
-    class="btn btn-primary btn-lg btn-block see-more-button"
-    (click)="router.navigate(['whats-happening'])"
-  >
-    View More Posts 🤳
-  </button>
+
+  <div *ngIf="instaData.length < 1" class="animation-wrapper">
+    <app-animation [animationKey]="'palmTreeAnimation'" animationSize="small">
+    </app-animation>
+    <h4>
+      Looks like the Instragram token needs to be refreshed. Jaden is probably
+      relaxing somewhere. He should get on that.
+    </h4>
+  </div>
 </span>
