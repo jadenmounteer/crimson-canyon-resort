@@ -71,7 +71,9 @@ function createAnnouncementEmailBody(notification) {
     });
   }
 
-  emailBody += `<br/>- <a href="https://crimson-canyon-resort-prod.web.app/">Crimson Canyon Resort</a>`;
+  emailBody += `<br/>- ${notification.createdByUserName}`;
+
+  emailBody += `<br/><a href="https://crimson-canyon-resort-prod.web.app/">Crimson Canyon Resort</a>`;
 
   return emailBody;
 }
