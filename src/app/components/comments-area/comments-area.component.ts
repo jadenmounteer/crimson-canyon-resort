@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PostComment } from '../post';
+import { PostComment } from '../../announcements/post';
 import { IconService } from 'src/app/services/icon.service';
 import { throwError } from 'rxjs';
 

@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PostsComponent } from './posts/posts.component';
 import { AddOrEditPostModalComponent } from './add-new-post-modal/add-or-edit-post-modal.component';
-import { CommentsAreaComponent } from './comments-area/comments-area.component';
+import { CommentsAreaComponent } from '../components/comments-area/comments-area.component';
 
 @NgModule({
   declarations: [
