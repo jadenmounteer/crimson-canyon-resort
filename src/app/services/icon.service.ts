@@ -14,6 +14,7 @@ import {
   faUmbrella,
   faSnowman,
   faMoon,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -37,6 +38,7 @@ export class IconService {
   public faUmbrella = faUmbrella;
   public faSnowman = faSnowman;
   public faMoon = faMoon;
+  public faComment = faComment;
 
   constructor() {}
 }
