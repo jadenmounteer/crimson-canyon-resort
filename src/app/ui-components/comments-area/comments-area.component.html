@@ -1,5 +1,5 @@
 <div class="post-comments">
-  <div class="post-comment" *ngFor="let comment of comments">
+  <div class="post-comment" *ngFor="let comment of post.comments">
     <div class="post-comment-header">
       <h6 class="post-comment-created-by-name">
         {{ comment.createdByUserName }}
@@ -25,7 +25,11 @@
     ></textarea>
 
     <div class="comment-button">
-      <button class="btn-secondary btn" [disabled]="newComment.message === ''">
+      <button
+        class="btn-secondary btn"
+        [disabled]="newComment.message === ''"
+        (click)="addComment()"
+      >
         Add Comment
 
         <fa-icon class="accept-button" [icon]="icon.faComment"></fa-icon>
