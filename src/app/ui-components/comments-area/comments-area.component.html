@@ -22,7 +22,7 @@
       [(ngModel)]="newComment.message"
       name="message"
       required
-      placeholder="Type a comment here"
+      [placeholder]="randomFunnyPlaceholderMessage"
     ></textarea>
 
     <div class="comment-button">
