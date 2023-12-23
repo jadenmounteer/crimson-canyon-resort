@@ -219,7 +219,7 @@ exports.sendEmailCommentAddedToAnnouncement = functions.firestore
     const notification = snap.data();
 
     let emailAddresses = [];
-    adminEmails.forEach((emailAddress) => {
+    testAdminEmails.forEach((emailAddress) => {
       emailAddresses.push(emailAddress);
     });
 
