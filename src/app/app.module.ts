@@ -43,6 +43,7 @@ import { NavWeatherComponent } from './components/weather/nav-weather/nav-weathe
 import { ReviewsSectionComponent } from './components/reviews-section/reviews-section.component';
 import { ReviewComponent } from './components/review/review.component';
 import { AddReviewModalComponent } from './components/add-review-modal/add-review-modal.component';
+import { CommentsAreaComponent } from './ui-components/comments-area/comments-area.component';
 
 @NgModule({
   declarations: [
