@@ -14,7 +14,6 @@ import { AdministrationService } from 'src/app/services/administration.service';
 import { AuthService } from 'src/app/components/auth/auth.service';
 import { AnnouncementsService } from '../announcements.service';
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
-import { IconService } from 'src/app/services/icon.service';
 
 @Component({
   selector: 'app-posts',
@@ -34,8 +33,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private adminService: AdministrationService,
     protected authService: AuthService,
-    protected announcementsService: AnnouncementsService,
-    public icon: IconService
+    protected announcementsService: AnnouncementsService
   ) {}
 
   ngOnInit(): void {

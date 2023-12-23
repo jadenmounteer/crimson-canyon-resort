@@ -9,10 +9,10 @@ export interface Post {
   createdByUserName: string | undefined | null;
   createdByUserEmail: string | undefined | null;
   emailsToNotify: string[] | undefined;
-  comments: Comment[] | undefined;
+  comments: PostComment[] | undefined;
 }
 
-export interface Comment {
+export interface PostComment {
   id: string;
   userId: string | undefined;
   message: string;

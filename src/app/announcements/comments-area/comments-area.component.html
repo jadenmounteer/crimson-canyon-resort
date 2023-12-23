@@ -1,0 +1,21 @@
+<div class="post-comments">
+  <div class="post-comment" *ngFor="let comment of comments">
+    <div class="post-comment-header">
+      <h6 class="post-comment-created-by-name">
+        {{ comment.createdByUserName }}
+      </h6>
+
+      <h6 class="post-comment-date">
+        {{ comment.createdDate | date : "MMM d, yy, h:mm a" }}
+      </h6>
+    </div>
+
+    <p>{{ comment.message }}</p>
+  </div>
+  <div class="comment-footer">
+    <button class="btn-secondary btn">
+      Add Comment
+      <fa-icon class="accept-button" [icon]="icon.faComment"></fa-icon>
+    </button>
+  </div>
+</div>
