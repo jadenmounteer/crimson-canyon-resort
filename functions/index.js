@@ -212,32 +212,3 @@ exports.sendEmailReservationDeleted = functions.firestore
         console.log(err);
       });
   });
-
-exports.sendEmailCommentAddedToAnnouncement = functions.firestore
-  .document("posts/{docId}")
-  .onDelete((snap, context) => {
-    const notification = snap.data();
-
-    let emailAddresses = [];
-    testAdminEmails.forEach((emailAddress) => {
-      emailAddresses.push(emailAddress);
-    });
-
-    let lastComment = notification.comments[notification.comments.length - 1];
-
-    authData
-      .sendMail({
-        from: SENDER_EMAIL,
-        to: `${emailAddresses.join(", ")}`,
-        subject: `Your ${notification.title} was commented on by ${lastComment.createdByUserName}!`, // notification.subject
-        html: `<p>${lastComment.createdByUserName} commented on the announcement: ${notification.title}.</br>
-          Here is their comment:<br/>${lastComment.message}<br/>
-           <br/><br/><a href="https://crimson-canyon-resort-prod.web.app/">View more reservations here</a>`,
-      })
-      .then((res) => {
-        console.log("Successfully sent email.");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
