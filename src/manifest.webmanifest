@@ -1,8 +1,8 @@
 {
-  "name": "crimson-canyon-resort",
-  "short_name": "crimson-canyon-resort",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Crimson Canyon Resort",
+  "short_name": "Crimson Canyon Resort",
+  "theme_color": "#171614",
+  "background_color": "#e5decf",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
