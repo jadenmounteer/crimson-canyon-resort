@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +44,7 @@ import { ReviewsSectionComponent } from './components/reviews-section/reviews-se
 import { ReviewComponent } from './components/review/review.component';
 import { AddReviewModalComponent } from './components/add-review-modal/add-review-modal.component';
 import { CommentsAreaComponent } from './ui-components/comments-area/comments-area.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,12 @@ import { CommentsAreaComponent } from './ui-components/comments-area/comments-ar
     InstagramFeedModule,
     FitnessCenterModule,
     NgbRatingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
