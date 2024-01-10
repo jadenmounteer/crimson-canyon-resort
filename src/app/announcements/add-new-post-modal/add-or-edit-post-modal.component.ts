@@ -25,6 +25,8 @@ import { AuthService } from 'src/app/components/auth/auth.service';
 import { AnnouncementsService } from '../announcements.service';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/types/user';
+import { AccessRequest } from 'src/app/types/access-request';
+import { AuthorizedEmailsService } from 'src/app/services/authorized-emails.service';
 
 @Component({
   selector: 'app-add-or-edit-post-modal',
@@ -33,18 +35,22 @@ import { User } from 'src/app/types/user';
 })
 export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   protected users: User[] = [];
+  protected approvedEmails: AccessRequest[] = [];
   private usersSub$!: Subscription;
+  private approvedEmailsSub$!: Subscription;
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
     private angularFirestore: AngularFirestore,
     private authService: AuthService,
     private announcementsService: AnnouncementsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authorizedEmailsService: AuthorizedEmailsService
   ) {}
 
   ngOnDestroy(): void {
     this.usersSub$.unsubscribe();
+    this.approvedEmailsSub$.unsubscribe();
   }
 
   @Input() postToEdit: Post | undefined;
@@ -60,6 +66,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadUsers();
+    this.loadAllApprovedEmails();
     this.newPost.userId = this.authService.userId;
     this.newPost.createdByUserEmail = this.authService.userEmail;
 
@@ -72,6 +79,14 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     this.usersSub$ = this.usersService.fetchUsers().subscribe((users) => {
       this.users = users;
     });
+  }
+
+  private loadAllApprovedEmails() {
+    this.approvedEmailsSub$ = this.authorizedEmailsService
+      .fetchApprovedRequests()
+      .subscribe((requests) => {
+        this.approvedEmails = requests;
+      });
   }
 
   @ViewChild('fileInput') fileInput!: ElementRef;

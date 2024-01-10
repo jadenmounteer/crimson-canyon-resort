@@ -147,11 +147,30 @@
 
       <div class="people-to-notify-section form-group">
         <span class="people-to-notify-header">
-          <label>View all emails</label>
+          <label>All approved emails</label>
           <button type="button" class="btn btn-link select-all-button">
             Select All
           </button></span
         >
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Notify?</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let approvedEmail of approvedEmails">
+              <td scope="row">
+                <input type="checkbox" name="notifyUser" />
+              </td>
+              <td scope="row">
+                {{ approvedEmail.email }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
