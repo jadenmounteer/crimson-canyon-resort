@@ -38,6 +38,7 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
   protected approvedEmails: AccessRequest[] = [];
   private usersSub$!: Subscription;
   private approvedEmailsSub$!: Subscription;
+  protected approvedEmailsSelected: string[] = [];
   constructor(
     public activeModal: NgbActiveModal,
     private storage: AngularFireStorage,
@@ -175,6 +176,25 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     this.newPost.emailsToNotify?.push(email);
   }
 
+  protected selectAllApprovedEmails() {
+    this.approvedEmails.forEach((request) => {
+      if (request.email && request.email !== this.newPost.createdByUserEmail) {
+        this.approvedEmailsSelected.push(request.email);
+      }
+    });
+  }
+  protected addOrRemoveApprovedEmailFromList(email: string | null) {
+    if (!email) return;
+    if (this.approvedEmailsSelected.includes(email)) {
+      this.approvedEmailsSelected = this.approvedEmailsSelected.filter(
+        (e) => e !== email
+      );
+      return;
+    }
+
+    this.approvedEmailsSelected.push(email);
+  }
+
   protected selectAllUsers() {
     this.users.forEach((user) => {
       if (user.email && user.email !== this.newPost.createdByUserEmail) {
@@ -183,7 +203,17 @@ export class AddOrEditPostModalComponent implements OnInit, OnDestroy {
     });
   }
 
+  private mergeApprovedEmailsIntoListToNotify() {
+    this.approvedEmailsSelected.forEach((email) => {
+      if (!this.newPost.emailsToNotify?.includes(email)) {
+        this.newPost.emailsToNotify?.push(email);
+      }
+    });
+  }
+
   protected onCreatePost() {
+    this.mergeApprovedEmailsIntoListToNotify();
+
     const newPostId = this.angularFirestore.createId();
 
     this.newPost.createdDate = Date.now();
