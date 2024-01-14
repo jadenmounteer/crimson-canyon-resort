@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddOrEditPostModalComponent } from 'src/app/announcements/add-new-post-modal/add-or-edit-post-modal.component';
 
 @Component({
   selector: 'app-admin-section',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 export class AdminSectionComponent implements OnInit {
   protected contentLoaded: boolean = false;
 
-  constructor(protected router: Router) {}
+  constructor(protected router: Router, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.contentLoaded = true;
@@ -21,5 +23,14 @@ export class AdminSectionComponent implements OnInit {
 
   protected navigateToInstagram(): void {
     window.open('https://www.instagram.com/', '_blank');
+  }
+  protected addNewPost(): void {
+    const modalRef = this.modalService.open(AddOrEditPostModalComponent);
+
+    modalRef.result.then((result) => {
+      if (result === 'success') {
+        // this.addedNewPost.emit();
+      }
+    });
   }
 }
