@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Post } from 'src/app/announcements/post';
 import { AnnouncementsService } from 'src/app/announcements/announcements.service';
 
@@ -9,9 +9,10 @@ import { AnnouncementsService } from 'src/app/announcements/announcements.servic
   templateUrl: './announcements-section.component.html',
   styleUrls: ['./announcements-section.component.scss'],
 })
-export class AnnouncementsSectionComponent implements OnInit {
+export class AnnouncementsSectionComponent implements OnInit, OnDestroy {
   protected contentLoaded: boolean = false;
   protected posts$!: Observable<Post[]>;
+  protected announcementsChanged$!: Subscription;
   @Input() userDisplayName: string | undefined | null;
 
   constructor(
@@ -20,8 +21,16 @@ export class AnnouncementsSectionComponent implements OnInit {
   ) {
     this.loadPosts();
   }
+  ngOnDestroy(): void {
+    this.announcementsChanged$.unsubscribe();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.announcementsChanged$ =
+      this.announcementsService.newAnnouncementAddedToHomePage.subscribe(() => {
+        this.loadPosts();
+      });
+  }
 
   protected loadPosts(): void {
     this.posts$ = this.announcementsService.fetchRecentPosts();

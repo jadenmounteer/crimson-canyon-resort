@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from '../components/auth/auth.service';
 import { Router } from '@angular/router';
 import { Post } from './post';
-import { Observable, from, map } from 'rxjs';
+import { Observable, Subject, from, map } from 'rxjs';
 import { convertSnaps } from '../services/db-utils';
 import { User } from '../types/user';
 
@@ -11,6 +11,7 @@ import { User } from '../types/user';
   providedIn: 'root',
 })
 export class AnnouncementsService {
+  public newAnnouncementAddedToHomePage = new Subject();
   constructor(
     private firestore: AngularFirestore,
     private authService: AuthService,

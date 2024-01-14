@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddOrEditPostModalComponent } from 'src/app/announcements/add-new-post-modal/add-or-edit-post-modal.component';
+import { AnnouncementsService } from 'src/app/announcements/announcements.service';
 
 @Component({
   selector: 'app-admin-section',
@@ -11,7 +12,11 @@ import { AddOrEditPostModalComponent } from 'src/app/announcements/add-new-post-
 export class AdminSectionComponent implements OnInit {
   protected contentLoaded: boolean = false;
 
-  constructor(protected router: Router, private modalService: NgbModal) {}
+  constructor(
+    protected router: Router,
+    private modalService: NgbModal,
+    private announcementsService: AnnouncementsService
+  ) {}
 
   ngOnInit(): void {
     this.contentLoaded = true;
@@ -29,7 +34,9 @@ export class AdminSectionComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result === 'success') {
-        // this.addedNewPost.emit();
+        this.announcementsService.newAnnouncementAddedToHomePage.next(
+          'success'
+        );
       }
     });
   }
