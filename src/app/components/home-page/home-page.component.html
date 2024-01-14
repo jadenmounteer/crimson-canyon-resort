@@ -20,9 +20,15 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
+      <!-- TODO Add my upcoming reservations section -->
+
       <app-whats-happening-home-page-section
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>
+
+      <!-- TODO add a section that shows off the pool and tells the pool rules -->
+
+      <!-- TODO Add a section that shows the gps coordinates and gives directions on how to get there -->
 
       <app-fitness-home-page-section *ngIf="isAuth">
       </app-fitness-home-page-section>
