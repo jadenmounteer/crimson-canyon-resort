@@ -18,6 +18,9 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
+      <app-admin-section *ngIf="isAuth && (currentUserIsAdmin$ | async)">
+      </app-admin-section>
+
       <app-whats-happening-home-page-section
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>

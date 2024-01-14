@@ -45,6 +45,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { AddReviewModalComponent } from './components/add-review-modal/add-review-modal.component';
 import { CommentsAreaComponent } from './ui-components/comments-area/comments-area.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AdminSectionComponent } from './components/admin-section/admin-section.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ReviewsSectionComponent,
     ReviewComponent,
     AddReviewModalComponent,
+    AdminSectionComponent,
   ],
   imports: [
     BrowserModule,
