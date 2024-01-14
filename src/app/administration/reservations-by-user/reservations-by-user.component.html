@@ -7,7 +7,7 @@
       </button>
     </span>
 
-    <table class="table">
+    <table class="table" *ngIf="upcomingReservations.length > 0">
       <thead>
         <tr>
           <th scope="col">Family Name</th>
@@ -43,6 +43,11 @@
         </tr>
       </tbody>
     </table>
+
+    <div *ngIf="upcomingReservations.length === 0" class="no-upcoming-section">
+      <h1>😭</h1>
+      <h4>There are no upcoming reservations.</h4>
+    </div>
   </span>
 
   <span *ngIf="contentLoaded && viewingPastReservations">
