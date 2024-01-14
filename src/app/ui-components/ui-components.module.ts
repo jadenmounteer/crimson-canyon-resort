@@ -7,6 +7,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentsAreaComponent } from './comments-area/comments-area.component';
 import { FormsModule } from '@angular/forms';
+import { ReservationsByUserComponent } from '../administration/reservations-by-user/reservations-by-user.component';
 
 // TODO This is a function necessary for lottie (is there a better place for this?)
 export function playerFactory(): any {
@@ -19,6 +20,7 @@ export function playerFactory(): any {
     AnimationComponent,
     LoadingSpinnerComponent,
     CommentsAreaComponent,
+    ReservationsByUserComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ export function playerFactory(): any {
     LoadingSpinnerComponent,
     FontAwesomeModule,
     CommentsAreaComponent,
+    ReservationsByUserComponent,
   ],
 })
 export class UiComponentsModule {}
