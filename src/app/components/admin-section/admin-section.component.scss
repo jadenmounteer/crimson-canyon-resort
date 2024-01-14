@@ -5,3 +5,9 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+.admin-tools-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
