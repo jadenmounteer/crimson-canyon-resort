@@ -15,7 +15,11 @@ export class AdminSectionComponent implements OnInit {
     this.contentLoaded = true;
   }
 
-  protected suprise(): void {
+  protected surprise(): void {
     window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+  }
+
+  protected navigateToInstagram(): void {
+    window.open('https://www.instagram.com/', '_blank');
   }
 }

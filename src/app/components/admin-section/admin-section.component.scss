@@ -1,1 +1,7 @@
 @import "../../../styles.scss";
+
+.admin-buttons-wrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
