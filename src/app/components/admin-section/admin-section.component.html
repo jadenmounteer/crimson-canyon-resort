@@ -1,11 +1,17 @@
 <span *ngIf="contentLoaded">
   <h2 class="page-title">Admin Info</h2>
 
+  <div class="admin-buttons-wrapper">
+    <button class="btn btn-secondary" (click)="suprise()">
+      Launch Missile 🚀
+    </button>
+  </div>
+
   <button
     class="btn btn-primary btn-lg btn-block see-more-button"
     (click)="router.navigate(['administration'])"
   >
-    Go to admin page
+    Go to Admin Page ⚙️
   </button>
 </span>
 
