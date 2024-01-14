@@ -37,6 +37,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.grabCurrentUserAdminStatus();
     this.authSubscription = this.authService.authChange.subscribe(
       (authStatus) => {
         this.grabCurrentUserAdminStatus();

@@ -1,5 +1,9 @@
 <div class="posts-wrapper">
-  <button class="btn btn-primary" (click)="addNewPost()">
+  <button
+    class="btn btn-primary"
+    (click)="addNewPost()"
+    *ngIf="currentUserIsAdmin$ | async"
+  >
     New Announcement 📢
   </button>
 
