@@ -18,6 +18,10 @@ a {
   cursor: pointer;
 }
 
+.navbar-nav {
+  align-items: center;
+}
+
 .nav-link:hover,
 .nav-link:focus,
 .active,
@@ -78,13 +82,13 @@ a {
 
 .nav-list-weather-widget {
   display: none;
-  @include for-desktop-up {
+  @include for-little-bigger-desktop-up {
     display: block;
   }
 }
 
 .navbar-weather-widget {
-  @include for-tablet-landscape-up {
+  @include for-little-bigger-desktop-up {
     display: none;
   }
 }

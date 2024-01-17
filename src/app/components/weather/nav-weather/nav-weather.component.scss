@@ -4,4 +4,10 @@
   color: $backgroundColor;
   display: flex;
   gap: 4px;
+  align-items: center;
+  justify-content: center;
+
+  @include for-little-bigger-desktop-up {
+    justify-content: flex-start;
+  }
 }

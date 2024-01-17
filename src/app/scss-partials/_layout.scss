@@ -30,6 +30,12 @@ $nav-bar-height: 101px;
   }
 }
 
+@mixin for-little-bigger-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) {
     @content;
