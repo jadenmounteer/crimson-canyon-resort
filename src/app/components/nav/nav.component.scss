@@ -19,7 +19,9 @@ a {
 }
 
 .navbar-nav {
-  align-items: center;
+  @include for-little-bigger-desktop-up {
+    align-items: center;
+  }
 }
 
 .nav-link:hover,
