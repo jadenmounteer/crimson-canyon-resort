@@ -20,11 +20,12 @@
         [userDisplayName]="authService.userDisplayName"
       ></app-announcements-section>
 
-      <!-- TODO Add my upcoming reservations section -->
-
       <app-whats-happening-home-page-section
         *ngIf="isAuth"
       ></app-whats-happening-home-page-section>
+
+      <app-my-reservations-section *ngIf="isAuth">
+      </app-my-reservations-section>
 
       <!-- TODO add a section that shows off the pool and tells the pool rules -->
 
