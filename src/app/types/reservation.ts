@@ -18,6 +18,7 @@ export interface Message {
   userName: string;
   message: string;
   createdDate: number;
+  userEmail: string;
 }
 export interface DayMonthYear {
   day: number;
