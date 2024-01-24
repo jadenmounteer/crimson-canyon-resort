@@ -47,6 +47,7 @@ import { CommentsAreaComponent } from './ui-components/comments-area/comments-ar
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AdminSectionComponent } from './components/admin-section/admin-section.component';
 import { MyReservationsSectionComponent } from './components/my-reservations-section/my-reservations-section.component';
+import { ReservationChatComponent } from './components/reservation-chat/reservation-chat.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MyReservationsSectionComponent } from './components/my-reservations-sec
     AddReviewModalComponent,
     AdminSectionComponent,
     MyReservationsSectionComponent,
+    ReservationChatComponent,
   ],
   imports: [
     BrowserModule,
