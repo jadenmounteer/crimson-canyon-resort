@@ -155,7 +155,13 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
     const datesToCheck = [arrivalDate, departureDate, ...datesInBetween];
 
     for (const date of datesToCheck) {
-      if (this.datePickerService.dateLandsOnPrivateVisit(date)) {
+      if (
+        this.datePickerService.dateIsNotIncludedInCurrentReservation(
+          this.reservation,
+          date
+        ) &&
+        this.datePickerService.dateLandsOnPrivateVisit(date)
+      ) {
         dateIsAvailable = false;
         this.dateAvailabilityType = 'danger';
         this.dateAvailabilityMessage =
@@ -163,7 +169,13 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
         break;
       }
 
-      if (this.datePickerService.dateLandsOnNonPrivateVisit(date)) {
+      if (
+        this.datePickerService.dateIsNotIncludedInCurrentReservation(
+          this.reservation,
+          date
+        ) &&
+        this.datePickerService.dateLandsOnNonPrivateVisit(date)
+      ) {
         this.reservationDuringNonPrivateVisit = true;
         this.dateAvailabilityType = 'warning';
         this.dateAvailabilityMessage =

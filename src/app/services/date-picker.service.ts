@@ -49,6 +49,44 @@ export class DatePickerService implements OnDestroy {
     return new NgbDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
   }
 
+  public dateIsNotIncludedInCurrentReservation(
+    reservation: Reservation,
+    dateToCheck: DayMonthYear
+  ): boolean {
+    // First, we check if the date to check is the arrival date or the departure date.
+    if (
+      dateToCheck.year === reservation.arrivalDate.year &&
+      dateToCheck.month === reservation.arrivalDate.month &&
+      dateToCheck.day === reservation.arrivalDate.day
+    ) {
+      return false;
+    }
+
+    if (
+      dateToCheck.year === reservation.departureDate.year &&
+      dateToCheck.month === reservation.departureDate.month &&
+      dateToCheck.day === reservation.departureDate.day
+    ) {
+      return false;
+    }
+
+    const datesInBetween = this.getDatesBetweenArrivalAndDepartureDates(
+      reservation.arrivalDate,
+      reservation.departureDate
+    );
+
+    for (const date of datesInBetween) {
+      if (
+        date.year === dateToCheck.year &&
+        date.month === dateToCheck.month &&
+        date.day === dateToCheck.day
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   private getDatesOfPrivateVisits(
     reservations: Reservation[]
   ): NgbDateStruct[] {
