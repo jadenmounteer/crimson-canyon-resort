@@ -29,19 +29,21 @@ export class ReservationChatService {
     );
   }
 
-  public fetchMessages(): Observable<Message[]> {
-    return this.firestore
-      .collection('reservation-chat-messages/', (ref) =>
-        ref.orderBy('createdDate', 'desc')
-      )
-      .get()
-      .pipe(map((result) => convertSnaps<Message>(result)));
-  }
-
   public deleteMessage(messageId: string): Observable<void> {
     return from(
       this.firestore.doc(`reservation-chat-messages//${messageId}`).delete()
     );
+  }
+
+  public fetchMessagesBasedOnReservationId(
+    reservationId: string
+  ): Observable<Message[]> {
+    return this.firestore
+      .collection('reservation-chat-messages', (ref) =>
+        ref.where('reservationId', '==', reservationId)
+      )
+      .get()
+      .pipe(map((result) => convertSnaps<Message>(result)));
   }
 
   public updateMessage(

@@ -1,7 +1,10 @@
 <div class="card reservation-chat-form">
   <h3>Chat with the owners 💬</h3>
   <div class="reservation-chat-messages">
-    <div *ngFor="let message of messages" class="reservation-chat-message">
+    <div
+      *ngFor="let message of messages$ | async"
+      class="reservation-chat-message"
+    >
       <div class="reservation-chat-message-content">
         <div class="reservation-chat-message-content-text">
           {{ message.message }}

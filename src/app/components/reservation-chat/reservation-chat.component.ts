@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Message, Reservation } from 'src/app/types/reservation';
+import { ReservationChatService } from './reservation-chat.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reservation-chat',
@@ -7,8 +9,17 @@ import { Message, Reservation } from 'src/app/types/reservation';
   styleUrls: ['./reservation-chat.component.scss'],
 })
 export class ReservationChatComponent implements OnInit {
-  messages: Message[] = [];
-  constructor() {}
+  @Input() reservationID!: string;
+  protected messages$!: Observable<Message[]>;
+  constructor(private chatService: ReservationChatService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadMessages();
+  }
+
+  private loadMessages(): void {
+    this.messages$ = this.chatService.fetchMessagesBasedOnReservationId(
+      this.reservationID
+    );
+  }
 }
