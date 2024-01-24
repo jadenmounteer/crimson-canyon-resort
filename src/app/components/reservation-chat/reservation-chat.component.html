@@ -1,4 +1,16 @@
 <div class="card reservation-chat-form">
   <h3>Chat with the owners 💬</h3>
-  <form #f="ngForm" class="reservation-chat-form"></form>
+  <div class="reservation-chat-messages">
+    <div *ngFor="let message of messages" class="reservation-chat-message">
+      <div class="reservation-chat-message-content">
+        <div class="reservation-chat-message-content-text">
+          {{ message.message }}
+        </div>
+        <div class="reservation-chat-message-content-date">
+          {{ message.createdDate | date : "short" }}
+        </div>
+      </div>
+    </div>
+    <form #f="ngForm" class="reservation-chat-form"></form>
+  </div>
 </div>

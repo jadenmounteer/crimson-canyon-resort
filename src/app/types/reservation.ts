@@ -11,6 +11,14 @@ export interface Reservation {
   additionalInfo: string | undefined;
 }
 
+export interface Message {
+  id: string;
+  reservationId: string;
+  userId: string;
+  userName: string;
+  message: string;
+  createdDate: number;
+}
 export interface DayMonthYear {
   day: number;
   month: number;
