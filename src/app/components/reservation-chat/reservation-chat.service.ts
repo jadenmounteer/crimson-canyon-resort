@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Observable, Subject, from, map } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { convertSnaps } from 'src/app/services/db-utils';
 import { Message } from 'src/app/types/reservation';
 
@@ -9,7 +9,6 @@ import { Message } from 'src/app/types/reservation';
   providedIn: 'root',
 })
 export class ReservationChatService {
-  public newAnnouncementAddedToHomePage = new Subject();
   constructor(private firestore: AngularFirestore, private router: Router) {}
 
   public createMessage(newMessage: Partial<Message>, messageId: string) {

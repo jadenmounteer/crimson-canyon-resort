@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Message, Reservation } from 'src/app/types/reservation';
 import { ReservationChatService } from './reservation-chat.service';
 import { Observable } from 'rxjs';
+import { z } from 'zod';
 
 @Component({
   selector: 'app-reservation-chat',
@@ -11,6 +12,8 @@ import { Observable } from 'rxjs';
 export class ReservationChatComponent implements OnInit {
   @Input() reservationID!: string;
   protected messages$!: Observable<Message[]>;
+  protected newMessage: Partial<Message> = {};
+
   constructor(private chatService: ReservationChatService) {}
 
   ngOnInit(): void {

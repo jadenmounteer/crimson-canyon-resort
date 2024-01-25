@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export interface Reservation {
   id: string;
   userId: string | undefined;
@@ -11,15 +13,18 @@ export interface Reservation {
   additionalInfo: string | undefined;
 }
 
-export interface Message {
-  id: string;
-  reservationId: string;
-  userId: string;
-  userName: string;
-  message: string;
-  createdDate: number;
-  userEmail: string;
-}
+const messageSchema = z.object({
+  id: z.string(),
+  reservationId: z.string(),
+  userId: z.string(),
+  userName: z.string(),
+  message: z.string().min(1),
+  createdDate: z.number(),
+  userEmail: z.string(),
+});
+
+export type Message = z.infer<typeof messageSchema>;
+
 export interface DayMonthYear {
   day: number;
   month: number;
