@@ -27,7 +27,12 @@
       ></textarea>
 
       <!-- Submit button -->
-      <button [disabled]="!f.valid" type="submit" class="btn btn-primary">
+      <button
+        [disabled]="!f.valid"
+        type="submit"
+        class="btn btn-primary"
+        (click)="onAddMessage()"
+      >
         Submit
       </button>
     </form>

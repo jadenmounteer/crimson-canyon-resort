@@ -212,6 +212,8 @@
 
     <app-reservation-chat
       [reservationID]="reservation.id"
+      [userID]="authService.userId"
+      [userEmail]="authService.userEmail"
     ></app-reservation-chat>
   </div>
 </app-page-wrapper>

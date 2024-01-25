@@ -20,7 +20,8 @@ const messageSchema = z.object({
   userName: z.string(),
   message: z.string().min(1),
   createdDate: z.number(),
-  userEmail: z.string(),
+  // userEmail is string | null | undefined
+  userEmail: z.string().nullable().optional(),
 });
 
 export type Message = z.infer<typeof messageSchema>;

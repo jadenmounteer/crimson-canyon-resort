@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Message, Reservation } from 'src/app/types/reservation';
+import { Message } from 'src/app/types/reservation';
 import { ReservationChatService } from './reservation-chat.service';
-import { Observable } from 'rxjs';
-import { z } from 'zod';
+import { Observable, catchError, tap } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-reservation-chat',
@@ -11,10 +11,15 @@ import { z } from 'zod';
 })
 export class ReservationChatComponent implements OnInit {
   @Input() reservationID!: string;
+  @Input() userID: string | undefined;
+  @Input() userEmail: string | null | undefined;
   protected messages$!: Observable<Message[]>;
-  protected newMessage: Partial<Message> = {};
+  protected newMessage: Partial<Message> = { message: '' };
 
-  constructor(private chatService: ReservationChatService) {}
+  constructor(
+    private chatService: ReservationChatService,
+    private angularFirestore: AngularFirestore
+  ) {}
 
   ngOnInit(): void {
     this.loadMessages();
@@ -24,5 +29,26 @@ export class ReservationChatComponent implements OnInit {
     this.messages$ = this.chatService.fetchMessagesBasedOnReservationId(
       this.reservationID
     );
+  }
+
+  protected onAddMessage(): void {
+    this.newMessage.userId = this.userID;
+    this.newMessage.reservationId = this.reservationID;
+    this.newMessage.userEmail = this.userEmail;
+    const messageId = this.angularFirestore.createId();
+
+    this.newMessage.createdDate = Date.now();
+
+    this.chatService
+      .createMessage(this.newMessage, messageId)
+      // .pipe(
+      //   catchError((err) => {
+      //     // this.displayErrorMsg = true;
+      //     // return throwError(err);
+      //   })
+      // )
+      .subscribe(() => {
+        this.newMessage.message = '';
+      });
   }
 }

@@ -37,7 +37,7 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
     public icon: IconService,
     private route: ActivatedRoute,
     private reservationsService: ReservationsService,
-    private authService: AuthService,
+    protected authService: AuthService,
     private modalService: NgbModal,
     private router: Router,
     protected datePickerService: DatePickerService
