@@ -6,11 +6,12 @@
       class="reservation-chat-message"
     >
       <div class="reservation-chat-message-content">
-        <div class="reservation-chat-message-content-text">
-          {{ message.message }}
-        </div>
         <div class="reservation-chat-message-content-date">
           {{ message.createdDate | date : "short" }}
+          {{ message.userName }}
+        </div>
+        <div class="reservation-chat-message-content-text">
+          {{ message.message }}
         </div>
       </div>
     </div>

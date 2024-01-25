@@ -17,10 +17,9 @@ const messageSchema = z.object({
   id: z.string(),
   reservationId: z.string(),
   userId: z.string(),
-  userName: z.string(),
+  userName: z.string().nullable().optional(),
   message: z.string().min(1),
   createdDate: z.number(),
-  // userEmail is string | null | undefined
   userEmail: z.string().nullable().optional(),
 });
 

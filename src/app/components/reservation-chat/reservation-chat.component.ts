@@ -13,6 +13,7 @@ export class ReservationChatComponent implements OnInit {
   @Input() reservationID!: string;
   @Input() userID: string | undefined;
   @Input() userEmail: string | null | undefined;
+  @Input() userName: string | undefined | null;
   protected messages$!: Observable<Message[]>;
   protected newMessage: Partial<Message> = { message: '' };
 
@@ -35,6 +36,7 @@ export class ReservationChatComponent implements OnInit {
     this.newMessage.userId = this.userID;
     this.newMessage.reservationId = this.reservationID;
     this.newMessage.userEmail = this.userEmail;
+    this.newMessage.userName = this.userName;
     const messageId = this.angularFirestore.createId();
 
     this.newMessage.createdDate = Date.now();
