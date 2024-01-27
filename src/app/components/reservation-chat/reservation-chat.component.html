@@ -1,5 +1,23 @@
 <div class="card reservation-chat-form">
   <h3>Chat with Addie and Jared 💬</h3>
+  <ngb-alert
+    class="danger-alert"
+    [dismissible]="true"
+    [animation]="true"
+    type="danger"
+    *ngIf="displayErrorMsg"
+  >
+    {{ errorMessage }}
+  </ngb-alert>
+  <ngb-alert
+    class="success-alert"
+    [dismissible]="true"
+    [animation]="true"
+    type="success"
+    *ngIf="displaySuccessMsg"
+  >
+    Message added. Email(s) have been sent. 🎉
+  </ngb-alert>
   <div class="reservation-chat-messages">
     <div
       *ngFor="let message of messages$ | async"

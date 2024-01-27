@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Message } from 'src/app/types/reservation';
 import { ReservationChatService } from './reservation-chat.service';
-import { Observable, catchError, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
@@ -16,6 +16,11 @@ export class ReservationChatComponent implements OnInit {
   @Input() userName: string | undefined | null;
   protected messages$!: Observable<Message[]>;
   protected newMessage: Partial<Message> = { message: '' };
+  protected displayErrorMsg: boolean = false;
+  protected errorMessage: string =
+    'Unable to add chat message. Please reach out to Jaden for help! 😭';
+
+  protected displaySuccessMsg: boolean = false;
 
   constructor(
     private chatService: ReservationChatService,
@@ -43,12 +48,13 @@ export class ReservationChatComponent implements OnInit {
 
     this.chatService
       .createMessage(this.newMessage, messageId)
-      // .pipe(
-      //   catchError((err) => {
-      //     // this.displayErrorMsg = true;
-      //     // return throwError(err);
-      //   })
-      // )
+      .pipe(
+        catchError((err) => {
+          this.displayErrorMsg = true;
+          this.errorMessage = err;
+          return throwError(err);
+        })
+      )
       .subscribe(() => {
         this.newMessage.message = '';
       });
