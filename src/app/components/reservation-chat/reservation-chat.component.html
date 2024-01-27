@@ -24,14 +24,17 @@
       class="reservation-chat-message"
     >
       <div class="reservation-chat-message-content">
-        <div class="reservation-chat-message-content-date">
-          {{ message.createdDate | date : "short" }}
-          {{ message.userName }}
+        <div class="reservation-chat-message-header">
+          <span class="user-name">{{ message.userName }}</span>
+          <span class="created-date">{{
+            message.createdDate | date : "short"
+          }}</span>
         </div>
         <div class="reservation-chat-message-content-text">
           {{ message.message }}
         </div>
       </div>
+      <hr />
     </div>
     <form #f="ngForm" class="reservation-chat-form">
       <label>Message</label>
