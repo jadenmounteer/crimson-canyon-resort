@@ -11,6 +11,7 @@ export interface Reservation {
   privateVisit: boolean;
   plansForFood: string;
   additionalInfo: string | undefined;
+  createdByUserEmail: string | null | undefined;
 }
 
 const messageSchema = z.object({
@@ -21,6 +22,7 @@ const messageSchema = z.object({
   message: z.string().min(1),
   createdDate: z.number(),
   userEmail: z.string().nullable().optional(),
+  emailOfUserWhoCreatedReservation: z.string().nullable().optional(),
 });
 
 export type Message = z.infer<typeof messageSchema>;

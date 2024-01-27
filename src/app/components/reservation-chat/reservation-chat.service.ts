@@ -12,7 +12,6 @@ export class ReservationChatService {
   constructor(private firestore: AngularFirestore, private router: Router) {}
 
   public createMessage(newMessage: Partial<Message>, messageId: string) {
-    console.log(newMessage);
     const createMessageObs$ = from(
       this.firestore
         .doc(`reservation-chat-messages/${messageId}`)

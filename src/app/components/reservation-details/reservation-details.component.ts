@@ -91,6 +91,7 @@ export class ReservationDetailsComponent implements OnInit, OnDestroy {
         privateVisit: form.value.privateVisit,
         plansForFood: form.value.plansForFood,
         additionalInfo: form.value.additionalInfo,
+        createdByUserEmail: this.reservation.createdByUserEmail,
       };
 
       this.reservationsService.updateReservation(updatedReservation);

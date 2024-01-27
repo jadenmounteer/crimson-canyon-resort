@@ -73,7 +73,7 @@ function createAnnouncementEmailBody(notification) {
 
   emailBody += `<br/>- ${notification.createdByUserName}`;
 
-  emailBody += `<br/><a href="https://crimson-canyon-resort-prod.web.app/">Crimson Canyon Resort</a>`;
+  emailBody += `<br/><a href="https://crimsoncanyonresort.us/">Crimson Canyon Resort</a>`;
 
   return emailBody;
 }
@@ -90,7 +90,7 @@ exports.sendEmailApprovalNotification = functions.firestore
           from: SENDER_EMAIL,
           to: `${notification.email}`,
           subject: "Your email has been approved!", // notification.subject
-          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimson-canyon-resort-prod.web.app/"><br/>Create an account here</a>`,
+          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimsoncanyonresort.us/"><br/>Create an account here</a>`,
         })
         .then((res) => {
           console.log("Successfully sent email.");
@@ -114,7 +114,7 @@ exports.sendEmailApprovalNotification2 = functions.firestore
           from: SENDER_EMAIL,
           to: `${notification.email}`,
           subject: "Your email has been approved!", // notification.subject
-          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimson-canyon-resort-prod.web.app/"><br/>Create an account here</a>`,
+          html: `<p>Your email, ${notification.email}, has just been approved to create an account at Crimson Canyon Resort.</br><a href="https://crimsoncanyonresort.us/"><br/>Create an account here</a>`,
         })
         .then((res) => {
           console.log("Successfully sent email.");
@@ -145,7 +145,7 @@ exports.sendEmailReservationCreated = functions.firestore
           <br/> Their plans for food are "${notification.plansForFood}".
           <br/> They will be bringing ${notification.numberOfVehicles} vehicles.
           <br/> Additional info: ${notification.additionalInfo}
-           <br/><br/><a href="https://crimson-canyon-resort-prod.web.app/">View their reservation here</a>`,
+           <br/><br/><a href="https://crimsoncanyonresort.us/">View their reservation here</a>`,
       })
       .then((res) => {
         console.log("Successfully sent email.");
@@ -175,7 +175,7 @@ exports.sendEmailReservationUpdated = functions.firestore
           <br/> Their plans for food are "${notification.plansForFood}".
           <br/> They will be bringing ${notification.numberOfVehicles} vehicles.
           <br/> Additional info: ${notification.additionalInfo}
-           <br/><br/><a href="https://crimson-canyon-resort-prod.web.app/">View their reservation here</a>`,
+           <br/><br/><a href="https://crimsoncanyonresort.us/">View their reservation here</a>`,
       })
       .then((res) => {
         console.log("Successfully sent email.");
@@ -205,7 +205,42 @@ exports.sendEmailReservationDeleted = functions.firestore
           <br/> Their plans for food were "${notification.plansForFood}".
           <br/> They were bringing ${notification.numberOfVehicles} vehicles.
           <br/> Additional info: ${notification.additionalInfo}
-           <br/><br/><a href="https://crimson-canyon-resort-prod.web.app/">View more reservations here</a>`,
+           <br/><br/><a href="https://crimsoncanyonresort.us/">View more reservations here</a>`,
+      })
+      .then((res) => {
+        console.log("Successfully sent email.");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+// Email sent when someone sends a chat message
+exports.sendEmailChatMessage = functions.firestore
+  .document("reservation-chat-messages/{docId}")
+  .onUpdate((snap, context) => {
+    const notification = snap.data();
+
+    let emailAddresses = [];
+
+    // If an admin sent the email, send it to the user who created the reservation.
+    // Otherwise, send it to the admins.
+    if (adminEmails.includes(notification.userEmail)) {
+      emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
+    } else {
+      adminEmails.forEach((emailAddress) => {
+        emailAddresses.push(emailAddress);
+      });
+    }
+
+    authData
+      .sendMail({
+        from: SENDER_EMAIL,
+        to: `${emailAddresses.join(", ")}`,
+        subject: `${notification.userName} just messaged you about a reservation!`, // notification.subject
+        html: `<p>${notification.userName} just sent the following message regarding a reservation:</br>
+          "${notification.message}"
+           <br/><br/><a href="https://crimsoncanyonresort.us/">Crimson Canyon Resort</a>`,
       })
       .then((res) => {
         console.log("Successfully sent email.");

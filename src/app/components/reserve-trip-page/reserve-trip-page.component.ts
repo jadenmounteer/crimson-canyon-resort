@@ -172,6 +172,7 @@ export class ReserveTripPageComponent implements OnInit, OnDestroy {
       privateVisit: form.value.privateVisit,
       plansForFood: form.value.plansForFood,
       additionalInfo: form.value.additionalInfo,
+      createdByUserEmail: this.authService.userEmail,
     };
 
     this.reservationsService.addNewReservation(reservation);

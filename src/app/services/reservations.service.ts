@@ -50,6 +50,7 @@ export class ReservationsService {
               privateVisit: doc.payload.doc.data().privateVisit,
               plansForFood: doc.payload.doc.data().plansForFood,
               additionalInfo: doc.payload.doc.data().additionalInfo,
+              createdByUserEmail: doc.payload.doc.data().createdByUserEmail,
             };
           });
         })
@@ -80,6 +81,7 @@ export class ReservationsService {
               privateVisit: doc.payload.doc.data().privateVisit,
               plansForFood: doc.payload.doc.data().plansForFood,
               additionalInfo: doc.payload.doc.data().additionalInfo,
+              createdByUserEmail: doc.payload.doc.data().createdByUserEmail,
             };
           });
         })
