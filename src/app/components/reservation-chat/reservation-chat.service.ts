@@ -42,8 +42,17 @@ export class ReservationChatService {
       .collection('reservation-chat-messages', (ref) =>
         ref.where('reservationId', '==', reservationId)
       )
-      .get()
-      .pipe(map((result) => convertSnaps<Message>(result)));
+      .snapshotChanges()
+      .pipe(
+        map((snaps) => {
+          return snaps.map((snap) => {
+            return <Message>{
+              id: snap.payload.doc.id,
+              ...(snap.payload.doc.data() as object),
+            };
+          });
+        })
+      );
   }
 
   public updateMessage(
