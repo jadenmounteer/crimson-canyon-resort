@@ -56,6 +56,7 @@ export class ReservationChatComponent implements OnInit {
         })
       )
       .subscribe(() => {
+        this.displaySuccessMsg = true;
         this.newMessage.message = '';
       });
   }
