@@ -1,1 +1,22 @@
 @import "../../../styles.scss";
+
+.page-content-wrapper {
+  @include for-tablet-landscape-up {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 8px;
+  }
+}
+
+.form-container {
+  @include for-tablet-landscape-up {
+    // max-width: 40%;
+  }
+}
+
+.weather-wrapper {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
