@@ -220,20 +220,23 @@ exports.sendEmailChatMessage = functions.firestore
     const notification = snap.data();
 
     let emailAddresses = [];
-
+    adminEmails.forEach((emailAddress) => {
+      emailAddresses.push(emailAddress);
+    });
+    emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
     // If an admin sent the email, send it to the user who created the reservation.
     // Otherwise, send it to the admins.
 
-    console.log(`notification.userEmail: ${notification.userEmail}`);
-    if (adminEmails.includes(notification.userEmail)) {
-      console.log("Sending to user.");
-      emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
-    } else {
-      console.log("Sending to admins.");
-      adminEmails.forEach((emailAddress) => {
-        emailAddresses.push(emailAddress);
-      });
-    }
+    // console.log(`notification.userEmail: ${notification.userEmail}`);
+    // if (adminEmails.includes(notification.userEmail)) {
+    //   console.log("Sending to user.");
+    //   emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
+    // } else {
+    //   console.log("Sending to admins.");
+    //   adminEmails.forEach((emailAddress) => {
+    //     emailAddresses.push(emailAddress);
+    //   });
+    // }
 
     console.log(emailAddresses);
 
