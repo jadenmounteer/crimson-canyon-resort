@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
 const admin = require("firebase-admin");
+const { co } = require("@fullcalendar/core/internal-common");
 admin.initializeApp(functions.config().firebase);
 require("dotenv").config();
 
@@ -18,12 +19,9 @@ const transportInfo = {
 
 const authData = nodemailer.createTransport(transportInfo);
 
-const testAdminEmails = [
-  "mounteerjaden@gmail.com",
-  "dadasaurusrex12@gmail.com",
-];
+const adminEmails = ["dadasaurusrex12@gmail.com"];
 
-const adminEmails = ["jrakisits@gmail.com", "addiesmith76@yahoo.com"];
+// const adminEmails = ["jrakisits@gmail.com", "addiesmith76@yahoo.com"];
 
 exports.sendEmailNotification = functions.firestore
   .document("posts/{docId}")
@@ -219,19 +217,26 @@ exports.sendEmailReservationDeleted = functions.firestore
 exports.sendEmailChatMessage = functions.firestore
   .document("reservation-chat-messages/{docId}")
   .onUpdate((snap, context) => {
+    console.log("Sending email for chat message.");
     const notification = snap.data();
 
     let emailAddresses = [];
 
     // If an admin sent the email, send it to the user who created the reservation.
     // Otherwise, send it to the admins.
+
+    console.log("notification.userEmail: ", notification.userEmail);
     if (adminEmails.includes(notification.userEmail)) {
+      console.log("Sending to user.");
       emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
     } else {
+      console.log("Sending to admins.");
       adminEmails.forEach((emailAddress) => {
         emailAddresses.push(emailAddress);
       });
     }
+
+    console.log("emailAddresses: ", emailAddresses);
 
     authData
       .sendMail({

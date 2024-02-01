@@ -39,7 +39,9 @@ export class ReservationChatService {
   ): Observable<Message[]> {
     return this.firestore
       .collection('reservation-chat-messages', (ref) =>
-        ref.where('reservationId', '==', reservationId)
+        ref
+          .where('reservationId', '==', reservationId)
+          .orderBy('createdDate', 'asc')
       )
       .snapshotChanges()
       .pipe(
