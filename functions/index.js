@@ -225,7 +225,7 @@ exports.sendEmailChatMessage = functions.firestore
     // If an admin sent the email, send it to the user who created the reservation.
     // Otherwise, send it to the admins.
 
-    console.log("notification.userEmail: ", notification.userEmail);
+    console.log(`notification.userEmail: ${notification.userEmail}`);
     if (adminEmails.includes(notification.userEmail)) {
       console.log("Sending to user.");
       emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
@@ -236,7 +236,7 @@ exports.sendEmailChatMessage = functions.firestore
       });
     }
 
-    console.log("emailAddresses: ", emailAddresses);
+    console.log(emailAddresses);
 
     authData
       .sendMail({
