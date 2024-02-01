@@ -22,6 +22,9 @@ export class PromptUpdateService {
         // // Reload the page to update to the latest version.
 
         // only update the app if a new version is ready
+        alert(
+          'A new version of the app is available. We will now update the app. You have no choice. Mwahahahaha! 😈'
+        );
         document.location.reload();
       });
   }
