@@ -8,10 +8,8 @@
   }
 }
 
-.form-container {
-  @include for-tablet-landscape-up {
-    // max-width: 40%;
-  }
+.booking-form {
+  height: fit-content;
 }
 
 .weather-wrapper {

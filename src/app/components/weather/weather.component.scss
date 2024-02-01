@@ -5,9 +5,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  @include for-tablet-portrait-up {
-    width: 500px;
-  }
+
   min-width: 300px;
   max-width: 500px;
   min-height: 300px;

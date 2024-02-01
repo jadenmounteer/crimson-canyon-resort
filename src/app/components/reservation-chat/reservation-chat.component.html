@@ -19,25 +19,27 @@
     Message added. Email(s) have been sent. 🎉
   </ngb-alert>
   <div class="reservation-chat-messages">
-    <div class="card messages-area">
-      <div
-        *ngFor="let message of messages$ | async"
-        class="reservation-chat-message"
-      >
-        <div class="reservation-chat-message-content">
-          <div class="reservation-chat-message-header">
-            <span class="user-name">{{ message.userName }}</span>
-            <span class="created-date">{{
-              message.createdDate | date : "short"
-            }}</span>
+    <span *ngIf="messages$ | async as messages">
+      <div class="card messages-area" *ngIf="messages.length >= 1">
+        <div
+          *ngFor="let message of messages$ | async"
+          class="reservation-chat-message"
+        >
+          <div class="reservation-chat-message-content">
+            <div class="reservation-chat-message-header">
+              <span class="user-name">{{ message.userName }}</span>
+              <span class="created-date">{{
+                message.createdDate | date : "short"
+              }}</span>
+            </div>
+            <div class="reservation-chat-message-content-text">
+              {{ message.message }}
+            </div>
           </div>
-          <div class="reservation-chat-message-content-text">
-            {{ message.message }}
-          </div>
+          <hr />
         </div>
-        <hr />
       </div>
-    </div>
+    </span>
 
     <form #f="ngForm" class="reservation-chat-form">
       <label>New Message</label>
