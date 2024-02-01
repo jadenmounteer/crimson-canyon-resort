@@ -18,9 +18,9 @@ const transportInfo = {
 
 const authData = nodemailer.createTransport(transportInfo);
 
-const adminEmails = ["dadasaurusrex12@gmail.com"];
+// const adminEmails = ["dadasaurusrex12@gmail.com"];
 
-// const adminEmails = ["jrakisits@gmail.com", "addiesmith76@yahoo.com"];
+const adminEmails = ["jrakisits@gmail.com", "addiesmith76@yahoo.com"];
 
 exports.sendEmailNotification = functions.firestore
   .document("posts/{docId}")
@@ -220,14 +220,7 @@ exports.sendEmailChatMessage = functions.firestore
     const notification = snap.data();
 
     let emailAddresses = [];
-    // adminEmails.forEach((emailAddress) => {
-    //   emailAddresses.push(emailAddress);
-    // });
-    // emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
-    // // If an admin sent the email, send it to the user who created the reservation.
-    // Otherwise, send it to the admins.
 
-    // console.log(`notification.userEmail: ${notification.userEmail}`);
     if (adminEmails.includes(notification.userEmail)) {
       console.log("Sending to user.");
       emailAddresses.push(notification.emailOfUserWhoCreatedReservation);
