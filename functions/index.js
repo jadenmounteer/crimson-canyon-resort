@@ -1,7 +1,6 @@
 const functions = require("firebase-functions");
 const nodemailer = require("nodemailer");
 const admin = require("firebase-admin");
-const { co } = require("@fullcalendar/core/internal-common");
 admin.initializeApp(functions.config().firebase);
 require("dotenv").config();
 
