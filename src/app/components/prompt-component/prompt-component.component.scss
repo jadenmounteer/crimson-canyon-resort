@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.ios-prompt {
+.prompt {
   display: flex;
   flex-direction: column;
 }
@@ -20,4 +20,8 @@
 .button-container {
   position: relative;
   left: -22px;
+}
+
+.download-button {
+  text-align: center;
 }

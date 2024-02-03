@@ -1,15 +1,18 @@
-<mat-toolbar
-  *ngIf="data.mobileType === 'android'"
-  color="primary"
-  class="android-prompt"
->
-  <button mat-button (click)="installPwa()">Install App</button>
-  <button mat-icon-button (click)="close()">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-toolbar>
+<div class="prompt" *ngIf="data.mobileType === 'android'">
+  <div class="button-container">
+    <button class="close-ios-inv" mat-button color="primary" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
-<div *ngIf="data.mobileType === 'ios'" class="ios-prompt">
+  <div class="download-button">
+    <button class="btn btn-primary" (click)="installPwa()">
+      Download the App 📲
+    </button>
+  </div>
+</div>
+
+<div *ngIf="data.mobileType === 'ios'" class="prompt">
   <div class="button-container">
     <button class="close-ios-inv" mat-button color="primary" (click)="close()">
       <mat-icon>close</mat-icon>
