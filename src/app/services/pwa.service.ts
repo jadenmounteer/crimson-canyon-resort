@@ -4,6 +4,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { take, timer } from 'rxjs';
 import { PromptComponent } from '../components/prompt-component/prompt-component.component';
 
+// This service was inspired from this article: https://medium.com/@oleksandr_k/a-way-to-show-a-prompt-to-install-your-angular-pwa-both-on-android-and-ios-devices-7a770f55c54
 @Injectable({
   providedIn: 'root',
 })
