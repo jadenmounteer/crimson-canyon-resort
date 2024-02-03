@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .btn-img {
   width: 50px;
 }
@@ -8,4 +10,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.ios-prompt {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  position: relative;
+  left: -22px;
 }

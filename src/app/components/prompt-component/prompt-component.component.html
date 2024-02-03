@@ -10,12 +10,15 @@
 </mat-toolbar>
 
 <div *ngIf="data.mobileType === 'ios'" class="ios-prompt">
-  <button class="close-ios-inv" mat-button color="primary" (click)="close()">
-    <mat-icon>close</mat-icon>
-  </button>
+  <div class="button-container">
+    <button class="close-ios-inv" mat-button color="primary" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
   <span>
-    To install this web app on your device tap the Menu button and then the 'Add
-    to Home screen' button
+    To install the app on your device tap the Menu button and then 'Add to Home
+    screen'.
   </span>
   <div class="images">
     <div class="img-wrapper">

@@ -31,7 +31,6 @@ import { SignUpPageComponent } from './components/sign-up-page/sign-up-page.comp
 import { AdministrationModule } from './administration/administration.module';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { RequestToCreateAccountPageComponent } from './components/request-to-create-account-page/request-to-create-account-page.component';
-import { InstagramFeedComponent } from './components/instagram-feed/instagram-feed.component';
 import { WhatsHappeningHomePageSectionComponent } from './components/whats-happening-home-page-section/whats-happening-home-page-section.component';
 import { WhatsHappeningPageModule } from './whats-happening-page/whats-happening-page.module';
 import { AnnouncementsSectionComponent } from './components/announcements-section/announcments-section.component';
@@ -53,6 +52,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { PwaService } from './services/pwa.service';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
 
 const initializer = (pwaService: PwaService) => () =>
   pwaService.initPwaPrompt();
@@ -105,6 +105,7 @@ const initializer = (pwaService: PwaService) => () =>
     FitnessCenterModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule,
     NgbRatingModule,
     MatBottomSheetModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
