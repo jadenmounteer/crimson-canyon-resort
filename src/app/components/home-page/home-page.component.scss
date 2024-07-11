@@ -23,10 +23,6 @@
 }
 
 .video-content {
-  @include for-phone-only {
-    display: none;
-  }
-
   position: absolute;
   top: 60%;
   left: 50%;

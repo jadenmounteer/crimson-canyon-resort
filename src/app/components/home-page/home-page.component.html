@@ -14,9 +14,6 @@
 
   <app-page-wrapper [contentLoaded]="contentLoaded">
     <div pageContent class="centered-content">
-      <div class="check-availability-banner" *ngIf="isAuth">
-        <app-check-availability-menu></app-check-availability-menu>
-      </div>
       <div *ngIf="!isAuth">
         <app-login-or-sign-up
           *ngIf="!isAuth"
