@@ -1,5 +1,16 @@
 <div class="home-page-wrapper">
-  <app-carousel></app-carousel>
+  <!-- <app-carousel></app-carousel> -->
+
+  <!-- The home page video -->
+  <div class="video-section">
+    <video autoplay muted loop id="homePageVideo">
+      <source src="./assets/home-page-video.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="video-content">
+      <app-check-availability-menu></app-check-availability-menu>
+    </div>
+  </div>
 
   <app-page-wrapper [contentLoaded]="contentLoaded">
     <div pageContent class="centered-content">
